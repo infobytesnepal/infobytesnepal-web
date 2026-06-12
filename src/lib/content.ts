@@ -87,7 +87,7 @@ export const defaultPageContent = {
     text: "InfoBytes Nepal builds digital products that make everyday operational work clearer for growing teams.",
     buttonLabel: "Explore Products",
     buttonUrl: "/products",
-    imageUrl: "/assets/about/about-section-1.jpeg",
+    imageUrl: "/assets/about/about-section-1.webp",
   },
   aboutSection2: {
     title: "Built around simpler workflows",
