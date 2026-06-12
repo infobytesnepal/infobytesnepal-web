@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BarChart3, FileText, ImageIcon, Inbox, LayoutDashboard, LogOut, Package, Search, SlidersHorizontal } from "lucide-react";
+import { BarChart3, BriefcaseBusiness, FileText, ImageIcon, Inbox, LayoutDashboard, LogOut, Package, Search, SlidersHorizontal } from "lucide-react";
 import { logoutAction } from "@/lib/actions/auth";
 import { getInquiryStats } from "@/lib/data";
 
@@ -7,6 +7,7 @@ const nav = [
   { href: "/admin-infobytesnepal", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin-infobytesnepal/inquiries", label: "Inquiries", icon: Inbox, dot: "inquiries" },
   { href: "/admin-infobytesnepal/requests", label: "Get Started Requests", icon: FileText, dot: "requests" },
+  { href: "/admin-infobytesnepal/service-inquiries", label: "Service Inquiries", icon: BriefcaseBusiness, dot: "serviceRequests" },
   { href: "/admin-infobytesnepal/products", label: "Products", icon: Package },
   { href: "/admin-infobytesnepal/pages", label: "Pages", icon: BarChart3 },
   { href: "/admin-infobytesnepal/media", label: "Media / Assets", icon: ImageIcon },
@@ -26,7 +27,14 @@ export default async function AdminShell({ children }: { children: React.ReactNo
         <nav className="grid gap-1">
           {nav.map((item) => {
             const Icon = item.icon;
-            const dot = item.dot === "inquiries" ? stats.unreadInquiries > 0 : item.dot === "requests" ? stats.unreadRequests > 0 : false;
+            const dot =
+              item.dot === "inquiries"
+                ? stats.unreadInquiries > 0
+                : item.dot === "requests"
+                  ? stats.unreadRequests > 0
+                  : item.dot === "serviceRequests"
+                    ? stats.unreadServiceRequests > 0
+                    : false;
             return (
               <Link key={item.href} href={item.href} className="flex items-center justify-between rounded-2xl px-3 py-3 text-sm font-medium text-deep-navy hover:bg-soft-blue">
                 <span className="flex items-center gap-3">

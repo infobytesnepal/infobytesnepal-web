@@ -11,6 +11,7 @@ import {
   pageContent,
   products,
   seoSettings,
+  serviceInquiries,
   siteSettings,
 } from "@/lib/db/schema";
 import { requireAdmin } from "@/lib/auth";
@@ -77,6 +78,24 @@ export async function markAllRequestsRead() {
   await requireAdmin();
   await db.update(getStartedRequests).set({ isRead: true });
   revalidatePath("/admin-infobytesnepal/requests");
+}
+
+export async function markServiceInquiryRead(formData: FormData) {
+  await requireAdmin();
+  await db.update(serviceInquiries).set({ isRead: true }).where(eq(serviceInquiries.id, formString(formData, "id")));
+  revalidatePath("/admin-infobytesnepal/service-inquiries");
+}
+
+export async function markAllServiceInquiriesRead() {
+  await requireAdmin();
+  await db.update(serviceInquiries).set({ isRead: true });
+  revalidatePath("/admin-infobytesnepal/service-inquiries");
+}
+
+export async function deleteServiceInquiry(formData: FormData) {
+  await requireAdmin();
+  await db.delete(serviceInquiries).where(eq(serviceInquiries.id, formString(formData, "id")));
+  revalidatePath("/admin-infobytesnepal/service-inquiries");
 }
 
 export async function upsertProduct(formData: FormData) {

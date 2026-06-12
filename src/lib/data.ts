@@ -8,12 +8,14 @@ import {
   pageContent,
   products,
   seoSettings,
+  serviceInquiries,
   siteSettings,
   type ContactInquiry,
   type GetStartedRequest,
   type MediaAsset,
   type Product,
   type SeoSetting,
+  type ServiceInquiry,
 } from "./db/schema";
 import { productSeeds, siteDefaults } from "./content";
 import { jsonParse } from "./utils";
@@ -140,14 +142,17 @@ export async function getInquiryStats() {
   try {
     const inquiries = await db.select().from(contactInquiries).orderBy(desc(contactInquiries.createdAt));
     const requests = await db.select().from(getStartedRequests).orderBy(desc(getStartedRequests.createdAt));
+    const serviceRequests = await db.select().from(serviceInquiries).orderBy(desc(serviceInquiries.createdAt));
     return {
       inquiries,
       requests,
+      serviceRequests,
       unreadInquiries: inquiries.filter((item) => !item.isRead).length,
       unreadRequests: requests.filter((item) => !item.isRead).length,
+      unreadServiceRequests: serviceRequests.filter((item) => !item.isRead).length,
     };
   } catch {
-    return { inquiries: [], requests: [], unreadInquiries: 0, unreadRequests: 0 };
+    return { inquiries: [], requests: [], serviceRequests: [], unreadInquiries: 0, unreadRequests: 0, unreadServiceRequests: 0 };
   }
 }
 
@@ -172,6 +177,38 @@ export async function searchContactInquiries(filter?: string, query?: string): P
       .from(contactInquiries)
       .where(conditions.length ? and(...conditions) : undefined)
       .orderBy(desc(contactInquiries.createdAt));
+  } catch {
+    return [];
+  }
+}
+
+export async function searchServiceInquiries(
+  filter?: string,
+  service?: string,
+  query?: string,
+): Promise<ServiceInquiry[]> {
+  try {
+    const conditions = [];
+    if (filter === "read") conditions.push(eq(serviceInquiries.isRead, true));
+    if (filter === "unread") conditions.push(eq(serviceInquiries.isRead, false));
+    if (service) conditions.push(eq(serviceInquiries.serviceType, service));
+    if (query) {
+      const q = `%${query}%`;
+      conditions.push(
+        or(
+          like(serviceInquiries.name, q),
+          like(serviceInquiries.organizationName, q),
+          like(serviceInquiries.contactNumber, q),
+          like(serviceInquiries.email, q),
+          like(serviceInquiries.serviceType, q),
+        ),
+      );
+    }
+    return await db
+      .select()
+      .from(serviceInquiries)
+      .where(conditions.length ? and(...conditions) : undefined)
+      .orderBy(desc(serviceInquiries.createdAt));
   } catch {
     return [];
   }

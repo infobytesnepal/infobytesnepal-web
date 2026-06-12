@@ -53,6 +53,18 @@ export const getStartedRequests = sqliteTable("get_started_requests", {
   ...timestamps,
 });
 
+export const serviceInquiries = sqliteTable("service_inquiries", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  organizationName: text("organization_name"),
+  contactNumber: text("contact_number").notNull(),
+  email: text("email"),
+  serviceType: text("service_type").notNull(),
+  remarks: text("remarks"),
+  isRead: integer("is_read", { mode: "boolean" }).notNull().default(false),
+  ...timestamps,
+});
+
 export const pageContent = sqliteTable(
   "page_content",
   {
@@ -100,6 +112,7 @@ export const mediaAssets = sqliteTable("media_assets", {
 export type Product = typeof products.$inferSelect;
 export type ContactInquiry = typeof contactInquiries.$inferSelect;
 export type GetStartedRequest = typeof getStartedRequests.$inferSelect;
+export type ServiceInquiry = typeof serviceInquiries.$inferSelect;
 export type PageContent = typeof pageContent.$inferSelect;
 export type SiteSetting = typeof siteSettings.$inferSelect;
 export type SeoSetting = typeof seoSettings.$inferSelect;

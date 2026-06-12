@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { productInterests } from "./content";
+import { serviceInquiryOptions } from "./services";
 
 const optionalEmail = z
   .string()
@@ -25,6 +26,15 @@ export const getStartedSchema = z.object({
   remarks: z.string().trim().max(2000, "Remarks are too long.").optional().default(""),
   productInterest: z.enum(productInterests, { message: "Choose what you would like to begin with." }),
   consentChecked: z.boolean().default(false),
+});
+
+export const serviceInquirySchema = z.object({
+  name: z.string().trim().min(1, "Name is required.").max(120, "Name is too long."),
+  organizationName: z.string().trim().max(180, "Organization name is too long.").optional().default(""),
+  contactNumber: z.string().trim().min(1, "Contact Number is required.").max(40, "Contact number is too long."),
+  email: optionalEmail,
+  serviceType: z.enum(serviceInquiryOptions, { message: "Choose the type of service." }),
+  remarks: z.string().trim().max(2000, "Remarks are too long.").optional().default(""),
 });
 
 export const loginSchema = z.object({
