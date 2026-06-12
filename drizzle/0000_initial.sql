@@ -1,0 +1,93 @@
+CREATE TABLE IF NOT EXISTS admin_users (
+  id TEXT PRIMARY KEY NOT NULL,
+  email TEXT NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL,
+  role TEXT NOT NULL DEFAULT 'admin',
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS products (
+  id TEXT PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL,
+  slug TEXT NOT NULL UNIQUE,
+  logo_url TEXT NOT NULL,
+  short_description TEXT NOT NULL,
+  full_description TEXT NOT NULL,
+  display_order INTEGER NOT NULL DEFAULT 0,
+  is_published INTEGER NOT NULL DEFAULT 1,
+  seo_title TEXT,
+  seo_description TEXT,
+  og_image TEXT,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS contact_inquiries (
+  id TEXT PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL,
+  organization_name TEXT,
+  contact_number TEXT NOT NULL,
+  email TEXT,
+  remarks TEXT,
+  is_read INTEGER NOT NULL DEFAULT 0,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS get_started_requests (
+  id TEXT PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL,
+  organization_name TEXT,
+  contact_number TEXT NOT NULL,
+  email TEXT NOT NULL,
+  remarks TEXT,
+  product_interest TEXT NOT NULL,
+  consent_checked INTEGER NOT NULL DEFAULT 0,
+  is_read INTEGER NOT NULL DEFAULT 0,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS page_content (
+  id TEXT PRIMARY KEY NOT NULL,
+  page_key TEXT NOT NULL,
+  section_key TEXT NOT NULL,
+  content_json TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(page_key, section_key)
+);
+
+CREATE TABLE IF NOT EXISTS site_settings (
+  id TEXT PRIMARY KEY NOT NULL,
+  key TEXT NOT NULL UNIQUE,
+  value TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS seo_settings (
+  id TEXT PRIMARY KEY NOT NULL,
+  route TEXT NOT NULL UNIQUE,
+  title TEXT,
+  description TEXT,
+  canonical TEXT,
+  robots TEXT,
+  og_title TEXT,
+  og_description TEXT,
+  og_image TEXT,
+  schema_json TEXT,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS media_assets (
+  id TEXT PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL,
+  url TEXT NOT NULL,
+  type TEXT NOT NULL,
+  alt_text TEXT,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
