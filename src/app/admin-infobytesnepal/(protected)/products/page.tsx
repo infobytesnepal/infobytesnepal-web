@@ -1,6 +1,6 @@
-import Image from "next/image";
 import ConfirmButton from "@/components/admin/confirm-button";
-import { AdminCard, AdminInput, AdminTextarea, SaveButton } from "@/components/admin/ui";
+import { AdminCard, AdminFileInput, AdminInput, AdminTextarea, SaveButton } from "@/components/admin/ui";
+import CmsImage from "@/components/public/cms-image";
 import { deleteProduct, upsertProduct } from "@/lib/actions/admin";
 import { getProducts } from "@/lib/data";
 
@@ -17,7 +17,7 @@ export default async function ProductsAdminPage() {
         {products.map((product) => (
           <AdminCard key={product.id}>
             <div className="mb-5 flex items-center gap-4">
-              <Image src={product.logoUrl} alt={`${product.name} logo`} width={52} height={52} className="h-12 w-12" />
+              <CmsImage src={product.logoUrl} alt={`${product.name} logo`} width={52} height={52} className="h-12 w-12" />
               <div>
                 <h2 className="text-xl font-semibold text-deep-navy">{product.name}</h2>
                 <p className="text-sm text-dark-text/60">/{product.slug} · order {product.displayOrder} · {product.isPublished ? "Published" : "Unpublished"}</p>
@@ -46,13 +46,17 @@ function ProductForm({ product }: { product?: Awaited<ReturnType<typeof getProdu
         <AdminInput label="Slug" name="slug" defaultValue={product?.slug || ""} required />
         <AdminInput label="Display order" name="displayOrder" type="number" defaultValue={product?.displayOrder || 0} />
       </div>
-      <AdminInput label="Product logo URL" name="logoUrl" defaultValue={product?.logoUrl || ""} required />
+      <input type="hidden" name="logoUrl" value={product?.logoUrl || ""} />
+      <AdminFileInput label={product ? "Replace product logo" : "Product logo"} name="logoFile" accept="image/*" help="Upload an image or SVG from your device." required={!product} />
       <AdminTextarea label="Short description" name="shortDescription" rows={3} defaultValue={product?.shortDescription || ""} required />
       <AdminTextarea label="Full description" name="fullDescription" rows={5} defaultValue={product?.fullDescription || ""} required />
       <div className="grid gap-4 md:grid-cols-3">
         <AdminInput label="SEO title" name="seoTitle" defaultValue={product?.seoTitle || ""} />
         <AdminInput label="SEO description" name="seoDescription" defaultValue={product?.seoDescription || ""} />
-        <AdminInput label="OG image" name="ogImage" defaultValue={product?.ogImage || ""} />
+        <div>
+          <input type="hidden" name="ogImage" value={product?.ogImage || ""} />
+          <AdminFileInput label="OG image" name="ogImageFile" accept="image/*" help="Optional social sharing image." />
+        </div>
       </div>
       <label className="flex items-center gap-3 text-sm font-medium text-deep-navy">
         <input name="isPublished" type="checkbox" defaultChecked={product?.isPublished ?? true} className="h-4 w-4 accent-primary-blue" />

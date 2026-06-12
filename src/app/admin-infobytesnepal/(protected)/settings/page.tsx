@@ -1,4 +1,4 @@
-import { AdminCard, AdminInput, SaveButton } from "@/components/admin/ui";
+import { AdminCard, AdminFileInput, AdminInput, SaveButton } from "@/components/admin/ui";
 import { updateSiteSettings } from "@/lib/actions/admin";
 import { getSettings } from "@/lib/data";
 
@@ -13,8 +13,10 @@ export default async function SettingsAdminPage() {
           <AdminInput label="Tagline" name="tagline" defaultValue={settings.tagline} />
           <AdminInput label="WhatsApp number" name="whatsappNumber" defaultValue={settings.whatsappNumber} />
           <AdminInput label="Contact email" name="contactEmail" defaultValue={settings.contactEmail} />
-          <AdminInput label="Logo URL" name="logoUrl" defaultValue={settings.logoUrl} />
-          <AdminInput label="Default OG image" name="defaultOgImage" defaultValue={settings.defaultOgImage} />
+          <input type="hidden" name="logoUrl" value={settings.logoUrl} />
+          <AdminFileInput label="Logo" name="logoUrlFile" accept="image/*" />
+          <input type="hidden" name="defaultOgImage" value={settings.defaultOgImage} />
+          <AdminFileInput label="Default OG image" name="defaultOgImageFile" accept="image/*" />
           <SaveButton>Save settings</SaveButton>
         </form>
       </AdminCard>

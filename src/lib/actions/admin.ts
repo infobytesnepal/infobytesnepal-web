@@ -15,7 +15,38 @@ import {
 } from "@/lib/db/schema";
 import { requireAdmin } from "@/lib/auth";
 import { formString, newId } from "@/lib/utils";
-import { mediaSchema, productSchema, seoSchema } from "@/lib/validation";
+import { productSchema, seoSchema } from "@/lib/validation";
+
+const maxImageBytes = 1_500_000;
+
+function formFile(formData: FormData, key: string) {
+  const value = formData.get(key);
+  if (!value || typeof value === "string" || !("arrayBuffer" in value)) return null;
+  return value as File;
+}
+
+async function storeUploadedImage(file: File | null, fallbackUrl: string, name: string, altText = "") {
+  if (!file || file.size === 0) return fallbackUrl;
+  if (!file.type.startsWith("image/")) throw new Error("Only image uploads are supported.");
+  if (file.size > maxImageBytes) throw new Error("Image uploads must be 1.5MB or smaller.");
+
+  const id = newId();
+  const bytes = Buffer.from(await file.arrayBuffer());
+  const url = `data:${file.type};base64,${bytes.toString("base64")}`;
+  const now = new Date().toISOString();
+
+  await db.insert(mediaAssets).values({
+    id,
+    name: name || file.name || "Uploaded image",
+    url,
+    type: file.type,
+    altText,
+    createdAt: now,
+    updatedAt: now,
+  });
+
+  return url;
+}
 
 export async function markContactRead(formData: FormData) {
   await requireAdmin();
@@ -50,18 +81,31 @@ export async function markAllRequestsRead() {
 
 export async function upsertProduct(formData: FormData) {
   await requireAdmin();
+  const name = formString(formData, "name");
+  const logoUrl = await storeUploadedImage(
+    formFile(formData, "logoFile"),
+    formString(formData, "logoUrl"),
+    `${name || "Product"} logo`,
+    `${name || "Product"} logo`,
+  );
+  const ogImage = await storeUploadedImage(
+    formFile(formData, "ogImageFile"),
+    formString(formData, "ogImage"),
+    `${name || "Product"} OG image`,
+    name,
+  );
   const parsed = productSchema.safeParse({
     id: formString(formData, "id"),
-    name: formString(formData, "name"),
+    name,
     slug: formString(formData, "slug"),
-    logoUrl: formString(formData, "logoUrl"),
+    logoUrl,
     shortDescription: formString(formData, "shortDescription"),
     fullDescription: formString(formData, "fullDescription"),
     displayOrder: formString(formData, "displayOrder"),
     isPublished: formData.get("isPublished") === "on",
     seoTitle: formString(formData, "seoTitle"),
     seoDescription: formString(formData, "seoDescription"),
-    ogImage: formString(formData, "ogImage"),
+    ogImage,
   });
   if (!parsed.success) redirect("/admin-infobytesnepal/products?error=1");
 
@@ -103,7 +147,17 @@ export async function updatePageSection(formData: FormData) {
   const id = formString(formData, "id") || newId();
   const data: Record<string, string> = {};
   for (const [key, value] of formData.entries()) {
-    if (!["pageKey", "sectionKey", "id"].includes(key) && typeof value === "string") data[key] = value.trim();
+    if (!["pageKey", "sectionKey", "id"].includes(key) && typeof value === "string" && !key.endsWith("File")) data[key] = value.trim();
+  }
+  for (const [key] of formData.entries()) {
+    if (!key.endsWith("File")) continue;
+    const targetKey = key.slice(0, -"File".length);
+    data[targetKey] = await storeUploadedImage(
+      formFile(formData, key),
+      data[targetKey] || "",
+      `${pageKey} ${sectionKey} ${targetKey}`,
+      data.title || targetKey,
+    );
   }
   const contentJson = JSON.stringify(data);
   await db
@@ -120,19 +174,25 @@ export async function updatePageSection(formData: FormData) {
 
 export async function upsertMediaAsset(formData: FormData) {
   await requireAdmin();
-  const parsed = mediaSchema.safeParse({
-    id: formString(formData, "id"),
-    name: formString(formData, "name"),
-    url: formString(formData, "url"),
-    type: formString(formData, "type"),
-    altText: formString(formData, "altText"),
-  });
-  if (!parsed.success) redirect("/admin-infobytesnepal/media?error=1");
-  const data = parsed.data;
-  if (data.id) {
-    await db.update(mediaAssets).set({ ...data, updatedAt: new Date().toISOString() }).where(eq(mediaAssets.id, data.id));
+  const id = formString(formData, "id");
+  const name = formString(formData, "name");
+  const altText = formString(formData, "altText");
+  const file = formFile(formData, "file");
+  if (!name || (!id && (!file || file.size === 0))) redirect("/admin-infobytesnepal/media?error=1");
+
+  if (id) {
+    const [existing] = await db.select().from(mediaAssets).where(eq(mediaAssets.id, id)).limit(1);
+    if (!existing) redirect("/admin-infobytesnepal/media?error=1");
+    const url = await storeUploadedImage(file, existing.url, name, altText);
+    await db.update(mediaAssets).set({
+      name,
+      url,
+      type: file && file.size > 0 ? file.type : existing.type,
+      altText,
+      updatedAt: new Date().toISOString(),
+    }).where(eq(mediaAssets.id, id));
   } else {
-    await db.insert(mediaAssets).values({ id: newId(), ...data });
+    await storeUploadedImage(file, "", name, altText);
   }
   revalidatePath("/admin-infobytesnepal/media");
   redirect("/admin-infobytesnepal/media");
@@ -146,9 +206,15 @@ export async function deleteMediaAsset(formData: FormData) {
 
 export async function updateSiteSettings(formData: FormData) {
   await requireAdmin();
-  const keys = ["companyName", "tagline", "whatsappNumber", "contactEmail", "logoUrl", "defaultOgImage"];
-  for (const key of keys) {
-    const value = formString(formData, key);
+  const values: Record<string, string> = {
+    companyName: formString(formData, "companyName"),
+    tagline: formString(formData, "tagline"),
+    whatsappNumber: formString(formData, "whatsappNumber"),
+    contactEmail: formString(formData, "contactEmail"),
+    logoUrl: await storeUploadedImage(formFile(formData, "logoUrlFile"), formString(formData, "logoUrl"), "Site logo", "InfoBytes Nepal logo"),
+    defaultOgImage: await storeUploadedImage(formFile(formData, "defaultOgImageFile"), formString(formData, "defaultOgImage"), "Default OG image", "InfoBytes Nepal"),
+  };
+  for (const [key, value] of Object.entries(values)) {
     await db
       .insert(siteSettings)
       .values({ id: newId(), key, value })
@@ -160,16 +226,18 @@ export async function updateSiteSettings(formData: FormData) {
 
 export async function upsertSeoSetting(formData: FormData) {
   await requireAdmin();
+  const route = formString(formData, "route");
+  const ogImage = await storeUploadedImage(formFile(formData, "ogImageFile"), formString(formData, "ogImage"), `${route || "Route"} OG image`, route);
   const parsed = seoSchema.safeParse({
     id: formString(formData, "id"),
-    route: formString(formData, "route"),
+    route,
     title: formString(formData, "title"),
     description: formString(formData, "description"),
     canonical: formString(formData, "canonical"),
     robots: formString(formData, "robots"),
     ogTitle: formString(formData, "ogTitle"),
     ogDescription: formString(formData, "ogDescription"),
-    ogImage: formString(formData, "ogImage"),
+    ogImage,
     schemaJson: formString(formData, "schemaJson"),
   });
   if (!parsed.success) redirect("/admin-infobytesnepal/seo?error=1");

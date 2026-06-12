@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
+import CmsImage from "@/components/public/cms-image";
 import GetStartedButton from "@/components/public/get-started-button";
 import Reveal from "@/components/public/reveal";
 import StackingCards from "@/components/public/stacking-cards";
@@ -27,7 +27,7 @@ export default async function HomePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([orgSchema, websiteSchema()]) }} />
-      <section className="relative flex min-h-screen items-center overflow-hidden bg-soft-blue px-5 pt-28">
+      <section className="page-x relative flex min-h-screen items-center overflow-hidden bg-soft-blue pt-28">
         <video
           autoPlay
           muted
@@ -59,7 +59,7 @@ export default async function HomePage() {
 
       <StackingCards />
 
-      <section className="relative z-10 bg-white px-5 py-20">
+      <section className="page-x relative z-10 bg-white py-20">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div>
@@ -80,7 +80,7 @@ export default async function HomePage() {
                   href={`/products/${product.slug}`}
                   className="block h-full rounded-[20px] border border-primary-blue/12 bg-soft-blue/50 p-5 transition hover:-translate-y-1 hover:border-primary-green/35 hover:bg-soft-green/55"
                 >
-                  <Image src={product.logoUrl} alt={`${product.name} logo`} width={54} height={54} className="h-12 w-12" />
+                  <CmsImage src={product.logoUrl} alt={`${product.name} logo`} width={54} height={54} className="h-12 w-12" />
                   <h3 className="mt-5 text-xl font-semibold text-deep-navy">{product.name}</h3>
                   <p className="mt-3 line-clamp-4 text-sm leading-6 text-dark-text/72">{product.shortDescription}</p>
                 </Link>

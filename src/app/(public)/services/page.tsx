@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
-  return <div className="min-h-screen bg-white pt-24" aria-label="Services" />;
+  return <div className="page-x min-h-screen bg-white pt-24" aria-label="Services" />;
 }

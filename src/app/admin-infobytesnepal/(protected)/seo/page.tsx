@@ -1,5 +1,5 @@
 import ConfirmButton from "@/components/admin/confirm-button";
-import { AdminCard, AdminInput, AdminTextarea, SaveButton } from "@/components/admin/ui";
+import { AdminCard, AdminFileInput, AdminInput, AdminTextarea, SaveButton } from "@/components/admin/ui";
 import { deleteSeoSetting, upsertSeoSetting } from "@/lib/actions/admin";
 import { getAllSeo } from "@/lib/data";
 
@@ -42,7 +42,10 @@ function SeoForm({ row }: { row?: Awaited<ReturnType<typeof getAllSeo>>[number] 
       <AdminTextarea label="Description" name="description" rows={3} defaultValue={row?.description || ""} />
       <div className="grid gap-4 md:grid-cols-2">
         <AdminInput label="Canonical" name="canonical" defaultValue={row?.canonical || ""} />
-        <AdminInput label="OG image" name="ogImage" defaultValue={row?.ogImage || ""} />
+        <div>
+          <input type="hidden" name="ogImage" value={row?.ogImage || ""} />
+          <AdminFileInput label="OG image" name="ogImageFile" accept="image/*" />
+        </div>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         <AdminInput label="OG title" name="ogTitle" defaultValue={row?.ogTitle || ""} />

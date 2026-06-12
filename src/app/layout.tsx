@@ -20,6 +20,16 @@ export const metadata: Metadata = {
   },
   description:
     "Focused digital products that simplify field service, sales, lead tracking, and student talent workflows for growing teams.",
+  icons: {
+    icon: [
+      {
+        url: "/assets/brand/infobytesnepal-favicon.png",
+        type: "image/png",
+      },
+    ],
+    shortcut: "/assets/brand/infobytesnepal-favicon.png",
+    apple: "/assets/brand/infobytesnepal-favicon.png",
+  },
 };
 
 export default function RootLayout({

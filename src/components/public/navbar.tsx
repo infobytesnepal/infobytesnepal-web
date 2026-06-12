@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import CmsImage from "./cms-image";
 import GetStartedButton from "./get-started-button";
 
 const navLinks = [
@@ -40,13 +40,13 @@ export default function Navbar({ logoUrl }: { logoUrl: string }) {
 
   return (
     <motion.header
-      className="fixed inset-x-0 top-0 z-50 border-b border-primary-blue/10 bg-white/92 px-5 py-2 shadow-[0_10px_28px_rgba(4,18,63,0.06)] backdrop-blur-xl md:px-10"
+      className="page-x fixed inset-x-0 top-0 z-50 border-b border-primary-blue/10 bg-white/92 py-2 shadow-[0_10px_28px_rgba(4,18,63,0.06)] backdrop-blur-xl"
       animate={{ y: hidden && !open ? "-115%" : "0%" }}
       transition={{ duration: 0.24, ease: "easeOut" }}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between">
         <Link href="/" className="focus-ring flex items-center gap-3 rounded-full" aria-label="InfoBytes Nepal home">
-          <Image src={logoUrl} alt="InfoBytes Nepal logo" width={178} height={54} className="h-12 w-auto object-contain" priority />
+          <CmsImage src={logoUrl} alt="InfoBytes Nepal logo" width={178} height={54} className="h-12 w-auto object-contain" priority />
         </Link>
         <div className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
@@ -72,7 +72,7 @@ export default function Navbar({ logoUrl }: { logoUrl: string }) {
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
-            className="mx-[-1.25rem] mt-2 border-t border-primary-blue/10 bg-white/96 px-5 py-4 shadow-[0_18px_55px_rgba(4,18,63,0.12)] backdrop-blur-xl md:hidden"
+            className="mt-2 border-t border-primary-blue/10 bg-white/96 p-4 shadow-[0_18px_55px_rgba(4,18,63,0.12)] backdrop-blur-xl md:hidden"
           >
             <div className="grid gap-2">
               {navLinks.map((link) => (

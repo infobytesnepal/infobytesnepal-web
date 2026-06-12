@@ -94,7 +94,18 @@ export async function getPageSection<T>(pageKey: string, sectionKey: string, fal
       .from(pageContent)
       .where(and(eq(pageContent.pageKey, pageKey), eq(pageContent.sectionKey, sectionKey)))
       .limit(1);
-    return jsonParse(row?.contentJson, fallback);
+    const parsed = jsonParse(row?.contentJson, fallback);
+    if (
+      fallback &&
+      parsed &&
+      typeof fallback === "object" &&
+      typeof parsed === "object" &&
+      !Array.isArray(fallback) &&
+      !Array.isArray(parsed)
+    ) {
+      return { ...fallback, ...parsed };
+    }
+    return parsed;
   } catch {
     return fallback;
   }

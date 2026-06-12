@@ -14,7 +14,7 @@ function StackCard({ card, index }: { card: (typeof stackingCards)[number]; inde
     <motion.article
       ref={ref}
       className="sticky top-24 mx-auto min-h-[420px] max-w-5xl overflow-hidden rounded-[28px] border border-primary-blue/12 bg-white p-7 shadow-[0_30px_80px_rgba(4,18,63,0.11)] md:min-h-[470px] md:p-10"
-      style={{ scale, y }}
+      style={{ scale, y, zIndex: index + 1 }}
     >
       <div className="brand-radial absolute inset-0 opacity-80" />
       <div className="relative z-10 flex h-full min-h-[340px] flex-col justify-between">
@@ -35,14 +35,14 @@ function StackCard({ card, index }: { card: (typeof stackingCards)[number]; inde
 
 export default function StackingCards() {
   return (
-    <section className="relative z-0 bg-soft-blue px-5 py-20 md:pb-48 md:pt-28">
+    <section className="page-x relative z-0 bg-soft-blue py-20 md:pb-48 md:pt-28">
       <div className="mx-auto mb-12 max-w-5xl">
         <p className="text-sm font-semibold uppercase text-primary-blue">Workflows</p>
         <h2 className="mt-3 max-w-3xl text-3xl font-semibold text-deep-navy md:text-5xl">
           Focused products for the workflows teams need to keep clear.
         </h2>
       </div>
-      <div className="hidden h-[220vh] gap-8 md:grid">
+      <div className="hidden h-[360vh] flex-col gap-8 md:flex lg:h-[340vh]">
         {stackingCards.map((card, index) => (
           <StackCard key={card.title} card={card} index={index} />
         ))}

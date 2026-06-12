@@ -23,7 +23,7 @@ export default async function ContactPage() {
   const heroMedia = hero.backgroundUrl || "/assets/hero/infobytes-contact-hero.mp4";
   return (
     <>
-      <section className="relative flex min-h-screen items-center overflow-hidden bg-deep-navy px-5 pt-28">
+      <section className="page-x relative flex min-h-screen items-center overflow-hidden bg-deep-navy pt-28">
         <video
           autoPlay
           muted
@@ -54,7 +54,7 @@ export default async function ContactPage() {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-20">
+      <section className="page-x bg-white py-20">
         <div className="mx-auto max-w-3xl">
           <div className="mb-8">
             <p className="text-sm font-semibold uppercase text-primary-blue">Contact Form</p>

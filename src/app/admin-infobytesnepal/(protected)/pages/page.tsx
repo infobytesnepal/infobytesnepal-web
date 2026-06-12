@@ -1,4 +1,4 @@
-import { AdminCard, AdminInput, AdminTextarea, SaveButton } from "@/components/admin/ui";
+import { AdminCard, AdminFileInput, AdminInput, AdminTextarea, SaveButton } from "@/components/admin/ui";
 import { updatePageSection } from "@/lib/actions/admin";
 import { defaultPageContent } from "@/lib/content";
 import { getPageSection } from "@/lib/data";
@@ -25,8 +25,9 @@ export default async function PagesAdminPage() {
             <AdminInput label="Hero headline" name="headline" defaultValue={homeHero.headline} />
             <AdminInput label="Tagline" name="tagline" defaultValue={homeHero.tagline} />
             <AdminTextarea label="Supporting text" name="supportingText" rows={3} defaultValue={homeHero.supportingText} />
-            <AdminInput label="Hero video URL" name="heroVideoUrl" defaultValue={homeHero.heroVideoUrl} />
-            <AdminInput label="Fallback image URL" name="fallbackImageUrl" defaultValue={homeHero.fallbackImageUrl} />
+            <AdminInput label="Hero video path" name="heroVideoUrl" defaultValue={homeHero.heroVideoUrl} />
+            <input type="hidden" name="fallbackImageUrl" value={homeHero.fallbackImageUrl} />
+            <AdminFileInput label="Fallback image" name="fallbackImageUrlFile" accept="image/*" help="Used as the video poster." />
           </SectionForm>
         </AdminCard>
 
@@ -37,7 +38,8 @@ export default async function PagesAdminPage() {
             <AdminTextarea label="Text" name="text" rows={4} defaultValue={about1.text} />
             <AdminInput label="Button label" name="buttonLabel" defaultValue={about1.buttonLabel} />
             <AdminInput label="Button URL" name="buttonUrl" defaultValue={about1.buttonUrl} />
-            <AdminInput label="Image URL" name="imageUrl" defaultValue={about1.imageUrl} />
+            <input type="hidden" name="imageUrl" value={about1.imageUrl} />
+            <AdminFileInput label="Image" name="imageUrlFile" accept="image/*" />
           </SectionForm>
         </AdminCard>
 
@@ -48,7 +50,18 @@ export default async function PagesAdminPage() {
             <AdminTextarea label="Text" name="text" rows={4} defaultValue={about2.text} />
             <AdminInput label="Button label" name="buttonLabel" defaultValue={about2.buttonLabel} />
             <AdminInput label="Button URL" name="buttonUrl" defaultValue={about2.buttonUrl} />
-            <AdminInput label="Image URL" name="imageUrl" defaultValue={about2.imageUrl} />
+            <div className="grid gap-4 md:grid-cols-3">
+              {Array.from({ length: 15 }, (_, index) => {
+                const key = `techLogo${index + 1}` as keyof typeof about2;
+                const value = String(about2[key] || "");
+                return (
+                  <div key={key}>
+                    <input type="hidden" name={key} value={value} />
+                    <AdminFileInput label={`Tech logo ${index + 1}`} name={`${key}File`} accept="image/*" />
+                  </div>
+                );
+              })}
+            </div>
           </SectionForm>
         </AdminCard>
 
@@ -75,7 +88,7 @@ export default async function PagesAdminPage() {
             <AdminInput label="Hero title" name="title" defaultValue={contactHero.title} />
             <AdminTextarea label="Hero text" name="text" rows={3} defaultValue={contactHero.text} />
             <AdminInput label="WhatsApp number" name="whatsappNumber" defaultValue={contactHero.whatsappNumber} />
-            <AdminInput label="Background video/image" name="backgroundUrl" defaultValue={contactHero.backgroundUrl} />
+            <AdminInput label="Background video path" name="backgroundUrl" defaultValue={contactHero.backgroundUrl} />
           </SectionForm>
         </AdminCard>
 

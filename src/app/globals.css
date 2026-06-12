@@ -46,6 +46,18 @@ select {
   background: rgba(3, 66, 197, 0.18);
 }
 
+.page-x {
+  padding-left: clamp(1.5rem, 6vw, 4rem);
+  padding-right: clamp(1.5rem, 6vw, 4rem);
+}
+
+@media (min-width: 1024px) {
+  .page-x {
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
+}
+
 .brand-gradient {
   background: linear-gradient(135deg, #0342c5 0%, #00bb5c 100%);
 }
