@@ -57,7 +57,7 @@ export default async function ContactPage() {
       <section className="page-x bg-white py-20">
         <div className="mx-auto max-w-3xl">
           <div className="mb-8">
-            <p className="text-sm font-semibold uppercase text-primary-blue">Contact Form</p>
+            <p className="text-sm font-semibold uppercase text-primary-blue">Contact Us</p>
             <h1 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">{hero.title}</h1>
             <p className="mt-4 max-w-2xl leading-7 text-dark-text/72">{hero.text}</p>
           </div>

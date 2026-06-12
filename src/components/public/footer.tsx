@@ -18,7 +18,7 @@ export default async function Footer() {
           <p className="mt-3 max-w-sm text-sm leading-6 text-white/78">{footer.text}</p>
         </div>
         <div>
-          <h2 className="text-sm font-semibold text-white">Navigation</h2>
+          <h2 className="text-sm font-semibold text-white">Explore</h2>
           <div className="mt-4 grid gap-2 text-sm text-white/78">
             <Link href="/products" className="hover:text-deep-navy">Our Products</Link>
             <Link href="/services" className="hover:text-deep-navy">Services</Link>

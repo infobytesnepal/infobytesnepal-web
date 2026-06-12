@@ -8,7 +8,7 @@ import { getSiteUrl } from "@/lib/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
-  const title = "Shiwam Paudel and Rajesh Pandey | Founders of InfoBytes Nepal";
+  const title = "SAbout | InfoBytes Nepal";
   const description =
     "Learn about Shiwam Paudel, Co-Founder and CEO of InfoBytes Nepal, and Rajesh Pandey, Founder of InfoBytes Nepal, the team behind focused digital products from Bhaktapur, Nepal.";
 

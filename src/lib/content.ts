@@ -52,22 +52,22 @@ export const productSeeds = [
 
 export const stackingCards = [
   {
-    title: "Student Talent",
+    title: "A Student's Talent Bench - Pravyo",
     product: "Pravyo",
     description: "A talent bench for students, designed to make potential easier to discover and present.",
   },
   {
-    title: "Field Service",
+    title: "Field Service Management - Serviol",
     product: "Serviol",
     description: "Field tickets, planners, attendance, and service operations simplified for teams on the move.",
   },
   {
-    title: "Field Sales",
+    title: "Field Sales Management - Purseol",
     product: "Purseol",
     description: "Client visits, product pitches, and lead outcomes logged clearly from the field.",
   },
   {
-    title: "Lead Tracking",
+    title: "Lead Tracking & Management- LeadRack",
     product: "LeadRack",
     description: "Leads organized through boards and stages so nothing goes unmissed.",
   },

@@ -37,7 +37,7 @@ export default function ContactForm() {
         disabled={pending}
         className="focus-ring site-button-gradient mt-6 rounded-full px-7 py-3 font-semibold shadow-[0_18px_42px_rgba(3,66,197,0.18)] disabled:cursor-wait disabled:opacity-70"
       >
-        {pending ? "Sending..." : "Inquire"}
+        {pending ? "Sending..." : "Contact Me"}
       </button>
     </form>
   );
