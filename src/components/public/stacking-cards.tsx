@@ -2,9 +2,19 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import CmsImage from "@/components/public/cms-image";
 import { stackingCards } from "@/lib/content";
 
-function StackCard({ card, index }: { card: (typeof stackingCards)[number]; index: number }) {
+type StackProduct = {
+  name: string;
+  logoUrl: string;
+};
+
+function productForCard(products: StackProduct[], productName: string) {
+  return products.find((product) => product.name.toLowerCase() === productName.toLowerCase());
+}
+
+function StackCard({ card, index, product }: { card: (typeof stackingCards)[number]; index: number; product?: StackProduct }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 85%", "start 18%"] });
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94 + index * 0.012]);
@@ -24,8 +34,19 @@ function StackCard({ card, index }: { card: (typeof stackingCards)[number]; inde
           </span>
           <span className="text-sm font-semibold text-primary-blue">0{index + 1}</span>
         </div>
+        {product ? (
+          <div className="flex h-32 items-center md:h-40">
+            <CmsImage
+              src={product.logoUrl}
+              alt={`${product.name} logo`}
+              width={260}
+              height={130}
+              className="max-h-28 w-auto max-w-[280px] object-contain object-left md:max-h-36"
+            />
+          </div>
+        ) : null}
         <div className="max-w-2xl">
-          <h2 className="text-4xl font-semibold tracking-normal text-deep-navy md:text-6xl">{card.title}</h2>
+          <h2 className="text-3xl font-semibold tracking-normal text-deep-navy md:text-5xl">{card.title}</h2>
           <p className="mt-6 text-lg leading-8 text-dark-text/76 md:text-xl">{card.description}</p>
         </div>
       </div>
@@ -33,7 +54,7 @@ function StackCard({ card, index }: { card: (typeof stackingCards)[number]; inde
   );
 }
 
-export default function StackingCards() {
+export default function StackingCards({ products }: { products: StackProduct[] }) {
   return (
     <section className="page-x relative z-0 bg-soft-blue py-20 md:pb-48 md:pt-28">
       <div className="mx-auto mb-12 max-w-5xl">
@@ -43,28 +64,43 @@ export default function StackingCards() {
         </h2>
       </div>
       <div className="hidden h-[360vh] flex-col gap-8 md:flex lg:h-[340vh]">
-        {stackingCards.map((card, index) => (
-          <StackCard key={card.title} card={card} index={index} />
-        ))}
+        {stackingCards.map((card, index) => {
+          const product = productForCard(products, card.product);
+          return <StackCard key={card.title} card={card} index={index} product={product} />;
+        })}
       </div>
       <div className="hidden h-56 md:block" />
       <div className="grid gap-5 md:hidden">
-        {stackingCards.map((card, index) => (
-          <motion.article
-            key={card.title}
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="brand-radial rounded-[24px] border border-primary-blue/12 bg-white p-6 shadow-[0_18px_45px_rgba(4,18,63,0.08)]"
-          >
-            <div className="mb-14 flex items-center justify-between">
-              <span className="rounded-full bg-soft-green px-3 py-1 text-sm font-semibold text-deep-navy">{card.product}</span>
-              <span className="text-sm font-semibold text-primary-blue">0{index + 1}</span>
-            </div>
-            <h3 className="text-3xl font-semibold text-deep-navy">{card.title}</h3>
-            <p className="mt-4 leading-7 text-dark-text/74">{card.description}</p>
-          </motion.article>
-        ))}
+        {stackingCards.map((card, index) => {
+          const product = productForCard(products, card.product);
+          return (
+            <motion.article
+              key={card.title}
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="brand-radial rounded-[24px] border border-primary-blue/12 bg-white p-6 shadow-[0_18px_45px_rgba(4,18,63,0.08)]"
+            >
+              <div className="flex items-center justify-between">
+                <span className="rounded-full bg-soft-green px-3 py-1 text-sm font-semibold text-deep-navy">{card.product}</span>
+                <span className="text-sm font-semibold text-primary-blue">0{index + 1}</span>
+              </div>
+              {product ? (
+                <div className="mt-8 flex h-24 items-center">
+                  <CmsImage
+                    src={product.logoUrl}
+                    alt={`${product.name} logo`}
+                    width={210}
+                    height={96}
+                    className="max-h-20 w-auto max-w-[220px] object-contain object-left"
+                  />
+                </div>
+              ) : null}
+              <h3 className="mt-7 text-2xl font-semibold text-deep-navy">{card.title}</h3>
+              <p className="mt-4 leading-7 text-dark-text/74">{card.description}</p>
+            </motion.article>
+          );
+        })}
       </div>
     </section>
   );

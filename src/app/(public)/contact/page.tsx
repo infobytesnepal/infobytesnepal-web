@@ -23,7 +23,7 @@ export default async function ContactPage() {
   const heroMedia = hero.backgroundUrl || "/assets/hero/infobytes-contact-hero.mp4";
   return (
     <>
-      <section className="page-x relative flex min-h-screen items-center overflow-hidden bg-deep-navy pt-28">
+      <section className="page-x relative hidden min-h-screen items-center overflow-hidden bg-deep-navy pt-28 md:flex">
         <video
           autoPlay
           muted

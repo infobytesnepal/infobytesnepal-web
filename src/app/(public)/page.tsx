@@ -40,9 +40,9 @@ export default async function HomePage() {
         </video>
         <div className="relative z-10 mx-auto w-full max-w-7xl">
           <Reveal className="max-w-xl md:w-1/2">
-            <h1 className="text-5xl font-semibold tracking-normal text-deep-navy md:text-7xl">{hero.headline}</h1>
-            <p className="mt-5 text-2xl font-semibold text-primary-blue">{hero.tagline}</p>
-            <p className="mt-6 max-w-lg text-lg leading-8 text-dark-text/76">{hero.supportingText}</p>
+            <h1 className="text-4xl font-semibold leading-tight tracking-normal text-deep-navy md:text-[3.5rem]">{hero.headline}</h1>
+            <p className="mt-5 text-xl font-semibold text-primary-blue md:text-[1.35rem]">{hero.tagline}</p>
+            <p className="mt-6 max-w-lg text-base leading-7 text-dark-text/76 md:text-lg md:leading-8">{hero.supportingText}</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/products"
@@ -57,7 +57,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <StackingCards />
+      <StackingCards products={products} />
 
       <section className="page-x relative z-10 bg-white py-20">
         <div className="mx-auto max-w-7xl">

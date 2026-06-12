@@ -8,7 +8,7 @@ import { getSiteUrl } from "@/lib/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
-  const title = "SAbout | InfoBytes Nepal";
+  const title = "About | InfoBytes Nepal";
   const description =
     "Learn about Shiwam Paudel, Co-Founder and CEO of InfoBytes Nepal, and Rajesh Pandey, Founder of InfoBytes Nepal, the team behind focused digital products from Bhaktapur, Nepal.";
 
@@ -175,18 +175,18 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto mt-24 grid max-w-7xl gap-16 md:mt-28">
-        <article id="rajesh-pandey" className="relative rounded-[24px] border-2 border-primary-green bg-gradient-to-r from-[#dfeaff] via-white to-soft-green px-7 pb-8 pt-56 text-primary-blue md:ml-4 md:min-h-[300px] md:px-12 md:py-9 lg:ml-10 lg:pl-[45%]">
+      <section className="mx-auto mt-24 grid max-w-7xl gap-8 md:mt-28 md:gap-16">
+        <article id="rajesh-pandey" className="relative overflow-hidden rounded-[24px] border-2 border-primary-green bg-gradient-to-r from-[#dfeaff] via-white to-soft-green px-6 py-6 text-primary-blue md:ml-4 md:min-h-[300px] md:overflow-visible md:px-12 md:py-9 lg:ml-10 lg:pl-[45%]">
           <CmsImage
             src="/assets/about/rajesh-pandey.png"
             alt="Rajesh Pandey"
             width={520}
             height={520}
-            className="absolute bottom-0 left-1/2 h-72 w-auto max-w-[92%] -translate-x-1/2 object-contain md:left-8 md:h-[390px] md:translate-x-0 lg:left-5"
+            className="relative left-1/2 h-64 w-auto max-w-[92%] -translate-x-1/2 object-contain md:absolute md:bottom-0 md:left-8 md:h-[390px] md:translate-x-0 lg:left-5"
             priority
           />
-          <div className="relative z-10">
-            <h2 className="text-3xl font-semibold md:text-4xl">Where it began</h2>
+          <div className="relative z-10 mt-2 md:mt-0">
+            <h2 className="text-2xl font-semibold md:text-4xl">Where it began</h2>
             <p className="mt-4 max-w-xl leading-7">
               Every great idea starts with a thought. From a simple tea-time talks but with a vision to solve real-world problems with few lines of code, Pravyo is a beginning, we could do a lot more with Technology.
             </p>
@@ -195,16 +195,16 @@ export default async function AboutPage() {
           </div>
         </article>
 
-        <article id="shiwam-paudel" className="relative rounded-[24px] border-2 border-primary-green bg-gradient-to-r from-[#dfeaff] via-white to-soft-green px-7 pb-8 pt-56 text-primary-blue md:mr-4 md:min-h-[300px] md:px-12 md:py-9 lg:mr-10 lg:pr-[45%]">
+        <article id="shiwam-paudel" className="relative overflow-hidden rounded-[24px] border-2 border-primary-green bg-gradient-to-r from-[#dfeaff] via-white to-soft-green px-6 py-6 text-primary-blue md:mr-4 md:min-h-[300px] md:overflow-visible md:px-12 md:py-9 lg:mr-10 lg:pr-[45%]">
           <CmsImage
             src="/assets/about/shiwam-paudel.png"
             alt="Shiwam Paudel"
             width={520}
             height={520}
-            className="absolute bottom-0 left-1/2 h-72 w-auto max-w-[92%] -translate-x-1/2 object-contain md:left-auto md:right-8 md:h-[390px] md:translate-x-0 lg:right-5"
+            className="relative left-1/2 h-64 w-auto max-w-[92%] -translate-x-1/2 object-contain md:absolute md:bottom-0 md:left-auto md:right-8 md:h-[390px] md:translate-x-0 lg:right-5"
           />
-          <div className="relative z-10">
-            <h2 className="text-3xl font-semibold md:text-4xl">{started.title}</h2>
+          <div className="relative z-10 mt-2 md:mt-0">
+            <h2 className="text-2xl font-semibold md:text-4xl">{started.title}</h2>
             <p className="mt-4 max-w-xl leading-7">{started.body}</p>
             <p className="mt-7 font-semibold italic">Shiwam Paudel</p>
             <p className="italic">Co-Founder & CEO, InfoBytes Nepal</p>

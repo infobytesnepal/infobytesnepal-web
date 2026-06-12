@@ -131,7 +131,7 @@ export const defaultPageContent = {
     body: "InfoBytes Nepal collects inquiry details only to respond to submitted requests and improve communication with interested organizations. We do not publish submitted contact details.",
   },
   footer: {
-    text: "Focused digital products for growing teams.",
+    text: "Complexities, Now Simplified.",
   },
 };
 

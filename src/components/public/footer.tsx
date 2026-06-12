@@ -13,7 +13,7 @@ export default async function Footer() {
     <footer className="bg-primary-green text-white">
       <div className="page-x grid gap-8 py-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
         <div>
-          <Image src="/assets/brand/infobytes-nepal-logo-white.png" alt="InfoBytes Nepal logo" width={190} height={58} className="h-14 w-auto object-contain" />
+          <Image src="/assets/brand/infobytes-nepal-logo-white.png" alt="InfoBytes Nepal logo" width={230} height={70} className="h-16 w-auto object-contain md:h-[4.5rem]" />
           <p className="mt-4 font-semibold text-white">{settings.tagline}</p>
           <p className="mt-3 max-w-sm text-sm leading-6 text-white/78">{footer.text}</p>
         </div>
