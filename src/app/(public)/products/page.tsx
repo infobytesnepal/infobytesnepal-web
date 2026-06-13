@@ -4,12 +4,14 @@ import { ArrowRight } from "lucide-react";
 import CmsImage from "@/components/public/cms-image";
 import Reveal from "@/components/public/reveal";
 import { getProducts } from "@/lib/data";
-import { buildMetadata } from "@/lib/seo";
+import { basicPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return buildMetadata("/products", {
+  return basicPageMetadata({
+    route: "/products",
     title: "Products | InfoBytes Nepal",
-    description: "Explore InfoBytes Nepal products for student talent, field service, field sales, and lead tracking workflows.",
+    description:
+      "Explore InfoBytes Nepal software products for business automation, CRM, sales management, service management, lead tracking, and student talent workflows.",
   });
 }
 

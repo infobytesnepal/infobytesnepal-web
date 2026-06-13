@@ -9,12 +9,39 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+const productSeoDefaults: Record<string, { title: string; description: string }> = {
+  pravyo: {
+    title: "Pravyo Student Talent Platform | InfoBytes Nepal",
+    description:
+      "Pravyo by InfoBytes Nepal helps organize, discover, and present student talent for education, training, and consultancy-focused workflows in Nepal.",
+  },
+  serviol: {
+    title: "Serviol Service Management Software Nepal | InfoBytes Nepal",
+    description:
+      "Serviol is service management software by InfoBytes Nepal for field service teams, tickets, planners, attendance, and operational workflows.",
+  },
+  purseol: {
+    title: "Purseol Sales Management Software Nepal | InfoBytes Nepal",
+    description:
+      "Purseol is sales management software by InfoBytes Nepal for client visits, product pitches, field sales tracking, and lead outcomes.",
+  },
+  leadrack: {
+    title: "LeadRack CRM & Lead Management Software Nepal | InfoBytes Nepal",
+    description:
+      "LeadRack by InfoBytes Nepal helps teams manage leads through traceable boards, sales stages, follow-ups, and CRM-style workflows.",
+  },
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
   if (!product) return {};
-  const title = product.seoTitle || `${product.name} | InfoBytes Nepal`;
-  const description = product.seoDescription || product.shortDescription;
+  const defaults = productSeoDefaults[product.slug] || {
+    title: `${product.name} | InfoBytes Nepal`,
+    description: product.shortDescription,
+  };
+  const title = product.seoTitle && product.seoTitle !== `${product.name} | InfoBytes Nepal` ? product.seoTitle : defaults.title;
+  const description = product.seoDescription && product.seoDescription !== product.shortDescription ? product.seoDescription : defaults.description;
   const url = `${getSiteUrl()}/products/${product.slug}`;
   return {
     title,

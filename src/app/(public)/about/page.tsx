@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
   const title = "About | InfoBytes Nepal";
   const description =
-    "Learn about Shiwam Paudel, Co-Founder and CEO of InfoBytes Nepal, and Rajesh Pandey, Founder of InfoBytes Nepal, the team behind focused digital products from Bhaktapur, Nepal.";
+    "Learn about InfoBytes Nepal, a trusted IT company in Nepal building custom software, business automation, service management, sales management, and student talent platforms.";
 
   return {
     title,

@@ -17,6 +17,29 @@ function id() {
   return crypto.randomUUID();
 }
 
+const productSeoDefaults: Record<string, { title: string; description: string }> = {
+  pravyo: {
+    title: "Pravyo Student Talent Platform | InfoBytes Nepal",
+    description:
+      "Pravyo by InfoBytes Nepal helps organize, discover, and present student talent for education, training, and consultancy-focused workflows in Nepal.",
+  },
+  serviol: {
+    title: "Serviol Service Management Software Nepal | InfoBytes Nepal",
+    description:
+      "Serviol is service management software by InfoBytes Nepal for field service teams, tickets, planners, attendance, and operational workflows.",
+  },
+  purseol: {
+    title: "Purseol Sales Management Software Nepal | InfoBytes Nepal",
+    description:
+      "Purseol is sales management software by InfoBytes Nepal for client visits, product pitches, field sales tracking, and lead outcomes.",
+  },
+  leadrack: {
+    title: "LeadRack CRM & Lead Management Software Nepal | InfoBytes Nepal",
+    description:
+      "LeadRack by InfoBytes Nepal helps teams manage leads through traceable boards, sales stages, follow-ups, and CRM-style workflows.",
+  },
+};
+
 async function seedAdmin() {
   const email = process.env.ADMIN_EMAIL;
   const password = process.env.ADMIN_PASSWORD;
@@ -36,14 +59,18 @@ async function seedAdmin() {
 
 async function seedProducts() {
   for (const product of productSeeds) {
+    const seo = productSeoDefaults[product.slug] || {
+      title: `${product.name} | InfoBytes Nepal`,
+      description: product.shortDescription,
+    };
     await db
       .insert(products)
       .values({
         id: id(),
         ...product,
         isPublished: true,
-        seoTitle: `${product.name} | InfoBytes Nepal`,
-        seoDescription: product.shortDescription,
+        seoTitle: seo.title,
+        seoDescription: seo.description,
         ogImage: "/assets/hero/infobytes-hero-fallback.webp",
       })
       .onConflictDoUpdate({
@@ -51,8 +78,8 @@ async function seedProducts() {
         set: {
           ...product,
           isPublished: true,
-          seoTitle: `${product.name} | InfoBytes Nepal`,
-          seoDescription: product.shortDescription,
+          seoTitle: seo.title,
+          seoDescription: seo.description,
           ogImage: "/assets/hero/infobytes-hero-fallback.webp",
           updatedAt: new Date().toISOString(),
         },
@@ -94,20 +121,44 @@ async function seedPages() {
 
 async function seedSeo() {
   const rows = [
-    ["/", "InfoBytes Nepal | Complexities, now simplified.", "Focused digital products that simplify field service, sales, lead tracking, and student talent workflows."],
-    ["/products", "Products | InfoBytes Nepal", "Explore InfoBytes Nepal products for student talent, field service, field sales, and lead tracking workflows."],
-    ["/services", "Services | InfoBytes Nepal", "Services content for InfoBytes Nepal will be available later."],
-    ["/contact", "Contact | InfoBytes Nepal", "Contact InfoBytes Nepal about focused digital products for growing teams."],
-    ["/about", "About | InfoBytes Nepal", "Learn about InfoBytes Nepal and its focus on simplifying practical workflows."],
-    ["/privacy-policy", "Privacy Policy | InfoBytes Nepal", "A concise privacy policy for InfoBytes Nepal inquiries."],
+    [
+      "/",
+      "Software Development Company in Nepal | InfoBytes Nepal",
+      "InfoBytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation solutions.",
+    ],
+    [
+      "/products",
+      "Products | InfoBytes Nepal",
+      "Explore InfoBytes Nepal software products for business automation, CRM, sales management, service management, lead tracking, and student talent workflows.",
+    ],
+    [
+      "/services",
+      "Services | InfoBytes Nepal",
+      "Explore software development, web development, SEO, digital marketing, training, graphics design, and business automation services by InfoBytes Nepal.",
+    ],
+    [
+      "/contact",
+      "Contact | InfoBytes Nepal",
+      "Contact InfoBytes Nepal for custom software development, web development, SEO, digital marketing, and business automation services in Nepal.",
+    ],
+    [
+      "/about",
+      "About | InfoBytes Nepal",
+      "Learn about InfoBytes Nepal, a trusted IT company in Nepal building custom software, business automation, service management, sales management, and student talent platforms.",
+    ],
+    [
+      "/privacy-policy",
+      "Privacy Policy | InfoBytes Nepal",
+      "Read the InfoBytes Nepal privacy policy for website inquiries, service inquiries, contact details, and communication with our team in Nepal.",
+    ],
   ] as const;
   for (const [route, title, description] of rows) {
     await db
       .insert(seoSettings)
-      .values({ id: id(), route, title, description, robots: route === "/services" ? "noindex,follow" : "index,follow" })
+      .values({ id: id(), route, title, description, robots: "index,follow" })
       .onConflictDoUpdate({
         target: seoSettings.route,
-        set: { title, description, robots: route === "/services" ? "noindex,follow" : "index,follow" },
+        set: { title, description, robots: "index,follow" },
       });
   }
 }

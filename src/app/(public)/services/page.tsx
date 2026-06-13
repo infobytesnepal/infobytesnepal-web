@@ -3,12 +3,36 @@ import type { Metadata } from "next";
 import { Check } from "lucide-react";
 import ServiceInquiryModal from "./service-inquiry-modal";
 import ServiceScrollTrail from "./service-scroll-trail";
+import { getSiteUrl } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Services | InfoBytes Nepal",
-  description:
-    "Premium web design, SEO, digital marketing, training, and graphics design services from InfoBytes Nepal.",
-};
+export function generateMetadata(): Metadata {
+  const siteUrl = getSiteUrl();
+  const title = "Services | InfoBytes Nepal";
+  const description =
+    "Explore software development, web development, SEO, digital marketing, training, graphics design, and business automation services by InfoBytes Nepal.";
+  const ogImage = "/assets/hero/infobytes-hero-fallback.webp";
+
+  return {
+    title,
+    description,
+    alternates: { canonical: `${siteUrl}/services` },
+    robots: "index,follow",
+    openGraph: {
+      title,
+      description,
+      url: `${siteUrl}/services`,
+      siteName: "InfoBytes Nepal",
+      images: [{ url: ogImage, alt: "InfoBytes Nepal services" }],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
 
 const services = [
   {

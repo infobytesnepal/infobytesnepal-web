@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { defaultPageContent } from "@/lib/content";
 import { getPageSection } from "@/lib/data";
-import { buildMetadata } from "@/lib/seo";
+import { basicPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return buildMetadata("/privacy-policy", {
+  return basicPageMetadata({
+    route: "/privacy-policy",
     title: "Privacy Policy | InfoBytes Nepal",
-    description: "A concise privacy policy for InfoBytes Nepal inquiries.",
+    description:
+      "Read the InfoBytes Nepal privacy policy for website inquiries, service inquiries, contact details, and communication with our team in Nepal.",
   });
 }
 

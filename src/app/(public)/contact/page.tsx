@@ -3,13 +3,15 @@ import { Phone } from "lucide-react";
 import ContactForm from "@/components/public/contact-form";
 import { defaultPageContent } from "@/lib/content";
 import { getPageSection, getSettings } from "@/lib/data";
-import { buildMetadata } from "@/lib/seo";
+import { basicPageMetadata } from "@/lib/seo";
 import { stripWhatsAppNumber } from "@/lib/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return buildMetadata("/contact", {
+  return basicPageMetadata({
+    route: "/contact",
     title: "Contact | InfoBytes Nepal",
-    description: "Contact InfoBytes Nepal about focused digital products for growing teams.",
+    description:
+      "Contact InfoBytes Nepal for custom software development, web development, SEO, digital marketing, and business automation services in Nepal.",
   });
 }
 

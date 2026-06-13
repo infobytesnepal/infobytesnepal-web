@@ -7,7 +7,8 @@ import Reveal from "@/components/public/reveal";
 import StackingCards from "@/components/public/stacking-cards";
 import { defaultPageContent } from "@/lib/content";
 import { getPageSection, getProducts } from "@/lib/data";
-import { buildMetadata, organizationSchema, websiteSchema } from "@/lib/seo";
+import { organizationSchema, professionalServiceSchema, websiteSchema } from "@/lib/seo";
+import { getSiteUrl } from "@/lib/utils";
 
 const featuredServices = [
   {
@@ -29,11 +30,32 @@ const featuredServices = [
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
-  return buildMetadata("/", {
-    title: "InfoBytes Nepal | Complexities, now simplified.",
-    description:
-      "Focused digital products that simplify field service, sales, lead tracking, and student talent workflows for growing teams.",
-  });
+  const siteUrl = getSiteUrl();
+  const title = "Software Development Company in Nepal | InfoBytes Nepal";
+  const description =
+    "InfoBytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation solutions.";
+  const ogImage = "/assets/hero/infobytes-hero-fallback.webp";
+
+  return {
+    title,
+    description,
+    alternates: { canonical: siteUrl },
+    robots: "index,follow",
+    openGraph: {
+      title,
+      description,
+      url: siteUrl,
+      siteName: "InfoBytes Nepal",
+      images: [{ url: ogImage, alt: "InfoBytes Nepal" }],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
 }
 
 export default async function HomePage() {
@@ -42,10 +64,11 @@ export default async function HomePage() {
     getProducts(),
     organizationSchema(),
   ]);
+  const serviceSchema = professionalServiceSchema();
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([orgSchema, websiteSchema()]) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([orgSchema, websiteSchema(), serviceSchema]) }} />
       <section className="page-x relative flex min-h-screen items-center overflow-hidden bg-soft-blue pt-28">
         <video
           autoPlay
