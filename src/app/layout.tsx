@@ -18,6 +18,9 @@ const defaultTitle = "Software Development Company in Nepal | InfoBytes Nepal";
 const defaultDescription =
   "InfoBytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation solutions.";
 const defaultOgImage = "/assets/hero/infobytes-hero-fallback.webp";
+const faviconPng = "/favicon.png";
+const faviconIco = "/favicon.ico";
+const appleIcon = "/apple-icon.png";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -40,12 +43,23 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/assets/brand/infobytesnepal-favicon.png",
+        url: faviconIco,
+        sizes: "any",
+      },
+      {
+        url: faviconPng,
         type: "image/png",
+        sizes: "96x96",
       },
     ],
-    shortcut: "/assets/brand/infobytesnepal-favicon.png",
-    apple: "/assets/brand/infobytesnepal-favicon.png",
+    shortcut: faviconIco,
+    apple: [
+      {
+        url: appleIcon,
+        type: "image/png",
+        sizes: "180x180",
+      },
+    ],
   },
 };
 

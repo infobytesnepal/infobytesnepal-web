@@ -5,6 +5,10 @@ export function GET() {
   const body = [
     "User-agent: *",
     "Allow: /",
+    "Allow: /favicon.ico",
+    "Allow: /favicon.png",
+    "Allow: /icon.png",
+    "Allow: /apple-icon.png",
     "Disallow: /admin-infobytesnepal",
     `Sitemap: ${siteUrl}/sitemap.xml`,
   ].join("\n");
