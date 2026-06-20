@@ -1322,6 +1322,264 @@ export const seoLandingPages = {
       },
     ],
   },
+  webDesign: {
+    slug: "web-design-company-in-nepal",
+    path: "/web-design-company-in-nepal",
+    metaTitle: "Web Design Company in Nepal | InfoBytes Nepal",
+    metaDescription:
+      "InfoBytes Nepal is a web design company in Nepal creating clean, modern, mobile-first website designs with strong UI, UX, and brand-consistent visuals.",
+    ogTitle: "Web Design Company in Nepal | InfoBytes Nepal",
+    ogDescription:
+      "Get a modern, mobile-first website design with clear UX, strong visuals, and brand consistency from InfoBytes Nepal.",
+    keyword: "Web Design Company in Nepal",
+    heroTitle: "Web Design Company in Nepal",
+    heroIntro:
+      "InfoBytes Nepal designs websites that look credible, communicate clearly, and feel effortless to use. We focus on clean UI, thoughtful UX, and brand-consistent visuals that turn visitors into inquiries.",
+    overview: {
+      title: "Design that earns trust in the first few seconds",
+      paragraphs: [
+        "Most visitors decide whether a business looks trustworthy within seconds of landing on its website. Cluttered layouts, inconsistent colors, weak typography, and confusing navigation quietly push potential customers away, even when the underlying business is excellent.",
+        "InfoBytes Nepal approaches web design as a balance of aesthetics and usability. We plan visual hierarchy, spacing, color, and typography around your brand, then shape each page so the most important message and action are always clear. The result is a website that feels modern and intentional, not decorated.",
+        "For businesses searching for a web design company in Nepal, the strongest outcome is a design system that is beautiful, consistent across pages, mobile-first, and ready to scale as you add services, products, and content over time.",
+      ],
+    },
+    problems: [
+      "Designs look outdated or generic and fail to reflect the quality of the actual business.",
+      "Layouts break or feel cramped on mobile, where most Nepali customers browse.",
+      "Inconsistent colors, fonts, and spacing make the brand feel unprofessional.",
+      "Important content and calls to action get lost in cluttered pages.",
+      "Pretty visuals are added without a clear plan for usability or conversion.",
+    ],
+    solutions: [
+      "We design a clean, consistent visual system based on your brand colors, type, and tone.",
+      "We craft mobile-first layouts that stay clear and elegant on every screen size.",
+      "We use visual hierarchy so visitors instantly see what matters and what to do next.",
+      "We pair strong aesthetics with conversion-focused structure and clear calls to action.",
+      "We design components that are reusable, so the website stays consistent as it grows.",
+    ],
+    features: [
+      "Modern UI design",
+      "User experience (UX) planning",
+      "Mobile-first responsive design",
+      "Brand-consistent visual systems",
+      "Landing page design",
+      "Design-to-development handoff",
+      "Reusable component design",
+      "Conversion-focused layouts",
+    ],
+    process: [
+      {
+        title: "Brand & goals",
+        text: "We review your brand, audience, and goals so the design direction reflects who you are and who you serve.",
+      },
+      {
+        title: "Wireframe",
+        text: "We structure each page around content priority, user flow, and clear calls to action before adding visuals.",
+      },
+      {
+        title: "Visual design",
+        text: "We craft polished, on-brand interfaces with strong type, color, spacing, and a clean modern feel.",
+      },
+      {
+        title: "Review",
+        text: "We refine the design across screens, gather feedback, and ensure consistency and usability throughout.",
+      },
+      {
+        title: "Build-ready",
+        text: "We prepare the design for development so the final website matches the approved visuals precisely.",
+      },
+    ],
+    reasons: [
+      "Design and development under one team, so visuals translate cleanly into a real website.",
+      "Mobile-first thinking for the way customers in Nepal actually browse.",
+      "A focus on clarity and trust, not decoration for its own sake.",
+      "Consistent design systems that keep growing websites looking professional.",
+      "Conversion-aware layouts that connect design with business goals.",
+    ],
+    related: [
+      {
+        href: "/web-development-company-in-nepal",
+        label: "web development company in Nepal",
+        text: "Turn the design into a fast, responsive, production-ready website.",
+      },
+      {
+        href: "/graphic-design-company-in-nepal",
+        label: "graphic design company in Nepal",
+        text: "Extend your brand visuals beyond the website with graphic design support.",
+      },
+      {
+        href: "/seo-company-in-nepal",
+        label: "SEO company in Nepal",
+        text: "Pair a strong design with a structure built for search visibility.",
+      },
+      {
+        href: "/services",
+        label: "all InfoBytes Nepal services",
+        text: "See how design fits into the wider service offering.",
+      },
+      {
+        href: "/contact",
+        label: "contact InfoBytes Nepal",
+        text: "Discuss a new website design or redesign for your business.",
+      },
+    ],
+    faqs: [
+      {
+        question: "What is the difference between web design and web development?",
+        answer:
+          "Web design focuses on how the website looks and feels, including layout, colors, typography, and user experience. Web development turns that design into a working, responsive website. InfoBytes Nepal offers both.",
+      },
+      {
+        question: "Will my website design be mobile-friendly?",
+        answer:
+          "Yes. Every design is created mobile-first, because most customers in Nepal browse from phones, and search engines prioritize mobile experience.",
+      },
+      {
+        question: "Can you redesign my existing website?",
+        answer:
+          "Yes. We can review your current website, identify design and usability issues, and create a cleaner, more modern, brand-consistent design.",
+      },
+      {
+        question: "Do you follow our brand colors and logo?",
+        answer:
+          "Yes. We design around your existing brand identity. If your brand needs refinement, we can also support that through our graphic design service.",
+      },
+      {
+        question: "How do we start a web design project?",
+        answer:
+          "Share your business goals, current website if any, and examples you like. We will then plan a design direction and a realistic scope.",
+      },
+    ],
+  },
+  graphicDesign: {
+    slug: "graphic-design-company-in-nepal",
+    path: "/graphic-design-company-in-nepal",
+    metaTitle: "Graphic Design Company in Nepal | InfoBytes Nepal",
+    metaDescription:
+      "InfoBytes Nepal offers graphic design in Nepal, including logos, brand identity, social media creatives, marketing graphics, and print-ready design.",
+    ogTitle: "Graphic Design Company in Nepal | InfoBytes Nepal",
+    ogDescription:
+      "Build a consistent brand with logos, social media creatives, and marketing graphics designed by InfoBytes Nepal.",
+    keyword: "Graphic Design Company in Nepal",
+    heroTitle: "Graphic Design Company in Nepal",
+    heroIntro:
+      "InfoBytes Nepal helps businesses look consistent and professional across every touchpoint. From logos and brand identity to social media creatives and marketing graphics, we design visuals that communicate clearly and build recognition.",
+    overview: {
+      title: "Consistent visuals that make a brand memorable",
+      paragraphs: [
+        "Strong graphic design does more than look good. It makes a business instantly recognizable, builds trust, and helps marketing perform better. When logos, colors, fonts, and creatives are inconsistent, even a great business can look scattered and forgettable.",
+        "InfoBytes Nepal provides graphic design support for businesses in Nepal that want a clear, consistent visual identity. We design logos and brand systems, social media creatives, ad graphics, presentations, and print-ready materials that all feel like they belong to the same brand.",
+        "Because we also build websites and run digital marketing, our graphic design stays connected to where it will actually be used, online, on social media, and in campaigns, so every asset supports real communication and growth.",
+      ],
+    },
+    problems: [
+      "Logos and visuals look inconsistent across the website, social media, and print.",
+      "Social media creatives are made quickly without a clear, recognizable style.",
+      "There is no defined brand color palette, typography, or usage guideline.",
+      "Marketing materials look amateur and weaken otherwise good campaigns.",
+      "Design assets are scattered and hard to reuse when new content is needed.",
+    ],
+    solutions: [
+      "We create logos and brand identity systems with clear colors, type, and usage rules.",
+      "We design social media creatives and templates that stay consistent and on-brand.",
+      "We produce marketing graphics, banners, and ad creatives aligned to campaigns.",
+      "We prepare print-ready designs for cards, brochures, and other materials.",
+      "We keep visuals connected to your website and digital marketing for a unified brand.",
+    ],
+    features: [
+      "Logo design",
+      "Brand identity systems",
+      "Social media creatives & templates",
+      "Marketing & ad graphics",
+      "Presentation design",
+      "Print-ready design",
+      "Brand color & typography guidelines",
+      "Reusable design templates",
+    ],
+    process: [
+      {
+        title: "Understand the brand",
+        text: "We learn your business, audience, and personality so the visuals reflect the right tone.",
+      },
+      {
+        title: "Define direction",
+        text: "We set the color palette, typography, and visual style that will guide every asset.",
+      },
+      {
+        title: "Design",
+        text: "We create the logo, creatives, or materials with attention to clarity and consistency.",
+      },
+      {
+        title: "Refine",
+        text: "We review the designs with you and refine details until the brand feels right.",
+      },
+      {
+        title: "Deliver & reuse",
+        text: "We deliver organized files and reusable templates so your brand stays consistent over time.",
+      },
+    ],
+    reasons: [
+      "Design that connects directly with your website and digital marketing.",
+      "A focus on consistency, so your brand is recognizable everywhere.",
+      "Practical templates that make ongoing content creation easier.",
+      "Nepal-based support that understands local business and audience context.",
+      "Clean, modern visuals that strengthen trust and recognition.",
+    ],
+    related: [
+      {
+        href: "/web-design-company-in-nepal",
+        label: "web design company in Nepal",
+        text: "Carry your brand visuals into a polished website design.",
+      },
+      {
+        href: "/digital-marketing-company-in-nepal",
+        label: "digital marketing company in Nepal",
+        text: "Put your creatives to work across campaigns and social media.",
+      },
+      {
+        href: "/services",
+        label: "all InfoBytes Nepal services",
+        text: "See how graphic design fits within the wider service offering.",
+      },
+      {
+        href: "/products",
+        label: "InfoBytes Nepal products",
+        text: "Explore the digital products we design and build.",
+      },
+      {
+        href: "/contact",
+        label: "contact InfoBytes Nepal",
+        text: "Discuss a logo, brand identity, or design requirement.",
+      },
+    ],
+    faqs: [
+      {
+        question: "What graphic design services does InfoBytes Nepal offer?",
+        answer:
+          "We design logos, brand identity systems, social media creatives, marketing and ad graphics, presentations, and print-ready materials for businesses in Nepal.",
+      },
+      {
+        question: "Can you design a logo and full brand identity?",
+        answer:
+          "Yes. We can create a logo along with a complete brand system, including color palette, typography, and usage guidelines for consistent use.",
+      },
+      {
+        question: "Do you design social media creatives?",
+        answer:
+          "Yes. We design social media posts, templates, and campaign creatives that keep your brand consistent and recognizable across platforms.",
+      },
+      {
+        question: "Can graphic design connect with my website and marketing?",
+        answer:
+          "Yes. Because we also handle web design, development, and digital marketing, your graphics can stay aligned with where they are actually used.",
+      },
+      {
+        question: "Will I receive editable or reusable files?",
+        answer:
+          "Yes. We deliver organized files and reusable templates so your team can keep producing consistent content after the project.",
+      },
+    ],
+  },
 } satisfies Record<string, SeoLandingPage>;
 
 export const seoLandingPageList = Object.values(seoLandingPages);

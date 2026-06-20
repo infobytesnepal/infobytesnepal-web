@@ -28,6 +28,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 html {
@@ -58,19 +60,68 @@ select {
   }
 }
 
+/* ---------- Brand surfaces ---------- */
+
 .brand-gradient {
   background: linear-gradient(135deg, #0342c5 0%, #00bb5c 100%);
 }
 
+/* Animated gradient text used for premium headlines */
+.text-gradient {
+  background: linear-gradient(110deg, var(--primary-blue) 0%, #1f7ae0 35%, var(--primary-green) 75%, var(--primary-blue) 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-pan 8s ease infinite;
+}
+
+/* Soft eyebrow / kicker label */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary-blue);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 1.6rem;
+  height: 1px;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(3, 66, 197, 0.16);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--deep-navy);
+  backdrop-filter: blur(8px);
+}
+
+/* ---------- Buttons ---------- */
+
 .site-button,
 .site-button-light,
 .site-button-gradient {
+  position: relative;
+  overflow: hidden;
   border: 1px solid transparent;
   transition:
-    transform 180ms ease,
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
     color 180ms ease,
     background 180ms ease,
-    box-shadow 180ms ease,
+    box-shadow 220ms ease,
     border-color 180ms ease;
 }
 
@@ -98,13 +149,32 @@ select {
 .site-button:hover,
 .site-button-light:hover,
 .site-button-gradient:hover {
-  transform: translateY(-0.125rem);
+  transform: translateY(-0.14rem);
   background:
     linear-gradient(#ffffff, #ffffff) padding-box,
     linear-gradient(135deg, var(--primary-blue), var(--primary-green)) border-box;
   color: var(--primary-blue);
-  box-shadow: 0 18px 42px rgba(3, 66, 197, 0.14);
+  box-shadow: 0 20px 46px rgba(3, 66, 197, 0.18);
 }
+
+/* Light sheen sweep on primary CTAs */
+.site-button::after,
+.site-button-gradient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-130%);
+  transition: transform 700ms ease;
+  pointer-events: none;
+}
+
+.site-button:hover::after,
+.site-button-gradient:hover::after {
+  transform: translateX(130%);
+}
+
+/* ---------- Backgrounds ---------- */
 
 .brand-radial {
   background:
@@ -112,11 +182,63 @@ select {
     radial-gradient(circle at bottom right, rgba(0,187,92,0.18), transparent 45%);
 }
 
+/* Premium light "aurora" mesh background for sections */
+.aurora {
+  position: relative;
+  isolation: isolate;
+}
+
+.aurora::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10%;
+  z-index: -1;
+  background:
+    radial-gradient(38% 44% at 18% 22%, rgba(3, 66, 197, 0.16), transparent 70%),
+    radial-gradient(42% 46% at 82% 18%, rgba(0, 187, 92, 0.15), transparent 70%),
+    radial-gradient(50% 50% at 50% 100%, rgba(3, 66, 197, 0.08), transparent 70%);
+  filter: blur(8px);
+  animation: aurora-drift 18s ease-in-out infinite alternate;
+}
+
+/* Subtle dotted grid texture */
+.grid-texture {
+  background-image: radial-gradient(rgba(3, 66, 197, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
 .glass {
   background: rgba(255, 255, 255, 0.78);
   border: 1px solid rgba(3, 66, 197, 0.12);
   backdrop-filter: blur(18px);
 }
+
+/* Premium card with gradient ring + lift */
+.card-premium {
+  position: relative;
+  border-radius: 24px;
+  border: 1px solid rgba(3, 66, 197, 0.1);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 50px rgba(4, 18, 63, 0.06);
+  transition:
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 280ms ease,
+    border-color 280ms ease;
+}
+
+.card-premium:hover {
+  transform: translateY(-0.4rem);
+  border-color: rgba(0, 187, 92, 0.4);
+  box-shadow: 0 30px 70px rgba(4, 18, 63, 0.12);
+}
+
+/* Hairline divider with brand glow */
+.divider-glow {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(3, 66, 197, 0.35), rgba(0, 187, 92, 0.35), transparent);
+}
+
+/* ---------- Focus / accessibility ---------- */
 
 .focus-ring {
   outline: 2px solid transparent;
@@ -126,6 +248,51 @@ select {
 .focus-ring:focus-visible {
   outline-color: #0342c5;
 }
+
+/* ---------- Animations ---------- */
+
+@keyframes gradient-pan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes aurora-drift {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(0, -2%, 0) scale(1.06); }
+}
+
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-float {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+/* Logo marquee track */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ---------- Custom cursor ---------- */
 
 @media (pointer: fine) {
   .custom-cursor-enabled,
@@ -137,6 +304,8 @@ select {
   }
 }
 
+/* ---------- Reduced motion ---------- */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -145,5 +314,12 @@ select {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .text-gradient,
+  .aurora::before,
+  .marquee-track,
+  .animate-float {
+    animation: none !important;
   }
 }

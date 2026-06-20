@@ -1,9 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Mail } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import type { SVGProps } from "react";
 import { getPageSection, getProducts, getSettings } from "@/lib/data";
 import { defaultPageContent } from "@/lib/content";
+
+const footerServices = [
+  { href: "/software-development-company-in-nepal", label: "Software Development" },
+  { href: "/web-development-company-in-nepal", label: "Web Development" },
+  { href: "/seo-company-in-nepal", label: "SEO" },
+  { href: "/digital-marketing-company-in-nepal", label: "Digital Marketing" },
+  { href: "/mobile-app-development-company-in-nepal", label: "Mobile App Development" },
+  { href: "/business-automation-software-nepal", label: "Business Automation" },
+];
 
 function FacebookIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -50,17 +59,17 @@ export default async function Footer() {
   ]);
   return (
     <footer className="bg-primary-green text-white">
-      <div className="page-x grid gap-8 py-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
+      <div className="page-x grid gap-8 py-12 md:grid-cols-[1.4fr_0.9fr_0.8fr_0.9fr_1fr]">
         <div>
           <Image src="/assets/brand/infobytes-nepal-logo-white.png" alt="InfoBytes Nepal logo" width={230} height={70} className="h-16 w-auto object-contain md:h-[4.5rem]" />
           <p className="mt-4 font-semibold text-white">{settings.tagline}</p>
           <p className="mt-3 max-w-sm text-sm leading-6 text-white/78">{footer.text}</p>
-          <div className="mt-4 flex items-center gap-3 text-white/78">
+          <div className="mt-5 flex items-center gap-3 text-white/78">
             {socialLinks.map(({ href, label, icon: Icon, external }) => (
               <a
                 key={label}
                 href={href}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-white/80 transition hover:border-white/55 hover:text-deep-navy"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-white/80 transition hover:border-white/55 hover:bg-white/10 hover:text-deep-navy"
                 aria-label={label}
                 target={external ? "_blank" : undefined}
                 rel={external ? "noopener noreferrer" : undefined}
@@ -71,20 +80,31 @@ export default async function Footer() {
           </div>
         </div>
         <div>
-          <h2 className="text-sm font-semibold text-white">Explore</h2>
+          <h2 className="text-sm font-semibold text-white">Services</h2>
           <div className="mt-4 grid gap-2 text-sm text-white/78">
-            <Link href="/products" className="hover:text-deep-navy">Our Products</Link>
-            <Link href="/services" className="hover:text-deep-navy">Services</Link>
-            <Link href="/contact" className="hover:text-deep-navy">Contact</Link>
-            <Link href="/about" className="hover:text-deep-navy">About</Link>
-            <Link href="/privacy-policy" className="hover:text-deep-navy">Privacy Policy</Link>
+            {footerServices.map((service) => (
+              <Link key={service.href} href={service.href} className="transition hover:text-deep-navy">
+                {service.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h2 className="text-sm font-semibold text-white">Company</h2>
+          <div className="mt-4 grid gap-2 text-sm text-white/78">
+            <Link href="/services" className="transition hover:text-deep-navy">Services</Link>
+            <Link href="/products" className="transition hover:text-deep-navy">Our Products</Link>
+            <Link href="/about" className="transition hover:text-deep-navy">About</Link>
+            <Link href="/faq" className="transition hover:text-deep-navy">FAQ</Link>
+            <Link href="/contact" className="transition hover:text-deep-navy">Contact</Link>
+            <Link href="/privacy-policy" className="transition hover:text-deep-navy">Privacy Policy</Link>
           </div>
         </div>
         <div>
           <h2 className="text-sm font-semibold text-white">Products</h2>
           <div className="mt-4 grid gap-2 text-sm text-white/78">
             {products.map((product) => (
-              <Link key={product.slug} href={`/products/${product.slug}`} className="hover:text-deep-navy">
+              <Link key={product.slug} href={`/products/${product.slug}`} className="transition hover:text-deep-navy">
                 {product.name}
               </Link>
             ))}
@@ -93,15 +113,18 @@ export default async function Footer() {
         <div>
           <h2 className="text-sm font-semibold text-white">Contact</h2>
           <div className="mt-4 grid gap-3 text-sm text-white/78">
-            <p>Kaushaltar, Bhaktapur</p>
-            <a href="mailto:info@infobytesnepal.com" className="hover:text-deep-navy">info@infobytesnepal.com</a>
-            <a href="tel:+9779843468715" className="hover:text-deep-navy">+977 - 9843468715</a>
-            <a href="tel:+9779863777171" className="hover:text-deep-navy">+977 - 9863777171</a>
+            <p className="flex items-start gap-2">
+              <MapPin size={16} className="mt-0.5 shrink-0" /> Kaushaltar, Bhaktapur, Nepal
+            </p>
+            <a href="mailto:info@infobytesnepal.com" className="transition hover:text-deep-navy">info@infobytesnepal.com</a>
+            <a href="tel:+9779843468715" className="transition hover:text-deep-navy">+977 - 9843468715</a>
+            <a href="tel:+9779863777171" className="transition hover:text-deep-navy">+977 - 9863777171</a>
           </div>
         </div>
       </div>
-      <div className="page-x border-t border-white/20 py-4 text-right text-xs text-white/70">
-        © {new Date().getFullYear()} InfoBytes Nepal. All rights reserved.
+      <div className="page-x flex flex-col gap-2 border-t border-white/20 py-4 text-xs text-white/70 sm:flex-row sm:items-center sm:justify-between">
+        <p>© {new Date().getFullYear()} InfoBytes Nepal. All rights reserved.</p>
+        <p>Software Development Company in Nepal · Kaushaltar, Bhaktapur</p>
       </div>
     </footer>
   );

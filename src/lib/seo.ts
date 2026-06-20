@@ -105,16 +105,37 @@ export async function organizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
     name: settings.companyName,
+    alternateName: "InfoBytes",
     url: siteUrl,
-    logo: toAbsoluteUrl(settings.logoUrl),
+    logo: {
+      "@type": "ImageObject",
+      url: toAbsoluteUrl(settings.logoUrl),
+      width: 230,
+      height: 70,
+    },
+    image: toAbsoluteUrl(settings.defaultOgImage),
     slogan: settings.tagline,
-    email: settings.contactEmail || undefined,
+    description:
+      "InfoBytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation solutions.",
+    email: settings.contactEmail || "info@infobytesnepal.com",
     telephone: "+977-9843468715",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Kaushaltar",
+      addressLocality: "Bhaktapur",
+      addressRegion: "Bagmati",
+      addressCountry: "NP",
+    },
     areaServed: {
       "@type": "Country",
       name: "Nepal",
     },
+    sameAs: [
+      "https://www.facebook.com/infobytesnepal",
+      "https://www.instagram.com/infobytesnepal/",
+    ],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
@@ -131,8 +152,12 @@ export function websiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
     name: "InfoBytes Nepal",
+    alternateName: "InfoBytes",
     url: siteUrl,
+    inLanguage: "en",
+    publisher: { "@id": `${siteUrl}/#organization` },
   };
 }
 
@@ -143,8 +168,17 @@ export function professionalServiceSchema() {
     "@type": "ProfessionalService",
     name: "InfoBytes Nepal",
     url: siteUrl,
+    image: `${siteUrl}/assets/hero/infobytes-hero-fallback.webp`,
     email: "info@infobytesnepal.com",
     telephone: "+977-9843468715",
+    priceRange: "$$",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Kaushaltar",
+      addressLocality: "Bhaktapur",
+      addressRegion: "Bagmati",
+      addressCountry: "NP",
+    },
     areaServed: {
       "@type": "Country",
       name: "Nepal",

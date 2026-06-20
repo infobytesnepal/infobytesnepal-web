@@ -8,10 +8,11 @@ import CmsImage from "./cms-image";
 import GetStartedButton from "./get-started-button";
 
 const navLinks = [
-  { href: "/products", label: "Our Products" },
   { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact" },
+  { href: "/products", label: "Our Products" },
   { href: "/about", label: "About" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar({ logoUrl }: { logoUrl: string }) {
@@ -50,8 +51,13 @@ export default function Navbar({ logoUrl }: { logoUrl: string }) {
         </Link>
         <div className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="text-sm font-medium text-deep-navy/82 transition hover:text-primary-blue">
+            <Link
+              key={link.href}
+              href={link.href}
+              className="group relative text-sm font-medium text-deep-navy/82 transition hover:text-primary-blue"
+            >
               {link.label}
+              <span className="absolute -bottom-1 left-0 h-0.5 w-0 rounded-full brand-gradient transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
           <GetStartedButton />

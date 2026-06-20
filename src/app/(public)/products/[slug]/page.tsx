@@ -69,15 +69,37 @@ export default async function ProductDetailPage({ params }: Props) {
   const product = await getProductBySlug(slug);
   if (!product || !product.isPublished) notFound();
 
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: product.name,
-    applicationCategory: "BusinessApplication",
-    description: product.shortDescription,
-    url: `${getSiteUrl()}/products/${product.slug}`,
-    publisher: { "@type": "Organization", name: "InfoBytes Nepal" },
-  };
+  const siteUrl = getSiteUrl();
+  const productUrl = `${siteUrl}/products/${product.slug}`;
+  const schema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: product.name,
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web, Android, iOS",
+      description: product.shortDescription,
+      url: productUrl,
+      image: product.logoUrl ? `${siteUrl}${product.logoUrl}` : undefined,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+        url: `${siteUrl}/contact`,
+      },
+      publisher: { "@type": "Organization", name: "InfoBytes Nepal", url: siteUrl },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "Products", item: `${siteUrl}/products` },
+        { "@type": "ListItem", position: 3, name: product.name, item: productUrl },
+      ],
+    },
+  ];
 
   return (
     <>

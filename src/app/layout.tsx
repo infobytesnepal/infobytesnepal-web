@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { getSiteUrl } from "@/lib/utils";
 import "./globals.css";
@@ -51,6 +51,11 @@ export const metadata: Metadata = {
         type: "image/png",
         sizes: "96x96",
       },
+      {
+        url: "/icon.png",
+        type: "image/png",
+        sizes: "192x192",
+      },
     ],
     shortcut: faviconIco,
     apple: [
@@ -61,6 +66,12 @@ export const metadata: Metadata = {
       },
     ],
   },
+  manifest: "/manifest.webmanifest",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0342c5",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
