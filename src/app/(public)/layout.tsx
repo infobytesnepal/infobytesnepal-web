@@ -10,7 +10,7 @@ export default async function PublicLayout({ children }: { children: React.React
     <GetStartedProvider>
       <Navbar logoUrl={settings.logoUrl} />
       <CustomCursor />
-      <main>{children}</main>
+      <main className="overflow-x-clip">{children}</main>
       <Footer />
     </GetStartedProvider>
   );

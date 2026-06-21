@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
@@ -16,6 +15,7 @@ import {
   Sparkles,
   Check,
 } from "lucide-react";
+import CmsImage from "@/components/public/cms-image";
 import GetStartedButton from "@/components/public/get-started-button";
 import Reveal from "@/components/public/reveal";
 import StackingCards from "@/components/public/stacking-cards";
@@ -161,12 +161,34 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [hero, products, orgSchema] = await Promise.all([
+  const [hero, products, aboutTech, orgSchema] = await Promise.all([
     getPageSection("home", "hero", defaultPageContent.homeHero),
     getProducts(),
+    getPageSection("about", "section2", defaultPageContent.aboutSection2),
     organizationSchema(),
   ]);
   const serviceSchema = professionalServiceSchema();
+
+  // Real technology icons managed from the CMS (shared with the About page).
+  // Falls back to the bundled svgs if the CMS has no icons set.
+  const cmsTechLogos = [
+    aboutTech.techLogo1,
+    aboutTech.techLogo2,
+    aboutTech.techLogo3,
+    aboutTech.techLogo4,
+    aboutTech.techLogo5,
+    aboutTech.techLogo6,
+    aboutTech.techLogo7,
+    aboutTech.techLogo8,
+    aboutTech.techLogo9,
+    aboutTech.techLogo10,
+    aboutTech.techLogo11,
+    aboutTech.techLogo12,
+    aboutTech.techLogo13,
+    aboutTech.techLogo14,
+    aboutTech.techLogo15,
+  ].filter(Boolean);
+  const techStack = cmsTechLogos.length ? cmsTechLogos : techLogos.map((logo) => logo.src);
 
   return (
     <>
@@ -192,7 +214,7 @@ export default async function HomePage() {
         <div className="relative z-10 mx-auto w-full max-w-7xl">
           <Reveal className="max-w-2xl md:w-3/5">
             <span className="eyebrow">
-              <Sparkles size={14} /> Software & Product Company in Nepal
+              <Sparkles size={14} /> Software Development & IT Company in Nepal
             </span>
             <h1 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-tight text-deep-navy md:text-[3.6rem]">
               {hero.headline}
@@ -330,10 +352,13 @@ export default async function HomePage() {
           <h2 className="mt-3 text-2xl font-semibold text-deep-navy md:text-4xl">Built on a fast, reliable, modern foundation.</h2>
         </div>
         <div className="marquee-mask mt-10 overflow-hidden">
-          <div className="marquee-track gap-12 px-6">
-            {[...techLogos, ...techLogos].map((logo, index) => (
-              <div key={`${logo.alt}-${index}`} className="flex h-12 w-24 shrink-0 items-center justify-center opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0">
-                <Image src={logo.src} alt={logo.alt} width={96} height={48} className="h-9 w-auto object-contain" />
+          <div className="marquee-track gap-5 px-6 md:gap-7">
+            {[...techStack, ...techStack].map((src, index) => (
+              <div
+                key={`tech-${index}`}
+                className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-primary-blue/10 bg-white shadow-[0_10px_28px_rgba(4,18,63,0.05)] transition hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(4,18,63,0.1)] md:h-[4.5rem] md:w-[4.5rem]"
+              >
+                <CmsImage src={src} alt="InfoBytes Nepal technology stack" width={64} height={64} className="h-9 w-9 object-contain md:h-10 md:w-10" />
               </div>
             ))}
           </div>

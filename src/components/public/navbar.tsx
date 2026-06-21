@@ -8,6 +8,7 @@ import CmsImage from "./cms-image";
 import GetStartedButton from "./get-started-button";
 
 const navLinks = [
+  { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/products", label: "Our Products" },
   { href: "/about", label: "About" },

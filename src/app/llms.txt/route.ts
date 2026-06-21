@@ -1,5 +1,6 @@
 import { getProducts } from "@/lib/data";
 import { seoLandingPageList } from "@/lib/seo-landing-pages";
+import { team } from "@/lib/team";
 import { getSiteUrl } from "@/lib/utils";
 
 export async function GET() {
@@ -30,6 +31,9 @@ export async function GET() {
       `- ${product.name}: ${product.shortDescription}`,
       `  URL: ${siteUrl}/products/${product.slug}`,
     ]),
+    "",
+    "Team:",
+    ...team.map((member) => `- ${member.name} (${member.role}): ${siteUrl}/team/${member.slug}`),
     "",
     "Service & location pages:",
     ...seoLandingPageList.map((page) => `- ${page.keyword}: ${siteUrl}${page.path}`),

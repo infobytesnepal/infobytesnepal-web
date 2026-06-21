@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import CmsImage from "@/components/public/cms-image";
 import GetStartedButton from "@/components/public/get-started-button";
+import TeamSection from "@/components/public/team-section";
 import { defaultPageContent } from "@/lib/content";
 import { getPageSection } from "@/lib/data";
 import { getSiteUrl } from "@/lib/utils";
@@ -227,6 +228,8 @@ export default async function AboutPage() {
           ))}
         </div>
       </section>
+
+      <TeamSection />
     </div>
   );
 }

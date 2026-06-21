@@ -1,5 +1,6 @@
 import { getProducts } from "@/lib/data";
 import { seoLandingPageList } from "@/lib/seo-landing-pages";
+import { team } from "@/lib/team";
 import { getSiteUrl } from "@/lib/utils";
 
 type SitemapEntry = {
@@ -31,6 +32,12 @@ export async function GET() {
       lastmod: (product.updatedAt || "").split("T")[0] || today,
     })),
     { path: "/about", changefreq: "monthly", priority: "0.7", lastmod: today },
+    ...team.map((member) => ({
+      path: `/team/${member.slug}`,
+      changefreq: "monthly" as const,
+      priority: "0.6",
+      lastmod: today,
+    })),
     { path: "/faq", changefreq: "monthly", priority: "0.7", lastmod: today },
     { path: "/contact", changefreq: "monthly", priority: "0.7", lastmod: today },
     { path: "/privacy-policy", changefreq: "yearly", priority: "0.3", lastmod: today },

@@ -186,6 +186,7 @@ select {
 .aurora {
   position: relative;
   isolation: isolate;
+  overflow: hidden;
 }
 
 .aurora::before {
