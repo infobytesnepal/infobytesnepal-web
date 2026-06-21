@@ -29,34 +29,12 @@ export type TeamMember = {
  */
 export const team: TeamMember[] = [
   {
-    slug: "rajesh-pandey",
-    name: "Rajesh Pandey",
-    role: "Founder",
-    image: "/assets/about/rajesh-pandey.png",
+    slug: "sugam-dahal",
+    name: "Sugam Dahal",
+    role: "Implementation & Deployment Lead",
+    image: "/assets/about/sugam-dahal.png",
     summary:
-      "Rajesh Pandey is the Founder of InfoBytes Nepal, an IT company in Nepal building practical digital products and software.",
-    location: "Bhaktapur, Nepal",
-    expertise: [
-      "Technology Vision",
-      "Software Product Development",
-      "Business Workflow Systems",
-      "Student Talent Platforms",
-      "InfoBytes Nepal",
-    ],
-    bio: [
-      "Rajesh Pandey is the Founder of InfoBytes Nepal, a Nepal-based IT company that builds focused digital products and custom software for growing teams. His work centers on turning real operational problems into clean, dependable technology.",
-      "InfoBytes Nepal began with a simple idea shared over tea-time conversations: that everyday business problems could be solved with a few thoughtful lines of code. That belief grew into Pravyo and the company's wider product direction across field service, sales, lead tracking, and student talent workflows.",
-      "Rajesh focuses on product vision and the long-term direction of InfoBytes Nepal, guiding the team toward systems that are practical to use, maintainable over time, and genuinely useful for businesses in Nepal.",
-    ],
-    sameAs: [],
-  },
-  {
-    slug: "shiwam-paudel",
-    name: "Shiwam Paudel",
-    role: "Co-Founder & CEO",
-    image: "/assets/about/shiwam-paudel.png",
-    summary:
-      "Shiwam Paudel is the Co-Founder & CEO of InfoBytes Nepal, leading custom software, web, and business automation work.",
+      "Sugam Dahal is the Implementation & Deployment Lead at InfoBytes Nepal, responsible for ensuring smooth execution of software projects.",
     location: "Bhaktapur, Nepal",
     expertise: [
       "Product Strategy",
@@ -66,9 +44,52 @@ export const team: TeamMember[] = [
       "Web Development",
     ],
     bio: [
-      "Shiwam Paudel is the Co-Founder & CEO of InfoBytes Nepal, where he leads the company's software development, web, SEO, and business automation work. He focuses on building digital systems that make everyday operations clearer for growing teams.",
-      "At InfoBytes Nepal, Shiwam helps shape products such as Serviol for field service management, Purseol for field sales, LeadRack for lead tracking, and Pravyo for student talent — each designed around how real teams actually work rather than generic, oversized tooling.",
-      "His approach is practical and business-first: understand the workflow, keep the scope realistic, build cleanly, and improve over time. Under his leadership, InfoBytes Nepal works to be a trusted, long-term technology partner for businesses in Nepal.",
+      "Sugam Dahal is the Implementation & Deployment Lead at InfoBytes Nepal, responsible for ensuring smooth execution of software projects.",
+      "With a background in Organizational Implementation and a passion for Deployment Strategies, Sugam has contributed to various projects that enhance user engagement and streamline operations.",
+      "His expertise lies in developing robust deployment processes and ensuring that software projects are executed smoothly and efficiently.",
+      "His approach is practical and business-first: understand the workflow, keep the scope realistic, build cleanly, and improve over time. Under his leadership, Infobytes Nepal works to be a trusted, long-term technology partner for businesses in Nepal.",
+    ],
+    sameAs: [],
+  },
+  {
+    slug: "kapil-aryal",
+    name: "Kapil Aryal",
+    role: "Mobile Application & PWA Specialist",
+    image: "/assets/about/kapil-aryal.png",
+    summary:
+      "Kapil Aryal is a Mobile Application & PWA Specialist at Infobytes Nepal, focusing on creating seamless mobile experiences.",
+    location: "Bhaktapur, Nepal",
+    expertise: [
+      "Technology Vision",
+      "Software Product Development",
+      "Business Workflow Systems",
+      "Student Talent Platforms",
+      "InfoBytes Nepal",
+    ],
+    bio: [
+      "Kapil Aryal is a Mobile Application & PWA Specialist at Infobytes Nepal, focusing on creating seamless mobile experiences.",
+      "With a background in software development and a passion for mobile technologies, Kapil has contributed to various projects that enhance user engagement and streamline operations.",
+      "His expertise lies in developing responsive and performant mobile applications and progressive web apps that meet the evolving needs of businesses and users in Nepal.",
+    ],
+    sameAs: [],
+  },
+  {
+    slug: "bibek-neupane",
+    name: "Bibek Neupane",
+    role: "Operations Incharge - Europe Region",
+    image: "/assets/about/bibek-neupane.png",
+    summary:
+      "Bibek Neupane is the Operations Incharge for the Europe Region at Infobytes Nepal, overseeing operations and ensuring smooth execution of software projects across the european countries.",
+    location: "Bhaktapur, Nepal",
+    expertise: [
+      "Product Strategy",
+      "Custom Software Development",
+      "Business Automation",
+      "Field Service & Lead Management Software",
+      "Web Development",
+    ],
+    bio: [
+      "Bibek Neupane is the Operations Incharge for the Europe Region at Infobytes Nepal, overseeing operations and ensuring smooth execution of software projects across the european countries.",
     ],
     sameAs: [],
   },
