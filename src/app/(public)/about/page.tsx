@@ -196,6 +196,8 @@ export default async function AboutPage() {
           </div>
         </article>
 
+
+{/*  
         <article id="shiwam-paudel" className="relative overflow-hidden rounded-[24px] border-2 border-primary-green bg-gradient-to-r from-[#dfeaff] via-white to-soft-green px-6 py-6 text-primary-blue md:mr-4 md:min-h-[300px] md:overflow-visible md:px-12 md:py-9 lg:mr-10 lg:pr-[45%]">
           <CmsImage
             src="/assets/about/shiwam-paudel.png"
@@ -211,6 +213,8 @@ export default async function AboutPage() {
             <p className="italic">Co-Founder & CEO, InfoBytes Nepal</p>
           </div>
         </article>
+ */}
+
       </section>
 
       <section className="mx-auto mt-20 max-w-7xl">
