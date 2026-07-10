@@ -14,6 +14,10 @@ import {
   Target,
   Sparkles,
   Check,
+  Phone,
+  Mail,
+  MapPin,
+  Users,
 } from "lucide-react";
 import CmsImage from "@/components/public/cms-image";
 import GetStartedButton from "@/components/public/get-started-button";
@@ -130,6 +134,23 @@ const exploreLinks = [
 ];
 
 const heroChips = ["Software Development", "Web & Mobile", "SEO & Marketing", "Business Automation"];
+
+// Featured partners. Add more objects here as new partnerships are formed.
+const partners = [
+  {
+    name: "Zuliox",
+    role: "Recruitment Partner",
+    logo: "/assets/partners/zuliox-logo.png",
+    logoWidth: 477,
+    logoHeight: 132,
+    website: "https://zuliox.com",
+    description:
+      "Zuliox is our recruitment partner, connecting growing teams with the right talent and helping the businesses we build for scale with confidence.",
+    phone: { label: "+977 970 6577634", href: "tel:+9779706577634" },
+    email: { label: "info@zuliox.com", href: "mailto:info@zuliox.com" },
+    location: "Patan Dhoka, Lalitpur",
+  },
+];
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
@@ -360,6 +381,88 @@ export default async function HomePage() {
               >
                 <CmsImage src={src} alt="InfoBytes Nepal technology stack" width={64} height={64} className="h-9 w-9 object-contain md:h-10 md:w-10" />
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- Our Partners ---------- */}
+      <section className="page-x bg-white pb-20 pt-4 md:pb-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-2xl">
+            <span className="eyebrow">Our partners</span>
+            <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">The partners we build alongside.</h2>
+            <p className="mt-5 leading-8 text-dark-text/72">
+              We collaborate with focused partners who strengthen what we deliver for growing teams across Nepal.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6">
+            {partners.map((partner) => (
+              <Reveal key={partner.name}>
+                <article className="card-premium grid gap-8 p-7 md:grid-cols-[1fr_1px_0.9fr] md:items-center md:p-10">
+                  {/* Brand + description */}
+                  <div>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-soft-blue px-3 py-1 text-xs font-semibold text-primary-blue">
+                      <Users size={13} /> {partner.role}
+                    </span>
+                    <div className="mt-6 flex h-[64px] w-[232px] max-w-full items-center">
+                      <CmsImage
+                        src={partner.logo}
+                        alt={`${partner.name} — ${partner.role} of InfoBytes Nepal`}
+                        width={partner.logoWidth}
+                        height={partner.logoHeight}
+                        className="h-auto w-full object-contain object-left"
+                      />
+                    </div>
+                    <p className="mt-6 max-w-md leading-7 text-dark-text/72">{partner.description}</p>
+                    <a
+                      href={partner.website}
+                      target="_blank"
+                      rel="noopener"
+                      className="focus-ring site-button mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold"
+                      aria-label={`Visit the ${partner.name} website`}
+                    >
+                      Visit {partner.name}
+                      <ArrowRight size={16} />
+                    </a>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="hidden h-full w-px bg-primary-blue/10 md:block" aria-hidden="true" />
+
+                  {/* Contact CTA */}
+                  <div className="grid gap-5">
+                    <a href={partner.phone.href} className="focus-ring group flex items-center gap-4">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-deep-navy text-white">
+                        <Phone size={18} />
+                      </span>
+                      <span>
+                        <span className="block text-xs font-semibold uppercase tracking-wider text-dark-text/50">Call us</span>
+                        <span className="block font-semibold text-deep-navy transition group-hover:text-primary-blue">{partner.phone.label}</span>
+                      </span>
+                    </a>
+                    <a href={partner.email.href} className="focus-ring group flex items-center gap-4">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-deep-navy text-white">
+                        <Mail size={18} />
+                      </span>
+                      <span>
+                        <span className="block text-xs font-semibold uppercase tracking-wider text-dark-text/50">Email</span>
+                        <span className="block font-semibold text-deep-navy transition group-hover:text-primary-blue">{partner.email.label}</span>
+                      </span>
+                    </a>
+                    <div className="flex items-center gap-4">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-deep-navy text-white">
+                        <MapPin size={18} />
+                      </span>
+                      <span>
+                        <span className="block text-xs font-semibold uppercase tracking-wider text-dark-text/50">Location</span>
+                        <span className="block font-semibold text-deep-navy">{partner.location}</span>
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>

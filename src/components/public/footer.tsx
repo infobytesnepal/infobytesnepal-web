@@ -4,6 +4,7 @@ import { Mail, MapPin } from "lucide-react";
 import type { SVGProps } from "react";
 import { getPageSection, getProducts, getSettings } from "@/lib/data";
 import { defaultPageContent } from "@/lib/content";
+import { team } from "@/lib/team";
 
 const footerServices = [
   { href: "/software-development-company-in-nepal", label: "Software Development" },
@@ -59,7 +60,7 @@ export default async function Footer() {
   ]);
   return (
     <footer className="bg-primary-green text-white">
-      <div className="page-x grid gap-8 py-12 md:grid-cols-[1.4fr_0.9fr_0.8fr_0.9fr_1fr]">
+      <div className="page-x grid gap-8 py-12 md:grid-cols-[1.4fr_0.9fr_0.8fr_0.9fr_0.8fr_1fr]">
         <div>
           <Image src="/assets/brand/infobytes-nepal-logo-white.png" alt="InfoBytes Nepal logo" width={230} height={70} className="h-16 w-auto object-contain md:h-[4.5rem]" />
           <p className="mt-4 font-semibold text-white">{settings.tagline}</p>
@@ -108,6 +109,17 @@ export default async function Footer() {
                 {product.name}
               </Link>
             ))}
+          </div>
+        </div>
+        <div>
+          <h2 className="text-sm font-semibold text-white">Team</h2>
+          <div className="mt-4 grid gap-2 text-sm text-white/78">
+            {team.map((member) => (
+              <Link key={member.slug} href={`/team/${member.slug}`} className="transition hover:text-deep-navy">
+                {member.name}
+              </Link>
+            ))}
+            <Link href="/about#team" className="transition hover:text-deep-navy">All People</Link>
           </div>
         </div>
         <div>

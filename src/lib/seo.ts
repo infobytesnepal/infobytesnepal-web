@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getSeo, getSettings } from "./data";
+import { team } from "./team";
 import { getSiteUrl } from "./utils";
 
 function toCanonicalUrl(value: string) {
@@ -144,6 +145,22 @@ export async function organizationSchema() {
       areaServed: "NP",
       availableLanguage: ["en", "ne"],
     },
+    // Wire the people into the Organization entity graph so search engines
+    // associate each person with InfoBytes Nepal (strengthens name searches).
+    founder: {
+      "@type": "Person",
+      "@id": `${siteUrl}/about#rajesh-pandey`,
+      name: "Rajesh Pandey",
+      jobTitle: "Founder",
+      url: `${siteUrl}/about`,
+    },
+    employee: team.map((member) => ({
+      "@type": "Person",
+      "@id": `${siteUrl}/team/${member.slug}#person`,
+      name: member.name,
+      jobTitle: member.role,
+      url: `${siteUrl}/team/${member.slug}`,
+    })),
   };
 }
 

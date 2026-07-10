@@ -67,12 +67,18 @@ export default async function TeamMemberPage({ params }: Props) {
       mainEntity: {
         "@type": "Person",
         "@id": `${url}#person`,
+        mainEntityOfPage: url,
         name: member.name,
         jobTitle: member.role,
         description: member.summary,
         image: `${siteUrl}${member.image}`,
         url,
-        worksFor: { "@type": "Organization", name: "InfoBytes Nepal", url: siteUrl },
+        worksFor: {
+          "@type": "Organization",
+          "@id": `${siteUrl}/#organization`,
+          name: "InfoBytes Nepal",
+          url: siteUrl,
+        },
         address: {
           "@type": "PostalAddress",
           addressLocality: member.location,
