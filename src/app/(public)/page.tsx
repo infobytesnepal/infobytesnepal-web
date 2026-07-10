@@ -123,14 +123,42 @@ const techLogos = [
 const exploreLinks = [
   { href: "/software-development-company-in-nepal", label: "Software Development Company in Nepal" },
   { href: "/web-development-company-in-nepal", label: "Web Development Company in Nepal" },
+  { href: "/web-design-company-in-nepal", label: "Web Design Company in Nepal" },
+  { href: "/ui-ux-design-company-in-nepal", label: "UI/UX Design Company in Nepal" },
+  { href: "/ecommerce-website-development-nepal", label: "Ecommerce Website Development in Nepal" },
+  { href: "/mobile-app-development-company-in-nepal", label: "Mobile App Development Company in Nepal" },
   { href: "/seo-company-in-nepal", label: "SEO Company in Nepal" },
   { href: "/digital-marketing-company-in-nepal", label: "Digital Marketing Company in Nepal" },
-  { href: "/mobile-app-development-company-in-nepal", label: "Mobile App Development Company in Nepal" },
+  { href: "/graphic-design-company-in-nepal", label: "Graphic Design Company in Nepal" },
   { href: "/business-automation-software-nepal", label: "Business Automation Software Nepal" },
+  { href: "/crm-software-in-nepal", label: "CRM Software in Nepal" },
   { href: "/it-company-in-nepal", label: "IT Company in Nepal" },
   { href: "/best-it-company-in-nepal", label: "Best IT Company in Nepal" },
   { href: "/trusted-it-company-in-nepal", label: "Trusted IT Company in Nepal" },
   { href: "/top-it-companies-in-nepal", label: "Top IT Companies in Nepal" },
+];
+
+// Industry and platform-specific solution pages.
+const solutionLinks = [
+  { href: "/erp-software-in-nepal", label: "ERP Software in Nepal" },
+  { href: "/pos-software-in-nepal", label: "POS Software in Nepal" },
+  { href: "/inventory-management-software-in-nepal", label: "Inventory Management Software in Nepal" },
+  { href: "/school-management-software-in-nepal", label: "School Management Software in Nepal" },
+  { href: "/hospital-management-software-in-nepal", label: "Hospital Management Software in Nepal" },
+  { href: "/wordpress-development-company-in-nepal", label: "WordPress Development Company in Nepal" },
+  { href: "/ai-development-company-in-nepal", label: "AI Development Company in Nepal" },
+];
+
+// Location and pricing pages get their own internal-link cluster on the homepage.
+const locationLinks = [
+  { href: "/it-company-in-kathmandu", label: "IT Company in Kathmandu" },
+  { href: "/web-design-company-in-kathmandu", label: "Web Design Company in Kathmandu" },
+  { href: "/digital-marketing-agency-in-kathmandu", label: "Digital Marketing Agency in Kathmandu" },
+  { href: "/it-company-in-lalitpur", label: "IT Company in Lalitpur" },
+  { href: "/it-company-in-bhaktapur", label: "IT Company in Bhaktapur" },
+  { href: "/it-company-in-pokhara", label: "IT Company in Pokhara" },
+  { href: "/website-cost-in-nepal", label: "Website Cost in Nepal" },
+  { href: "/mobile-app-development-cost-in-nepal", label: "Mobile App Development Cost in Nepal" },
 ];
 
 const heroChips = ["Software Development", "Web & Mobile", "SEO & Marketing", "Business Automation"];
@@ -489,6 +517,42 @@ export default async function HomePage() {
                 <ArrowRight size={16} className="shrink-0 text-primary-blue transition group-hover:translate-x-1" />
               </Link>
             ))}
+          </div>
+
+          <div className="mt-12">
+            <h3 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-primary-blue">
+              <Layers size={15} /> By industry &amp; solution
+            </h3>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {solutionLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="focus-ring group flex items-center justify-between gap-3 rounded-2xl border border-primary-blue/10 bg-white/80 px-5 py-4 text-sm font-semibold text-deep-navy shadow-[0_10px_28px_rgba(4,18,63,0.04)] transition hover:border-primary-green/40 hover:bg-white"
+                >
+                  {link.label}
+                  <ArrowRight size={16} className="shrink-0 text-primary-blue transition group-hover:translate-x-1" />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-12">
+            <h3 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-primary-blue">
+              <MapPin size={15} /> By location &amp; budget
+            </h3>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {locationLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="focus-ring group flex items-center justify-between gap-3 rounded-2xl border border-primary-blue/10 bg-white/80 px-5 py-4 text-sm font-semibold text-deep-navy shadow-[0_10px_28px_rgba(4,18,63,0.04)] transition hover:border-primary-green/40 hover:bg-white"
+                >
+                  {link.label}
+                  <ArrowRight size={16} className="shrink-0 text-primary-blue transition group-hover:translate-x-1" />
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>

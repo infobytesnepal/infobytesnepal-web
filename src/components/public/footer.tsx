@@ -9,9 +9,11 @@ import { team } from "@/lib/team";
 const footerServices = [
   { href: "/software-development-company-in-nepal", label: "Software Development" },
   { href: "/web-development-company-in-nepal", label: "Web Development" },
+  { href: "/ecommerce-website-development-nepal", label: "Ecommerce Development" },
   { href: "/seo-company-in-nepal", label: "SEO" },
   { href: "/digital-marketing-company-in-nepal", label: "Digital Marketing" },
   { href: "/mobile-app-development-company-in-nepal", label: "Mobile App Development" },
+  { href: "/crm-software-in-nepal", label: "CRM Software" },
   { href: "/business-automation-software-nepal", label: "Business Automation" },
 ];
 
