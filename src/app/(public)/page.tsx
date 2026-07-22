@@ -182,9 +182,9 @@ const partners = [
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
-  const title = "Software Development Company in Nepal | InfoBytes Nepal";
+  const title = "Software Development Company in Nepal | Infobytes Nepal";
   const description =
-    "InfoBytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation solutions.";
+    "Infobytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation solutions.";
   const ogImage = "/assets/hero/infobytes-hero-fallback.webp";
 
   return {
@@ -196,8 +196,8 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       url: siteUrl,
-      siteName: "InfoBytes Nepal",
-      images: [{ url: ogImage, alt: "InfoBytes Nepal" }],
+      siteName: "Infobytes Nepal",
+      images: [{ url: ogImage, alt: "Infobytes Nepal" }],
       type: "website",
     },
     twitter: {
@@ -344,11 +344,11 @@ export default async function HomePage() {
       {/* ---------- Products (stacking cards) ---------- */}
       <StackingCards products={products} />
 
-      {/* ---------- Why InfoBytes ---------- */}
+      {/* ---------- Why Infobytes ---------- */}
       <section className="page-x aurora bg-white py-20 md:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <span className="eyebrow">Why InfoBytes Nepal</span>
+            <span className="eyebrow">Why Infobytes Nepal</span>
             <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">
               A technology partner that thinks beyond the build.
             </h2>
@@ -407,7 +407,7 @@ export default async function HomePage() {
                 key={`tech-${index}`}
                 className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-primary-blue/10 bg-white shadow-[0_10px_28px_rgba(4,18,63,0.05)] transition hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(4,18,63,0.1)] md:h-[4.5rem] md:w-[4.5rem]"
               >
-                <CmsImage src={src} alt="InfoBytes Nepal technology stack" width={64} height={64} className="h-9 w-9 object-contain md:h-10 md:w-10" />
+                <CmsImage src={src} alt="Infobytes Nepal technology stack" width={64} height={64} className="h-9 w-9 object-contain md:h-10 md:w-10" />
               </div>
             ))}
           </div>
@@ -437,7 +437,7 @@ export default async function HomePage() {
                     <div className="mt-6 flex h-[64px] w-[232px] max-w-full items-center">
                       <CmsImage
                         src={partner.logo}
-                        alt={`${partner.name} — ${partner.role} of InfoBytes Nepal`}
+                        alt={`${partner.name} — ${partner.role} of Infobytes Nepal`}
                         width={partner.logoWidth}
                         height={partner.logoHeight}
                         className="h-auto w-full object-contain object-left"
@@ -576,7 +576,7 @@ export default async function HomePage() {
                 href="/contact"
                 className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3 font-semibold text-primary-blue transition hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(0,0,0,0.18)]"
               >
-                Contact InfoBytes Nepal
+                Contact Infobytes Nepal
                 <ArrowRight size={16} />
               </Link>
               <Link

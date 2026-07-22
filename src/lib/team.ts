@@ -34,7 +34,7 @@ export const team: TeamMember[] = [
     role: "Implementation & Deployment Lead",
     image: "/assets/about/sugam-dahal.png",
     summary:
-      "Sugam Dahal is the Implementation & Deployment Lead at InfoBytes Nepal, responsible for ensuring smooth execution of software projects.",
+      "Sugam Dahal is the Implementation & Deployment Lead at Infobytes Nepal, responsible for ensuring smooth execution of software projects.",
     location: "Bhaktapur, Nepal",
     expertise: [
       "Product Strategy",
@@ -44,7 +44,7 @@ export const team: TeamMember[] = [
       "Web Development",
     ],
     bio: [
-      "Sugam Dahal is the Implementation & Deployment Lead at InfoBytes Nepal, responsible for ensuring smooth execution of software projects.",
+      "Sugam Dahal is the Implementation & Deployment Lead at Infobytes Nepal, responsible for ensuring smooth execution of software projects.",
       "With a background in Organizational Implementation and a passion for Deployment Strategies, Sugam has contributed to various projects that enhance user engagement and streamline operations.",
       "His expertise lies in developing robust deployment processes and ensuring that software projects are executed smoothly and efficiently.",
       "His approach is practical and business-first: understand the workflow, keep the scope realistic, build cleanly, and improve over time. Under his leadership, Infobytes Nepal works to be a trusted, long-term technology partner for businesses in Nepal.",
@@ -64,7 +64,7 @@ export const team: TeamMember[] = [
       "Software Product Development",
       "Business Workflow Systems",
       "Student Talent Platforms",
-      "InfoBytes Nepal",
+      "Infobytes Nepal",
     ],
     bio: [
       "Kapil Aryal is a Mobile Application & PWA Specialist at Infobytes Nepal, focusing on creating seamless mobile experiences.",

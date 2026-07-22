@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "InfoBytes Nepal CMS",
+  title: "Infobytes Nepal CMS",
   robots: "noindex,nofollow",
 };
 

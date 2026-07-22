@@ -9,9 +9,9 @@ import { stripWhatsAppNumber } from "@/lib/utils";
 export async function generateMetadata(): Promise<Metadata> {
   return basicPageMetadata({
     route: "/contact",
-    title: "Contact | InfoBytes Nepal",
+    title: "Contact | Infobytes Nepal",
     description:
-      "Contact InfoBytes Nepal for custom software development, web development, SEO, digital marketing, and business automation services in Nepal.",
+      "Contact Infobytes Nepal for custom software development, web development, SEO, digital marketing, and business automation services in Nepal.",
   });
 }
 
@@ -42,7 +42,7 @@ export default async function ContactPage() {
             <a
               href={`https://wa.me/${whatsapp}`}
               className="focus-ring site-button-light inline-flex items-center justify-center gap-4 rounded-full px-7 py-4 text-lg font-semibold shadow-[0_22px_60px_rgba(4,18,63,0.16)] backdrop-blur-xl"
-              aria-label={`Contact InfoBytes Nepal on WhatsApp at ${displayNumber}`}
+              aria-label={`Contact Infobytes Nepal on WhatsApp at ${displayNumber}`}
             >
               <Phone size={22} />
               {displayNumber}

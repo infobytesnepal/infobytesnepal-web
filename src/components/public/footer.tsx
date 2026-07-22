@@ -36,19 +36,19 @@ function InstagramIcon(props: SVGProps<SVGSVGElement>) {
 const socialLinks = [
   {
     href: "https://www.facebook.com/infobytesnepal",
-    label: "Visit InfoBytes Nepal on Facebook",
+    label: "Visit Infobytes Nepal on Facebook",
     icon: FacebookIcon,
     external: true,
   },
   {
     href: "https://www.instagram.com/infobytesnepal/",
-    label: "Visit InfoBytes Nepal on Instagram",
+    label: "Visit Infobytes Nepal on Instagram",
     icon: InstagramIcon,
     external: true,
   },
   {
     href: "mailto:info@infobytesnepal.com",
-    label: "Email InfoBytes Nepal",
+    label: "Email Infobytes Nepal",
     icon: Mail,
     external: false,
   },
@@ -64,7 +64,7 @@ export default async function Footer() {
     <footer className="bg-primary-green text-white">
       <div className="page-x grid gap-8 py-12 md:grid-cols-[1.4fr_0.9fr_0.8fr_0.9fr_0.8fr_1fr]">
         <div>
-          <Image src="/assets/brand/infobytes-nepal-logo-white.png" alt="InfoBytes Nepal logo" width={230} height={70} className="h-16 w-auto object-contain md:h-[4.5rem]" />
+          <Image src="/assets/brand/infobytes-nepal-logo-white.png" alt="Infobytes Nepal logo" width={230} height={70} className="h-16 w-auto object-contain md:h-[4.5rem]" />
           <p className="mt-4 font-semibold text-white">{settings.tagline}</p>
           <p className="mt-3 max-w-sm text-sm leading-6 text-white/78">{footer.text}</p>
           <div className="mt-5 flex items-center gap-3 text-white/78">
@@ -137,7 +137,7 @@ export default async function Footer() {
         </div>
       </div>
       <div className="page-x flex flex-col gap-2 border-t border-white/20 py-4 text-xs text-white/70 sm:flex-row sm:items-center sm:justify-between">
-        <p>© {new Date().getFullYear()} InfoBytes Nepal. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Infobytes Nepal Pvt. Ltd. All rights reserved.</p>
         <p>Software Development Company in Nepal · Kaushaltar, Bhaktapur</p>
       </div>
     </footer>

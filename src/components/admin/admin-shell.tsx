@@ -21,7 +21,7 @@ export default async function AdminShell({ children }: { children: React.ReactNo
     <div className="min-h-screen bg-soft-blue text-dark-text lg:flex">
       <aside className="border-b border-primary-blue/10 bg-white p-4 lg:fixed lg:inset-y-0 lg:left-0 lg:w-72 lg:border-b-0 lg:border-r">
         <div className="mb-7">
-          <p className="text-lg font-semibold text-deep-navy">InfoBytes Nepal</p>
+          <p className="text-lg font-semibold text-deep-navy">Infobytes Nepal</p>
           <p className="text-sm text-dark-text/60">CMS</p>
         </div>
         <nav className="grid gap-1">

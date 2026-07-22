@@ -10,7 +10,7 @@ export default function TeamSection() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "InfoBytes Nepal Team",
+    name: "Infobytes Nepal Team",
     itemListElement: team.map((member, index) => ({
       "@type": "ListItem",
       position: index + 1,
@@ -21,7 +21,7 @@ export default function TeamSection() {
         jobTitle: member.role,
         url: `${siteUrl}/team/${member.slug}`,
         image: `${siteUrl}${member.image}`,
-        worksFor: { "@type": "Organization", name: "InfoBytes Nepal", url: siteUrl },
+        worksFor: { "@type": "Organization", name: "Infobytes Nepal", url: siteUrl },
       },
     })),
   };
@@ -31,7 +31,7 @@ export default function TeamSection() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <div className="max-w-2xl">
         <span className="eyebrow">Our People</span>
-        <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">Meet the team behind InfoBytes Nepal</h2>
+        <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">Meet the team behind Infobytes Nepal</h2>
         <p className="mt-5 leading-8 text-dark-text/72">
           The people building practical software, websites, and digital products for teams across Nepal.
         </p>
@@ -43,7 +43,7 @@ export default function TeamSection() {
             key={member.slug}
             href={`/team/${member.slug}`}
             className="focus-ring group block"
-            aria-label={`${member.name} — ${member.role} at InfoBytes Nepal`}
+            aria-label={`${member.name} — ${member.role} at Infobytes Nepal`}
           >
             <article
               className="relative rounded-[26px] border-2 border-transparent shadow-[0_18px_50px_rgba(4,18,63,0.10)] transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_30px_70px_rgba(4,18,63,0.16)]"
@@ -56,7 +56,7 @@ export default function TeamSection() {
               <div className="relative h-[150px] sm:h-[178px]">
                 <CmsImage
                   src={member.image}
-                  alt={`${member.name} — ${member.role} at InfoBytes Nepal`}
+                  alt={`${member.name} — ${member.role} at Infobytes Nepal`}
                   width={420}
                   height={520}
                   className="absolute bottom-0 left-1/2 h-[210px] w-auto -translate-x-1/2 object-contain object-bottom drop-shadow-[0_18px_24px_rgba(4,18,63,0.18)] sm:h-[250px]"

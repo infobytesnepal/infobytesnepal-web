@@ -230,8 +230,8 @@ export async function updateSiteSettings(formData: FormData) {
     tagline: formString(formData, "tagline"),
     whatsappNumber: formString(formData, "whatsappNumber"),
     contactEmail: formString(formData, "contactEmail"),
-    logoUrl: await storeUploadedImage(formFile(formData, "logoUrlFile"), formString(formData, "logoUrl"), "Site logo", "InfoBytes Nepal logo"),
-    defaultOgImage: await storeUploadedImage(formFile(formData, "defaultOgImageFile"), formString(formData, "defaultOgImage"), "Default OG image", "InfoBytes Nepal"),
+    logoUrl: await storeUploadedImage(formFile(formData, "logoUrlFile"), formString(formData, "logoUrl"), "Site logo", "Infobytes Nepal logo"),
+    defaultOgImage: await storeUploadedImage(formFile(formData, "defaultOgImageFile"), formString(formData, "defaultOgImage"), "Default OG image", "Infobytes Nepal"),
   };
   for (const [key, value] of Object.entries(values)) {
     await db

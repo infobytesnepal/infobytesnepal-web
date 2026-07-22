@@ -78,7 +78,7 @@ export async function submitGetStarted(_: FormState, formData: FormData): Promis
       isRead: false,
     });
     revalidatePath("/admin-infobytesnepal");
-    return { ok: true, message: "Thank you — your request has been received. InfoBytes Nepal will get back to you soon." };
+    return { ok: true, message: "Thank you — your request has been received. Infobytes Nepal will get back to you soon." };
   } catch {
     return { ok: false, message: "We could not receive your request right now. Please try again shortly." };
   }

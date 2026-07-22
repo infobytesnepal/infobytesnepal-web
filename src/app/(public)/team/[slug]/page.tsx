@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!member) return {};
   const siteUrl = getSiteUrl();
   const url = `${siteUrl}/team/${member.slug}`;
-  const title = `${member.name} — ${member.role} | InfoBytes Nepal`;
+  const title = `${member.name} — ${member.role} | Infobytes Nepal`;
   const description = member.summary;
 
   return {
@@ -29,19 +29,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     robots: "index,follow",
     keywords: [
       member.name,
-      `${member.name} InfoBytes Nepal`,
+      `${member.name} Infobytes Nepal`,
       `${member.name} Nepal`,
       `${member.name} ${member.role}`,
-      `${member.role} InfoBytes Nepal`,
-      "InfoBytes Nepal team",
+      `${member.role} Infobytes Nepal`,
+      "Infobytes Nepal team",
     ],
     openGraph: {
       title,
       description,
       url,
-      siteName: "InfoBytes Nepal",
+      siteName: "Infobytes Nepal",
       type: "profile",
-      images: [{ url: member.image, alt: `${member.name}, ${member.role} at InfoBytes Nepal` }],
+      images: [{ url: member.image, alt: `${member.name}, ${member.role} at Infobytes Nepal` }],
     },
     twitter: {
       card: "summary_large_image",
@@ -76,7 +76,7 @@ export default async function TeamMemberPage({ params }: Props) {
         worksFor: {
           "@type": "Organization",
           "@id": `${siteUrl}/#organization`,
-          name: "InfoBytes Nepal",
+          name: "Infobytes Nepal",
           url: siteUrl,
         },
         address: {
@@ -122,7 +122,7 @@ export default async function TeamMemberPage({ params }: Props) {
             <div className="relative mx-auto flex h-[300px] w-full max-w-[320px] items-end justify-center md:h-[360px]">
               <CmsImage
                 src={member.image}
-                alt={`${member.name} — ${member.role} at InfoBytes Nepal`}
+                alt={`${member.name} — ${member.role} at Infobytes Nepal`}
                 width={460}
                 height={560}
                 priority
@@ -130,7 +130,7 @@ export default async function TeamMemberPage({ params }: Props) {
               />
             </div>
             <div className="pb-2">
-              <span className="eyebrow">InfoBytes Nepal</span>
+              <span className="eyebrow">Infobytes Nepal</span>
               <h1 className="mt-3 text-4xl font-semibold leading-tight text-deep-navy md:text-5xl">{member.name}</h1>
               <p className="mt-2 text-lg font-semibold text-primary-blue">{member.role}</p>
               <p className="mt-4 flex items-center gap-2 text-sm text-dark-text/65">
@@ -159,7 +159,7 @@ export default async function TeamMemberPage({ params }: Props) {
             <div className="mt-8 flex flex-wrap gap-3">
               <GetStartedButton />
               <Link href="/contact" className="focus-ring site-button-light inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold">
-                Contact InfoBytes Nepal
+                Contact Infobytes Nepal
                 <ArrowRight size={16} />
               </Link>
             </div>

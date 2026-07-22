@@ -9,9 +9,9 @@ import { basicPageMetadata } from "@/lib/seo";
 export async function generateMetadata(): Promise<Metadata> {
   return basicPageMetadata({
     route: "/products",
-    title: "Products | InfoBytes Nepal",
+    title: "Products | Infobytes Nepal",
     description:
-      "Explore InfoBytes Nepal software products for business automation, CRM, sales management, service management, lead tracking, and student talent workflows.",
+      "Explore Infobytes Nepal software products for business automation, CRM, sales management, service management, lead tracking, and student talent workflows.",
   });
 }
 
@@ -22,7 +22,7 @@ export default async function ProductsPage() {
       <div className="mx-auto max-w-7xl">
         <Reveal className="max-w-3xl">
           <p className="text-sm font-semibold uppercase text-primary-blue">Our Products</p>
-          <h1 className="mt-4 text-4xl font-semibold text-deep-navy md:text-6xl">Focused digital products from InfoBytes Nepal.</h1>
+          <h1 className="mt-4 text-4xl font-semibold text-deep-navy md:text-6xl">Focused digital products from Infobytes Nepal.</h1>
         </Reveal>
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           {products.map((product) => (

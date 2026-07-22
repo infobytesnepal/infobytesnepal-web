@@ -1,5 +1,5 @@
 export const siteDefaults = {
-  companyName: "InfoBytes Nepal",
+  companyName: "Infobytes Nepal",
   tagline: "Complexities, now simplified.",
   contactEmail: "info@infobytesnepal.com",
   whatsappNumber: "",
@@ -75,7 +75,7 @@ export const stackingCards = [
 
 export const defaultPageContent = {
   homeHero: {
-    headline: "InfoBytes Nepal",
+    headline: "Infobytes Nepal",
     tagline: "Complexities, now simplified.",
     supportingText:
       "We build focused digital products that simplify field service, sales, lead tracking, and student talent workflows for growing teams.",
@@ -84,7 +84,7 @@ export const defaultPageContent = {
   },
   aboutSection1: {
     title: "Focused products for practical teams",
-    text: "InfoBytes Nepal builds digital products that make everyday operational work clearer for growing teams.",
+    text: "Infobytes Nepal builds digital products that make everyday operational work clearer for growing teams.",
     buttonLabel: "Explore Products",
     buttonUrl: "/products",
     imageUrl: "/assets/about/about-section-1.webp",
@@ -113,7 +113,7 @@ export const defaultPageContent = {
   },
   aboutStarted: {
     title: "How We Started",
-    body: "InfoBytes Nepal started with a clear focus: build digital products that reduce complexity in real operational workflows.",
+    body: "Infobytes Nepal started with a clear focus: build digital products that reduce complexity in real operational workflows.",
   },
   aboutGoals: {
     goal: "Create focused products that help teams work with more clarity.",
@@ -122,16 +122,16 @@ export const defaultPageContent = {
   },
   contactHero: {
     title: "Start a focused conversation",
-    text: "Share what you want to simplify, and the InfoBytes Nepal team will get back to you.",
+    text: "Share what you want to simplify, and the Infobytes Nepal team will get back to you.",
     whatsappNumber: "",
     backgroundUrl: "/assets/hero/infobytes-contact-hero.mp4",
   },
   privacy: {
     title: "Privacy Policy",
-    body: "InfoBytes Nepal collects inquiry details only to respond to submitted requests and improve communication with interested organizations. We do not publish submitted contact details.",
+    body: "Infobytes Nepal collects inquiry details only to respond to submitted requests and improve communication with interested organizations. We do not publish submitted contact details.",
   },
   footer: {
-    text: "InfoBytes Nepal",
+    text: "Infobytes Nepal",
   },
 };
 

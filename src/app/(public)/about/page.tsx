@@ -9,9 +9,9 @@ import { getSiteUrl } from "@/lib/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
-  const title = "About | InfoBytes Nepal";
+  const title = "About | Infobytes Nepal";
   const description =
-    "Learn about InfoBytes Nepal, a trusted IT company in Nepal building custom software, business automation, service management, sales management, and student talent platforms.";
+    "Learn about Infobytes Nepal, a trusted IT company in Nepal building custom software, business automation, service management, sales management, and student talent platforms.";
 
   return {
     title,
@@ -21,22 +21,22 @@ export async function generateMetadata(): Promise<Metadata> {
     keywords: [
       "Shiwam Paudel",
       "Rajesh Pandey",
-      "Shiwam Paudel InfoBytes Nepal",
-      "Rajesh Pandey InfoBytes Nepal",
-      "Founder InfoBytes Nepal",
-      "Co-Founder CEO InfoBytes Nepal",
-      "InfoBytes Nepal founders",
-      "InfoBytes Nepal Bhaktapur",
+      "Shiwam Paudel Infobytes Nepal",
+      "Rajesh Pandey Infobytes Nepal",
+      "Founder Infobytes Nepal",
+      "Co-Founder CEO Infobytes Nepal",
+      "Infobytes Nepal founders",
+      "Infobytes Nepal Bhaktapur",
     ],
     openGraph: {
       title,
       description,
       url: `${siteUrl}/about`,
-      siteName: "InfoBytes Nepal",
+      siteName: "Infobytes Nepal",
       type: "profile",
       images: [
-        { url: "/assets/about/shiwam-paudel.png", alt: "Shiwam Paudel, Co-Founder and CEO of InfoBytes Nepal" },
-        { url: "/assets/about/rajesh-pandey.png", alt: "Rajesh Pandey, Founder of InfoBytes Nepal" },
+        { url: "/assets/about/shiwam-paudel.png", alt: "Shiwam Paudel, Co-Founder and CEO of Infobytes Nepal" },
+        { url: "/assets/about/rajesh-pandey.png", alt: "Rajesh Pandey, Founder of Infobytes Nepal" },
       ],
     },
     twitter: {
@@ -86,12 +86,12 @@ export default async function AboutPage() {
       url: `${siteUrl}/about#shiwam-paudel`,
       worksFor: {
         "@type": "Organization",
-        name: "InfoBytes Nepal",
+        name: "Infobytes Nepal",
         url: siteUrl,
       },
       founderOf: {
         "@type": "Organization",
-        name: "InfoBytes Nepal",
+        name: "Infobytes Nepal",
         url: siteUrl,
       },
       address: {
@@ -113,12 +113,12 @@ export default async function AboutPage() {
       url: `${siteUrl}/about#rajesh-pandey`,
       worksFor: {
         "@type": "Organization",
-        name: "InfoBytes Nepal",
+        name: "Infobytes Nepal",
         url: siteUrl,
       },
       founderOf: {
         "@type": "Organization",
-        name: "InfoBytes Nepal",
+        name: "Infobytes Nepal",
         url: siteUrl,
       },
       address: {
@@ -126,7 +126,7 @@ export default async function AboutPage() {
         addressLocality: "Kaushaltar, Bhaktapur",
         addressCountry: "NP",
       },
-      knowsAbout: ["technology", "software products", "business workflow systems", "Pravyo", "InfoBytes Nepal"],
+      knowsAbout: ["technology", "software products", "business workflow systems", "Pravyo", "Infobytes Nepal"],
     },
   ];
   return (
@@ -153,7 +153,7 @@ export default async function AboutPage() {
             <div key={`${logo}-${index}`} className="flex aspect-square items-center justify-center rounded-2xl border border-primary-blue/10 bg-white/88 p-4 shadow-[0_10px_28px_rgba(4,18,63,0.05)]">
               <CmsImage
                 src={logo}
-                alt={`InfoBytes Nepal technology logo ${index + 1}`}
+                alt={`Infobytes Nepal technology logo ${index + 1}`}
                 width={64}
                 height={64}
                 className="h-10 w-10 object-contain md:h-12 md:w-12"
@@ -192,7 +192,7 @@ export default async function AboutPage() {
               Every great idea starts with a thought. From a simple tea-time talks but with a vision to solve real-world problems with few lines of code, Pravyo is a beginning, we could do a lot more with Technology.
             </p>
             <p className="mt-7 font-semibold italic">Rajesh Pandey</p>
-            <p className="italic">Founder, InfoBytes Nepal</p>
+            <p className="italic">Founder, Infobytes Nepal</p>
           </div>
         </article>
 
@@ -210,7 +210,7 @@ export default async function AboutPage() {
             <h2 className="text-2xl font-semibold md:text-4xl">{started.title}</h2>
             <p className="mt-4 max-w-xl leading-7">{started.body}</p>
             <p className="mt-7 font-semibold italic">Shiwam Paudel</p>
-            <p className="italic">Co-Founder & CEO, InfoBytes Nepal</p>
+            <p className="italic">Co-Founder & CEO, Infobytes Nepal</p>
           </div>
         </article>
  */}

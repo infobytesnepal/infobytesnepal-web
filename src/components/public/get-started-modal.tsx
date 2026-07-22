@@ -77,7 +77,7 @@ export default function GetStartedModal({
             transition={{ duration: 0.22 }}
           >
             <h2 id={titleId} className="sr-only">
-              Begin with InfoBytes Nepal
+              Begin with Infobytes Nepal
             </h2>
             <div className="mb-2 flex justify-end">
               <button
@@ -159,7 +159,7 @@ export default function GetStartedModal({
               <label className="flex gap-2.5 text-xs leading-5 text-dark-text/72">
                 <input name="consentChecked" type="checkbox" className="mt-1 h-4 w-4 accent-primary-blue" />
                 <span>
-                  I agree to be contacted by InfoBytes Nepal about my inquiry.
+                  I agree to be contacted by Infobytes Nepal about my inquiry.
                 </span>
               </label>
               {state.message && (
@@ -173,7 +173,7 @@ export default function GetStartedModal({
                 className="focus-ring site-button-gradient inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold shadow-[0_18px_42px_rgba(3,66,197,0.18)] disabled:cursor-wait disabled:opacity-70"
               >
                 <Send size={16} />
-                {pending ? "Sending..." : "Begin with InfoBytes Nepal"}
+                {pending ? "Sending..." : "Begin with Infobytes Nepal"}
               </button>
             </form>
           </motion.div>

@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "InfoBytes Nepal",
-    short_name: "InfoBytes",
+    name: "Infobytes Nepal",
+    short_name: "Infobytes",
     description:
-      "InfoBytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation.",
+      "Infobytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

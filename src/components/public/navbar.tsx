@@ -47,8 +47,8 @@ export default function Navbar({ logoUrl }: { logoUrl: string }) {
       transition={{ duration: 0.24, ease: "easeOut" }}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between">
-        <Link href="/" className="focus-ring flex items-center gap-3 rounded-full" aria-label="InfoBytes Nepal home">
-          <CmsImage src={logoUrl} alt="InfoBytes Nepal logo" width={178} height={54} className="h-12 w-auto object-contain" priority />
+        <Link href="/" className="focus-ring flex items-center gap-3 rounded-full" aria-label="Infobytes Nepal home">
+          <CmsImage src={logoUrl} alt="Infobytes Nepal logo" width={178} height={54} className="h-12 w-auto object-contain" priority />
         </Link>
         <div className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (

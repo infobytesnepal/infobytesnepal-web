@@ -7,9 +7,9 @@ import { getSiteUrl } from "@/lib/utils";
 
 export function generateMetadata(): Metadata {
   const siteUrl = getSiteUrl();
-  const title = "Services | InfoBytes Nepal";
+  const title = "Services | Infobytes Nepal";
   const description =
-    "Explore software development, web development, SEO, digital marketing, training, graphics design, and business automation services by InfoBytes Nepal.";
+    "Explore software development, web development, SEO, digital marketing, training, graphics design, and business automation services by Infobytes Nepal.";
   const ogImage = "/assets/hero/infobytes-hero-fallback.webp";
 
   return {
@@ -21,8 +21,8 @@ export function generateMetadata(): Metadata {
       title,
       description,
       url: `${siteUrl}/services`,
-      siteName: "InfoBytes Nepal",
-      images: [{ url: ogImage, alt: "InfoBytes Nepal services" }],
+      siteName: "Infobytes Nepal",
+      images: [{ url: ogImage, alt: "Infobytes Nepal services" }],
       type: "website",
     },
     twitter: {

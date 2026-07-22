@@ -1,1 +1,1 @@
-A Website for InfoBytes Nepal
+A Website for Infobytes Nepal

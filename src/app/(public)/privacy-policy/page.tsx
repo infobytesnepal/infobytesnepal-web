@@ -6,9 +6,9 @@ import { basicPageMetadata } from "@/lib/seo";
 export async function generateMetadata(): Promise<Metadata> {
   return basicPageMetadata({
     route: "/privacy-policy",
-    title: "Privacy Policy | InfoBytes Nepal",
+    title: "Privacy Policy | Infobytes Nepal",
     description:
-      "Read the InfoBytes Nepal privacy policy for website inquiries, service inquiries, contact details, and communication with our team in Nepal.",
+      "Read the Infobytes Nepal privacy policy for website inquiries, service inquiries, contact details, and communication with our team in Nepal.",
   });
 }
 

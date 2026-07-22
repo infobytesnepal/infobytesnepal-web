@@ -50,7 +50,7 @@ export default function ServiceInquiryModal() {
           <p className="text-sm font-semibold uppercase text-primary-blue">Ready to build?</p>
           <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-4xl">Let us shape the right service plan.</h2>
           <p className="mx-auto mt-4 max-w-2xl leading-7 text-dark-text/70">
-            Share the service you need and the InfoBytes Nepal team will follow up with a focused next step.
+            Share the service you need and the Infobytes Nepal team will follow up with a focused next step.
           </p>
           <button
             type="button"

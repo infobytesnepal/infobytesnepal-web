@@ -37,7 +37,7 @@ function buildSchemas(page: SeoLandingPageData) {
       },
       provider: {
         "@type": "Organization",
-        name: "InfoBytes Nepal",
+        name: "Infobytes Nepal",
         url: siteUrl,
         email: "info@infobytesnepal.com",
         telephone: "+977-9843468715",
@@ -69,7 +69,7 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
         <section className="page-x brand-radial bg-white pb-16 pt-32 md:pb-20 md:pt-36">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-4xl">
-              <p className="text-sm font-semibold uppercase text-primary-blue">InfoBytes Nepal Services</p>
+              <p className="text-sm font-semibold uppercase text-primary-blue">Infobytes Nepal Services</p>
               <h1 className="mt-4 text-4xl font-semibold leading-tight text-deep-navy md:text-6xl">{page.heroTitle}</h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-dark-text/76">{page.heroIntro}</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -116,7 +116,7 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
           <div className="mx-auto max-w-7xl">
             <p className="text-sm font-semibold uppercase text-primary-blue">How We Help</p>
             <h2 className="mt-3 max-w-3xl text-3xl font-semibold text-deep-navy md:text-5xl">
-              How InfoBytes Nepal solves these challenges
+              How Infobytes Nepal solves these challenges
             </h2>
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               {page.solutions.map((solution) => (
@@ -171,7 +171,7 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
         <section className="page-x bg-white py-16 md:py-20">
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2">
             <article>
-              <p className="text-sm font-semibold uppercase text-primary-blue">Why InfoBytes Nepal</p>
+              <p className="text-sm font-semibold uppercase text-primary-blue">Why Infobytes Nepal</p>
               <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">Built for practical teams in Nepal</h2>
               <div className="mt-7 grid gap-4">
                 {page.reasons.map((reason) => (
@@ -219,12 +219,12 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
         <section className="page-x bg-white pb-20 pt-16">
           <div className="mx-auto max-w-4xl rounded-[28px] border border-primary-blue/10 bg-gradient-to-br from-soft-blue/70 via-white to-soft-green/60 p-7 text-center shadow-[0_22px_70px_rgba(4,18,63,0.07)] md:p-9">
             <p className="text-sm font-semibold uppercase text-primary-blue">Ready to discuss?</p>
-            <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-4xl">Build the next practical step with InfoBytes Nepal.</h2>
+            <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-4xl">Build the next practical step with Infobytes Nepal.</h2>
             <p className="mx-auto mt-4 max-w-2xl leading-7 text-dark-text/70">
               Share your requirement, current workflow, or growth goal. We will help you identify a focused and realistic digital direction.
             </p>
             <Link href="/contact" className="focus-ring site-button-gradient mt-7 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold shadow-[0_18px_42px_rgba(3,66,197,0.18)]">
-              Contact InfoBytes Nepal
+              Contact Infobytes Nepal
               <ArrowRight size={16} />
             </Link>
           </div>

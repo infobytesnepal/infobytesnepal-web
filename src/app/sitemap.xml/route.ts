@@ -38,7 +38,7 @@ export async function GET() {
       priority: "0.6",
       lastmod: today,
     })),
-    { path: "/faq", changefreq: "monthly", priority: "0.7", lastmod: today },
+    { path: "/faq", changefreq: "weekly", priority: "0.8", lastmod: today },
     { path: "/contact", changefreq: "monthly", priority: "0.7", lastmod: today },
     { path: "/privacy-policy", changefreq: "yearly", priority: "0.3", lastmod: today },
   ];

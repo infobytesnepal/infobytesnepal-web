@@ -61,7 +61,7 @@ export function basicPageMetadata({
   ogTitle,
   ogDescription,
   ogImage = "/assets/hero/infobytes-hero-fallback.webp",
-  ogImageAlt = "InfoBytes Nepal",
+  ogImageAlt = "Infobytes Nepal",
   robots = "index,follow",
 }: {
   route: string;
@@ -87,7 +87,7 @@ export function basicPageMetadata({
       title: resolvedOgTitle,
       description: resolvedOgDescription,
       url: canonical,
-      siteName: "InfoBytes Nepal",
+      siteName: "Infobytes Nepal",
       images: [{ url: ogImage, alt: ogImageAlt }],
       type: "website",
     },
@@ -108,7 +108,8 @@ export async function organizationSchema() {
     "@type": "Organization",
     "@id": `${siteUrl}/#organization`,
     name: settings.companyName,
-    alternateName: "InfoBytes",
+    legalName: "Infobytes Nepal Pvt. Ltd.",
+    alternateName: ["Infobytes", "Infobytes Nepal Pvt. Ltd."],
     url: siteUrl,
     logo: {
       "@type": "ImageObject",
@@ -119,7 +120,7 @@ export async function organizationSchema() {
     image: toAbsoluteUrl(settings.defaultOgImage),
     slogan: settings.tagline,
     description:
-      "InfoBytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation solutions.",
+      "Infobytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation solutions.",
     email: settings.contactEmail || "info@infobytesnepal.com",
     telephone: "+977-9843468715",
     address: {
@@ -146,7 +147,7 @@ export async function organizationSchema() {
       availableLanguage: ["en", "ne"],
     },
     // Wire the people into the Organization entity graph so search engines
-    // associate each person with InfoBytes Nepal (strengthens name searches).
+    // associate each person with Infobytes Nepal (strengthens name searches).
     founder: {
       "@type": "Person",
       "@id": `${siteUrl}/about#rajesh-pandey`,
@@ -170,8 +171,8 @@ export function websiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${siteUrl}/#website`,
-    name: "InfoBytes Nepal",
-    alternateName: "InfoBytes",
+    name: "Infobytes Nepal",
+    alternateName: "Infobytes",
     url: siteUrl,
     inLanguage: "en",
     publisher: { "@id": `${siteUrl}/#organization` },
@@ -183,7 +184,8 @@ export function professionalServiceSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "InfoBytes Nepal",
+    name: "Infobytes Nepal",
+    legalName: "Infobytes Nepal Pvt. Ltd.",
     url: siteUrl,
     image: `${siteUrl}/assets/hero/infobytes-hero-fallback.webp`,
     email: "info@infobytesnepal.com",

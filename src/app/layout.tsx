@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 const siteUrl = getSiteUrl();
-const defaultTitle = "Software Development Company in Nepal | InfoBytes Nepal";
+const defaultTitle = "Software Development Company in Nepal | Infobytes Nepal";
 const defaultDescription =
-  "InfoBytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation solutions.";
+  "Infobytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation solutions.";
 const defaultOgImage = "/assets/hero/infobytes-hero-fallback.webp";
 const faviconPng = "/favicon.png";
 const faviconIco = "/favicon.ico";
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     title: defaultTitle,
     description: defaultDescription,
     url: siteUrl,
-    siteName: "InfoBytes Nepal",
-    images: [{ url: defaultOgImage, alt: "InfoBytes Nepal" }],
+    siteName: "Infobytes Nepal",
+    images: [{ url: defaultOgImage, alt: "Infobytes Nepal" }],
     type: "website",
   },
   twitter: {
