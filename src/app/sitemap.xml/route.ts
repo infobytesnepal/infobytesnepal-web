@@ -3,6 +3,15 @@ import { seoLandingPageList } from "@/lib/seo-landing-pages";
 import { team } from "@/lib/team";
 import { getCanonicalSiteUrl } from "@/lib/utils";
 
+/**
+ * Products are published and unpublished from the admin at runtime, so a
+ * sitemap prerendered at build time goes stale the moment the catalogue
+ * changes. Nidanyo was added after a deploy and was missing from the sitemap
+ * until the next build. An hour is frequent enough for crawlers and still
+ * costs one query per hour rather than one per crawl.
+ */
+export const revalidate = 3600;
+
 type SitemapEntry = {
   path: string;
   changefreq: "daily" | "weekly" | "monthly" | "yearly";

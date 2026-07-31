@@ -141,8 +141,53 @@ async function seedSeo() {
   }
 }
 
+/**
+ * This script is a full reset, not an incremental sync. It overwrites page
+ * content, site settings, SEO rows, and the admin password with the repo
+ * defaults. On a database the admin panel has been used with, that destroys
+ * work that exists nowhere else: uploaded logos and tech icons are stored as
+ * base64 data URIs in the database, and the defaults point at
+ * /assets/tech/*.svg, which is not in the repo.
+ *
+ * So it refuses to run against a populated database unless you really mean it.
+ * To add or refresh products without touching anything else, use
+ * `npm run db:seed:products`.
+ */
+async function assertSafeToSeed() {
+  if (process.argv.includes("--force")) {
+    console.log("--force given: overwriting existing content.\n");
+    return;
+  }
+
+  const [existingPages, existingProducts] = await Promise.all([
+    db.select().from(pageContent),
+    db.select().from(products),
+  ]);
+
+  if (!existingPages.length && !existingProducts.length) return;
+
+  console.error(
+    [
+      "",
+      "Refusing to seed: this database already has content.",
+      `  page content rows: ${existingPages.length}`,
+      `  products:          ${existingProducts.length}`,
+      "",
+      "A full seed would overwrite admin-edited page content, site settings, SEO",
+      "rows, and reset the admin password to ADMIN_PASSWORD from the environment.",
+      "Uploaded images are stored in the database as data URIs and would be lost.",
+      "",
+      "  To add or refresh products only:  npm run db:seed:products",
+      "  To wipe and reseed anyway:        npm run db:seed -- --force",
+      "",
+    ].join("\n"),
+  );
+  process.exit(1);
+}
+
 async function main() {
   ({ db } = await import("../src/lib/db/client"));
+  await assertSafeToSeed();
   await seedAdmin();
   await seedProducts();
   await seedSettings();
