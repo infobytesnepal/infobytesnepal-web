@@ -8,7 +8,7 @@ import {
   seoSettings,
   siteSettings,
 } from "../src/lib/db/schema";
-import { defaultPageContent, productSeeds, siteDefaults } from "../src/lib/content";
+import { defaultPageContent, productSeeds, productSeoDefaults, siteDefaults } from "../src/lib/content";
 
 loadEnvConfig(process.cwd());
 let db: (typeof import("../src/lib/db/client"))["db"];
@@ -17,28 +17,6 @@ function id() {
   return crypto.randomUUID();
 }
 
-const productSeoDefaults: Record<string, { title: string; description: string }> = {
-  pravyo: {
-    title: "Pravyo Student Talent Platform | Infobytes Nepal",
-    description:
-      "Pravyo by Infobytes Nepal helps organize, discover, and present student talent for education, training, and consultancy-focused workflows in Nepal.",
-  },
-  serviol: {
-    title: "Serviol Service Management Software Nepal | Infobytes Nepal",
-    description:
-      "Serviol is service management software by Infobytes Nepal for field service teams, tickets, planners, attendance, and operational workflows.",
-  },
-  purseol: {
-    title: "Purseol Sales Management Software Nepal | Infobytes Nepal",
-    description:
-      "Purseol is sales management software by Infobytes Nepal for client visits, product pitches, field sales tracking, and lead outcomes.",
-  },
-  leadrack: {
-    title: "LeadRack CRM & Lead Management Software Nepal | Infobytes Nepal",
-    description:
-      "LeadRack by Infobytes Nepal helps teams manage leads through traceable boards, sales stages, follow-ups, and CRM-style workflows.",
-  },
-};
 
 async function seedAdmin() {
   const email = process.env.ADMIN_EMAIL;

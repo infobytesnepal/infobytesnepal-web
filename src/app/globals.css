@@ -21,7 +21,7 @@
   --color-soft-green: var(--soft-green);
   --color-dark-text: var(--dark-text);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 body {

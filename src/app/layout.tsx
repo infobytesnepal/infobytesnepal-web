@@ -1,19 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { getSiteUrl } from "@/lib/utils";
+import { Geist } from "next/font/google";
+import { getCanonicalSiteUrl } from "@/lib/utils";
 import "./globals.css";
 
+// Only the sans family is loaded. Geist Mono was being downloaded on every page
+// without a single class using it.
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const siteUrl = getSiteUrl();
+const siteUrl = getCanonicalSiteUrl();
 const defaultTitle = "Software Development Company in Nepal | Infobytes Nepal";
 const defaultDescription =
   "Infobytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation solutions.";
@@ -82,7 +80,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-white text-dark-text">{children}</body>
     </html>

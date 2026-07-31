@@ -17,8 +17,31 @@ import {
   type SeoSetting,
   type ServiceInquiry,
 } from "./db/schema";
-import { productSeeds, siteDefaults } from "./content";
+import { productSeeds, productSeoDefaults, siteDefaults } from "./content";
 import { jsonParse } from "./utils";
+
+function seededProduct(slug: string) {
+  const fallback = productSeeds.find((product) => product.slug === slug);
+  if (!fallback) return null;
+  const seo = productSeoDefaults[fallback.slug];
+  return {
+    ...fallback,
+    id: fallback.slug,
+    isPublished: true,
+    seoTitle: seo?.title || `${fallback.name} | Infobytes Nepal`,
+    seoDescription: seo?.description || fallback.shortDescription,
+    ogImage: "",
+    createdAt: "",
+    updatedAt: "",
+  };
+}
+
+function seededProductList(): Product[] {
+  return productSeeds.map((item, index) => ({
+    ...seededProduct(item.slug)!,
+    displayOrder: index + 1,
+  }));
+}
 
 export const getProducts = cache(async (includeUnpublished = false): Promise<Product[]> => {
   try {
@@ -27,29 +50,9 @@ export const getProducts = cache(async (includeUnpublished = false): Promise<Pro
       .from(products)
       .where(includeUnpublished ? undefined : eq(products.isPublished, true))
       .orderBy(asc(products.displayOrder), asc(products.name));
-    return rows.length ? rows : productSeeds.map((item, index) => ({
-      ...item,
-      id: item.slug,
-      isPublished: true,
-      seoTitle: item.name,
-      seoDescription: item.shortDescription,
-      ogImage: "",
-      createdAt: "",
-      updatedAt: "",
-      displayOrder: index + 1,
-    }));
+    return rows.length ? rows : seededProductList();
   } catch {
-    return productSeeds.map((item, index) => ({
-      ...item,
-      id: item.slug,
-      isPublished: true,
-      seoTitle: item.name,
-      seoDescription: item.shortDescription,
-      ogImage: "",
-      createdAt: "",
-      updatedAt: "",
-      displayOrder: index + 1,
-    }));
+    return seededProductList();
   }
 });
 
@@ -59,21 +62,12 @@ export const getProductBySlug = cache(async (slug: string, includeUnpublished = 
       ? eq(products.slug, slug)
       : and(eq(products.slug, slug), eq(products.isPublished, true));
     const [product] = await db.select().from(products).where(where).limit(1);
-    return product || null;
+    // Fall back to the seed when the row is missing, not only when the query
+    // throws. Otherwise an unseeded table lists products on /products while
+    // every detail page 404s, which is how a newly added product disappears.
+    return product || seededProduct(slug);
   } catch {
-    const fallback = productSeeds.find((product) => product.slug === slug);
-    return fallback
-      ? {
-          ...fallback,
-          id: fallback.slug,
-          isPublished: true,
-          seoTitle: fallback.name,
-          seoDescription: fallback.shortDescription,
-          ogImage: "",
-          createdAt: "",
-          updatedAt: "",
-        }
-      : null;
+    return seededProduct(slug);
   }
 });
 

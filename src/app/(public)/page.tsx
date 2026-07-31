@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
@@ -26,7 +27,7 @@ import StackingCards from "@/components/public/stacking-cards";
 import { defaultPageContent } from "@/lib/content";
 import { getPageSection, getProducts } from "@/lib/data";
 import { organizationSchema, professionalServiceSchema, websiteSchema } from "@/lib/seo";
-import { getSiteUrl } from "@/lib/utils";
+import { getCanonicalSiteUrl } from "@/lib/utils";
 
 const featuredServices = [
   {
@@ -68,7 +69,7 @@ const featuredServices = [
 ];
 
 const stats = [
-  { value: "4", label: "Focused products shipped" },
+  { value: "5", label: "Focused products shipped" },
   { value: "7+", label: "Service areas covered" },
   { value: "100%", label: "Nepal-based team" },
   { value: "1:1", label: "Direct communication" },
@@ -145,8 +146,13 @@ const solutionLinks = [
   { href: "/inventory-management-software-in-nepal", label: "Inventory Management Software in Nepal" },
   { href: "/school-management-software-in-nepal", label: "School Management Software in Nepal" },
   { href: "/hospital-management-software-in-nepal", label: "Hospital Management Software in Nepal" },
+  { href: "/lab-software-in-nepal", label: "Lab Software in Nepal" },
+  { href: "/laboratory-information-management-system-nepal", label: "Medical Laboratory Management System in Nepal" },
   { href: "/wordpress-development-company-in-nepal", label: "WordPress Development Company in Nepal" },
   { href: "/ai-development-company-in-nepal", label: "AI Development Company in Nepal" },
+  { href: "/website-maintenance-services-in-nepal", label: "Website Maintenance Services in Nepal" },
+  { href: "/social-media-marketing-agency-in-nepal", label: "Social Media Marketing Agency in Nepal" },
+  { href: "/it-training-institute-in-nepal", label: "IT Training in Nepal" },
 ];
 
 // Location and pricing pages get their own internal-link cluster on the homepage.
@@ -157,6 +163,9 @@ const locationLinks = [
   { href: "/it-company-in-lalitpur", label: "IT Company in Lalitpur" },
   { href: "/it-company-in-bhaktapur", label: "IT Company in Bhaktapur" },
   { href: "/it-company-in-pokhara", label: "IT Company in Pokhara" },
+  { href: "/it-company-in-butwal", label: "IT Company in Butwal" },
+  { href: "/it-company-in-chitwan", label: "IT Company in Chitwan" },
+  { href: "/it-company-in-biratnagar", label: "IT Company in Biratnagar" },
   { href: "/website-cost-in-nepal", label: "Website Cost in Nepal" },
   { href: "/mobile-app-development-cost-in-nepal", label: "Mobile App Development Cost in Nepal" },
 ];
@@ -181,7 +190,7 @@ const partners = [
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
-  const siteUrl = getSiteUrl();
+  const siteUrl = getCanonicalSiteUrl();
   const title = "Software Development Company in Nepal | Infobytes Nepal";
   const description =
     "Infobytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation solutions.";
@@ -245,13 +254,30 @@ export default async function HomePage() {
 
       {/* ---------- Hero ---------- */}
       <section className="page-x relative flex min-h-screen items-center overflow-hidden bg-soft-blue pt-28">
+        {/*
+          The hero background is a still image on phones and the video only from
+          md up. The clip is close to a megabyte, which is real money on mobile
+          data in Nepal and pushes back the largest contentful paint on exactly
+          the devices most of our visitors use. The poster carries the same look.
+        */}
+        <Image
+          src={hero.fallbackImageUrl}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 h-full w-full object-cover md:hidden"
+          aria-hidden="true"
+        />
         <video
           autoPlay
           muted
           loop
           playsInline
+          preload="none"
           poster={hero.fallbackImageUrl}
-          className="absolute inset-0 h-full w-full object-cover"
+          aria-hidden="true"
+          className="absolute inset-0 hidden h-full w-full object-cover md:block"
         >
           <source src={hero.heroVideoUrl} type="video/mp4" />
         </video>
@@ -437,7 +463,7 @@ export default async function HomePage() {
                     <div className="mt-6 flex h-[64px] w-[232px] max-w-full items-center">
                       <CmsImage
                         src={partner.logo}
-                        alt={`${partner.name} — ${partner.role} of Infobytes Nepal`}
+                        alt={`${partner.name}, ${partner.role} of Infobytes Nepal`}
                         width={partner.logoWidth}
                         height={partner.logoHeight}
                         className="h-auto w-full object-contain object-left"

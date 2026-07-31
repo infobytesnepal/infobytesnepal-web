@@ -29,7 +29,7 @@ export const faqGroups: FaqGroup[] = [
     id: "pricing",
     title: "Costs & budgets in Nepal",
     intro:
-      "Real, indicative price ranges for websites, apps, software, and marketing in Nepal — and what actually moves the number up or down.",
+      "Real, indicative price ranges for websites, apps, software, and marketing in Nepal, plus what actually moves the number up or down.",
     faqs: [
       {
         id: "website-cost-nepal-2026",
@@ -38,7 +38,7 @@ export const faqGroups: FaqGroup[] = [
           "In 2026, a simple professional business website in Nepal typically costs around NPR 50,000 to NPR 150,000, a custom-designed website with a content management system and proper SEO structure usually costs around NPR 100,000 to NPR 250,000, and larger custom web platforms generally start above NPR 250,000 and are quoted by scope.",
         more: [
           "The number moves on five things: how many pages you need, whether the design is custom or template-based, the features involved (forms, bookings, dashboards, payments, multi-language), how much content and SEO work is included, and the level of ongoing support after launch.",
-          "Budget one more line that many quotes leave out: domain and hosting are recurring yearly costs, and content — photos, product details, and written copy — takes real time whether you produce it or pay someone to. A website that loads fast, ranks, and brings inquiries is usually worth more than the cheapest quote you can find.",
+          "Budget one more line that many quotes leave out: domain and hosting are recurring yearly costs, and content (photos, product details, and written copy) takes real time whether you produce it or pay someone to. A website that loads fast, ranks, and brings inquiries is usually worth more than the cheapest quote you can find.",
         ],
         links: [
           { href: "/website-cost-in-nepal", label: "Full website pricing guide" },
@@ -51,7 +51,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "A basic online store in Nepal typically costs around NPR 80,000 to NPR 200,000, while a custom e-commerce build with local payment gateways, inventory sync, delivery integration, and a proper admin panel usually ranges from around NPR 200,000 to NPR 500,000.",
         more: [
-          "Cost rises with the catalogue size, product variations (size, colour, weight), whether you need multi-vendor or multi-branch stock, and how many integrations you want — eSewa, Khalti, Fonepay, ConnectIPS, courier partners, accounting, or a POS.",
+          "Cost rises with the catalogue size, product variations (size, colour, weight), whether you need multi-vendor or multi-branch stock, and how many integrations you want: eSewa, Khalti, Fonepay, ConnectIPS, courier partners, accounting, or a POS.",
           "Also plan for running costs: payment gateway transaction fees, hosting that can handle traffic spikes during festive campaigns, and someone to manage products and orders daily. An online store is an operation, not just a build.",
         ],
         links: [
@@ -76,9 +76,9 @@ export const faqGroups: FaqGroup[] = [
         id: "custom-software-cost-nepal",
         question: "How much does custom software, a CRM, or an ERP cost in Nepal?",
         answer:
-          "A focused first version of custom software in Nepal — one department, a clear workflow, a working admin panel — typically ranges from around NPR 200,000 to NPR 600,000, while multi-department systems that connect sales, inventory, service, accounts, and reporting generally range from around NPR 600,000 upward and are quoted by module.",
+          "A focused first version of custom software in Nepal (one department, a clear workflow, a working admin panel) typically ranges from around NPR 200,000 to NPR 600,000, while multi-department systems that connect sales, inventory, service, accounts, and reporting generally range from around NPR 600,000 upward and are quoted by module.",
         more: [
-          "Custom software is priced by workflow complexity, number of user roles, integrations with existing tools, and the reporting you need — not by page count.",
+          "Custom software is priced by workflow complexity, number of user roles, integrations with existing tools, and the reporting you need, not by page count.",
           "The most reliable way to control the cost is to build the highest-value module first, put it in real use, and expand from what the team actually needs after a few months of usage.",
         ],
         links: [
@@ -94,7 +94,7 @@ export const faqGroups: FaqGroup[] = [
           "Ongoing SEO in Nepal typically costs around NPR 45,000 to NPR 80,000 per month for a small or mid-sized business, with competitive national keywords and larger content programmes priced higher. A one-time SEO audit and technical fix-up usually falls between NPR 20,000 and NPR 60,000.",
         more: [
           "What you are paying for each month is a mix of technical fixes, on-page optimisation, content, internal linking, Google Business Profile work, and reporting. A monthly retainer that includes no content production rarely moves rankings.",
-          "Treat any package that promises guaranteed rankings for a fixed low fee with caution — that is not how search works, and the shortcuts used to fake it can damage a site.",
+          "Treat any package that promises guaranteed rankings for a fixed low fee with caution. That is not how search works, and the shortcuts used to fake it can damage a site.",
         ],
         links: [{ href: "/seo-company-in-nepal", label: "SEO services in Nepal" }],
       },
@@ -136,7 +136,7 @@ export const faqGroups: FaqGroup[] = [
         id: "logo-branding-cost-nepal",
         question: "How much does a logo or brand identity cost in Nepal?",
         answer:
-          "A professional logo in Nepal typically costs around NPR 10,000 to NPR 30,000, and a fuller brand identity — logo, colour system, typography, stationery, and social media templates with usage guidelines — usually ranges from around NPR 40,000 to NPR 120,000.",
+          "A professional logo in Nepal typically costs around NPR 10,000 to NPR 30,000, and a fuller brand identity (logo, colour system, typography, stationery, and social media templates) with usage guidelines usually ranges from around NPR 40,000 to NPR 120,000.",
         more: [
           "The difference is not drawing time; it is whether you receive a single image or a complete system your team can apply consistently across a website, packaging, documents, and campaigns without redesigning something every week.",
           "Always confirm you are receiving source files and full ownership, not just exported PNGs.",
@@ -150,17 +150,17 @@ export const faqGroups: FaqGroup[] = [
         id: "why-quotes-vary",
         question: "Why do website and software quotes in Nepal vary so much?",
         answer:
-          "Quotes vary because they are rarely quoting the same thing — one may be a template installed in a week with stock content, another a custom-designed, SEO-structured build with a CMS, training, and support. Until the scope is written down, the prices are not comparable.",
+          "Quotes vary because they are rarely quoting the same thing. One may be a template installed in a week with stock content, another a custom-designed, SEO-structured build with a CMS, training, and support. Until the scope is written down, the prices are not comparable.",
         more: [
           "Ask every vendor for the same written breakdown: number of pages, custom or template design, features, who writes the content, whether SEO setup is included, hosting arrangements, training, support period, and what a change costs after launch.",
-          "Once quotes describe identical deliverables, the real differences — quality, speed, accountability — become visible, and the cheapest quote often turns out to be the most expensive one over two years.",
+          "Once quotes describe identical deliverables, the real differences (quality, speed, accountability) become visible, and the cheapest quote often turns out to be the most expensive one over two years.",
         ],
       },
       {
         id: "payment-terms",
         question: "What are your payment terms, and do you take an advance?",
         answer:
-          "Projects are paid in milestones — an advance to begin, one or more progress payments tied to agreed stages, and a final payment at handover. The exact split, dates, and deliverables are confirmed in writing before any work starts, so there are no surprises mid-project.",
+          "Projects are paid in milestones: an advance to begin, one or more progress payments tied to agreed stages, and a final payment at handover. The exact split, dates, and deliverables are confirmed in writing before any work starts, so there are no surprises mid-project.",
         more: [
           "We quote in NPR for clients in Nepal and can quote in USD for clients abroad. Bank transfer and common digital wallets are both accepted.",
           "Ongoing work such as SEO, marketing, maintenance, or support is billed monthly against an agreed scope rather than bundled into the project fee.",
@@ -168,9 +168,9 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         id: "small-budget-start",
-        question: "What if my budget is small — can I still start?",
+        question: "What if my budget is small? Can I still start?",
         answer:
-          "Yes. The practical approach on a small budget is to build a strong first version rather than a stripped-down full system — a focused website or a single working module that solves your most expensive problem, then expand in phases as it earns its return.",
+          "Yes. The practical approach on a small budget is to build a strong first version rather than a stripped-down full system: a focused website or a single working module that solves your most expensive problem, then expand in phases as it earns its return.",
         more: [
           "Phasing works because the second version is always better informed than the first. Real usage tells you which features matter, so you spend the later budget on things people actually use.",
           "We will tell you honestly if a requirement does not fit a budget, and what a realistic first phase would look like instead.",
@@ -236,7 +236,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "Hire a freelancer for small, well-defined, one-off work where cost matters most; hire a company when the project spans design, development, SEO, and support, when it must keep running after launch, or when continuity matters more than the lowest price.",
         more: [
-          "The real difference is not skill — many freelancers in Nepal are excellent — it is coverage. A company has more than one person who understands your project, so a phone that stops being answered is not the end of your website.",
+          "The real difference is not skill, many freelancers in Nepal are excellent, it is coverage. A company has more than one person who understands your project, so a phone that stops being answered is not the end of your website.",
           "If you do work with a freelancer, keep ownership of your accounts and insist on documented handover. That single precaution removes most of the risk.",
         ],
       },
@@ -244,7 +244,7 @@ export const faqGroups: FaqGroup[] = [
         id: "local-vs-foreign",
         question: "Is it better to hire a local Nepali company or an overseas agency?",
         answer:
-          "For most businesses operating in Nepal, a local company is the practical choice — local payment gateways, Nepali content and dates, on-the-ground support, invoicing in NPR, and the ability to meet in person all matter more than they appear to on paper.",
+          "For most businesses operating in Nepal, a local company is the practical choice, for local payment gateways, Nepali content and dates, on-the-ground support, invoicing in NPR, and the ability to meet in person all matter more than they appear to on paper.",
         more: [
           "Overseas agencies make sense when you need a specialised skill that is genuinely scarce locally, or when your customers are entirely outside Nepal.",
           "Cost is not the deciding factor people expect: Nepali teams generally cost less, but the real advantage is time zone, context, and accountability.",
@@ -265,7 +265,7 @@ export const faqGroups: FaqGroup[] = [
         id: "who-owns-the-work",
         question: "Who owns the website, code, and accounts after the project is finished?",
         answer:
-          "You should own all of it — the code, the design files, the content, the domain, the hosting, and every account created for your business. At Infobytes Nepal this is the default: on final payment, ownership and full access transfer to you in writing.",
+          "You should own all of it: the code, the design files, the content, the domain, the hosting, and every account created for your business. At Infobytes Nepal this is the default: on final payment, ownership and full access transfer to you in writing.",
         more: [
           "Before you sign with anyone, make sure the agreement says this explicitly. Some vendors retain the code or keep accounts under their own credentials, which quietly locks you in and makes changing vendors expensive.",
           "Ask for a handover that includes source code, admin credentials, domain registrar access, hosting access, and any third-party service accounts.",
@@ -277,7 +277,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "Yes. Every project starts with a written scope and quotation covering deliverables, timeline, milestones, payment schedule, ownership, and support terms, agreed by both sides before work begins.",
         more: [
-          "A written scope protects both sides equally. It tells you what you are getting, and it tells us when the project is complete — which is what keeps timelines honest.",
+          "A written scope protects both sides equally. It tells you what you are getting, and it tells us when the project is complete, which is what keeps timelines honest.",
           "Changes are welcome; they are handled as a written change request with any cost or timeline impact stated upfront, rather than absorbed silently until the project drifts.",
         ],
       },
@@ -295,7 +295,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "A simple business website usually takes 2 to 4 weeks, a custom-designed website with a CMS typically takes 4 to 8 weeks, and an online store or custom web platform generally takes 8 to 16 weeks depending on features and integrations.",
         more: [
-          "The most common cause of delay is not development — it is content. Projects wait on logos, product details, photos, and approvals far more often than on code.",
+          "The most common cause of delay is not development. It is content. Projects wait on logos, product details, photos, and approvals far more often than on code.",
           "If a deadline is fixed, say so at the start. We can plan a phased launch that puts a solid first version live on time and adds the rest afterwards.",
         ],
       },
@@ -303,7 +303,7 @@ export const faqGroups: FaqGroup[] = [
         id: "what-to-provide",
         question: "What do I need to provide to start a website project?",
         answer:
-          "To start, you need three things: your logo and any brand assets, your core content (services, products, about, contact details), and a clear idea of what the website should achieve. Everything else — structure, design, SEO, hosting setup — we handle.",
+          "To start, you need three things: your logo and any brand assets, your core content (services, products, about, contact details), and a clear idea of what the website should achieve. Everything else (structure, design, SEO, hosting setup) we handle.",
         more: [
           "Useful extras if you have them: photographs of your team, work, or products; examples of websites you like and dislike; and access to your existing domain or hosting if you already have one.",
           "If content is the blocker, we can start from a structure and work with you to write it. It is normal for this to be the longest part of a project.",
@@ -311,7 +311,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         id: "wordpress-vs-custom",
-        question: "WordPress or a custom-coded website — which is better for my business?",
+        question: "WordPress or a custom-coded website: which is better for my business?",
         answer:
           "Choose WordPress when you want to publish and edit content frequently and your needs are standard; choose a custom build when you need speed, unusual workflows, custom dashboards, or an application rather than a set of pages.",
         more: [
@@ -327,7 +327,7 @@ export const faqGroups: FaqGroup[] = [
         id: "update-website-myself",
         question: "Can I update the website myself after launch?",
         answer:
-          "Yes. Websites are handed over with an admin panel for the content you are likely to change — pages, text, images, products, blog posts, and inquiries — along with a walkthrough for your team.",
+          "Yes. Websites are handed over with an admin panel for the content you are likely to change (pages, text, images, products, blog posts, and inquiries) along with a walkthrough for your team.",
         more: [
           "Structural changes such as new page types or new features are development work, and we handle those on request.",
           "If you would rather not manage content at all, we can maintain it for you under a monthly arrangement.",
@@ -339,7 +339,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "Yes. We take on redesigns, rebuilds, speed and mobile fixes, security clean-ups, and migrations from an old site or a previous developer.",
         more: [
-          "We start with a review of what exists — what is worth keeping, what is causing the problems, and whether a fix or a rebuild is the better investment. Sometimes the honest answer is that a repair is enough.",
+          "We start with a review of what exists: what is worth keeping, what is causing the problems, and whether a fix or a rebuild is the better investment. Sometimes the honest answer is that a repair is enough.",
           "During a redesign, existing SEO value is preserved with proper URL mapping and redirects so you do not lose the rankings you already have.",
         ],
       },
@@ -347,7 +347,7 @@ export const faqGroups: FaqGroup[] = [
         id: "mobile-friendly",
         question: "Will my website work properly on mobile?",
         answer:
-          "Yes — every website we build is designed mobile-first and tested across phone, tablet, and desktop before launch. In Nepal the majority of visitors arrive on a phone, so mobile is the primary design target, not an afterthought.",
+          "Yes. Every website we build is designed mobile-first and tested across phone, tablet, and desktop before launch. In Nepal the majority of visitors arrive on a phone, so mobile is the primary design target, not an afterthought.",
         more: [
           "Google also evaluates the mobile version of your site for ranking, so a site that breaks on a phone loses both customers and visibility.",
         ],
@@ -356,7 +356,7 @@ export const faqGroups: FaqGroup[] = [
         id: "website-speed",
         question: "Will my website be fast, and does speed really matter?",
         answer:
-          "Yes, speed matters directly — slow pages lose visitors before they read anything and rank worse in Google. We build with optimised images, minimal scripts, and proper caching, and we test loading performance before handover.",
+          "Yes, speed matters directly. Slow pages lose visitors before they read anything and rank worse in Google. We build with optimised images, minimal scripts, and proper caching, and we test loading performance before handover.",
         more: [
           "Speed matters more in Nepal than global averages suggest, because a meaningful share of traffic arrives on mobile data with variable connection quality.",
           "The usual culprits behind slow Nepali business websites are oversized uncompressed images, a heavy theme with a dozen plugins, and cheap overloaded hosting.",
@@ -375,7 +375,7 @@ export const faqGroups: FaqGroup[] = [
         id: "hosting-and-domain-management",
         question: "Can you handle hosting and domain registration for us?",
         answer:
-          "Yes. We can register your domain, set up hosting, configure email, and manage renewals — with everything registered in your company's name and your credentials, so ownership always stays with you.",
+          "Yes. We can register your domain, set up hosting, configure email, and manage renewals, with everything registered in your company's name and your credentials, so ownership always stays with you.",
         more: [
           "If you already have hosting, we can work with it or advise you honestly if it is the reason your site is slow.",
           "We will also set up business email on your own domain, which matters more for credibility than most businesses expect.",
@@ -387,7 +387,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "Register a .com if you want the broadest recognition and the simplest transfer process, and a .com.np if your audience is entirely within Nepal and local identity matters. Many businesses register both and point one to the other.",
         more: [
-          ".com.np domains are issued free of cost through Nepal's national registry, but they require document verification — typically company registration papers — and renewal follows the registry's own process rather than a commercial registrar's.",
+          ".com.np domains are issued free of cost through Nepal's national registry, but they require document verification, typically company registration papers, and renewal follows the registry's own process rather than a commercial registrar's.",
           "Neither choice gives you a ranking advantage by itself. A .com.np can help slightly with local relevance signals; content, speed, and links matter far more.",
         ],
       },
@@ -411,7 +411,7 @@ export const faqGroups: FaqGroup[] = [
         id: "payment-gateway-integration",
         question: "Can you integrate eSewa, Khalti, Fonepay, or ConnectIPS?",
         answer:
-          "Yes. We integrate Nepal's common payment gateways — eSewa, Khalti, Fonepay, IMEPay, and ConnectIPS — along with bank transfer and cash on delivery options.",
+          "Yes. We integrate Nepal's common payment gateways (eSewa, Khalti, Fonepay, IMEPay, and ConnectIPS) along with bank transfer and cash on delivery options.",
         more: [
           "Each gateway requires a merchant account in your business's name, with its own documentation and approval process, and its own transaction fee. We handle the technical integration and guide you through the merchant application.",
           "Cash on delivery is still a significant share of orders in Nepal, so we usually build order flows that handle it properly rather than treating it as an afterthought.",
@@ -421,7 +421,7 @@ export const faqGroups: FaqGroup[] = [
         id: "international-payments",
         question: "Can my Nepali business accept international card payments?",
         answer:
-          "It is possible but constrained — accepting international cards from Nepal generally requires working with a licensed local acquiring bank or an approved payment partner, and it is subject to Nepal Rastra Bank regulations on foreign currency.",
+          "It is possible but constrained. Accepting international cards from Nepal generally requires working with a licensed local acquiring bank or an approved payment partner, and it is subject to Nepal Rastra Bank regulations on foreign currency.",
         more: [
           "For businesses selling services abroad, the practical routes are usually an approved gateway arrangement through your bank, or an international platform where the arrangement is permitted for your category.",
           "We will build your store so the payment layer can be swapped or extended later without rebuilding the checkout.",
@@ -433,7 +433,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "A standard online store typically takes 4 to 8 weeks, and a custom store with multiple payment gateways, inventory sync, delivery integration, and a full admin panel usually takes 8 to 16 weeks.",
         more: [
-          "Product data is the usual bottleneck — photographs, descriptions, variants, weights, and pricing for a large catalogue take longer to prepare than most teams estimate. Starting that early shortens the project more than anything else.",
+          "Product data is the usual bottleneck: photographs, descriptions, variants, weights, and pricing for a large catalogue take longer to prepare than most teams estimate. Starting that early shortens the project more than anything else.",
         ],
       },
       {
@@ -471,9 +471,9 @@ export const faqGroups: FaqGroup[] = [
         id: "ranking-guarantee",
         question: "Can you guarantee first-page Google rankings?",
         answer:
-          "No, and no honest agency can — Google's ranking system is not controlled by any vendor. What we can commit to is the work that reliably produces rankings: technical health, well-structured content, correct on-page optimisation, internal linking, local search setup, and transparent monthly reporting.",
+          "No, and no honest agency can. Google's ranking system is not controlled by any vendor. What we can commit to is the work that reliably produces rankings: technical health, well-structured content, correct on-page optimisation, internal linking, local search setup, and transparent monthly reporting.",
         more: [
-          "We do set measurable targets — keyword positions, impressions, clicks, and inquiries — and report against them monthly so you can judge progress on evidence rather than promises.",
+          "We do set measurable targets (keyword positions, impressions, clicks, and inquiries) and report against them monthly so you can judge progress on evidence rather than promises.",
         ],
       },
       {
@@ -492,7 +492,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "For Facebook and Instagram, a realistic starting budget in Nepal is around NPR 10,000 to NPR 50,000 per month; Google Ads usually needs a similar or larger budget because cost per click depends on keyword competition. Management fees are charged separately from the ad spend itself.",
         more: [
-          "Spend enough for the platform to learn — very small budgets spread across many campaigns rarely produce usable data. One well-targeted campaign beats five underfunded ones.",
+          "Spend enough for the platform to learn. Very small budgets spread across many campaigns rarely produce usable data. One well-targeted campaign beats five underfunded ones.",
           "Before scaling spend, make sure the destination converts. Paying to send traffic to a slow or unclear page is the most common way marketing budgets are wasted.",
         ],
         links: [{ href: "/digital-marketing-company-in-nepal", label: "Digital marketing in Nepal" }],
@@ -510,7 +510,7 @@ export const faqGroups: FaqGroup[] = [
         id: "redesign-and-seo",
         question: "Will a website redesign hurt my existing Google rankings?",
         answer:
-          "Not if it is done properly. Rankings are lost during redesigns when URLs change without redirects, content is removed, or the new site is slower — all of which are avoidable with planning.",
+          "Not if it is done properly. Rankings are lost during redesigns when URLs change without redirects, content is removed, or the new site is slower, all of which are avoidable with planning.",
         more: [
           "Our redesign process maps every existing URL, sets up permanent redirects, preserves the content that already ranks, and monitors search performance after launch to catch anything that slips.",
         ],
@@ -529,7 +529,7 @@ export const faqGroups: FaqGroup[] = [
           "Buy ready-made when your process is standard and a proven tool already fits it; build custom when your workflow is genuinely specific, when off-the-shelf licensing becomes expensive at your team size, or when you keep paying people to work around a tool's limitations.",
         more: [
           "A useful test: if your team maintains parallel spreadsheets alongside the software they already pay for, the tool does not fit the workflow.",
-          "There is also a middle path we often recommend — keep the standard tools and build only the connecting layer or the one module that is genuinely unique to your business.",
+          "There is also a middle path we often recommend: keep the standard tools and build only the connecting layer or the one module that is genuinely unique to your business.",
         ],
         links: [
           { href: "/business-automation-software-nepal", label: "Business automation in Nepal" },
@@ -552,7 +552,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "Yes, in most cases. We integrate with accounting software, POS systems, SMS gateways, payment gateways, Google Workspace, and other tools where an API or a supported data exchange exists.",
         more: [
-          "Where a system has no API — which is common with older local software — we build scheduled imports and exports so data still flows without manual re-entry.",
+          "Where a system has no API, which is common with older local software, we build scheduled imports and exports so data still flows without manual re-entry.",
           "Tell us your existing tools at the quotation stage. Integration effort is much cheaper to plan for than to retrofit.",
         ],
       },
@@ -589,6 +589,79 @@ export const faqGroups: FaqGroup[] = [
     ],
   },
   {
+    id: "labs",
+    title: "Lab & healthcare software",
+    intro:
+      "Questions we get from medical laboratories, diagnostic centres, and hospitals in Nepal about Nidanyo and how lab systems work here.",
+    faqs: [
+      {
+        id: "best-lab-software-nepal",
+        question: "What is the best lab management software in Nepal?",
+        answer:
+          "For a Nepali laboratory, the best lab software is the one that handles local realities: credit accounts with referring clinics, referral commissions, Nepali date reporting, and support you can reach by phone when the counter is busy. Nidanyo by Infobytes Nepal is built here for exactly that, covering registration, sample tracking, result verification, report release, billing, and reagent stock in one system.",
+        more: [
+          "Imported LIMS products are usually stronger on research and regulated pharmaceutical workflows and weaker on the commercial side that Nepali labs actually run on. A lab here spends more time on referral commissions and credit reconciliation than on any laboratory science feature, and that is where most foreign systems make you build workarounds.",
+          "The practical test when comparing options: ask the vendor to show you a doctor commission statement and a daily counter reconciliation. If they cannot, the system will cost you staff hours every month.",
+        ],
+        links: [
+          { href: "/lab-software-in-nepal", label: "Lab software in Nepal" },
+          { href: "/products/nidanyo", label: "Nidanyo lab management system" },
+        ],
+      },
+      {
+        id: "lims-vs-billing-software",
+        question: "What is the difference between a LIMS and lab billing software?",
+        answer:
+          "Lab billing software prints bills and often reports. A laboratory information management system tracks the sample itself, so it can tell you when a sample arrived, who ran it, which reagent lot was used, who verified the result, and whether the report was later amended. That traceability is what audits and accreditation reviews ask for and what billing packages cannot produce.",
+        more: [
+          "Most labs in Nepal start with a billing package because it is cheaper and solves the visible problem. The cost shows up later, usually during an accreditation attempt or a disputed report, when nobody can reconstruct what happened.",
+        ],
+        links: [
+          {
+            href: "/laboratory-information-management-system-nepal",
+            label: "Laboratory information management system in Nepal",
+          },
+        ],
+      },
+      {
+        id: "lab-software-cost-nepal",
+        question: "How much does lab software cost in Nepal?",
+        answer:
+          "It depends on the number of counters and users, whether analyser interfacing is needed, how many branches or collection centres you run, and whether you host it yourself or we host it. A single-branch lab with manual result entry sits at the low end; a multi-branch diagnostic centre with interfacing sits considerably higher.",
+        more: [
+          "We quote against your actual monthly test volume, branch count, and test menu rather than publishing a package price, because lab requirements vary more than most software categories. Setup, catalogue loading, report formatting, and staff training are quoted as part of the project rather than appearing as surprises later.",
+        ],
+        links: [{ href: "/lab-software-in-nepal", label: "Lab software in Nepal" }],
+      },
+      {
+        id: "analyser-interfacing",
+        question: "Can lab software connect to our analysers?",
+        answer:
+          "Yes, for analysers that support standard interfacing. Results transfer from the machine into the result entry screen directly, which removes the transcription errors that cause most rework in a busy lab. Machines without an interface port are handled by manual entry through the same verification path.",
+        more: [
+          "Interfacing is worth doing for high-volume machines in biochemistry and haematology, where the transcription load is heaviest. For low-volume specialised tests it often is not worth the setup cost, and we will say so rather than adding it to a quote.",
+        ],
+      },
+      {
+        id: "lab-offline",
+        question: "What happens to our lab system if the internet goes down?",
+        answer:
+          "Labs that cannot risk downtime run Nidanyo on a machine inside the lab, so registration, sample entry, and billing keep working through an outage, with backups and remote reporting syncing when the connection returns. Labs with reliable connectivity usually prefer the hosted setup so updates and backups are handled by us.",
+        links: [{ href: "/products/nidanyo", label: "How Nidanyo is deployed" }],
+      },
+      {
+        id: "hospital-vs-lab-software",
+        question: "We are a hospital with a lab. Do we need both systems?",
+        answer:
+          "Usually one system with a lab module, not two. If the lab mainly serves your own OPD and IPD patients, a hospital system with proper lab functionality avoids double registration and double billing. A lab that also takes significant outside and referral work often needs the deeper lab-specific features, in which case the two are built to share patient and billing records.",
+        links: [
+          { href: "/hospital-management-software-in-nepal", label: "Hospital management software in Nepal" },
+          { href: "/lab-software-in-nepal", label: "Lab software in Nepal" },
+        ],
+      },
+    ],
+  },
+  {
     id: "process",
     title: "Working with Infobytes Nepal",
     intro: "How projects run, how we communicate, and what happens after launch.",
@@ -609,7 +682,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "You get a named point of contact, agreed check-ins at each milestone, and a shared preview link so you can see progress as it happens rather than waiting for a reveal at the end.",
         more: [
-          "Day-to-day communication happens on whatever channel suits you — email, phone, WhatsApp, or Viber — and decisions that affect scope, cost, or timeline are always confirmed in writing.",
+          "Day-to-day communication happens on whatever channel suits you (email, phone, WhatsApp, or Viber) and decisions that affect scope, cost, or timeline are always confirmed in writing.",
         ],
       },
       {
@@ -636,7 +709,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "Small content changes are usually covered under a maintenance arrangement or handled quickly on request, and larger changes are scoped and quoted as improvements before any work starts.",
         more: [
-          "Websites and internal systems are supposed to change — that is a sign the business is moving. We build them so changes do not require rebuilding from scratch.",
+          "Websites and internal systems are supposed to change, and that is a sign the business is moving. We build them so changes do not require rebuilding from scratch.",
         ],
       },
       {
@@ -658,7 +731,7 @@ export const faqGroups: FaqGroup[] = [
         id: "outside-kathmandu",
         question: "Do you work with clients outside Kathmandu Valley or outside Nepal?",
         answer:
-          "Yes. We work with businesses across Nepal — Kathmandu, Lalitpur, Bhaktapur, Pokhara, Chitwan, Butwal, Biratnagar and beyond — and with clients abroad. Most collaboration happens online, so location is rarely a barrier.",
+          "Yes. We work with businesses across Nepal (Kathmandu, Lalitpur, Bhaktapur, Pokhara, Chitwan, Butwal, Biratnagar and beyond) and with clients abroad. Most collaboration happens online, so location is rarely a barrier.",
         more: [
           "For clients in the Kathmandu Valley, in-person meetings are easy to arrange at our Kaushaltar, Bhaktapur office or at yours.",
         ],
@@ -716,7 +789,7 @@ export const faqGroups: FaqGroup[] = [
         id: "services-vs-products",
         question: "What is the difference between your services and your products?",
         answer:
-          "Services are custom work built around your specific requirements. Products — LeadRack, Serviol, Purseol, and Pravyo — are ready-made systems for lead tracking, field service, field sales, and student talent workflows that you can adopt directly and start using much faster.",
+          "Services are custom work built around your specific requirements. Products (Nidanyo, LeadRack, Serviol, Purseol, and Pravyo) are ready-made systems for medical laboratories, lead tracking, field service, field sales, and student talent workflows that you can adopt directly and start using much faster.",
         more: [
           "If a product covers most of what you need, adopting and configuring it is usually quicker and cheaper than building from zero. We will tell you which route fits.",
         ],
@@ -726,7 +799,7 @@ export const faqGroups: FaqGroup[] = [
         id: "design-dev-marketing-together",
         question: "Can you handle design, development, and marketing together?",
         answer:
-          "Yes. Because design, development, SEO, and marketing sit under one team, your website, brand visuals, and campaigns stay consistent — and nobody is left coordinating between three vendors who blame each other when results stall.",
+          "Yes. Because design, development, SEO, and marketing sit under one team, your website, brand visuals, and campaigns stay consistent, and nobody is left coordinating between three vendors who blame each other when results stall.",
         links: [{ href: "/services", label: "See how services connect" }],
       },
       {
@@ -739,7 +812,7 @@ export const faqGroups: FaqGroup[] = [
         id: "get-started",
         question: "How do I get started with Infobytes Nepal?",
         answer:
-          "Send us your requirement, current workflow, or goal through the contact page, or email info@infobytesnepal.com. We will respond with questions if anything is unclear, then a scope, an indicative cost, and a realistic timeline — at no charge.",
+          "Send us your requirement, current workflow, or goal through the contact page, or email info@infobytesnepal.com. We will respond with questions if anything is unclear, then a scope, an indicative cost, and a realistic timeline, at no charge.",
         links: [{ href: "/contact", label: "Contact Infobytes Nepal" }],
       },
     ],

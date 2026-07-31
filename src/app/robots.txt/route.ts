@@ -1,7 +1,7 @@
-import { getSiteUrl } from "@/lib/utils";
+import { getCanonicalSiteUrl } from "@/lib/utils";
 
 export function GET() {
-  const siteUrl = getSiteUrl();
+  const siteUrl = getCanonicalSiteUrl();
   const body = [
     "User-agent: *",
     "Allow: /",

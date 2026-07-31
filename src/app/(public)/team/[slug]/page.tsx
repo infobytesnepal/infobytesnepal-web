@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight, Mail, MapPin } from "lucide-react";
 import CmsImage from "@/components/public/cms-image";
 import GetStartedButton from "@/components/public/get-started-button";
 import { getTeamMember, team } from "@/lib/team";
-import { getSiteUrl } from "@/lib/utils";
+import { getCanonicalSiteUrl } from "@/lib/utils";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -17,9 +17,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const member = getTeamMember(slug);
   if (!member) return {};
-  const siteUrl = getSiteUrl();
+  const siteUrl = getCanonicalSiteUrl();
   const url = `${siteUrl}/team/${member.slug}`;
-  const title = `${member.name} — ${member.role} | Infobytes Nepal`;
+  const title = `${member.name}, ${member.role} | Infobytes Nepal`;
   const description = member.summary;
 
   return {
@@ -57,7 +57,7 @@ export default async function TeamMemberPage({ params }: Props) {
   const member = getTeamMember(slug);
   if (!member) notFound();
 
-  const siteUrl = getSiteUrl();
+  const siteUrl = getCanonicalSiteUrl();
   const url = `${siteUrl}/team/${member.slug}`;
   const schema = [
     {
@@ -122,7 +122,7 @@ export default async function TeamMemberPage({ params }: Props) {
             <div className="relative mx-auto flex h-[300px] w-full max-w-[320px] items-end justify-center md:h-[360px]">
               <CmsImage
                 src={member.image}
-                alt={`${member.name} — ${member.role} at Infobytes Nepal`}
+                alt={`${member.name}, ${member.role} at Infobytes Nepal`}
                 width={460}
                 height={560}
                 priority

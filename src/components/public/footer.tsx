@@ -6,15 +6,57 @@ import { getPageSection, getProducts, getSettings } from "@/lib/data";
 import { defaultPageContent } from "@/lib/content";
 import { team } from "@/lib/team";
 
-const footerServices = [
-  { href: "/software-development-company-in-nepal", label: "Software Development" },
-  { href: "/web-development-company-in-nepal", label: "Web Development" },
-  { href: "/ecommerce-website-development-nepal", label: "Ecommerce Development" },
-  { href: "/seo-company-in-nepal", label: "SEO" },
-  { href: "/digital-marketing-company-in-nepal", label: "Digital Marketing" },
-  { href: "/mobile-app-development-company-in-nepal", label: "Mobile App Development" },
-  { href: "/crm-software-in-nepal", label: "CRM Software" },
-  { href: "/business-automation-software-nepal", label: "Business Automation" },
+/**
+ * Footer columns mirror the topical clusters in `lib/internal-links`. Every page
+ * on the site therefore links into every cluster, which is what keeps the
+ * long-tail pages out of orphan territory.
+ */
+const footerColumns = [
+  {
+    title: "Software",
+    links: [
+      { href: "/software-development-company-in-nepal", label: "Software Development" },
+      { href: "/business-automation-software-nepal", label: "Business Automation" },
+      { href: "/lab-software-in-nepal", label: "Lab Software" },
+      { href: "/hospital-management-software-in-nepal", label: "Hospital Software" },
+      { href: "/school-management-software-in-nepal", label: "School Software" },
+      { href: "/crm-software-in-nepal", label: "CRM Software" },
+      { href: "/erp-software-in-nepal", label: "ERP Software" },
+      { href: "/inventory-management-software-in-nepal", label: "Inventory Software" },
+      { href: "/pos-software-in-nepal", label: "POS Software" },
+      { href: "/mobile-app-development-company-in-nepal", label: "Mobile App Development" },
+    ],
+  },
+  {
+    title: "Web & Marketing",
+    links: [
+      { href: "/web-development-company-in-nepal", label: "Web Development" },
+      { href: "/web-design-company-in-nepal", label: "Web Design" },
+      { href: "/ecommerce-website-development-nepal", label: "E-commerce Development" },
+      { href: "/wordpress-development-company-in-nepal", label: "WordPress Development" },
+      { href: "/website-maintenance-services-in-nepal", label: "Website Maintenance" },
+      { href: "/seo-company-in-nepal", label: "SEO" },
+      { href: "/digital-marketing-company-in-nepal", label: "Digital Marketing" },
+      { href: "/social-media-marketing-agency-in-nepal", label: "Social Media Marketing" },
+      { href: "/graphic-design-company-in-nepal", label: "Graphic Design" },
+      { href: "/website-cost-in-nepal", label: "Website Cost in Nepal" },
+    ],
+  },
+  {
+    title: "Where we work",
+    links: [
+      { href: "/it-company-in-nepal", label: "IT Company in Nepal" },
+      { href: "/best-it-company-in-nepal", label: "Best IT Company in Nepal" },
+      { href: "/trusted-it-company-in-nepal", label: "Trusted IT Company in Nepal" },
+      { href: "/it-company-in-kathmandu", label: "Kathmandu" },
+      { href: "/it-company-in-lalitpur", label: "Lalitpur" },
+      { href: "/it-company-in-bhaktapur", label: "Bhaktapur" },
+      { href: "/it-company-in-pokhara", label: "Pokhara" },
+      { href: "/it-company-in-butwal", label: "Butwal" },
+      { href: "/it-company-in-chitwan", label: "Chitwan" },
+      { href: "/it-company-in-biratnagar", label: "Biratnagar" },
+    ],
+  },
 ];
 
 function FacebookIcon(props: SVGProps<SVGSVGElement>) {
@@ -62,8 +104,8 @@ export default async function Footer() {
   ]);
   return (
     <footer className="bg-primary-green text-white">
-      <div className="page-x grid gap-8 py-12 md:grid-cols-[1.4fr_0.9fr_0.8fr_0.9fr_0.8fr_1fr]">
-        <div>
+      <div className="page-x grid gap-x-8 gap-y-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="sm:col-span-2 lg:col-span-1">
           <Image src="/assets/brand/infobytes-nepal-logo-white.png" alt="Infobytes Nepal logo" width={230} height={70} className="h-16 w-auto object-contain md:h-[4.5rem]" />
           <p className="mt-4 font-semibold text-white">{settings.tagline}</p>
           <p className="mt-3 max-w-sm text-sm leading-6 text-white/78">{footer.text}</p>
@@ -82,16 +124,18 @@ export default async function Footer() {
             ))}
           </div>
         </div>
-        <div>
-          <h2 className="text-sm font-semibold text-white">Services</h2>
-          <div className="mt-4 grid gap-2 text-sm text-white/78">
-            {footerServices.map((service) => (
-              <Link key={service.href} href={service.href} className="transition hover:text-deep-navy">
-                {service.label}
-              </Link>
-            ))}
+        {footerColumns.map((column) => (
+          <div key={column.title}>
+            <h2 className="text-sm font-semibold text-white">{column.title}</h2>
+            <div className="mt-4 grid gap-2 text-sm text-white/78">
+              {column.links.map((link) => (
+                <Link key={link.href} href={link.href} className="transition hover:text-deep-navy">
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
+        ))}
         <div>
           <h2 className="text-sm font-semibold text-white">Company</h2>
           <div className="mt-4 grid gap-2 text-sm text-white/78">
@@ -138,7 +182,12 @@ export default async function Footer() {
       </div>
       <div className="page-x flex flex-col gap-2 border-t border-white/20 py-4 text-xs text-white/70 sm:flex-row sm:items-center sm:justify-between">
         <p>© {new Date().getFullYear()} Infobytes Nepal Pvt. Ltd. All rights reserved.</p>
-        <p>Software Development Company in Nepal · Kaushaltar, Bhaktapur</p>
+        <p>
+          <Link href="/software-development-company-in-nepal" className="transition hover:text-white">
+            Software Development Company in Nepal
+          </Link>{" "}
+          · Kaushaltar, Bhaktapur
+        </p>
       </div>
     </footer>
   );

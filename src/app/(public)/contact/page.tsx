@@ -31,6 +31,8 @@ export default async function ContactPage() {
           muted
           loop
           playsInline
+          preload="none"
+          aria-hidden="true"
           poster="/assets/hero/infobytes-hero-fallback.webp"
           className="absolute inset-0 h-full w-full object-cover"
         >

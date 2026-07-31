@@ -1,7 +1,7 @@
 import { getProducts } from "@/lib/data";
 import { seoLandingPageList } from "@/lib/seo-landing-pages";
 import { team } from "@/lib/team";
-import { getSiteUrl } from "@/lib/utils";
+import { getCanonicalSiteUrl } from "@/lib/utils";
 
 type SitemapEntry = {
   path: string;
@@ -11,7 +11,7 @@ type SitemapEntry = {
 };
 
 export async function GET() {
-  const siteUrl = getSiteUrl();
+  const siteUrl = getCanonicalSiteUrl();
   const products = await getProducts();
   const today = new Date().toISOString().split("T")[0];
 

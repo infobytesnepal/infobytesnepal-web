@@ -1,33 +1,20 @@
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
+import Breadcrumbs, { breadcrumbSchema } from "@/components/public/breadcrumbs";
+import InternalLinkHub from "@/components/public/internal-links";
+import { anchorFor, getBreadcrumbs, getCluster, getLinkNode, priorityPaths } from "@/lib/internal-links";
 import type { SeoLandingPage as SeoLandingPageData } from "@/lib/seo-landing-pages";
-import { getSiteUrl } from "@/lib/utils";
+import { getCanonicalSiteUrl } from "@/lib/utils";
 
-function buildSchemas(page: SeoLandingPageData) {
-  const siteUrl = getSiteUrl();
+function buildSchemas(page: SeoLandingPageData, crumbs: ReturnType<typeof getBreadcrumbs>) {
+  const siteUrl = getCanonicalSiteUrl();
   const pageUrl = `${siteUrl}${page.path}`;
   return [
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: siteUrl,
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: page.heroTitle,
-          item: pageUrl,
-        },
-      ],
-    },
+    breadcrumbSchema(crumbs),
     {
       "@context": "https://schema.org",
       "@type": "Service",
+      "@id": `${pageUrl}#service`,
       name: page.heroTitle,
       serviceType: page.keyword,
       description: page.metaDescription,
@@ -37,6 +24,7 @@ function buildSchemas(page: SeoLandingPageData) {
       },
       provider: {
         "@type": "Organization",
+        "@id": `${siteUrl}/#organization`,
         name: "Infobytes Nepal",
         url: siteUrl,
         email: "info@infobytesnepal.com",
@@ -47,6 +35,7 @@ function buildSchemas(page: SeoLandingPageData) {
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
+      "@id": `${pageUrl}#faq`,
       mainEntity: page.faqs.map((faq) => ({
         "@type": "Question",
         name: faq.question,
@@ -59,8 +48,39 @@ function buildSchemas(page: SeoLandingPageData) {
   ];
 }
 
+/**
+ * Two or three contextual links placed inside the article body, just after the
+ * overview. In-content links sit higher in the page and read as editorial
+ * rather than as a navigation block, which is why they are kept separate from
+ * the hub section at the bottom.
+ */
+function contextualLinksFor(path: string) {
+  const cluster = getCluster(path);
+  const candidates = [
+    ...(cluster && cluster.pillar.href !== path ? [cluster.pillar.href] : []),
+    ...(cluster?.bridges ?? []),
+    ...priorityPaths,
+  ];
+
+  const seen = new Set<string>([path]);
+  const picked: Array<{ href: string; anchor: string }> = [];
+
+  for (const href of candidates) {
+    if (seen.has(href)) continue;
+    const target = getLinkNode(href);
+    if (!target) continue;
+    seen.add(href);
+    picked.push({ href, anchor: anchorFor(path, target) });
+    if (picked.length === 3) break;
+  }
+
+  return picked;
+}
+
 export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
-  const schemas = buildSchemas(page);
+  const crumbs = getBreadcrumbs(page.path, page.heroTitle);
+  const schemas = buildSchemas(page, crumbs);
+  const contextual = contextualLinksFor(page.path);
 
   return (
     <>
@@ -68,6 +88,7 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
       <main className="bg-white">
         <section className="page-x brand-radial bg-white pb-16 pt-32 md:pb-20 md:pt-36">
           <div className="mx-auto max-w-7xl">
+            <Breadcrumbs crumbs={crumbs} />
             <div className="max-w-4xl">
               <p className="text-sm font-semibold uppercase text-primary-blue">Infobytes Nepal Services</p>
               <h1 className="mt-4 text-4xl font-semibold leading-tight text-deep-navy md:text-6xl">{page.heroTitle}</h1>
@@ -95,6 +116,19 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
+              {contextual.length > 0 && (
+                <p className="mt-6 border-l-2 border-primary-green/50 pl-4 text-base leading-8 text-dark-text/72">
+                  Worth reading alongside this:{" "}
+                  {contextual.map((link, index) => (
+                    <span key={link.href}>
+                      <Link href={link.href} className="focus-ring rounded font-semibold text-primary-blue underline decoration-primary-blue/30 underline-offset-4 transition hover:decoration-primary-blue">
+                        {link.anchor}
+                      </Link>
+                      {index < contextual.length - 2 ? ", " : index === contextual.length - 2 ? ", and " : "."}
+                    </span>
+                  ))}
+                </p>
+              )}
             </article>
             <aside className="rounded-[28px] border border-primary-blue/12 bg-soft-blue/45 p-6 shadow-[0_24px_70px_rgba(4,18,63,0.06)]">
               <h2 className="text-2xl font-semibold text-deep-navy">Common problems for Nepali businesses</h2>
@@ -215,6 +249,8 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
             </div>
           </div>
         </section>
+
+        <InternalLinkHub sourcePath={page.path} className="page-x bg-white py-16 md:py-20" />
 
         <section className="page-x bg-white pb-20 pt-16">
           <div className="mx-auto max-w-4xl rounded-[28px] border border-primary-blue/10 bg-gradient-to-br from-soft-blue/70 via-white to-soft-green/60 p-7 text-center shadow-[0_22px_70px_rgba(4,18,63,0.07)] md:p-9">

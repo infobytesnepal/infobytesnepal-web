@@ -1,3 +1,5 @@
+import { extraSeoLandingPages } from "./seo-landing-pages-extra";
+
 export type SeoLandingPage = {
   slug: string;
   path: string;
@@ -1588,7 +1590,7 @@ export const seoLandingPages = {
       "Looking for an IT company in Kathmandu? Infobytes Nepal builds software, websites, SEO, and business automation for businesses across the Kathmandu valley.",
     ogTitle: "IT Company in Kathmandu | Infobytes Nepal",
     ogDescription:
-      "Software development, web design, SEO, and automation for businesses in Kathmandu — from New Baneshwor and Putalisadak to Thamel and Durbar Marg.",
+      "Software development, web design, SEO, and automation for businesses in Kathmandu, from New Baneshwor and Putalisadak to Thamel and Durbar Marg.",
     keyword: "IT Company in Kathmandu",
     heroTitle: "IT Company in Kathmandu",
     heroIntro:
@@ -1598,7 +1600,7 @@ export const seoLandingPages = {
       paragraphs: [
         "Kathmandu is the busiest commercial hub in Nepal, and the competition for attention is high. Trading companies around New Road and Ason, colleges and consultancies in Putalisadak, corporate offices in Durbar Marg and Kamaladi, hospitals, travel agencies in Thamel, and fast-growing startups all rely on their digital presence to win trust. A slow website or scattered manual process quietly costs real customers.",
         "Infobytes Nepal works with Kathmandu-based teams on the full digital picture: a credible website, custom software or automation for internal operations, SEO to be found by local customers, and digital marketing to stay visible. Because we are based in the valley, we can meet in person, understand the local market, and keep communication direct instead of routing everything through email.",
-        "Whether you run a single office in Baneshwor or a growing operation with branches across the valley, the goal is the same — a clean, maintainable digital foundation that supports inquiries, follow-up, and growth. For businesses searching for an IT company in Kathmandu, the strongest partner is one that connects design, development, SEO, and operations instead of treating each as a separate task.",
+        "Whether you run a single office in Baneshwor or a growing operation with branches across the valley, the goal is the same: a clean, maintainable digital foundation that supports inquiries, follow-up, and growth. For businesses searching for an IT company in Kathmandu, the strongest partner is one that connects design, development, SEO, and operations instead of treating each as a separate task.",
       ],
     },
     problems: [
@@ -1628,7 +1630,7 @@ export const seoLandingPages = {
     process: [
       {
         title: "Meet and understand",
-        text: "We learn your business, customers, and current process — in person where convenient for Kathmandu-based teams.",
+        text: "We learn your business, customers, and current process, in person where convenient for Kathmandu-based teams.",
       },
       {
         title: "Plan the scope",
@@ -1714,7 +1716,7 @@ export const seoLandingPages = {
     path: "/it-company-in-lalitpur",
     metaTitle: "IT Company in Lalitpur (Patan) | Infobytes Nepal",
     metaDescription:
-      "Infobytes Nepal is an IT company serving Lalitpur and Patan — software development, web design, SEO, and automation for businesses, NGOs, and creative teams.",
+      "Infobytes Nepal is an IT company serving Lalitpur and Patan with software development, web design, SEO, and automation for businesses, NGOs, and creative teams.",
     ogTitle: "IT Company in Lalitpur (Patan) | Infobytes Nepal",
     ogDescription:
       "Websites, software, SEO, and automation for Lalitpur businesses across Pulchowk, Jawalakhel, Kupondole, Sanepa, and Patan Dhoka.",
@@ -1725,8 +1727,8 @@ export const seoLandingPages = {
     overview: {
       title: "Digital systems for Lalitpur's businesses and organizations",
       paragraphs: [
-        "Lalitpur has a distinct character — a strong creative and design community, a dense cluster of NGOs and INGOs around Pulchowk, Kupondole, and Sanepa, heritage tourism around Patan Durbar Square, and a busy commercial belt through Jawalakhel and Ekantakuna. These organizations often need websites, reporting tools, and internal systems that are both clean and dependable.",
-        "Infobytes Nepal provides web design, development, SEO, and business automation for Lalitpur-based teams. We understand that a design studio, a development-sector organization, a café or boutique, and a growing product company each need different things — a portfolio-grade website, structured reporting, an online presence, or a workflow system. We plan around that reality instead of applying one template to everyone.",
+        "Lalitpur has a distinct character: a strong creative and design community, a dense cluster of NGOs and INGOs around Pulchowk, Kupondole, and Sanepa, heritage tourism around Patan Durbar Square, and a busy commercial belt through Jawalakhel and Ekantakuna. These organizations often need websites, reporting tools, and internal systems that are both clean and dependable.",
+        "Infobytes Nepal provides web design, development, SEO, and business automation for Lalitpur-based teams. We understand that a design studio, a development-sector organization, a café or boutique, and a growing product company each need different things: a portfolio-grade website, structured reporting, an online presence, or a workflow system. We plan around that reality instead of applying one template to everyone.",
         "Being based in the valley, we can work closely with Lalitpur teams, including our own recruitment partner Zuliox in Patan Dhoka. For organizations searching for an IT company in Lalitpur, the value is a partner who can connect polished design with reliable software and search visibility.",
       ],
     },
@@ -1846,11 +1848,11 @@ export const seoLandingPages = {
       "Infobytes Nepal is an IT company based in Bhaktapur (Kaushaltar) offering software development, web design, SEO, and business automation for local businesses.",
     ogTitle: "IT Company in Bhaktapur | Infobytes Nepal",
     ogDescription:
-      "Based in Kaushaltar, Bhaktapur — Infobytes Nepal builds websites, software, SEO, and automation for businesses across Bhaktapur, Thimi, and Madhyapur.",
+      "Based in Kaushaltar, Bhaktapur, Infobytes Nepal builds websites, software, SEO, and automation for businesses across Bhaktapur, Thimi, and Madhyapur.",
     keyword: "IT Company in Bhaktapur",
     heroTitle: "IT Company in Bhaktapur",
     heroIntro:
-      "Infobytes Nepal is based in Kaushaltar, Bhaktapur, and helps local businesses build modern websites, custom software, and digital systems. We are your neighbours — a technology team you can actually meet, working with schools, shops, workshops, and growing companies across Bhaktapur.",
+      "Infobytes Nepal is based in Kaushaltar, Bhaktapur, and helps local businesses build modern websites, custom software, and digital systems. We are your neighbours, a technology team you can actually meet, working with schools, shops, workshops, and growing companies across Bhaktapur.",
     overview: {
       title: "Your local technology team in Bhaktapur",
       paragraphs: [
@@ -1890,7 +1892,7 @@ export const seoLandingPages = {
       },
       {
         title: "Plan simply",
-        text: "We suggest a practical, affordable first step — usually a website, local SEO, or a focused system.",
+        text: "We suggest a practical, affordable first step, usually a website, local SEO, or a focused system.",
       },
       {
         title: "Build cleanly",
@@ -1906,7 +1908,7 @@ export const seoLandingPages = {
       },
     ],
     reasons: [
-      "Genuinely local — based in Kaushaltar, Bhaktapur, and easy to meet in person.",
+      "Genuinely local, based in Kaushaltar, Bhaktapur, and easy to meet in person.",
       "Practical understanding of Bhaktapur's businesses, schools, and heritage economy.",
       "Full support across websites, SEO, software, and automation.",
       "Clear, honest communication without impersonal, distant service.",
@@ -1972,7 +1974,7 @@ export const seoLandingPages = {
     path: "/it-company-in-pokhara",
     metaTitle: "IT Company in Pokhara | Infobytes Nepal",
     metaDescription:
-      "Infobytes Nepal supports Pokhara businesses with websites, software, SEO, and automation — ideal for hotels, travel, trekking, and hospitality brands.",
+      "Infobytes Nepal supports Pokhara businesses with websites, software, SEO, and automation, ideal for hotels, travel, trekking, and hospitality brands.",
     ogTitle: "IT Company in Pokhara | Infobytes Nepal",
     ogDescription:
       "Websites, booking systems, SEO, and automation for Pokhara's hotels, travel agencies, trekking companies, and growing businesses around Lakeside.",
@@ -2112,7 +2114,7 @@ export const seoLandingPages = {
     overview: {
       title: "Online stores built for how Nepal actually shops and pays",
       paragraphs: [
-        "Selling online in Nepal is no longer optional for retail, fashion, electronics, groceries, and specialty brands. But a successful store is more than a catalog — it needs local payment options like eSewa, Khalti, IME Pay, and connectIPS, clear delivery handling, reliable inventory, and a checkout that works smoothly on the phones most customers use.",
+        "Selling online in Nepal is no longer optional for retail, fashion, electronics, groceries, and specialty brands. But a successful store is more than a catalog. It needs local payment options like eSewa, Khalti, IME Pay, and connectIPS, clear delivery handling, reliable inventory, and a checkout that works smoothly on the phones most customers use.",
         "Infobytes Nepal builds ecommerce websites around these local realities. We plan the product structure, cart, and checkout to reduce drop-off, integrate the payment and delivery methods your customers expect, and give you an admin panel where managing products, orders, and stock is genuinely simple. The store should make your team faster, not create more manual work.",
         "Whether you are launching a first online store or replacing a slow, hard-to-manage one, we focus on speed, trust, and conversion. For businesses searching for ecommerce website development in Nepal, the strongest result is a store that looks credible, loads fast, and turns visitors into paid, delivered orders.",
       ],
@@ -2230,7 +2232,7 @@ export const seoLandingPages = {
     path: "/crm-software-in-nepal",
     metaTitle: "CRM Software in Nepal | Infobytes Nepal",
     metaDescription:
-      "Infobytes Nepal builds CRM software in Nepal for leads, contacts, sales pipelines, follow-ups, and reporting — custom-fit to how your team actually sells.",
+      "Infobytes Nepal builds CRM software in Nepal for leads, contacts, sales pipelines, follow-ups, and reporting, custom-fit to how your team actually sells.",
     ogTitle: "CRM Software in Nepal | Infobytes Nepal",
     ogDescription:
       "Organize leads, contacts, follow-ups, and sales pipelines with custom CRM software built for teams in Nepal.",
@@ -2242,7 +2244,7 @@ export const seoLandingPages = {
       title: "A CRM that fits your sales process, not the other way around",
       paragraphs: [
         "Most teams in Nepal lose sales not because of weak products, but because follow-ups slip through the cracks. Leads arrive from calls, Facebook, referrals, and the website, then get scattered across notebooks, phones, and viber groups. Nobody is sure who followed up, which deal is warm, or why a customer went quiet.",
-        "A CRM (customer relationship management) system fixes this by giving every lead a place, a stage, and an owner. Infobytes Nepal builds CRM software around your actual sales process — your stages, your fields, your reports — so it feels natural to use. We can build a custom CRM or shape one from our LeadRack product direction, depending on your needs and budget.",
+        "A CRM (customer relationship management) system fixes this by giving every lead a place, a stage, and an owner. Infobytes Nepal builds CRM software around your actual sales process (your stages, your fields, your reports) so it feels natural to use. We can build a custom CRM or shape one from our LeadRack product direction, depending on your needs and budget.",
         "The result is a clearer pipeline, fewer missed follow-ups, and honest reporting on where deals stand. For businesses searching for CRM software in Nepal, the strongest fit is usually a system built around how your team already sells, not a rigid foreign tool forced onto local workflows.",
       ],
     },
@@ -2366,12 +2368,12 @@ export const seoLandingPages = {
     keyword: "UI/UX Design Company in Nepal",
     heroTitle: "UI/UX Design Company in Nepal",
     heroIntro:
-      "Infobytes Nepal designs digital products that are clear, usable, and pleasant to use. From user research and wireframes to prototypes and polished interfaces, we help websites, apps, and software feel effortless — so people understand them and act with confidence.",
+      "Infobytes Nepal designs digital products that are clear, usable, and pleasant to use. From user research and wireframes to prototypes and polished interfaces, we help websites, apps, and software feel effortless, so people understand them and act with confidence.",
     overview: {
       title: "Interfaces that feel obvious, not clever",
       paragraphs: [
         "Good UI/UX is invisible. When a website, app, or dashboard is well designed, people find what they need, understand what to do, and complete their task without frustration. When it is not, even a powerful product feels confusing, support requests rise, and users quietly give up.",
-        "Infobytes Nepal approaches UI/UX design as problem-solving, not decoration. We study who the users are, what they are trying to do, and where the current experience breaks down. Then we structure the flow, design clear screens, and prototype the experience before development — so usability problems are caught early, when they are cheap to fix.",
+        "Infobytes Nepal approaches UI/UX design as problem-solving, not decoration. We study who the users are, what they are trying to do, and where the current experience breaks down. Then we structure the flow, design clear screens, and prototype the experience before development, so usability problems are caught early, when they are cheap to fix.",
         "Because we also build the software, our designs are realistic and translate cleanly into a working product. For businesses and startups searching for a UI/UX design company in Nepal, the value is design that improves adoption, reduces confusion, and makes the whole product feel trustworthy.",
       ],
     },
@@ -2488,10 +2490,10 @@ export const seoLandingPages = {
     path: "/website-cost-in-nepal",
     metaTitle: "Website Cost in Nepal: Pricing Guide | Infobytes Nepal",
     metaDescription:
-      "How much does a website cost in Nepal? A clear guide to website pricing, what affects it, and typical ranges — from Infobytes Nepal. Get a custom quote.",
+      "How much does a website cost in Nepal? A clear guide to website pricing, what affects it, and typical ranges, from Infobytes Nepal. Get a custom quote.",
     ogTitle: "How Much Does a Website Cost in Nepal?",
     ogDescription:
-      "A practical guide to website pricing in Nepal — what affects cost, typical ranges, and how to get an accurate quote for your project.",
+      "A practical guide to website pricing in Nepal: what affects cost, typical ranges, and how to get an accurate quote for your project.",
     keyword: "Website Cost in Nepal",
     heroTitle: "How Much Does a Website Cost in Nepal?",
     heroIntro:
@@ -2500,7 +2502,7 @@ export const seoLandingPages = {
       title: "What actually determines the cost of a website",
       paragraphs: [
         "There is no single price for a website in Nepal because a five-page business website and a custom web platform are completely different projects. The real cost depends on the number of pages, whether the design is custom or template-based, the features you need (forms, bookings, payments, dashboards), how much content and SEO work is involved, and the level of ongoing support.",
-        "As a rough guide, a simple, professional business website in Nepal typically ranges from around NPR 50,000 to NPR 150,000. A larger, custom-designed website with more pages, stronger SEO structure, and a content management system usually ranges from around NPR 100,000 to NPR 250,000. Ecommerce stores and custom web applications with payments, dashboards, or complex logic generally start higher and are quoted based on scope. These are indicative market ranges — your exact price depends on your requirements.",
+        "As a rough guide, a simple, professional business website in Nepal typically ranges from around NPR 50,000 to NPR 150,000. A larger, custom-designed website with more pages, stronger SEO structure, and a content management system usually ranges from around NPR 100,000 to NPR 250,000. Ecommerce stores and custom web applications with payments, dashboards, or complex logic generally start higher and are quoted based on scope. These are indicative market ranges, and your exact price depends on your requirements.",
         "The goal should not be the cheapest possible website, but the right scope for your business. A slightly stronger foundation that loads fast, ranks well, and brings inquiries usually pays for itself. Infobytes Nepal helps you decide what you genuinely need first, so the budget goes toward results rather than unnecessary features.",
       ],
     },
@@ -2617,10 +2619,10 @@ export const seoLandingPages = {
     path: "/mobile-app-development-cost-in-nepal",
     metaTitle: "Mobile App Development Cost in Nepal | Infobytes Nepal",
     metaDescription:
-      "How much does mobile app development cost in Nepal? A clear guide to app pricing, what affects it, and typical ranges — from Infobytes Nepal. Get a quote.",
+      "How much does mobile app development cost in Nepal? A clear guide to app pricing, what affects it, and typical ranges, from Infobytes Nepal. Get a quote.",
     ogTitle: "How Much Does Mobile App Development Cost in Nepal?",
     ogDescription:
-      "A practical guide to mobile app development pricing in Nepal — what drives the cost, typical ranges, and how to get an accurate quote.",
+      "A practical guide to mobile app development pricing in Nepal: what drives the cost, typical ranges, and how to get an accurate quote.",
     keyword: "Mobile App Development Cost in Nepal",
     heroTitle: "How Much Does Mobile App Development Cost in Nepal?",
     heroIntro:
@@ -2629,7 +2631,7 @@ export const seoLandingPages = {
       title: "What drives the cost of a mobile app",
       paragraphs: [
         "A mobile app's cost is mostly about scope and complexity. A simple app with a few screens and basic features is very different from an app with user accounts, payments, real-time updates, an admin dashboard, and integrations. Whether you need Android, iOS, both, or a progressive web app (PWA) also changes the price, as does whether an admin panel and backend are required.",
-        "As an indicative guide, a small, focused app or PWA in Nepal often starts from around NPR 150,000, mid-range apps with accounts, dashboards, and several core features commonly range from around NPR 300,000 to NPR 800,000, and larger, complex apps are quoted higher based on scope. Most business apps also need a web backend and admin panel, which should be counted in the budget. These are market-level ranges — your exact quote depends on the feature set.",
+        "As an indicative guide, a small, focused app or PWA in Nepal often starts from around NPR 150,000, mid-range apps with accounts, dashboards, and several core features commonly range from around NPR 300,000 to NPR 800,000, and larger, complex apps are quoted higher based on scope. Most business apps also need a web backend and admin panel, which should be counted in the budget. These are market-level ranges, and your exact quote depends on the feature set.",
         "The smartest approach is usually to launch a focused first version that solves one clear problem well, then expand based on real usage. Infobytes Nepal helps you decide whether you even need a native app or whether a PWA or responsive web platform is faster and cheaper, so you invest in the right thing first.",
       ],
     },
@@ -2757,9 +2759,9 @@ export const seoLandingPages = {
     overview: {
       title: "One connected system instead of scattered tools",
       paragraphs: [
-        "As a business in Nepal grows, the number of separate tools and spreadsheets grows with it — one for billing, another for stock, a book for accounts, a chat group for approvals. Data stops matching, reconciliation eats hours, and no one has a real-time picture of the business. ERP (enterprise resource planning) software solves this by connecting core operations in one place.",
+        "As a business in Nepal grows, the number of separate tools and spreadsheets grows with it: one for billing, another for stock, a book for accounts, a chat group for approvals. Data stops matching, reconciliation eats hours, and no one has a real-time picture of the business. ERP (enterprise resource planning) software solves this by connecting core operations in one place.",
         "Infobytes Nepal builds and implements ERP systems shaped around how a business actually runs. Modules for sales, purchases, inventory, accounting, HR, and reporting share the same data, so a sale updates stock, and stock updates reporting, without duplicate entry. We focus on the modules you truly need first, rather than forcing a heavy, generic ERP onto a team that is not ready for it.",
-        "The result is fewer errors, faster reporting, and clearer control as the business scales. For companies searching for ERP software in Nepal, the strongest fit is usually a right-sized system — custom or modular — that matches local operating habits and grows in phases instead of overwhelming staff on day one.",
+        "The result is fewer errors, faster reporting, and clearer control as the business scales. For companies searching for ERP software in Nepal, the strongest fit is usually a right-sized system, custom or modular, that matches local operating habits and grows in phases instead of overwhelming staff on day one.",
       ],
     },
     problems: [
@@ -2875,7 +2877,7 @@ export const seoLandingPages = {
     path: "/pos-software-in-nepal",
     metaTitle: "POS Software in Nepal | Infobytes Nepal",
     metaDescription:
-      "Infobytes Nepal builds POS software in Nepal for shops, restaurants, and retail — fast billing, stock sync, and sales reporting that fits local business.",
+      "Infobytes Nepal builds POS software in Nepal for shops, restaurants, and retail, with fast billing, stock sync, and sales reporting that fits local business.",
     ogTitle: "POS Software in Nepal | Infobytes Nepal",
     ogDescription:
       "Fast billing, stock sync, and clear sales reporting with POS software built for shops, restaurants, and retail in Nepal.",
@@ -2886,7 +2888,7 @@ export const seoLandingPages = {
     overview: {
       title: "Fast billing with stock and reporting that stay in sync",
       paragraphs: [
-        "For a shop, restaurant, or retail chain, the counter is where everything happens — and where mistakes are costly. Slow billing frustrates customers, manual stock counts drift out of reality, and at day-end the owner has no clear picture of what actually sold. A good POS system fixes this by making billing quick and connecting every sale to stock and reporting.",
+        "For a shop, restaurant, or retail chain, the counter is where everything happens, and where mistakes are costly. Slow billing frustrates customers, manual stock counts drift out of reality, and at day-end the owner has no clear picture of what actually sold. A good POS system fixes this by making billing quick and connecting every sale to stock and reporting.",
         "Infobytes Nepal builds POS software around how Nepali retail actually works: fast item entry, discounts, multiple payment methods including digital wallets, printed or digital receipts, and automatic stock deduction. Owners get sales reports by day, item, and outlet, so decisions are based on real numbers instead of guesswork.",
         "Whether you run a single shop or several outlets, the goal is a counter that moves quickly and books that stay accurate. For businesses searching for POS software in Nepal, we focus on speed at the counter and clarity in the back office, with the option to connect inventory and accounting as you grow.",
       ],
@@ -3144,9 +3146,9 @@ export const seoLandingPages = {
     overview: {
       title: "Less paperwork, clearer communication, better records",
       paragraphs: [
-        "Schools and colleges in Nepal carry a heavy administrative load — admissions, student records, daily attendance, fee collection and dues, exam marks, result publishing, and constant communication with parents. When this runs on registers, spreadsheets, and phone calls, staff burn hours, mistakes creep in, and parents feel out of the loop.",
+        "Schools and colleges in Nepal carry a heavy administrative load: admissions, student records, daily attendance, fee collection and dues, exam marks, result publishing, and constant communication with parents. When this runs on registers, spreadsheets, and phone calls, staff burn hours, mistakes creep in, and parents feel out of the loop.",
         "Infobytes Nepal builds school management software that organizes this into one system. Admissions and student profiles stay in one place, attendance is quick to record, fees and dues are tracked clearly, and exam marks flow into results that can be shared with parents. Role-based access keeps admin, teachers, and accounts working in the right areas.",
-        "The goal is an institution that runs smoothly and communicates well, without overwhelming non-technical staff. For schools searching for school management software in Nepal, we focus on the modules that save the most time first — usually fees, attendance, and results — then expand from there.",
+        "The goal is an institution that runs smoothly and communicates well, without overwhelming non-technical staff. For schools searching for school management software in Nepal, we focus on the modules that save the most time first (usually fees, attendance, and results) then expand from there.",
       ],
     },
     problems: [
@@ -3275,7 +3277,7 @@ export const seoLandingPages = {
       paragraphs: [
         "Clinics and hospitals handle sensitive, high-volume work where errors and delays have real consequences. When appointments, patient histories, billing, pharmacy, and lab results live in separate places, patients wait longer, records get lost, and staff repeat the same data entry. A connected system makes the whole journey smoother and safer.",
         "Infobytes Nepal builds hospital and clinic management software that links registration, appointments, patient records, doctor visits, billing, pharmacy, and lab into one flow. Patient history is available when needed, billing reflects services accurately, and pharmacy and lab connect to the visit. Role-based access and careful handling keep sensitive data appropriately controlled.",
-        "Whether you run a single clinic or a multi-department hospital, the goal is less waiting, fewer lost records, and clearer operations. For healthcare providers searching for hospital management software in Nepal, we start with the highest-impact modules — usually registration, appointments, and billing — and expand into pharmacy, lab, and reporting.",
+        "Whether you run a single clinic or a multi-department hospital, the goal is less waiting, fewer lost records, and clearer operations. For healthcare providers searching for hospital management software in Nepal, we start with the highest-impact modules (usually registration, appointments, and billing) and expand into pharmacy, lab, and reporting.",
       ],
     },
     problems: [
@@ -3391,7 +3393,7 @@ export const seoLandingPages = {
     path: "/wordpress-development-company-in-nepal",
     metaTitle: "WordPress Development Company in Nepal | Infobytes Nepal",
     metaDescription:
-      "Infobytes Nepal is a WordPress development company in Nepal building fast, secure, custom WordPress websites you can update yourself — with SEO built in.",
+      "Infobytes Nepal is a WordPress development company in Nepal building fast, secure, custom WordPress websites you can update yourself, with SEO built in.",
     ogTitle: "WordPress Development Company in Nepal | Infobytes Nepal",
     ogDescription:
       "Fast, secure, custom WordPress websites you can update yourself, built with SEO foundations by Infobytes Nepal.",
@@ -3402,8 +3404,8 @@ export const seoLandingPages = {
     overview: {
       title: "The flexibility of WordPress, without the usual bloat",
       paragraphs: [
-        "WordPress powers a huge share of the web because it is flexible and easy to manage. But many WordPress sites in Nepal are slow, insecure, and stuffed with unnecessary plugins that break over time. The platform is not the problem — how it is built is. A well-built WordPress site can be fast, secure, and genuinely easy for your team to update.",
-        "Infobytes Nepal builds WordPress websites with a focus on performance, security, and clean content management. We choose lightweight, reliable foundations, avoid plugin overload, and set up an editor your team can actually use to update pages, posts, and content without a developer. SEO basics — clean structure, fast loading, proper metadata — are built in from the start.",
+        "WordPress powers a huge share of the web because it is flexible and easy to manage. But many WordPress sites in Nepal are slow, insecure, and stuffed with unnecessary plugins that break over time. The platform is not the problem. How it is built is. A well-built WordPress site can be fast, secure, and genuinely easy for your team to update.",
+        "Infobytes Nepal builds WordPress websites with a focus on performance, security, and clean content management. We choose lightweight, reliable foundations, avoid plugin overload, and set up an editor your team can actually use to update pages, posts, and content without a developer. SEO basics (clean structure, fast loading, proper metadata) are built in from the start.",
         "Whether you need a business website, a blog, or a content-driven site you can grow, WordPress can be an excellent choice when built properly. For businesses searching for a WordPress development company in Nepal, we deliver the flexibility of WordPress with the speed, security, and SEO of a professionally engineered site.",
       ],
     },
@@ -3523,17 +3525,17 @@ export const seoLandingPages = {
       "Infobytes Nepal is an AI development company in Nepal building practical AI chatbots, automation, and integrations that solve real business problems.",
     ogTitle: "AI Development Company in Nepal | Infobytes Nepal",
     ogDescription:
-      "Practical AI chatbots, automation, and integrations that solve real business problems — built by Infobytes Nepal.",
+      "Practical AI chatbots, automation, and integrations that solve real business problems, built by Infobytes Nepal.",
     keyword: "AI Development Company in Nepal",
     heroTitle: "AI Development Company in Nepal",
     heroIntro:
-      "Infobytes Nepal helps businesses use AI in practical, grounded ways — chatbots that actually help customers, automation that removes repetitive work, and AI features built into your software. We focus on real problems and measurable value, not hype.",
+      "Infobytes Nepal helps businesses use AI in practical, grounded ways: chatbots that actually help customers, automation that removes repetitive work, and AI features built into your software. We focus on real problems and measurable value, not hype.",
     overview: {
       title: "Practical AI that solves real business problems",
       paragraphs: [
         "AI is genuinely useful when it removes real friction: answering common customer questions, drafting and summarizing content, extracting data from documents, or automating repetitive decisions. It becomes a waste when it is added for hype without a clear problem to solve. The difference is planning and grounding it in a real workflow.",
         "Infobytes Nepal helps businesses in Nepal apply AI where it actually pays off. That might be a support chatbot trained on your information, automation that classifies and routes incoming inquiries, document and data extraction, or AI features embedded inside your existing software. We connect proven AI models to your data and workflow through clean, reliable engineering.",
-        "Our approach is honest and outcome-first: identify a problem worth solving, prototype quickly, measure whether it helps, and only then expand. For businesses searching for an AI development company in Nepal, the value is practical implementation and clear judgement about where AI belongs — and where it does not.",
+        "Our approach is honest and outcome-first: identify a problem worth solving, prototype quickly, measure whether it helps, and only then expand. For businesses searching for an AI development company in Nepal, the value is practical implementation and clear judgement about where AI belongs, and where it does not.",
       ],
     },
     problems: [
@@ -3649,7 +3651,7 @@ export const seoLandingPages = {
     path: "/web-design-company-in-kathmandu",
     metaTitle: "Web Design Company in Kathmandu | Infobytes Nepal",
     metaDescription:
-      "Infobytes Nepal is a web design company in Kathmandu creating fast, modern, mobile-first websites for valley businesses — with in-person collaboration.",
+      "Infobytes Nepal is a web design company in Kathmandu creating fast, modern, mobile-first websites for valley businesses, with in-person collaboration.",
     ogTitle: "Web Design Company in Kathmandu | Infobytes Nepal",
     ogDescription:
       "Modern, mobile-first website design for Kathmandu businesses, with in-person collaboration from a valley-based team.",
@@ -3661,7 +3663,7 @@ export const seoLandingPages = {
       title: "Website design that stands out in a crowded Kathmandu market",
       paragraphs: [
         "Kathmandu is the most competitive market in Nepal. Whether you run a shop in New Road, a consultancy in Putalisadak, a restaurant in Thamel, or a corporate office in Durbar Marg, customers judge your credibility online within seconds. A dated or cluttered website quietly hands business to competitors who simply look more professional.",
-        "Infobytes Nepal designs websites that earn trust fast — clean layouts, strong visual hierarchy, mobile-first structure, and clear calls to action. Because we are based in the Kathmandu valley, we can meet you in person, understand your specific audience, and design around how your customers actually search and decide, rather than working blindly from a brief.",
+        "Infobytes Nepal designs websites that earn trust fast: clean layouts, strong visual hierarchy, mobile-first structure, and clear calls to action. Because we are based in the Kathmandu valley, we can meet you in person, understand your specific audience, and design around how your customers actually search and decide, rather than working blindly from a brief.",
         "From a single-page landing site to a full business website, our focus is design that looks premium and converts visitors into inquiries. For businesses searching for a web design company in Kathmandu, working with a local team means faster collaboration and a website tuned to the valley market.",
       ],
     },
@@ -3904,4 +3906,13 @@ export const seoLandingPages = {
   },
 } satisfies Record<string, SeoLandingPage>;
 
-export const seoLandingPageList = Object.values(seoLandingPages);
+export const seoLandingPageList: SeoLandingPage[] = [
+  ...Object.values(seoLandingPages),
+  ...Object.values(extraSeoLandingPages),
+];
+
+export const allSeoLandingPages = { ...seoLandingPages, ...extraSeoLandingPages };
+
+export function getSeoLandingPageByPath(path: string) {
+  return seoLandingPageList.find((page) => page.path === path);
+}

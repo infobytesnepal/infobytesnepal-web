@@ -1,9 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, Plus } from "lucide-react";
+import { SiteDirectory } from "@/components/public/internal-links";
 import { basicPageMetadata } from "@/lib/seo";
 import { allFaqs, faqAnswerText, faqGroups } from "@/lib/faqs";
-import { getSiteUrl } from "@/lib/utils";
+import { getCanonicalSiteUrl } from "@/lib/utils";
 
 export function generateMetadata(): Metadata {
   return basicPageMetadata({
@@ -18,7 +19,7 @@ export function generateMetadata(): Metadata {
 }
 
 export default function FaqPage() {
-  const siteUrl = getSiteUrl();
+  const siteUrl = getCanonicalSiteUrl();
   const pageUrl = `${siteUrl}/faq`;
   const schema = [
     {
@@ -76,7 +77,7 @@ export default function FaqPage() {
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-dark-text/74">
               Straight answers on what things cost in Nepal, how to choose an IT company, and what working with
-              Infobytes Nepal actually involves — {allFaqs.length} questions, no vague replies.
+              Infobytes Nepal actually involves. {allFaqs.length} questions, no vague replies.
             </p>
           </div>
         </section>
@@ -145,12 +146,18 @@ export default function FaqPage() {
           </div>
         </section>
 
-        <section className="page-x bg-white pb-24">
+        <SiteDirectory
+          heading="Pages that answer these questions in full"
+          intro="Every answer above has a page behind it. These are grouped the way we work, so you can go straight to the detail on whichever part applies to you."
+          className="page-x border-t border-primary-blue/10 bg-soft-blue/25 py-16 md:py-20"
+        />
+
+        <section className="page-x bg-white py-24">
           <div className="mx-auto max-w-4xl rounded-[28px] border border-primary-blue/10 bg-gradient-to-br from-soft-blue/70 via-white to-soft-green/60 p-8 text-center shadow-[0_22px_70px_rgba(4,18,63,0.07)] md:p-10">
             <h2 className="text-2xl font-semibold text-deep-navy md:text-3xl">Still have a question?</h2>
             <p className="mx-auto mt-3 max-w-xl leading-7 text-dark-text/70">
               Tell us about your requirement or current workflow, and we&apos;ll come back with a clear scope, an
-              indicative cost, and a realistic timeline — free of charge.
+              indicative cost, and a realistic timeline, free of charge.
             </p>
             <Link
               href="/contact"

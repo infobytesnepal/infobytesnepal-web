@@ -1,12 +1,15 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Check } from "lucide-react";
 import ServiceInquiryModal from "./service-inquiry-modal";
 import ServiceScrollTrail from "./service-scroll-trail";
-import { getSiteUrl } from "@/lib/utils";
+import { SiteDirectory } from "@/components/public/internal-links";
+import { clusters } from "@/lib/internal-links";
+import { getCanonicalSiteUrl } from "@/lib/utils";
 
 export function generateMetadata(): Metadata {
-  const siteUrl = getSiteUrl();
+  const siteUrl = getCanonicalSiteUrl();
   const title = "Services | Infobytes Nepal";
   const description =
     "Explore software development, web development, SEO, digital marketing, training, graphics design, and business automation services by Infobytes Nepal.";
@@ -37,6 +40,13 @@ export function generateMetadata(): Metadata {
 const services = [
   {
     number: "01",
+    links: [
+      { href: "/web-development-company-in-nepal", label: "web development company in Nepal" },
+      { href: "/web-design-company-in-nepal", label: "web design in Nepal" },
+      { href: "/ecommerce-website-development-nepal", label: "e-commerce website development" },
+      { href: "/website-cost-in-nepal", label: "what a website costs in Nepal" },
+      { href: "/website-maintenance-services-in-nepal", label: "website maintenance in Nepal" },
+    ],
     title: "Web Design & Development",
     subtitle: "Modern, responsive, and high-performing websites built to help your business grow online.",
     description:
@@ -54,6 +64,11 @@ const services = [
   },
   {
     number: "02",
+    links: [
+      { href: "/seo-company-in-nepal", label: "SEO company in Nepal" },
+      { href: "/best-it-company-in-nepal", label: "best IT company in Nepal" },
+      { href: "/it-company-in-kathmandu", label: "IT company in Kathmandu" },
+    ],
     title: "Search Engine Optimization (SEO)",
     subtitle: "Improve visibility, rank higher, and attract the right audience organically.",
     description:
@@ -65,6 +80,11 @@ const services = [
   },
   {
     number: "03",
+    links: [
+      { href: "/digital-marketing-company-in-nepal", label: "digital marketing company in Nepal" },
+      { href: "/social-media-marketing-agency-in-nepal", label: "social media marketing in Nepal" },
+      { href: "/digital-marketing-agency-in-kathmandu", label: "digital marketing in Kathmandu" },
+    ],
     title: "Digital Marketing",
     subtitle: "Performance-driven digital campaigns built for reach, engagement, and growth.",
     description:
@@ -76,6 +96,9 @@ const services = [
   },
   {
     number: "04",
+    links: [
+      { href: "/it-training-institute-in-nepal", label: "IT training in Nepal" },
+    ],
     title: "Professional Training",
     subtitle: "Practical training programs designed to build real-world digital skills.",
     description:
@@ -93,6 +116,10 @@ const services = [
   },
   {
     number: "05",
+    links: [
+      { href: "/graphic-design-company-in-nepal", label: "graphic design company in Nepal" },
+      { href: "/ui-ux-design-company-in-nepal", label: "UI/UX design in Nepal" },
+    ],
     title: "Graphics Design",
     subtitle: "Creative visuals that strengthen your brand identity and communication.",
     description:
@@ -144,18 +171,68 @@ function ServiceCopy({ service }: { service: (typeof services)[number] }) {
           </div>
         ))}
       </div>
+      <p className="mt-6 leading-8 text-dark-text/74">
+        Read more:{" "}
+        {service.links.map((link, index) => (
+          <span key={link.href}>
+            <Link
+              href={link.href}
+              className="focus-ring rounded font-semibold text-primary-blue underline decoration-primary-blue/30 underline-offset-4 transition hover:decoration-primary-blue"
+            >
+              {link.label}
+            </Link>
+            {index < service.links.length - 2 ? ", " : index === service.links.length - 2 ? ", and " : "."}
+          </span>
+        ))}
+      </p>
     </div>
   );
 }
 
 export default function ServicesPage() {
+  const siteUrl = getCanonicalSiteUrl();
+  const pageUrl = `${siteUrl}/services`;
+
+  // The services page is the hub every cluster hangs off, so the structured
+  // data mirrors that: one ItemList naming each pillar and pointing at the page
+  // that owns it, rather than a single vague Service entity.
+  const schema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "Services", item: pageUrl },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "@id": `${pageUrl}#services`,
+      name: "Services offered by Infobytes Nepal",
+      itemListElement: clusters.map((cluster, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Service",
+          name: cluster.pillar.label,
+          description: cluster.pillar.blurb,
+          url: `${siteUrl}${cluster.pillar.href}`,
+          areaServed: { "@type": "Country", name: "Nepal" },
+          provider: { "@id": `${siteUrl}/#organization` },
+        },
+      })),
+    },
+  ];
+
   return (
     <main id="services-page" className="relative isolate overflow-hidden bg-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <ServiceScrollTrail containerId="services-page" />
       <section className="page-x relative overflow-hidden bg-soft-blue/45 pb-16 pt-32 md:pb-20 md:pt-36">
         <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.86),rgba(232,255,243,0.42)),radial-gradient(circle_at_18%_18%,rgba(3,66,197,0.14),transparent_32%),radial-gradient(circle_at_82%_18%,rgba(0,187,92,0.16),transparent_30%)]" />
         <div className="relative z-10 mx-auto max-w-5xl text-center">
-          <p className="text-sm font-semibold uppercase text-primary-blue"></p>
+          <p className="text-sm font-semibold uppercase text-primary-blue">What we do</p>
           <h1 className="mt-4 text-4xl font-semibold leading-tight text-deep-navy md:text-6xl">
             Digital services shaped for sharper business growth.
           </h1>
@@ -188,6 +265,9 @@ export default function ServicesPage() {
           })}
         </div>
       </section>
+
+      <SiteDirectory className="page-x relative z-10 border-t border-primary-blue/10 bg-white py-16 md:py-20" />
+
       <ServiceInquiryModal />
     </main>
   );

@@ -2,10 +2,10 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import CmsImage from "@/components/public/cms-image";
 import { team } from "@/lib/team";
-import { getSiteUrl } from "@/lib/utils";
+import { getCanonicalSiteUrl } from "@/lib/utils";
 
 export default function TeamSection() {
-  const siteUrl = getSiteUrl();
+  const siteUrl = getCanonicalSiteUrl();
 
   const schema = {
     "@context": "https://schema.org",
@@ -43,7 +43,7 @@ export default function TeamSection() {
             key={member.slug}
             href={`/team/${member.slug}`}
             className="focus-ring group block"
-            aria-label={`${member.name} — ${member.role} at Infobytes Nepal`}
+            aria-label={`${member.name}, ${member.role} at Infobytes Nepal`}
           >
             <article
               className="relative rounded-[26px] border-2 border-transparent shadow-[0_18px_50px_rgba(4,18,63,0.10)] transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_30px_70px_rgba(4,18,63,0.16)]"
@@ -56,7 +56,7 @@ export default function TeamSection() {
               <div className="relative h-[150px] sm:h-[178px]">
                 <CmsImage
                   src={member.image}
-                  alt={`${member.name} — ${member.role} at Infobytes Nepal`}
+                  alt={`${member.name}, ${member.role} at Infobytes Nepal`}
                   width={420}
                   height={520}
                   className="absolute bottom-0 left-1/2 h-[210px] w-auto -translate-x-1/2 object-contain object-bottom drop-shadow-[0_18px_24px_rgba(4,18,63,0.18)] sm:h-[250px]"

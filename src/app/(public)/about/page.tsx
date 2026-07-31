@@ -5,10 +5,10 @@ import GetStartedButton from "@/components/public/get-started-button";
 import TeamSection from "@/components/public/team-section";
 import { defaultPageContent } from "@/lib/content";
 import { getPageSection } from "@/lib/data";
-import { getSiteUrl } from "@/lib/utils";
+import { getCanonicalSiteUrl } from "@/lib/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const siteUrl = getSiteUrl();
+  const siteUrl = getCanonicalSiteUrl();
   const title = "About | Infobytes Nepal";
   const description =
     "Learn about Infobytes Nepal, a trusted IT company in Nepal building custom software, business automation, service management, sales management, and student talent platforms.";
@@ -55,7 +55,7 @@ export default async function AboutPage() {
     getPageSection("about", "started", defaultPageContent.aboutStarted),
     getPageSection("about", "goals", defaultPageContent.aboutGoals),
   ]);
-  const siteUrl = getSiteUrl();
+  const siteUrl = getCanonicalSiteUrl();
   const techLogos = [
     section2.techLogo1,
     section2.techLogo2,

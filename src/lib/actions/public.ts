@@ -40,7 +40,7 @@ export async function submitContactInquiry(_: FormState, formData: FormData): Pr
       isRead: false,
     });
     revalidatePath("/admin-infobytesnepal");
-    return { ok: true, message: "Thanks — your inquiry has been received. Our team will contact you shortly." };
+    return { ok: true, message: "Thanks, your inquiry has been received. Our team will contact you shortly." };
   } catch {
     return { ok: false, message: "We could not receive your inquiry right now. Please try again shortly." };
   }
@@ -78,7 +78,7 @@ export async function submitGetStarted(_: FormState, formData: FormData): Promis
       isRead: false,
     });
     revalidatePath("/admin-infobytesnepal");
-    return { ok: true, message: "Thank you — your request has been received. Infobytes Nepal will get back to you soon." };
+    return { ok: true, message: "Thank you, your request has been received. Infobytes Nepal will get back to you soon." };
   } catch {
     return { ok: false, message: "We could not receive your request right now. Please try again shortly." };
   }
