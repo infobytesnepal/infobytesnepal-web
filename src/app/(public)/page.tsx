@@ -344,10 +344,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [hero, products, aboutTech, orgSchema] = await Promise.all([
+  const [hero, products, aboutTech, media, orgSchema] = await Promise.all([
     getPageSection("home", "hero", defaultPageContent.homeHero),
     getProducts(),
     getPageSection("about", "section2", defaultPageContent.aboutSection2),
+    getPageSection("home", "media", defaultPageContent.homeMedia),
     organizationSchema(),
   ]);
   const serviceSchema = professionalServiceSchema();
@@ -518,8 +519,8 @@ export default async function HomePage() {
               </div>
             </div>
             <SectionImage
-              src="/assets/home/best-it-company-in-nepal-infobytes-nepal-team.jpg"
-              alt="The Infobytes Nepal team working together at the office in Kaushaltar Bhaktapur Nepal"
+              src={media.answerImageUrl}
+              alt={media.answerImageAlt}
               className="aspect-[4/3]"
               sizes="(min-width: 1024px) 45vw, 100vw"
             />
@@ -581,8 +582,8 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <SectionImage
-              src="/assets/home/website-and-software-development-cost-in-nepal.jpg"
-              alt="Infobytes Nepal developer reviewing a website and software project quotation for a client in Nepal"
+              src={media.pricingImageUrl}
+              alt={media.pricingImageAlt}
               className="aspect-[4/3]"
               sizes="(min-width: 1024px) 45vw, 100vw"
             />
@@ -679,8 +680,8 @@ export default async function HomePage() {
               </p>
             </div>
             <SectionImage
-              src="/assets/home/custom-software-development-company-nepal.jpg"
-              alt="Custom software dashboard built by Infobytes Nepal showing sales and service data for a business in Nepal"
+              src={media.whyImageUrl}
+              alt={media.whyImageAlt}
               className="aspect-[5/4]"
               sizes="(min-width: 1024px) 38vw, 100vw"
             />

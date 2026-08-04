@@ -4,10 +4,12 @@ import { defaultPageContent } from "@/lib/content";
 import { getPageSection } from "@/lib/data";
 
 export default async function PagesAdminPage() {
-  const [homeHero, about1, about2, started, goals, contactHero, privacy, footer] = await Promise.all([
+  const [homeHero, homeMedia, about1, about2, aboutWorking, started, goals, contactHero, privacy, footer] = await Promise.all([
     getPageSection("home", "hero", defaultPageContent.homeHero),
+    getPageSection("home", "media", defaultPageContent.homeMedia),
     getPageSection("about", "section1", defaultPageContent.aboutSection1),
     getPageSection("about", "section2", defaultPageContent.aboutSection2),
+    getPageSection("about", "working", defaultPageContent.aboutWorking),
     getPageSection("about", "started", defaultPageContent.aboutStarted),
     getPageSection("about", "goals", defaultPageContent.aboutGoals),
     getPageSection("contact", "hero", defaultPageContent.contactHero),
@@ -32,6 +34,25 @@ export default async function PagesAdminPage() {
         </AdminCard>
 
         <AdminCard>
+          <h2 className="text-xl font-semibold text-deep-navy">Home content images</h2>
+          <p className="mt-1 text-sm text-dark-text/60">
+            The three photos inside the home page sections. Upload a replacement to swap the stock photography for real
+            office and team photos. Keep the alt text descriptive: it is read by Google and by screen readers.
+          </p>
+          <SectionForm pageKey="home" sectionKey="media">
+            <input type="hidden" name="answerImageUrl" value={homeMedia.answerImageUrl} />
+            <AdminFileInput label="Answer section image" name="answerImageUrlFile" accept="image/*" help="Sits beside the 'Who is the best IT company in Nepal' block." />
+            <AdminInput label="Answer image alt text" name="answerImageAlt" defaultValue={homeMedia.answerImageAlt} />
+            <input type="hidden" name="pricingImageUrl" value={homeMedia.pricingImageUrl} />
+            <AdminFileInput label="Pricing section image" name="pricingImageUrlFile" accept="image/*" help="Sits beside the pricing table." />
+            <AdminInput label="Pricing image alt text" name="pricingImageAlt" defaultValue={homeMedia.pricingImageAlt} />
+            <input type="hidden" name="whyImageUrl" value={homeMedia.whyImageUrl} />
+            <AdminFileInput label="Why Infobytes image" name="whyImageUrlFile" accept="image/*" help="Sits beside the 'technology partner' block." />
+            <AdminInput label="Why image alt text" name="whyImageAlt" defaultValue={homeMedia.whyImageAlt} />
+          </SectionForm>
+        </AdminCard>
+
+        <AdminCard>
           <h2 className="text-xl font-semibold text-deep-navy">About section 1</h2>
           <SectionForm pageKey="about" sectionKey="section1">
             <AdminInput label="Title" name="title" defaultValue={about1.title} />
@@ -40,6 +61,15 @@ export default async function PagesAdminPage() {
             <AdminInput label="Button URL" name="buttonUrl" defaultValue={about1.buttonUrl} />
             <input type="hidden" name="imageUrl" value={about1.imageUrl} />
             <AdminFileInput label="Image" name="imageUrlFile" accept="image/*" />
+          </SectionForm>
+        </AdminCard>
+
+        <AdminCard>
+          <h2 className="text-xl font-semibold text-deep-navy">About: how we work image</h2>
+          <SectionForm pageKey="about" sectionKey="working">
+            <input type="hidden" name="imageUrl" value={aboutWorking.imageUrl} />
+            <AdminFileInput label="Image" name="imageUrlFile" accept="image/*" help="Sits beside the 'How we actually work' block." />
+            <AdminInput label="Alt text" name="imageAlt" defaultValue={aboutWorking.imageAlt} />
           </SectionForm>
         </AdminCard>
 

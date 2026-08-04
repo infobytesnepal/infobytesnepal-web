@@ -4,6 +4,7 @@ import { db } from "./db/client";
 import {
   contactInquiries,
   getStartedRequests,
+  jobApplications,
   mediaAssets,
   pageContent,
   products,
@@ -12,6 +13,7 @@ import {
   siteSettings,
   type ContactInquiry,
   type GetStartedRequest,
+  type JobApplication,
   type MediaAsset,
   type Product,
   type SeoSetting,
@@ -234,6 +236,24 @@ export async function searchGetStartedRequests(
       .from(getStartedRequests)
       .where(conditions.length ? and(...conditions) : undefined)
       .orderBy(desc(getStartedRequests.createdAt));
+  } catch {
+    return [];
+  }
+}
+
+/** Job applications, newest first, with an optional read/unread filter. */
+export async function searchJobApplications(filter?: string, jobSlug?: string): Promise<JobApplication[]> {
+  try {
+    const conditions = [];
+    if (filter === "unread") conditions.push(eq(jobApplications.isRead, false));
+    if (filter === "read") conditions.push(eq(jobApplications.isRead, true));
+    if (jobSlug) conditions.push(eq(jobApplications.jobSlug, jobSlug));
+
+    const query = db.select().from(jobApplications);
+    const rows = conditions.length
+      ? await query.where(and(...conditions)).orderBy(desc(jobApplications.createdAt))
+      : await query.orderBy(desc(jobApplications.createdAt));
+    return rows;
   } catch {
     return [];
   }

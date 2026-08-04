@@ -167,6 +167,24 @@ export const defaultPageContent = {
     techLogo14: "/assets/tech/lucide.svg",
     techLogo15: "/assets/tech/npm.svg",
   },
+  /**
+   * Content images on the home page. Kept in the CMS rather than hardcoded so
+   * the stock photography can be swapped for real office and team photos from
+   * the admin Pages screen without a deploy. Alt text is editable alongside
+   * each image because it is read by search engines and screen readers.
+   */
+  homeMedia: {
+    answerImageUrl: "/assets/home/best-it-company-in-nepal-infobytes-nepal-team.jpg",
+    answerImageAlt: "The Infobytes Nepal team working together at the office in Kaushaltar Bhaktapur Nepal",
+    pricingImageUrl: "/assets/home/website-and-software-development-cost-in-nepal.jpg",
+    pricingImageAlt: "Infobytes Nepal developer reviewing a website and software project quotation for a client in Nepal",
+    whyImageUrl: "/assets/home/custom-software-development-company-nepal.jpg",
+    whyImageAlt: "Custom software dashboard built by Infobytes Nepal for a business in Nepal",
+  },
+  aboutWorking: {
+    imageUrl: "/assets/about/infobytes-nepal-developers-working-kathmandu.jpg",
+    imageAlt: "Infobytes Nepal developers writing code and reviewing designs together at the Bhaktapur office",
+  },
   aboutStarted: {
     title: "How We Started",
     body: "Infobytes Nepal started with one clear idea: build software that removes work instead of adding another screen for someone to fill in.",

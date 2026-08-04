@@ -16,6 +16,13 @@ const nextConfig: NextConfig = {
   // the whole lucide-react barrel file.
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
+    serverActions: {
+      // The job application form accepts a CV up to 5MB. Server Actions cap the
+      // request body at 1MB by default, which would reject a normal PDF résumé
+      // before the action ever ran. The headroom covers the base64 encoding
+      // overhead plus the other form fields.
+      bodySizeLimit: "7mb",
+    },
   },
   async headers() {
     return [

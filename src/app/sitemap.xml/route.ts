@@ -1,3 +1,5 @@
+import { getPosts } from "@/lib/blog";
+import { getJobs } from "@/lib/careers";
 import { getProducts } from "@/lib/data";
 import { seoLandingPageList } from "@/lib/seo-landing-pages";
 import { team } from "@/lib/team";
@@ -81,7 +83,7 @@ type SitemapEntry = {
 
 export async function GET() {
   const siteUrl = getCanonicalSiteUrl();
-  const products = await getProducts();
+  const [products, posts, jobs] = await Promise.all([getProducts(), getPosts(), getJobs()]);
 
   const entries: SitemapEntry[] = [
     { path: "/", changefreq: "weekly", priority: "1.0", lastmod: CONTENT_LAST_UPDATED },
@@ -98,6 +100,22 @@ export async function GET() {
       changefreq: "monthly" as const,
       priority: "0.8",
       lastmod: toSitemapDate(product.updatedAt),
+    })),
+    { path: "/blog", changefreq: "weekly", priority: "0.8", lastmod: posts[0]?.updatedAt ?? CONTENT_LAST_UPDATED },
+    ...posts.map((post) => ({
+      path: `/blog/${post.slug}`,
+      changefreq: "monthly" as const,
+      priority: "0.7",
+      lastmod: toSitemapDate(post.updatedAt),
+    })),
+    // Only open roles are listed. A filled role stays reachable but is marked
+    // noindex on the page itself, so advertising it here would contradict that.
+    { path: "/careers", changefreq: "weekly", priority: "0.7", lastmod: jobs[0]?.postedAt ?? CONTENT_LAST_UPDATED },
+    ...jobs.map((job) => ({
+      path: `/careers/${job.slug}`,
+      changefreq: "weekly" as const,
+      priority: "0.6",
+      lastmod: toSitemapDate(job.postedAt),
     })),
     { path: "/about", changefreq: "monthly", priority: "0.7", lastmod: CONTENT_LAST_UPDATED },
     ...team.map((member) => ({

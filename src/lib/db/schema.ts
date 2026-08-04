@@ -65,6 +65,29 @@ export const serviceInquiries = sqliteTable("service_inquiries", {
   ...timestamps,
 });
 
+export const jobApplications = sqliteTable("job_applications", {
+  id: text("id").primaryKey(),
+  jobSlug: text("job_slug").notNull(),
+  jobTitle: text("job_title").notNull(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  portfolioUrl: text("portfolio_url"),
+  message: text("message"),
+  /**
+   * The CV as a data URI. There is no object storage configured on this
+   * project and the media table already stores uploads this way, so the CV
+   * follows the same route. `cvName` and `cvSize` are kept separately so the
+   * admin list can show the file without loading the blob.
+   */
+  cvData: text("cv_data"),
+  cvName: text("cv_name"),
+  cvSize: integer("cv_size"),
+  consentChecked: integer("consent_checked", { mode: "boolean" }).notNull().default(false),
+  isRead: integer("is_read", { mode: "boolean" }).notNull().default(false),
+  ...timestamps,
+});
+
 export const pageContent = sqliteTable(
   "page_content",
   {
@@ -109,6 +132,7 @@ export const mediaAssets = sqliteTable("media_assets", {
   ...timestamps,
 });
 
+export type JobApplication = typeof jobApplications.$inferSelect;
 export type Product = typeof products.$inferSelect;
 export type ContactInquiry = typeof contactInquiries.$inferSelect;
 export type GetStartedRequest = typeof getStartedRequests.$inferSelect;

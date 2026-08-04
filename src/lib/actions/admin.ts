@@ -7,6 +7,7 @@ import { db } from "@/lib/db/client";
 import {
   contactInquiries,
   getStartedRequests,
+  jobApplications,
   mediaAssets,
   pageContent,
   products,
@@ -275,4 +276,22 @@ export async function deleteSeoSetting(formData: FormData) {
   await requireAdmin();
   await db.delete(seoSettings).where(eq(seoSettings.id, formString(formData, "id")));
   revalidatePath("/");
+}
+
+export async function markJobApplicationRead(formData: FormData) {
+  await requireAdmin();
+  const id = formString(formData, "id");
+  if (!id) return;
+  await db.update(jobApplications).set({ isRead: true, updatedAt: new Date().toISOString() }).where(eq(jobApplications.id, id));
+  revalidatePath("/admin-infobytesnepal/applications");
+  revalidatePath("/admin-infobytesnepal");
+}
+
+export async function deleteJobApplication(formData: FormData) {
+  await requireAdmin();
+  const id = formString(formData, "id");
+  if (!id) return;
+  await db.delete(jobApplications).where(eq(jobApplications.id, id));
+  revalidatePath("/admin-infobytesnepal/applications");
+  revalidatePath("/admin-infobytesnepal");
 }

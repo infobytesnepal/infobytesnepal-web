@@ -51,11 +51,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AboutPage() {
-  const [section1, section2, started, goals] = await Promise.all([
+  const [section1, section2, started, goals, working] = await Promise.all([
     getPageSection("about", "section1", defaultPageContent.aboutSection1),
     getPageSection("about", "section2", defaultPageContent.aboutSection2),
     getPageSection("about", "started", defaultPageContent.aboutStarted),
     getPageSection("about", "goals", defaultPageContent.aboutGoals),
+    getPageSection("about", "working", defaultPageContent.aboutWorking),
   ]);
   const siteUrl = getCanonicalSiteUrl();
   const techLogos = [
@@ -303,8 +304,8 @@ export default async function AboutPage() {
       {/* Visual break between the founder story and the goals block. */}
       <section className="mx-auto mt-20 grid max-w-7xl items-center gap-10 lg:grid-cols-2">
         <SectionImage
-          src="/assets/about/infobytes-nepal-developers-working-kathmandu.jpg"
-          alt="Infobytes Nepal developers writing code and reviewing designs together at the Bhaktapur office"
+          src={working.imageUrl}
+          alt={working.imageAlt}
           className="aspect-[4/3]"
           sizes="(min-width: 1024px) 48vw, 100vw"
         />

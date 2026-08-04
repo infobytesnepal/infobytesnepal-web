@@ -24,6 +24,8 @@ export async function GET() {
     `${siteUrl}/products`,
     `${siteUrl}/services`,
     `${siteUrl}/about`,
+    `${siteUrl}/blog`,
+    `${siteUrl}/careers`,
     `${siteUrl}/faq`,
     `${siteUrl}/contact`,
     `${siteUrl}/privacy-policy`,

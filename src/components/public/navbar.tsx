@@ -12,6 +12,8 @@ const navLinks = [
   { href: "/services", label: "Services" },
   { href: "/products", label: "Our Products" },
   { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
+  { href: "/careers", label: "Careers" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
@@ -50,7 +52,8 @@ export default function Navbar({ logoUrl }: { logoUrl: string }) {
         <Link href="/" className="focus-ring flex items-center gap-3 rounded-full" aria-label="Infobytes Nepal home">
           <CmsImage src={logoUrl} alt="Infobytes Nepal logo" width={178} height={54} className="h-12 w-auto object-contain" priority />
         </Link>
-        <div className="hidden items-center gap-7 md:flex">
+        {/* gap tightens at md so eight items still fit on a small laptop. */}
+        <div className="hidden items-center gap-4 md:flex lg:gap-6 xl:gap-7">
           {navLinks.map((link) => (
             <Link
               key={link.href}

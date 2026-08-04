@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BarChart3, BriefcaseBusiness, FileText, ImageIcon, Inbox, LayoutDashboard, LogOut, Package, Search, SlidersHorizontal } from "lucide-react";
+import { BarChart3, BriefcaseBusiness, FileText, ImageIcon, Inbox, LayoutDashboard, LogOut, Package, Search, SlidersHorizontal, UserRound } from "lucide-react";
 import { logoutAction } from "@/lib/actions/auth";
 import { getInquiryStats } from "@/lib/data";
 
@@ -8,6 +8,7 @@ const nav = [
   { href: "/admin-infobytesnepal/inquiries", label: "Inquiries", icon: Inbox, dot: "inquiries" },
   { href: "/admin-infobytesnepal/requests", label: "Get Started Requests", icon: FileText, dot: "requests" },
   { href: "/admin-infobytesnepal/service-inquiries", label: "Service Inquiries", icon: BriefcaseBusiness, dot: "serviceRequests" },
+  { href: "/admin-infobytesnepal/applications", label: "Job Applications", icon: UserRound },
   { href: "/admin-infobytesnepal/products", label: "Products", icon: Package },
   { href: "/admin-infobytesnepal/pages", label: "Pages", icon: BarChart3 },
   { href: "/admin-infobytesnepal/media", label: "Media / Assets", icon: ImageIcon },

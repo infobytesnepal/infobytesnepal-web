@@ -37,6 +37,27 @@ export const serviceInquirySchema = z.object({
   remarks: z.string().trim().max(2000, "Remarks are too long.").optional().default(""),
 });
 
+export const jobApplicationSchema = z.object({
+  jobSlug: z.string().trim().min(1).max(120),
+  name: z.string().trim().min(2, "Enter your full name.").max(120, "Name is too long."),
+  email: z.string().trim().email("Enter a valid email address.").max(254, "Email address is too long."),
+  phone: z.string().trim().min(7, "Enter a phone number we can reach you on.").max(40, "Phone number is too long."),
+  portfolioUrl: z
+    .string()
+    .trim()
+    .max(300, "Link is too long.")
+    .optional()
+    .default("")
+    .refine(
+      (value) => !value || /^https?:\/\/.+\..+/.test(value),
+      "Enter a full link starting with http:// or https://",
+    ),
+  message: z.string().trim().max(2000, "Message is too long.").optional().default(""),
+  consentChecked: z
+    .boolean()
+    .refine((value) => value, "Please confirm we may store your application."),
+});
+
 export const loginSchema = z.object({
   email: z.string().trim().email("Enter a valid email address.").max(254),
   password: z.string().min(1, "Password is required.").max(256),

@@ -32,7 +32,7 @@ const footerColumns = [
     links: [
       { href: "/web-development-company-in-nepal", label: "Web Development" },
       { href: "/web-design-company-in-nepal", label: "Web Design" },
-      { href: "/ecommerce-website-development-nepal", label: "E-commerce Development" },
+      { href: "/ecommerce-website-development-nepal", label: "Ecommerce Development" },
       { href: "/wordpress-development-company-in-nepal", label: "WordPress Development" },
       { href: "/website-maintenance-services-in-nepal", label: "Website Maintenance" },
       { href: "/seo-company-in-nepal", label: "SEO" },
@@ -142,6 +142,8 @@ export default async function Footer() {
             <Link href="/services" className="transition hover:text-deep-navy">Services</Link>
             <Link href="/products" className="transition hover:text-deep-navy">Our Products</Link>
             <Link href="/about" className="transition hover:text-deep-navy">About</Link>
+            <Link href="/blog" className="transition hover:text-deep-navy">Blog</Link>
+            <Link href="/careers" className="transition hover:text-deep-navy">Careers</Link>
             <Link href="/faq" className="transition hover:text-deep-navy">FAQ</Link>
             <Link href="/contact" className="transition hover:text-deep-navy">Contact</Link>
             <Link href="/privacy-policy" className="transition hover:text-deep-navy">Privacy Policy</Link>
@@ -175,8 +177,8 @@ export default async function Footer() {
               <MapPin size={16} className="mt-0.5 shrink-0" /> Kaushaltar, Bhaktapur, Nepal
             </p>
             <a href="mailto:info@infobytesnepal.com" className="transition hover:text-deep-navy">info@infobytesnepal.com</a>
-            <a href="tel:+9779843468715" className="transition hover:text-deep-navy">+977 - 9843468715</a>
-            <a href="tel:+9779863777171" className="transition hover:text-deep-navy">+977 - 9863777171</a>
+            <a href="tel:+9779843468715" className="transition hover:text-deep-navy">+977 9843468715</a>
+            <a href="tel:+9779863777171" className="transition hover:text-deep-navy">+977 9863777171</a>
           </div>
         </div>
       </div>
