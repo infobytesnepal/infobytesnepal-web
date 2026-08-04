@@ -10,9 +10,9 @@ import { basicPageMetadata } from "@/lib/seo";
 export async function generateMetadata(): Promise<Metadata> {
   return basicPageMetadata({
     route: "/products",
-    title: "Products | Infobytes Nepal",
+    title: "Our Software Products in Nepal | Infobytes Nepal",
     description:
-      "Explore Infobytes Nepal software products for business automation, CRM, sales management, service management, lead tracking, and student talent workflows.",
+      "Five software products built and supported in Nepal: Nidanyo for medical labs, Serviol for field service, Purseol for field sales, LeadRack for leads, and Pravyo.",
   });
 }
 

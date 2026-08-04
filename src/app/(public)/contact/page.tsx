@@ -9,9 +9,9 @@ import { stripWhatsAppNumber } from "@/lib/utils";
 export async function generateMetadata(): Promise<Metadata> {
   return basicPageMetadata({
     route: "/contact",
-    title: "Contact | Infobytes Nepal",
+    title: "Contact Us | Free IT Consultation | Infobytes Nepal",
     description:
-      "Contact Infobytes Nepal for custom software development, web development, SEO, digital marketing, and business automation services in Nepal.",
+      "Talk to Infobytes Nepal about your website, software, or marketing project. Call +977 9843468715 or send your requirement. The first consultation and quote are free.",
   });
 }
 

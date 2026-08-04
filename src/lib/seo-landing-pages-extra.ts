@@ -9,7 +9,7 @@ export const extraSeoLandingPages = {
   labSoftware: {
     slug: "lab-software-in-nepal",
     path: "/lab-software-in-nepal",
-    metaTitle: "Lab Software in Nepal | Best Lab Management Software | Infobytes Nepal",
+    metaTitle: "Best Lab Software in Nepal | Infobytes Nepal",
     metaDescription:
       "Nidanyo by Infobytes Nepal is lab management software for medical laboratories in Nepal. Patient registration, sample tracking, result verification, report printing, billing, and reagent stock in one system.",
     ogTitle: "Lab Software in Nepal | Nidanyo by Infobytes Nepal",
@@ -29,7 +29,7 @@ export const extraSeoLandingPages = {
       ],
     },
     problems: [
-      "Patient details are re-entered at the counter, at sample collection, and again at reporting, so the same person ends up in the system three times with three spellings.",
+      "Patient details are reentered at the counter, at sample collection, and again at reporting, so the same person ends up in the system three times with three spellings.",
       "Nobody can answer where a sample is right now without walking to the bench and asking.",
       "Reports are typed into Word templates, which means reference ranges drift, formatting varies between staff, and a corrected report leaves no trace of what changed.",
       "Billing and reporting live in separate systems, so tests get run without being billed and the daily collection never quite matches the register.",
@@ -124,12 +124,12 @@ export const extraSeoLandingPages = {
       {
         question: "Do you migrate our old patient and test data?",
         answer:
-          "Yes. If your existing records are in a database, Excel, or an older billing package that can export, we map and import patients, the test catalogue, reference ranges, and rate lists during setup. Register-book history is usually not worth importing in full, so most labs bring across the active patient list and start clean.",
+          "Yes. If your existing records are in a database, Excel, or an older billing package that can export, we map and import patients, the test catalogue, reference ranges, and rate lists during setup. Register book history is usually not worth importing in full, so most labs bring across the active patient list and start clean.",
       },
       {
         question: "How much does lab software cost in Nepal?",
         answer:
-          "It depends on lab size, how many counters and users you need, whether analyser interfacing is involved, and whether you want it hosted by us or on your own machine. Small single-branch labs sit at the low end and multi-branch diagnostic centres with interfacing sit higher. Tell us your monthly test volume and branch count and we will give you a real number rather than a range.",
+          "It depends on lab size, how many counters and users you need, whether analyser interfacing is involved, and whether you want it hosted by us or on your own machine. Small single branch labs sit at the low end and multi branch diagnostic centres with interfacing sit higher. Tell us your monthly test volume and branch count and we will give you a real number rather than a range.",
       },
       {
         question: "Can it run when the internet goes down?",
@@ -144,7 +144,7 @@ export const extraSeoLandingPages = {
       {
         question: "How long does implementation take?",
         answer:
-          "For a single-branch lab with a standard test menu, expect two to four weeks from catalogue setup to go live, including training and a parallel run. Multi-branch labs and labs with analyser interfacing take longer, mostly because catalogue and rate cleanup takes longer than the software work.",
+          "For a single branch lab with a standard test menu, expect two to four weeks from catalogue setup to go live, including training and a parallel run. Multi branch labs and labs with analyser interfacing take longer, mostly because catalogue and rate cleanup takes longer than the software work.",
       },
     ],
   },
@@ -152,7 +152,7 @@ export const extraSeoLandingPages = {
   lims: {
     slug: "laboratory-information-management-system-nepal",
     path: "/laboratory-information-management-system-nepal",
-    metaTitle: "Medical Laboratory Management System in Nepal | LIMS | Infobytes Nepal",
+    metaTitle: "Lab Management System in Nepal | Infobytes Nepal",
     metaDescription:
       "A laboratory information management system built in Nepal. Nidanyo tracks the full sample lifecycle, enforces result verification, keeps an audit trail, and reports turnaround time for medical labs.",
     ogTitle: "Laboratory Information Management System in Nepal | Nidanyo",
@@ -291,7 +291,7 @@ export const extraSeoLandingPages = {
     path: "/social-media-marketing-agency-in-nepal",
     metaTitle: "Social Media Marketing Agency in Nepal | Infobytes Nepal",
     metaDescription:
-      "Social media marketing for Nepali businesses. Facebook, Instagram, and TikTok content and ads run against real inquiries, with lead follow-up tracked instead of guessed.",
+      "Social media marketing for Nepali businesses. Facebook, Instagram, and TikTok content and ads run against real inquiries, with lead follow up tracked instead of guessed.",
     ogTitle: "Social Media Marketing Agency in Nepal | Infobytes Nepal",
     ogDescription:
       "Facebook, Instagram, and TikTok marketing for businesses in Nepal, connected to lead tracking so you can see what the spend actually produced.",
@@ -320,9 +320,9 @@ export const extraSeoLandingPages = {
       "Define the actual conversion for your business first, then build content and campaigns to produce it.",
       "Run a content calendar with a mix that suits the platform, weighted toward short video where the attention is.",
       "Write and shoot in the language your customers buy in, which in much of Nepal means Nepali first.",
-      "Route Messenger, Instagram, and form inquiries into a tracked list so follow-up has an owner and a deadline.",
+      "Route Messenger, Instagram, and form inquiries into a tracked list so follow up has an owner and a deadline.",
       "Test ad creative in small budgets, then scale the ones that produce inquiries and stop the ones that do not.",
-      "Report cost per inquiry and follow-up outcome alongside reach, so spend decisions have something real behind them.",
+      "Report cost per inquiry and follow up outcome alongside reach, so spend decisions have something real behind them.",
     ],
     features: [
       "Facebook and Instagram page management",
@@ -386,7 +386,7 @@ export const extraSeoLandingPages = {
       {
         href: "/products/leadrack",
         label: "LeadRack lead tracking",
-        text: "Where social inquiries land so follow-up stops depending on memory.",
+        text: "Where social inquiries land so follow up stops depending on memory.",
       },
     ],
     faqs: [
@@ -421,22 +421,22 @@ export const extraSeoLandingPages = {
   itTraining: {
     slug: "it-training-institute-in-nepal",
     path: "/it-training-institute-in-nepal",
-    metaTitle: "IT Training in Nepal | Web Development & Digital Skills | Infobytes Nepal",
+    metaTitle: "IT Training Institute in Nepal | Infobytes Nepal",
     metaDescription:
-      "Practical IT training in Nepal from a working software team. Web development, front-end, digital marketing, and SEO taught on real projects with mentorship and portfolio work.",
+      "Practical IT training in Nepal from a working software team. Web development, frontend, digital marketing, and SEO taught on real projects with mentorship and portfolio work.",
     ogTitle: "IT Training in Nepal | Infobytes Nepal",
     ogDescription:
-      "Web development, front-end, digital marketing, and SEO training in Nepal, taught by a team that ships client work rather than lectures from slides.",
+      "Web development, frontend, digital marketing, and SEO training in Nepal, taught by a team that ships client work rather than lectures from slides.",
     keyword: "IT Training in Nepal",
     heroTitle: "IT Training in Nepal",
     heroIntro:
-      "Infobytes Nepal runs practical training in web development, front-end engineering, digital marketing, and SEO. It is taught by the people who build client projects here, which means the examples come from real work rather than a textbook chapter.",
+      "Infobytes Nepal runs practical training in web development, frontend engineering, digital marketing, and SEO. It is taught by the people who build client projects here, which means the examples come from real work rather than a textbook chapter.",
     overview: {
       title: "The gap is not knowledge. It is the ability to finish something.",
       paragraphs: [
         "Nepal has no shortage of IT courses, and no shortage of graduates who can describe a framework but have never taken a project from an empty folder to something running on a real domain. Employers here notice the difference within one interview. So the question worth asking about any training is not what the syllabus covers, but what you will have built by the end of it.",
-        "Our training is built around that. Every track ends with work that exists: a deployed site, a working front-end application, a live campaign with real numbers, an audited and improved page. You leave with something you can show, explain, and defend, which is a very different position from leaving with a certificate.",
-        "Classes stay small because mentorship does not scale past a certain room size. Sessions mix short explanation with long hands-on time, and the questions that come up during the hands-on part are usually where the real learning happens. Trainers are working developers and marketers from our own team, so when a student hits a problem that the tutorial did not cover, the answer comes from experience rather than a search.",
+        "Our training is built around that. Every track ends with work that exists: a deployed site, a working frontend application, a live campaign with real numbers, an audited and improved page. You leave with something you can show, explain, and defend, which is a very different position from leaving with a certificate.",
+        "Classes stay small because mentorship does not scale past a certain room size. Sessions mix short explanation with long hands on time, and the questions that come up during the hands on part are usually where the real learning happens. Trainers are working developers and marketers from our own team, so when a student hits a problem that the tutorial did not cover, the answer comes from experience rather than a search.",
         "We are honest about who this suits. If you want a certificate to attach to a CV quickly, there are faster options. If you want to be able to do the work, this is built for that, and it asks for real hours from you.",
       ],
     },
@@ -450,7 +450,7 @@ export const extraSeoLandingPages = {
     ],
     solutions: [
       "Every track is project based and ends with deployed, reviewable work rather than a set of exercises.",
-      "Small batches so trainers can sit with individual students during hands-on sessions.",
+      "Small batches so trainers can sit with individual students during hands on sessions.",
       "Stack and tooling chosen to match what employers in Kathmandu and remote clients are hiring for right now.",
       "Trainers drawn from the team that ships client projects, so examples and answers come from live experience.",
       "Code review on submitted work, with feedback on structure and readability, not just whether it runs.",
@@ -458,7 +458,7 @@ export const extraSeoLandingPages = {
     ],
     features: [
       "Web development fundamentals",
-      "Front-end with React and Next.js",
+      "Frontend with React and Next.js",
       "Responsive interface building",
       "Git and collaborative workflow",
       "Backend and database basics",
@@ -525,7 +525,7 @@ export const extraSeoLandingPages = {
       {
         question: "Do I need a computer science background?",
         answer:
-          "For the web and front-end tracks, no. What matters more is time and consistency, since the material builds week on week and falling behind is hard to recover from. The digital marketing and SEO tracks need no technical background at all, just comfort with a computer.",
+          "For the web and frontend tracks, no. What matters more is time and consistency, since the material builds week on week and falling behind is hard to recover from. The digital marketing and SEO tracks need no technical background at all, just comfort with a computer.",
       },
       {
         question: "How long does a track take?",
@@ -545,7 +545,7 @@ export const extraSeoLandingPages = {
       {
         question: "Are classes online or in person?",
         answer:
-          "Both run, with in-person sessions at our Bhaktapur office and online batches for students elsewhere in Nepal. The hands-on and code review parts work well online. Students who can attend in person tend to get unstuck faster, simply because asking is easier.",
+          "Both run, with in person sessions at our Bhaktapur office and online batches for students elsewhere in Nepal. The hands on and code review parts work well online. Students who can attend in person tend to get unstuck faster, simply because asking is easier.",
       },
     ],
   },
@@ -569,7 +569,7 @@ export const extraSeoLandingPages = {
         "The usual story goes like this. A business pays for a website, it launches, everyone is pleased. Nobody touches it for two years. Then the SSL certificate expires and browsers start showing a warning, or a WordPress plugin that has not been updated since 2023 gets exploited and the site starts serving spam links, or the hosting account lapses because the renewal email went to a developer who left. By the time somebody notices, Google has already noticed too.",
         "None of that is exotic. It is ordinary neglect, and it is preventable with a small amount of regular attention. Maintenance means checking that backups actually restore, applying security updates before they are exploited, watching uptime so an outage is detected in minutes, keeping page speed from drifting as content is added, and fixing the broken links and missing images that accumulate on any site people edit.",
         "We also treat content changes as part of maintenance. Businesses put off updating a price list, a team page, or a service description because it means emailing a developer and waiting. On a maintenance plan those go into a queue and get done, which keeps the site accurate. An accurate site converts better and ranks better than a stale one.",
-        "Plans are monthly and sized to the site. A five page brochure site needs a fraction of the attention that an e-commerce store with payments and daily orders does, and we price accordingly rather than selling one package to everyone.",
+        "Plans are monthly and sized to the site. A five page brochure site needs a fraction of the attention that an ecommerce store with payments and daily orders does, and we price accordingly rather than selling one package to everyone.",
       ],
     },
     problems: [
@@ -659,7 +659,7 @@ export const extraSeoLandingPages = {
       {
         question: "How much does website maintenance cost in Nepal?",
         answer:
-          "A small business brochure site typically runs from around NPR 3,000 to NPR 8,000 per month, a larger content or corporate site from around NPR 8,000 to NPR 20,000, and an e-commerce store with payments and daily orders higher again depending on volume. Hosting and domain renewals are separate and paid to the provider directly.",
+          "A small business brochure site typically runs from around NPR 3,000 to NPR 8,000 per month, a larger content or corporate site from around NPR 8,000 to NPR 20,000, and an ecommerce store with payments and daily orders higher again depending on volume. Hosting and domain renewals are separate and paid to the provider directly.",
       },
       {
         question: "Can you maintain a site another company built?",
@@ -669,7 +669,7 @@ export const extraSeoLandingPages = {
       {
         question: "What if my site gets hacked?",
         answer:
-          "On a maintenance plan, we clean the infection, restore from a known good backup, close the entry point, and check for anything left behind. Sites not on a plan can still come to us for recovery as one-off work. The honest note is that recovery costs several months of maintenance fees, which is why patching is the cheap part.",
+          "On a maintenance plan, we clean the infection, restore from a known good backup, close the entry point, and check for anything left behind. Sites not on a plan can still come to us for recovery as one off work. The honest note is that recovery costs several months of maintenance fees, which is why patching is the cheap part.",
       },
       {
         question: "Do you handle content updates too?",
@@ -687,7 +687,7 @@ export const extraSeoLandingPages = {
   butwal: {
     slug: "it-company-in-butwal",
     path: "/it-company-in-butwal",
-    metaTitle: "IT Company in Butwal | Website & Software Development | Infobytes Nepal",
+    metaTitle: "IT Company in Butwal | Infobytes Nepal",
     metaDescription:
       "Infobytes Nepal works with businesses in Butwal and Rupandehi on websites, custom software, billing and inventory systems, SEO, and digital marketing.",
     ogTitle: "IT Company in Butwal | Infobytes Nepal",
@@ -702,7 +702,7 @@ export const extraSeoLandingPages = {
       paragraphs: [
         "Butwal has become one of the busiest commercial centres outside the Kathmandu valley. Trading houses, distributors, hospitals and clinics, colleges, hotels, and manufacturing units here run at a scale that spreadsheets and paper registers were never meant to handle. The bottleneck is rarely demand. It is that the business has no reliable view of its own stock, receivables, service calls, or leads.",
         "The other common gap is online presence. A business in Butwal with a strong local reputation often has no website at all, or one built years ago that does not work on a phone. Meanwhile customers search before they call, and the businesses that show up in those searches take the inquiry regardless of who has been in the market longer.",
-        "We work with businesses here on both. That means websites built to load fast on mobile data and to be found in local search, and it means operational software: inventory and billing, distribution and route sales, service and complaint tracking, lead follow-up, and reporting that a manager can actually read.",
+        "We work with businesses here on both. That means websites built to load fast on mobile data and to be found in local search, and it means operational software: inventory and billing, distribution and route sales, service and complaint tracking, lead follow up, and reporting that a manager can actually read.",
         "Distance is a practical question and we treat it as one. Discovery happens over calls and screen shares, updates come on a fixed rhythm rather than when you chase, and we travel to Butwal for the parts that need to be done in the room, like watching how your counter actually operates or training staff on a new system.",
       ],
     },
@@ -717,14 +717,14 @@ export const extraSeoLandingPages = {
     solutions: [
       "Build billing, inventory, and receivables into one system so the daily position is a screen, not a reconstruction.",
       "Give field sales and distribution staff a mobile way to log visits and orders, so reporting stops depending on phone calls.",
-      "Build a fast, mobile-first website that loads on ordinary connections and is structured for local search.",
+      "Build a fast, mobile first website that loads on ordinary connections and is structured for local search.",
       "Set up Google Business Profile and local SEO so buyers searching in Butwal find you before they find someone from outside.",
-      "Route inquiries from every channel into one tracked list with an owner and a follow-up date.",
+      "Route inquiries from every channel into one tracked list with an owner and a follow up date.",
       "Deliver management reporting that answers the owner's actual questions rather than producing a data dump.",
     ],
     features: [
       "Business website design and development",
-      "E-commerce and online ordering",
+      "Ecommerce and online ordering",
       "Billing and inventory software",
       "Distribution and route sales systems",
       "Service and complaint tracking",
@@ -806,7 +806,7 @@ export const extraSeoLandingPages = {
       {
         question: "What does a website cost for a Butwal business?",
         answer:
-          "A professional business website in Nepal generally runs from around NPR 50,000 to NPR 150,000, with custom builds and e-commerce higher depending on features. The full breakdown of what moves that number is on our website cost guide, and we quote against your actual requirement rather than a package.",
+          "A professional business website in Nepal generally runs from around NPR 50,000 to NPR 150,000, with custom builds and ecommerce higher depending on features. The full breakdown of what moves that number is on our website cost guide, and we quote against your actual requirement rather than a package.",
       },
     ],
   },
@@ -814,7 +814,7 @@ export const extraSeoLandingPages = {
   chitwan: {
     slug: "it-company-in-chitwan",
     path: "/it-company-in-chitwan",
-    metaTitle: "IT Company in Chitwan | Web & Software Development | Infobytes Nepal",
+    metaTitle: "IT Company in Chitwan | Infobytes Nepal",
     metaDescription:
       "Infobytes Nepal builds websites, booking systems, custom software, and digital marketing for businesses in Chitwan, Bharatpur, and Sauraha.",
     ogTitle: "IT Company in Chitwan | Infobytes Nepal",
@@ -828,7 +828,7 @@ export const extraSeoLandingPages = {
       title: "Chitwan sells to people who are searching from somewhere else",
       paragraphs: [
         "Chitwan's economy has an unusual shape. A large part of it depends on customers who are not in Chitwan when they decide: tourists booking a resort in Sauraha from Kathmandu or abroad, patients choosing a hospital in Bharatpur from across the region, students comparing colleges before they travel. Almost all of those decisions start on a phone, on a search or a social feed, days before anyone picks up a phone to call.",
-        "That makes the website and what people find about you online far more consequential here than in a business that lives on walk-in trade. A resort with no direct booking path pays commission on every guest an aggregator sends. A hospital whose site does not list departments and doctors properly loses patients who were actively looking for exactly that. These are not branding problems, they are revenue problems.",
+        "That makes the website and what people find about you online far more consequential here than in a business that lives on walk in trade. A resort with no direct booking path pays commission on every guest an aggregator sends. A hospital whose site does not list departments and doctors properly loses patients who were actively looking for exactly that. These are not branding problems, they are revenue problems.",
         "The second half is operations. Bharatpur's hospitals and diagnostic centres, the colleges, and the agro and trading businesses around them all run at a scale where paper registers cost real money in errors and delays. We build the systems underneath: lab and hospital software, billing and inventory, admissions and student records, service tracking, and reporting owners can read.",
         "We work remotely with a fixed communication rhythm and travel to Chitwan when a project needs someone in the room, which is usually during requirement study and staff training.",
       ],
@@ -838,7 +838,7 @@ export const extraSeoLandingPages = {
       "The website looks acceptable on a laptop but is slow and awkward on the phones most customers actually use.",
       "Hospitals and diagnostic centres run registration, reporting, and billing on separate systems that do not reconcile.",
       "Colleges handle admissions, fees, and student records across spreadsheets held by different departments.",
-      "Inquiries arrive on Facebook, phone, and email with no shared record, so follow-up depends on who remembers.",
+      "Inquiries arrive on Facebook, phone, and email with no shared record, so follow up depends on who remembers.",
       "Nobody can say which marketing spend produced which booking or admission.",
     ],
     solutions: [
@@ -846,7 +846,7 @@ export const extraSeoLandingPages = {
       "Design mobile first for real Nepali network conditions, because that is where the decision is being made.",
       "Put lab, hospital, or clinic operations on one system covering registration, reporting, and billing together.",
       "Build admission, fee, and student record systems for colleges so departments stop keeping parallel copies.",
-      "Route every inquiry into one tracked list with an owner, a follow-up date, and a visible outcome.",
+      "Route every inquiry into one tracked list with an owner, a follow up date, and a visible outcome.",
       "Connect campaigns to inquiry tracking so marketing spend can be judged on bookings rather than reach.",
     ],
     features: [
@@ -855,10 +855,10 @@ export const extraSeoLandingPages = {
       "Lab and diagnostic centre software",
       "College and admission management systems",
       "Billing and inventory software",
-      "E-commerce and online ordering",
+      "Ecommerce and online ordering",
       "Local SEO and Google Business Profile",
       "Social media and campaign management",
-      "Lead tracking and follow-up systems",
+      "Lead tracking and follow up systems",
       "Mobile applications",
       "Management reporting dashboards",
       "Ongoing maintenance and support",
@@ -918,7 +918,7 @@ export const extraSeoLandingPages = {
       {
         question: "Do you work with hotels and resorts in Sauraha?",
         answer:
-          "Yes. The work that usually matters most is a fast mobile site with a direct booking or inquiry path, proper photography presentation, and local search visibility, so a share of bookings arrives without an aggregator commission attached. We also connect inquiries to a tracked follow-up list, since resort inquiries often go cold from slow replies rather than price.",
+          "Yes. The work that usually matters most is a fast mobile site with a direct booking or inquiry path, proper photography presentation, and local search visibility, so a share of bookings arrives without an aggregator commission attached. We also connect inquiries to a tracked follow up list, since resort inquiries often go cold from slow replies rather than price.",
       },
       {
         question: "Can you build software for a hospital or lab in Bharatpur?",
@@ -941,7 +941,7 @@ export const extraSeoLandingPages = {
   biratnagar: {
     slug: "it-company-in-biratnagar",
     path: "/it-company-in-biratnagar",
-    metaTitle: "IT Company in Biratnagar | Software & Web Development | Infobytes Nepal",
+    metaTitle: "IT Company in Biratnagar | Infobytes Nepal",
     metaDescription:
       "Infobytes Nepal builds custom software, ERP and inventory systems, websites, and digital marketing for industries, traders, and businesses in Biratnagar and Morang.",
     ogTitle: "IT Company in Biratnagar | Infobytes Nepal",
@@ -969,7 +969,7 @@ export const extraSeoLandingPages = {
       "Owners get reports days late, assembled by hand from several sources.",
     ],
     solutions: [
-      "Build multi-location stock into one system so factory, godown, and depot figures roll into a single trusted total.",
+      "Build multi location stock into one system so factory, godown, and depot figures roll into a single trusted total.",
       "Track receivables and credit limits per party with ageing, so exposure is visible before it becomes a loss.",
       "Record dispatch with a delivery trail, so disputes are settled by the record rather than by memory.",
       "Connect purchase, production, and sales data so costing and margin come from actual numbers.",
@@ -977,14 +977,14 @@ export const extraSeoLandingPages = {
       "Deliver daily owner reporting from live data instead of a compiled file that arrives too late to act on.",
     ],
     features: [
-      "Inventory and multi-warehouse management",
+      "Inventory and multi warehouse management",
       "Purchase, sales, and dispatch systems",
       "Receivables and credit control",
       "Distribution and depot management",
-      "ERP-style modules built to scope",
+      "ERP style modules built to scope",
       "Barcode and stock movement tracking",
       "Corporate and product websites",
-      "E-commerce and B2B ordering portals",
+      "Ecommerce and B2B ordering portals",
       "Lead tracking and CRM",
       "Local and national SEO",
       "Owner and management dashboards",
@@ -1033,7 +1033,7 @@ export const extraSeoLandingPages = {
       {
         href: "/inventory-management-software-in-nepal",
         label: "inventory management software in Nepal",
-        text: "Multi-warehouse stock, movement tracking, and reorder control.",
+        text: "Multi warehouse stock, movement tracking, and reorder control.",
       },
       {
         href: "/business-automation-software-nepal",
@@ -1055,7 +1055,7 @@ export const extraSeoLandingPages = {
       {
         question: "Can the system handle multiple warehouses and depots?",
         answer:
-          "Yes. Multi-location stock with transfers between them, location-wise valuation, and a consolidated position is a standard requirement for businesses here and is built in rather than added as a workaround.",
+          "Yes. Multi location stock with transfers between them, location wise valuation, and a consolidated position is a standard requirement for businesses here and is built in rather than added as a workaround.",
       },
       {
         question: "Will you migrate our existing data?",

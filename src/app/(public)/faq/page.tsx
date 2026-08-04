@@ -9,7 +9,7 @@ import { getCanonicalSiteUrl } from "@/lib/utils";
 export function generateMetadata(): Metadata {
   return basicPageMetadata({
     route: "/faq",
-    title: "FAQ: Website Cost, IT Companies & Software in Nepal | Infobytes Nepal",
+    title: "Website Cost and IT FAQs in Nepal | Infobytes Nepal",
     description:
       "How much does a website cost in Nepal in 2026? How do you choose an IT company? Real price ranges and straight answers on websites, apps, custom software, SEO, and support in Nepal.",
     ogTitle: "Frequently Asked Questions | Infobytes Nepal",

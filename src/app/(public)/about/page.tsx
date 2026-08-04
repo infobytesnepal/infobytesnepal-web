@@ -1,7 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { Building2, Mail, MapPin, Phone } from "lucide-react";
 import CmsImage from "@/components/public/cms-image";
 import GetStartedButton from "@/components/public/get-started-button";
+import SectionImage from "@/components/public/section-image";
 import TeamSection from "@/components/public/team-section";
 import { defaultPageContent } from "@/lib/content";
 import { getPageSection } from "@/lib/data";
@@ -9,9 +11,9 @@ import { getCanonicalSiteUrl } from "@/lib/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getCanonicalSiteUrl();
-  const title = "About | Infobytes Nepal";
+  const title = "About Infobytes Nepal | IT Company in Bhaktapur";
   const description =
-    "Learn about Infobytes Nepal, a trusted IT company in Nepal building custom software, business automation, service management, sales management, and student talent platforms.";
+    "Meet the team behind Infobytes Nepal, an IT company in Kaushaltar, Bhaktapur building custom software, websites, and business automation for companies across Nepal.";
 
   return {
     title,
@@ -76,12 +78,33 @@ export default async function AboutPage() {
   const founderSchema = [
     {
       "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "@id": `${siteUrl}/about#aboutpage`,
+      url: `${siteUrl}/about`,
+      name: "About Infobytes Nepal",
+      description:
+        "Infobytes Nepal Pvt. Ltd. is an IT company based in Kaushaltar, Bhaktapur, Nepal, building custom software, websites, and business automation for companies across Nepal.",
+      inLanguage: "en",
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      about: { "@id": `${siteUrl}/#organization` },
+      mainEntity: { "@id": `${siteUrl}/#organization` },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "About", item: `${siteUrl}/about` },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
       "@type": "Person",
       "@id": `${siteUrl}/about#shiwam-paudel`,
       name: "Shiwam Paudel",
       givenName: "Shiwam",
       familyName: "Paudel",
-      jobTitle: "Co-Founder and CEO",
+      jobTitle: "Cofounder and CEO",
       image: `${siteUrl}/assets/about/shiwam-paudel.png`,
       url: `${siteUrl}/about#shiwam-paudel`,
       worksFor: {
@@ -144,7 +167,67 @@ export default async function AboutPage() {
             <GetStartedButton />
           </div>
         </div>
-        <CmsImage src={section1.imageUrl} alt={section1.title} width={900} height={620} className="rounded-[32px] border border-primary-blue/12 object-cover shadow-[0_24px_70px_rgba(4,18,63,0.1)]" />
+        <CmsImage
+          src={section1.imageUrl}
+          alt="The Infobytes Nepal team building custom software and websites at the office in Bhaktapur Nepal"
+          width={900}
+          height={620}
+          className="rounded-[32px] border border-primary-blue/12 object-cover shadow-[0_24px_70px_rgba(4,18,63,0.1)]"
+        />
+      </section>
+
+      {/*
+        Plain company facts in one block. This is the section an AI assistant
+        lifts when someone asks what Infobytes Nepal is, where it is, and what
+        it does, so the answers are written to stand on their own.
+      */}
+      <section className="mx-auto mt-20 max-w-7xl">
+        <div className="rounded-[32px] border border-primary-blue/12 bg-soft-blue/35 p-7 md:p-10">
+          <h2 className="text-2xl font-semibold text-deep-navy md:text-4xl">What is Infobytes Nepal?</h2>
+          <p className="mt-5 max-w-4xl text-lg leading-8 text-dark-text/78">
+            Infobytes Nepal Pvt. Ltd. is a registered IT company in Nepal. We build custom software, websites, and business
+            automation for companies that have outgrown spreadsheets and want systems their staff will actually use. We also
+            build and support five of our own products, which means we live with the same code we sell.
+          </p>
+          <dl className="mt-9 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { term: "Legal name", value: "Infobytes Nepal Pvt. Ltd.", icon: Building2 },
+              { term: "Office", value: "Kaushaltar, Bhaktapur, Nepal", icon: MapPin },
+              { term: "Phone", value: "+977 9843468715", icon: Phone, href: "tel:+9779843468715" },
+              { term: "Email", value: "info@infobytesnepal.com", icon: Mail, href: "mailto:info@infobytesnepal.com" },
+            ].map((fact) => (
+              <div key={fact.term}>
+                <dt className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-dark-text/55">
+                  <fact.icon size={14} className="text-primary-blue" />
+                  {fact.term}
+                </dt>
+                <dd className="mt-2 font-semibold text-deep-navy">
+                  {fact.href ? (
+                    <a href={fact.href} className="focus-ring rounded transition hover:text-primary-blue">
+                      {fact.value}
+                    </a>
+                  ) : (
+                    fact.value
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <div className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              "Custom software and web applications",
+              "Websites, ecommerce, and landing pages",
+              "SEO and digital marketing",
+              "Business automation and CRM systems",
+              "Mobile and progressive web apps",
+              "Graphic design and IT training",
+            ].map((item) => (
+              <p key={item} className="rounded-2xl border border-primary-blue/10 bg-white/85 px-4 py-3 text-sm font-semibold text-deep-navy">
+                {item}
+              </p>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="mx-auto mt-20 grid max-w-7xl items-center gap-10 lg:grid-cols-2">
@@ -153,7 +236,7 @@ export default async function AboutPage() {
             <div key={`${logo}-${index}`} className="flex aspect-square items-center justify-center rounded-2xl border border-primary-blue/10 bg-white/88 p-4 shadow-[0_10px_28px_rgba(4,18,63,0.05)]">
               <CmsImage
                 src={logo}
-                alt={`Infobytes Nepal technology logo ${index + 1}`}
+                alt="Technology used by Infobytes Nepal to build software and websites in Nepal"
                 width={64}
                 height={64}
                 className="h-10 w-10 object-contain md:h-12 md:w-12"
@@ -189,7 +272,7 @@ export default async function AboutPage() {
           <div className="relative z-10 mt-2 md:mt-0">
             <h2 className="text-2xl font-semibold md:text-4xl">Where it began</h2>
             <p className="mt-4 max-w-xl leading-7">
-              Every great idea starts with a thought. From a simple tea-time talks but with a vision to solve real-world problems with few lines of code, Pravyo is a beginning, we could do a lot more with Technology.
+              Every great idea starts with a thought. From simple tea time talks, but with a vision to solve real problems with a few lines of code, Pravyo is a beginning. We could do a lot more with technology.
             </p>
             <p className="mt-7 font-semibold italic">Rajesh Pandey</p>
             <p className="italic">Founder, Infobytes Nepal</p>
@@ -210,11 +293,38 @@ export default async function AboutPage() {
             <h2 className="text-2xl font-semibold md:text-4xl">{started.title}</h2>
             <p className="mt-4 max-w-xl leading-7">{started.body}</p>
             <p className="mt-7 font-semibold italic">Shiwam Paudel</p>
-            <p className="italic">Co-Founder & CEO, Infobytes Nepal</p>
+            <p className="italic">Cofounder and CEO, Infobytes Nepal</p>
           </div>
         </article>
  */}
 
+      </section>
+
+      {/* Visual break between the founder story and the goals block. */}
+      <section className="mx-auto mt-20 grid max-w-7xl items-center gap-10 lg:grid-cols-2">
+        <SectionImage
+          src="/assets/about/infobytes-nepal-developers-working-kathmandu.jpg"
+          alt="Infobytes Nepal developers writing code and reviewing designs together at the Bhaktapur office"
+          className="aspect-[4/3]"
+          sizes="(min-width: 1024px) 48vw, 100vw"
+        />
+        <div>
+          <h2 className="text-3xl font-semibold text-deep-navy md:text-5xl">How we actually work</h2>
+          <p className="mt-6 text-lg leading-8 text-dark-text/76">
+            We keep the team small on purpose. The person who plans your system is the person who builds it, and the person you
+            call when something breaks is someone who already knows your setup. No handovers between departments, no ticket
+            queue, no explaining your business twice.
+          </p>
+          <p className="mt-5 leading-8 text-dark-text/72">
+            Projects go live in stages rather than one big switch. Your team starts using the first part while we build the
+            next, so problems surface early and the finished system matches how people really work.
+          </p>
+          <div className="mt-8">
+            <Link href="/services" className="focus-ring site-button rounded-full px-6 py-3 font-semibold">
+              See what we build
+            </Link>
+          </div>
+        </div>
       </section>
 
       <section className="mx-auto mt-20 max-w-7xl">

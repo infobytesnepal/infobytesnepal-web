@@ -35,9 +35,9 @@ export const faqGroups: FaqGroup[] = [
         id: "website-cost-nepal-2026",
         question: "How much does a website cost in Nepal in 2026?",
         answer:
-          "In 2026, a simple professional business website in Nepal typically costs around NPR 50,000 to NPR 150,000, a custom-designed website with a content management system and proper SEO structure usually costs around NPR 100,000 to NPR 250,000, and larger custom web platforms generally start above NPR 250,000 and are quoted by scope.",
+          "In 2026, a simple professional business website in Nepal typically costs around NPR 50,000 to NPR 150,000, a custom designed website with a content management system and proper SEO structure usually costs around NPR 100,000 to NPR 250,000, and larger custom web platforms generally start above NPR 250,000 and are quoted by scope.",
         more: [
-          "The number moves on five things: how many pages you need, whether the design is custom or template-based, the features involved (forms, bookings, dashboards, payments, multi-language), how much content and SEO work is included, and the level of ongoing support after launch.",
+          "The number moves on five things: how many pages you need, whether the design is custom or template based, the features involved (forms, bookings, dashboards, payments, multi language), how much content and SEO work is included, and the level of ongoing support after launch.",
           "Budget one more line that many quotes leave out: domain and hosting are recurring yearly costs, and content (photos, product details, and written copy) takes real time whether you produce it or pay someone to. A website that loads fast, ranks, and brings inquiries is usually worth more than the cheapest quote you can find.",
         ],
         links: [
@@ -47,11 +47,11 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         id: "ecommerce-website-cost-nepal",
-        question: "How much does an e-commerce website cost in Nepal?",
+        question: "How much does an ecommerce website cost in Nepal?",
         answer:
-          "A basic online store in Nepal typically costs around NPR 80,000 to NPR 200,000, while a custom e-commerce build with local payment gateways, inventory sync, delivery integration, and a proper admin panel usually ranges from around NPR 200,000 to NPR 500,000.",
+          "A basic online store in Nepal typically costs around NPR 80,000 to NPR 200,000, while a custom ecommerce build with local payment gateways, inventory sync, delivery integration, and a proper admin panel usually ranges from around NPR 200,000 to NPR 500,000.",
         more: [
-          "Cost rises with the catalogue size, product variations (size, colour, weight), whether you need multi-vendor or multi-branch stock, and how many integrations you want: eSewa, Khalti, Fonepay, ConnectIPS, courier partners, accounting, or a POS.",
+          "Cost rises with the catalogue size, product variations (size, colour, weight), whether you need multi vendor or multi branch stock, and how many integrations you want: eSewa, Khalti, Fonepay, ConnectIPS, courier partners, accounting, or a POS.",
           "Also plan for running costs: payment gateway transaction fees, hosting that can handle traffic spikes during festive campaigns, and someone to manage products and orders daily. An online store is an operation, not just a build.",
         ],
         links: [
@@ -62,10 +62,10 @@ export const faqGroups: FaqGroup[] = [
         id: "mobile-app-cost-nepal",
         question: "How much does a mobile app cost in Nepal in 2026?",
         answer:
-          "A small, focused mobile app or PWA in Nepal generally starts from around NPR 150,000, mid-range apps with user accounts, dashboards, and several core features commonly range from around NPR 300,000 to NPR 800,000, and complex apps with payments, live tracking, or heavy integrations are quoted above that based on scope.",
+          "A small, focused mobile app or PWA in Nepal generally starts from around NPR 150,000, mid range apps with user accounts, dashboards, and several core features commonly range from around NPR 300,000 to NPR 800,000, and complex apps with payments, live tracking, or heavy integrations are quoted above that based on scope.",
         more: [
           "Most business apps also need a web backend and an admin panel, which should be counted in the budget from day one rather than discovered halfway through.",
-          "Add the recurring items: Google Play has a one-time developer fee and the Apple Developer Program is billed yearly, plus server, notification, and map or SMS service costs depending on what the app does.",
+          "Add the recurring items: Google Play has a one time developer fee and the Apple Developer Program is billed yearly, plus server, notification, and map or SMS service costs depending on what the app does.",
         ],
         links: [
           { href: "/mobile-app-development-cost-in-nepal", label: "Full app pricing guide" },
@@ -76,10 +76,10 @@ export const faqGroups: FaqGroup[] = [
         id: "custom-software-cost-nepal",
         question: "How much does custom software, a CRM, or an ERP cost in Nepal?",
         answer:
-          "A focused first version of custom software in Nepal (one department, a clear workflow, a working admin panel) typically ranges from around NPR 200,000 to NPR 600,000, while multi-department systems that connect sales, inventory, service, accounts, and reporting generally range from around NPR 600,000 upward and are quoted by module.",
+          "A focused first version of custom software in Nepal (one department, a clear workflow, a working admin panel) typically ranges from around NPR 200,000 to NPR 600,000, while multi department systems that connect sales, inventory, service, accounts, and reporting generally range from around NPR 600,000 upward and are quoted by module.",
         more: [
           "Custom software is priced by workflow complexity, number of user roles, integrations with existing tools, and the reporting you need, not by page count.",
-          "The most reliable way to control the cost is to build the highest-value module first, put it in real use, and expand from what the team actually needs after a few months of usage.",
+          "The most reliable way to control the cost is to build the highest value module first, put it in real use, and expand from what the team actually needs after a few months of usage.",
         ],
         links: [
           { href: "/software-development-company-in-nepal", label: "Software development in Nepal" },
@@ -91,9 +91,9 @@ export const faqGroups: FaqGroup[] = [
         id: "seo-cost-nepal",
         question: "How much does SEO cost per month in Nepal?",
         answer:
-          "Ongoing SEO in Nepal typically costs around NPR 45,000 to NPR 80,000 per month for a small or mid-sized business, with competitive national keywords and larger content programmes priced higher. A one-time SEO audit and technical fix-up usually falls between NPR 20,000 and NPR 60,000.",
+          "Ongoing SEO in Nepal typically costs around NPR 45,000 to NPR 80,000 per month for a small or mid sized business, with competitive national keywords and larger content programmes priced higher. A one time SEO audit and technical fix up usually falls between NPR 20,000 and NPR 60,000.",
         more: [
-          "What you are paying for each month is a mix of technical fixes, on-page optimisation, content, internal linking, Google Business Profile work, and reporting. A monthly retainer that includes no content production rarely moves rankings.",
+          "What you are paying for each month is a mix of technical fixes, on page optimisation, content, internal linking, Google Business Profile work, and reporting. A monthly retainer that includes no content production rarely moves rankings.",
           "Treat any package that promises guaranteed rankings for a fixed low fee with caution. That is not how search works, and the shortcuts used to fake it can damage a site.",
         ],
         links: [{ href: "/seo-company-in-nepal", label: "SEO services in Nepal" }],
@@ -150,7 +150,7 @@ export const faqGroups: FaqGroup[] = [
         id: "why-quotes-vary",
         question: "Why do website and software quotes in Nepal vary so much?",
         answer:
-          "Quotes vary because they are rarely quoting the same thing. One may be a template installed in a week with stock content, another a custom-designed, SEO-structured build with a CMS, training, and support. Until the scope is written down, the prices are not comparable.",
+          "Quotes vary because they are rarely quoting the same thing. One may be a template installed in a week with stock content, another a custom designed, SEO structured build with a CMS, training, and support. Until the scope is written down, the prices are not comparable.",
         more: [
           "Ask every vendor for the same written breakdown: number of pages, custom or template design, features, who writes the content, whether SEO setup is included, hosting arrangements, training, support period, and what a change costs after launch.",
           "Once quotes describe identical deliverables, the real differences (quality, speed, accountability) become visible, and the cheapest quote often turns out to be the most expensive one over two years.",
@@ -160,7 +160,7 @@ export const faqGroups: FaqGroup[] = [
         id: "payment-terms",
         question: "What are your payment terms, and do you take an advance?",
         answer:
-          "Projects are paid in milestones: an advance to begin, one or more progress payments tied to agreed stages, and a final payment at handover. The exact split, dates, and deliverables are confirmed in writing before any work starts, so there are no surprises mid-project.",
+          "Projects are paid in milestones: an advance to begin, one or more progress payments tied to agreed stages, and a final payment at handover. The exact split, dates, and deliverables are confirmed in writing before any work starts, so there are no surprises mid project.",
         more: [
           "We quote in NPR for clients in Nepal and can quote in USD for clients abroad. Bank transfer and common digital wallets are both accepted.",
           "Ongoing work such as SEO, marketing, maintenance, or support is billed monthly against an agreed scope rather than bundled into the project fee.",
@@ -170,7 +170,7 @@ export const faqGroups: FaqGroup[] = [
         id: "small-budget-start",
         question: "What if my budget is small? Can I still start?",
         answer:
-          "Yes. The practical approach on a small budget is to build a strong first version rather than a stripped-down full system: a focused website or a single working module that solves your most expensive problem, then expand in phases as it earns its return.",
+          "Yes. The practical approach on a small budget is to build a strong first version rather than a stripped down full system: a focused website or a single working module that solves your most expensive problem, then expand in phases as it earns its return.",
         more: [
           "Phasing works because the second version is always better informed than the first. Real usage tells you which features matter, so you spend the later budget on things people actually use.",
           "We will tell you honestly if a requirement does not fit a budget, and what a realistic first phase would look like instead.",
@@ -182,7 +182,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "No. The first conversation and the written quotation are free. You describe the goal, the current workflow, and the constraints, and we come back with a scope, an indicative cost, and a realistic timeline.",
         more: [
-          "If the honest answer is that you do not need what you came asking for, we will say so. A well-scoped small project is better business for both sides than an oversized one that stalls.",
+          "If the honest answer is that you do not need what you came asking for, we will say so. A well scoped small project is better business for both sides than an oversized one that stalls.",
         ],
         links: [{ href: "/contact", label: "Request a quotation" }],
       },
@@ -202,7 +202,7 @@ export const faqGroups: FaqGroup[] = [
         more: [
           "Ask to see two or three live projects similar in size to yours and, where possible, speak to those clients directly. A portfolio of screenshots proves far less than a working site you can load on your phone.",
           "Confirm you will be dealing with the people who do the work, that communication has a named point of contact, and that timelines are written into the agreement with what happens if they slip. Vague scope is the single biggest cause of failed projects in Nepal.",
-          "Finally, judge how a company handles your questions before you pay. A vendor that explains trade-offs plainly, tells you what you do not need, and puts commitments in writing at the quotation stage will usually behave the same way during the project.",
+          "Finally, judge how a company handles your questions before you pay. A vendor that explains tradeoffs plainly, tells you what you do not need, and puts commitments in writing at the quotation stage will usually behave the same way during the project.",
         ],
         links: [
           { href: "/best-it-company-in-nepal", label: "Best IT company in Nepal" },
@@ -224,7 +224,7 @@ export const faqGroups: FaqGroup[] = [
         id: "warning-signs",
         question: "What are the warning signs of a bad IT company or developer?",
         answer:
-          "The clearest warning signs are: a quote with no written scope, guaranteed number-one Google rankings, refusal to hand over code or account access, a price far below every other quote, no contract, and portfolio links that do not open.",
+          "The clearest warning signs are: a quote with no written scope, guaranteed number one Google rankings, refusal to hand over code or account access, a price far below every other quote, no contract, and portfolio links that do not open.",
         more: [
           "Add these to the list: no named point of contact, work that only progresses when you chase it, and pressure to pay the full amount upfront before anything is delivered.",
           "One structural risk that costs Nepali businesses the most: letting a vendor register your domain, hosting, Google, and social accounts under their own email. Always insist those are created in your company's name.",
@@ -234,7 +234,7 @@ export const faqGroups: FaqGroup[] = [
         id: "freelancer-vs-company",
         question: "Should I hire a freelancer or an IT company in Nepal?",
         answer:
-          "Hire a freelancer for small, well-defined, one-off work where cost matters most; hire a company when the project spans design, development, SEO, and support, when it must keep running after launch, or when continuity matters more than the lowest price.",
+          "Hire a freelancer for small, well defined, one off work where cost matters most; hire a company when the project spans design, development, SEO, and support, when it must keep running after launch, or when continuity matters more than the lowest price.",
         more: [
           "The real difference is not skill, many freelancers in Nepal are excellent, it is coverage. A company has more than one person who understands your project, so a phone that stops being answered is not the end of your website.",
           "If you do work with a freelancer, keep ownership of your accounts and insist on documented handover. That single precaution removes most of the risk.",
@@ -244,7 +244,7 @@ export const faqGroups: FaqGroup[] = [
         id: "local-vs-foreign",
         question: "Is it better to hire a local Nepali company or an overseas agency?",
         answer:
-          "For most businesses operating in Nepal, a local company is the practical choice, for local payment gateways, Nepali content and dates, on-the-ground support, invoicing in NPR, and the ability to meet in person all matter more than they appear to on paper.",
+          "For most businesses operating in Nepal, a local company is the practical choice, for local payment gateways, Nepali content and dates, on the ground support, invoicing in NPR, and the ability to meet in person all matter more than they appear to on paper.",
         more: [
           "Overseas agencies make sense when you need a specialised skill that is genuinely scarce locally, or when your customers are entirely outside Nepal.",
           "Cost is not the deciding factor people expect: Nepali teams generally cost less, but the real advantage is time zone, context, and accountability.",
@@ -268,7 +268,7 @@ export const faqGroups: FaqGroup[] = [
           "You should own all of it: the code, the design files, the content, the domain, the hosting, and every account created for your business. At Infobytes Nepal this is the default: on final payment, ownership and full access transfer to you in writing.",
         more: [
           "Before you sign with anyone, make sure the agreement says this explicitly. Some vendors retain the code or keep accounts under their own credentials, which quietly locks you in and makes changing vendors expensive.",
-          "Ask for a handover that includes source code, admin credentials, domain registrar access, hosting access, and any third-party service accounts.",
+          "Ask for a handover that includes source code, admin credentials, domain registrar access, hosting access, and any third party service accounts.",
         ],
       },
       {
@@ -293,7 +293,7 @@ export const faqGroups: FaqGroup[] = [
         id: "website-timeline",
         question: "How long does it take to build a website in Nepal?",
         answer:
-          "A simple business website usually takes 2 to 4 weeks, a custom-designed website with a CMS typically takes 4 to 8 weeks, and an online store or custom web platform generally takes 8 to 16 weeks depending on features and integrations.",
+          "A simple business website usually takes 2 to 4 weeks, a custom designed website with a CMS typically takes 4 to 8 weeks, and an online store or custom web platform generally takes 8 to 16 weeks depending on features and integrations.",
         more: [
           "The most common cause of delay is not development. It is content. Projects wait on logos, product details, photos, and approvals far more often than on code.",
           "If a deadline is fixed, say so at the start. We can plan a phased launch that puts a solid first version live on time and adds the rest afterwards.",
@@ -311,7 +311,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         id: "wordpress-vs-custom",
-        question: "WordPress or a custom-coded website: which is better for my business?",
+        question: "WordPress or a custom coded website: which is better for my business?",
         answer:
           "Choose WordPress when you want to publish and edit content frequently and your needs are standard; choose a custom build when you need speed, unusual workflows, custom dashboards, or an application rather than a set of pages.",
         more: [
@@ -337,7 +337,7 @@ export const faqGroups: FaqGroup[] = [
         id: "redesign-existing-website",
         question: "Can you redesign or fix our existing website?",
         answer:
-          "Yes. We take on redesigns, rebuilds, speed and mobile fixes, security clean-ups, and migrations from an old site or a previous developer.",
+          "Yes. We take on redesigns, rebuilds, speed and mobile fixes, security clean ups, and migrations from an old site or a previous developer.",
         more: [
           "We start with a review of what exists: what is worth keeping, what is causing the problems, and whether a fix or a rebuild is the better investment. Sometimes the honest answer is that a repair is enough.",
           "During a redesign, existing SEO value is preserved with proper URL mapping and redirects so you do not lose the rankings you already have.",
@@ -347,7 +347,7 @@ export const faqGroups: FaqGroup[] = [
         id: "mobile-friendly",
         question: "Will my website work properly on mobile?",
         answer:
-          "Yes. Every website we build is designed mobile-first and tested across phone, tablet, and desktop before launch. In Nepal the majority of visitors arrive on a phone, so mobile is the primary design target, not an afterthought.",
+          "Yes. Every website we build is designed mobile first and tested across phone, tablet, and desktop before launch. In Nepal the majority of visitors arrive on a phone, so mobile is the primary design target, not an afterthought.",
         more: [
           "Google also evaluates the mobile version of your site for ranking, so a site that breaks on a phone loses both customers and visibility.",
         ],
@@ -440,7 +440,7 @@ export const faqGroups: FaqGroup[] = [
         id: "delivery-and-inventory",
         question: "Can you integrate delivery partners, inventory, and POS?",
         answer:
-          "Yes. We connect online stores to courier and delivery workflows, inventory systems, and point-of-sale software so online and offline stock stay consistent rather than being reconciled by hand.",
+          "Yes. We connect online stores to courier and delivery workflows, inventory systems, and point of sale software so online and offline stock stay consistent rather than being reconciled by hand.",
         more: [
           "Where a delivery partner offers an API, we integrate it directly; where they do not, we build order exports and status updates that fit their process.",
         ],
@@ -469,9 +469,9 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         id: "ranking-guarantee",
-        question: "Can you guarantee first-page Google rankings?",
+        question: "Can you guarantee first page Google rankings?",
         answer:
-          "No, and no honest agency can. Google's ranking system is not controlled by any vendor. What we can commit to is the work that reliably produces rankings: technical health, well-structured content, correct on-page optimisation, internal linking, local search setup, and transparent monthly reporting.",
+          "No, and no honest agency can. Google's ranking system is not controlled by any vendor. What we can commit to is the work that reliably produces rankings: technical health, well structured content, correct on page optimisation, internal linking, local search setup, and transparent monthly reporting.",
         more: [
           "We do set measurable targets (keyword positions, impressions, clicks, and inquiries) and report against them monthly so you can judge progress on evidence rather than promises.",
         ],
@@ -482,7 +482,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "Usually because the Google Business Profile is unverified, incomplete, or duplicated. Fixing it means claiming and verifying the profile, completing every field, using a consistent name, address, and phone number everywhere online, adding real photos, and collecting genuine reviews steadily.",
         more: [
-          "Local ranking depends heavily on proximity, relevance, and prominence. Consistent business details across your website, Google, Facebook, and local directories is one of the highest-return tasks for a Nepali business.",
+          "Local ranking depends heavily on proximity, relevance, and prominence. Consistent business details across your website, Google, Facebook, and local directories is one of the highest return tasks for a Nepali business.",
           "Duplicate or old listings from previous owners or staff are a common hidden cause. Those need to be found and merged.",
         ],
       },
@@ -492,16 +492,16 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "For Facebook and Instagram, a realistic starting budget in Nepal is around NPR 10,000 to NPR 50,000 per month; Google Ads usually needs a similar or larger budget because cost per click depends on keyword competition. Management fees are charged separately from the ad spend itself.",
         more: [
-          "Spend enough for the platform to learn. Very small budgets spread across many campaigns rarely produce usable data. One well-targeted campaign beats five underfunded ones.",
+          "Spend enough for the platform to learn. Very small budgets spread across many campaigns rarely produce usable data. One well targeted campaign beats five underfunded ones.",
           "Before scaling spend, make sure the destination converts. Paying to send traffic to a slow or unclear page is the most common way marketing budgets are wasted.",
         ],
         links: [{ href: "/digital-marketing-company-in-nepal", label: "Digital marketing in Nepal" }],
       },
       {
         id: "nepali-language-seo",
-        question: "Do you do SEO for Nepali-language searches?",
+        question: "Do you do SEO for Nepali language searches?",
         answer:
-          "Yes. We optimise for Nepali-language and romanised Nepali search terms as well as English, because a large share of local searches are typed in a mix of both.",
+          "Yes. We optimise for Nepali language and romanised Nepali search terms as well as English, because a large share of local searches are typed in a mix of both.",
         more: [
           "This matters most for local service businesses, where customers search the way they speak rather than in formal keywords.",
         ],
@@ -524,9 +524,9 @@ export const faqGroups: FaqGroup[] = [
     faqs: [
       {
         id: "buy-vs-build",
-        question: "Should we buy ready-made software or build something custom?",
+        question: "Should we buy ready made software or build something custom?",
         answer:
-          "Buy ready-made when your process is standard and a proven tool already fits it; build custom when your workflow is genuinely specific, when off-the-shelf licensing becomes expensive at your team size, or when you keep paying people to work around a tool's limitations.",
+          "Buy ready made when your process is standard and a proven tool already fits it; build custom when your workflow is genuinely specific, when off the shelf licensing becomes expensive at your team size, or when you keep paying people to work around a tool's limitations.",
         more: [
           "A useful test: if your team maintains parallel spreadsheets alongside the software they already pay for, the tool does not fit the workflow.",
           "There is also a middle path we often recommend: keep the standard tools and build only the connecting layer or the one module that is genuinely unique to your business.",
@@ -540,7 +540,7 @@ export const faqGroups: FaqGroup[] = [
         id: "custom-software-timeline",
         question: "How long does custom software take to build?",
         answer:
-          "A focused first version typically takes 6 to 12 weeks, and a larger multi-module system generally takes 4 to 9 months, delivered module by module rather than in one release at the end.",
+          "A focused first version typically takes 6 to 12 weeks, and a larger multi module system generally takes 4 to 9 months, delivered module by module rather than in one release at the end.",
         more: [
           "We deliver in stages deliberately: your team starts using the first module while the next is being built, so problems surface early and the final system reflects real usage rather than assumptions made in month one.",
         ],
@@ -552,7 +552,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "Yes, in most cases. We integrate with accounting software, POS systems, SMS gateways, payment gateways, Google Workspace, and other tools where an API or a supported data exchange exists.",
         more: [
-          "Where a system has no API, which is common with older local software, we build scheduled imports and exports so data still flows without manual re-entry.",
+          "Where a system has no API, which is common with older local software, we build scheduled imports and exports so data still flows without manual reentry.",
           "Tell us your existing tools at the quotation stage. Integration effort is much cheaper to plan for than to retrofit.",
         ],
       },
@@ -560,17 +560,17 @@ export const faqGroups: FaqGroup[] = [
         id: "data-security",
         question: "Is our data safe, and where is it hosted?",
         answer:
-          "Your data is yours, hosted on infrastructure you own or control, with encrypted connections, role-based access so staff only see what they should, and regular automated backups.",
+          "Your data is yours, hosted on infrastructure you own or control, with encrypted connections, role based access so staff only see what they should, and regular automated backups.",
         more: [
           "We can host on international cloud providers for reliability and speed, or on local infrastructure where your policy or client requirements demand data stay in Nepal.",
-          "We sign non-disclosure agreements on request, and access to production systems is limited and handed over to you at project close.",
+          "We sign nondisclosure agreements on request, and access to production systems is limited and handed over to you at project close.",
         ],
       },
       {
         id: "offline-and-low-internet",
         question: "Can the system work with poor internet or offline?",
         answer:
-          "Yes, where the workflow requires it. For field teams and locations with unreliable connectivity, we build offline-capable apps that store data locally and sync automatically once a connection returns.",
+          "Yes, where the workflow requires it. For field teams and locations with unreliable connectivity, we build offline capable apps that store data locally and sync automatically once a connection returns.",
         more: [
           "This is a common requirement for field service, field sales, and site inspection work across Nepal, and it is one of the reasons our own products handle it natively.",
         ],
@@ -580,9 +580,9 @@ export const faqGroups: FaqGroup[] = [
         id: "billing-and-ird",
         question: "Can you build billing that meets Nepal's tax and IRD requirements?",
         answer:
-          "We build billing and invoicing modules with VAT and PAN handling, Nepali (Bikram Sambat) dates, and the reporting formats local accounting expects. Note that billing software used by VAT-registered businesses in Nepal must meet Inland Revenue Department requirements and be approved by the IRD before use.",
+          "We build billing and invoicing modules with VAT and PAN handling, Nepali (Bikram Sambat) dates, and the reporting formats local accounting expects. Note that billing software used by VAT registered businesses in Nepal must meet Inland Revenue Department requirements and be approved by the IRD before use.",
         more: [
-          "Depending on your situation, the right path is either building to those specifications and going through the approval process, or integrating your operations system with an already-approved billing package so invoices stay compliant.",
+          "Depending on your situation, the right path is either building to those specifications and going through the approval process, or integrating your operations system with an already approved billing package so invoices stay compliant.",
           "We will tell you which route applies to your business at the scoping stage rather than after the build.",
         ],
       },
@@ -627,7 +627,7 @@ export const faqGroups: FaqGroup[] = [
         id: "lab-software-cost-nepal",
         question: "How much does lab software cost in Nepal?",
         answer:
-          "It depends on the number of counters and users, whether analyser interfacing is needed, how many branches or collection centres you run, and whether you host it yourself or we host it. A single-branch lab with manual result entry sits at the low end; a multi-branch diagnostic centre with interfacing sits considerably higher.",
+          "It depends on the number of counters and users, whether analyser interfacing is needed, how many branches or collection centres you run, and whether you host it yourself or we host it. A single branch lab with manual result entry sits at the low end; a multi branch diagnostic centre with interfacing sits considerably higher.",
         more: [
           "We quote against your actual monthly test volume, branch count, and test menu rather than publishing a package price, because lab requirements vary more than most software categories. Setup, catalogue loading, report formatting, and staff training are quoted as part of the project rather than appearing as surprises later.",
         ],
@@ -639,7 +639,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "Yes, for analysers that support standard interfacing. Results transfer from the machine into the result entry screen directly, which removes the transcription errors that cause most rework in a busy lab. Machines without an interface port are handled by manual entry through the same verification path.",
         more: [
-          "Interfacing is worth doing for high-volume machines in biochemistry and haematology, where the transcription load is heaviest. For low-volume specialised tests it often is not worth the setup cost, and we will say so rather than adding it to a quote.",
+          "Interfacing is worth doing for high volume machines in biochemistry and haematology, where the transcription load is heaviest. For low volume specialised tests it often is not worth the setup cost, and we will say so rather than adding it to a quote.",
         ],
       },
       {
@@ -653,7 +653,7 @@ export const faqGroups: FaqGroup[] = [
         id: "hospital-vs-lab-software",
         question: "We are a hospital with a lab. Do we need both systems?",
         answer:
-          "Usually one system with a lab module, not two. If the lab mainly serves your own OPD and IPD patients, a hospital system with proper lab functionality avoids double registration and double billing. A lab that also takes significant outside and referral work often needs the deeper lab-specific features, in which case the two are built to share patient and billing records.",
+          "Usually one system with a lab module, not two. If the lab mainly serves your own OPD and IPD patients, a hospital system with proper lab functionality avoids double registration and double billing. A lab that also takes significant outside and referral work often needs the deeper lab specific features, in which case the two are built to share patient and billing records.",
         links: [
           { href: "/hospital-management-software-in-nepal", label: "Hospital management software in Nepal" },
           { href: "/lab-software-in-nepal", label: "Lab software in Nepal" },
@@ -680,9 +680,9 @@ export const faqGroups: FaqGroup[] = [
         id: "communication",
         question: "How do we communicate during the project?",
         answer:
-          "You get a named point of contact, agreed check-ins at each milestone, and a shared preview link so you can see progress as it happens rather than waiting for a reveal at the end.",
+          "You get a named point of contact, agreed check ins at each milestone, and a shared preview link so you can see progress as it happens rather than waiting for a reveal at the end.",
         more: [
-          "Day-to-day communication happens on whatever channel suits you (email, phone, WhatsApp, or Viber) and decisions that affect scope, cost, or timeline are always confirmed in writing.",
+          "Day to day communication happens on whatever channel suits you (email, phone, WhatsApp, or Viber) and decisions that affect scope, cost, or timeline are always confirmed in writing.",
         ],
       },
       {
@@ -716,15 +716,15 @@ export const faqGroups: FaqGroup[] = [
         id: "nda",
         question: "Will you sign an NDA?",
         answer:
-          "Yes. We sign non-disclosure agreements on request, and we treat client data, business processes, and unreleased plans as confidential by default whether or not an NDA is in place.",
+          "Yes. We sign nondisclosure agreements on request, and we treat client data, business processes, and unreleased plans as confidential by default whether or not an NDA is in place.",
       },
       {
         id: "rescue-project",
         question: "Can you take over a project another developer abandoned?",
         answer:
-          "Yes. We regularly take over half-finished or unsupported projects. We start with an assessment of the existing code, hosting, and accounts, then give you an honest recommendation on whether to continue it or rebuild.",
+          "Yes. We regularly take over half finished or unsupported projects. We start with an assessment of the existing code, hosting, and accounts, then give you an honest recommendation on whether to continue it or rebuild.",
         more: [
-          "Before anything else, secure what you can: domain registrar access, hosting credentials, source code, database backups, and any third-party accounts. Recovering those later is the hardest part of a rescue.",
+          "Before anything else, secure what you can: domain registrar access, hosting credentials, source code, database backups, and any third party accounts. Recovering those later is the hardest part of a rescue.",
         ],
       },
       {
@@ -733,7 +733,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "Yes. We work with businesses across Nepal (Kathmandu, Lalitpur, Bhaktapur, Pokhara, Chitwan, Butwal, Biratnagar and beyond) and with clients abroad. Most collaboration happens online, so location is rarely a barrier.",
         more: [
-          "For clients in the Kathmandu Valley, in-person meetings are easy to arrange at our Kaushaltar, Bhaktapur office or at yours.",
+          "For clients in the Kathmandu Valley, in person meetings are easy to arrange at our Kaushaltar, Bhaktapur office or at yours.",
         ],
         links: [
           { href: "/it-company-in-kathmandu", label: "IT company in Kathmandu" },
@@ -753,7 +753,7 @@ export const faqGroups: FaqGroup[] = [
         id: "what-we-do",
         question: "What does Infobytes Nepal do?",
         answer:
-          "Infobytes Nepal is a Nepal-based IT company offering custom software development, web design and development, SEO, digital marketing, graphic design, training, and business automation. We also build focused digital products for field service, sales, lead tracking, and student talent workflows.",
+          "Infobytes Nepal is a Nepal based IT company offering custom software development, web design and development, SEO, digital marketing, graphic design, training, and business automation. We also build focused digital products for field service, sales, lead tracking, and student talent workflows.",
         links: [
           { href: "/services", label: "All services" },
           { href: "/products", label: "Our products" },
@@ -776,9 +776,9 @@ export const faqGroups: FaqGroup[] = [
         id: "who-we-work-with",
         question: "What types of businesses do you work with?",
         answer:
-          "We work with startups, small and growing businesses, consultancies, schools, hospitals and clinics, retailers, service teams, and sales-driven organizations in Nepal that want clearer, more reliable digital systems.",
+          "We work with startups, small and growing businesses, consultancies, schools, hospitals and clinics, retailers, service teams, and sales driven organizations in Nepal that want clearer, more reliable digital systems.",
         more: [
-          "Project size matters less than clarity of purpose. A well-defined small project is welcome; so is a multi-module system replacing years of spreadsheets.",
+          "Project size matters less than clarity of purpose. A well defined small project is welcome; so is a multi module system replacing years of spreadsheets.",
         ],
         links: [
           { href: "/school-management-software-in-nepal", label: "School management software" },
@@ -789,7 +789,7 @@ export const faqGroups: FaqGroup[] = [
         id: "services-vs-products",
         question: "What is the difference between your services and your products?",
         answer:
-          "Services are custom work built around your specific requirements. Products (Nidanyo, LeadRack, Serviol, Purseol, and Pravyo) are ready-made systems for medical laboratories, lead tracking, field service, field sales, and student talent workflows that you can adopt directly and start using much faster.",
+          "Services are custom work built around your specific requirements. Products (Nidanyo, LeadRack, Serviol, Purseol, and Pravyo) are ready made systems for medical laboratories, lead tracking, field service, field sales, and student talent workflows that you can adopt directly and start using much faster.",
         more: [
           "If a product covers most of what you need, adopting and configuring it is usually quicker and cheaper than building from zero. We will tell you which route fits.",
         ],
@@ -806,7 +806,7 @@ export const faqGroups: FaqGroup[] = [
         id: "custom-software-or-websites",
         question: "Do you build custom software or only websites?",
         answer:
-          "Both. We build company websites and landing pages as well as custom web applications, dashboards, CRM-style tools, and automation systems built around your workflow.",
+          "Both. We build company websites and landing pages as well as custom web applications, dashboards, CRM style tools, and automation systems built around your workflow.",
       },
       {
         id: "get-started",

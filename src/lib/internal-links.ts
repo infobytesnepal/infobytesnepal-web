@@ -144,7 +144,7 @@ export const clusters: Cluster[] = [
         "/it-training-institute-in-nepal",
         "IT Training in Nepal",
         ["IT training in Nepal", "practical IT training in Nepal", "web development training in Nepal"],
-        "Project-based training in web development, front-end, marketing, and SEO.",
+        "Project based training in web development, frontend, marketing, and SEO.",
         "company",
       ),
     ],
@@ -183,7 +183,7 @@ export const clusters: Cluster[] = [
         "/crm-software-in-nepal",
         "CRM Software",
         ["CRM software in Nepal", "customer relationship management in Nepal"],
-        "Leads, follow-up, and customer history in one place.",
+        "Leads, follow up, and customer history in one place.",
         "software",
       ),
       node(
@@ -204,7 +204,7 @@ export const clusters: Cluster[] = [
         "/inventory-management-software-in-nepal",
         "Inventory Management Software",
         ["inventory management software in Nepal", "stock management software in Nepal"],
-        "Multi-warehouse stock, movement, and reorder control.",
+        "Multi warehouse stock, movement, and reorder control.",
         "software",
       ),
       node(
@@ -275,12 +275,12 @@ export const clusters: Cluster[] = [
   {
     id: "web",
     title: "Websites, stores, and interfaces",
-    intro: "Everything that lives on the public web: design, build, e-commerce, and keeping it healthy.",
+    intro: "Everything that lives on the public web: design, build, ecommerce, and keeping it healthy.",
     pillar: node(
       "/web-development-company-in-nepal",
       "Web Development Company in Nepal",
       ["web development company in Nepal", "website development in Nepal", "web development in Nepal"],
-      "Fast, mobile-first websites built to be found and to convert.",
+      "Fast, mobile first websites built to be found and to convert.",
       "web",
     ),
     members: [
@@ -300,8 +300,8 @@ export const clusters: Cluster[] = [
       ),
       node(
         "/ecommerce-website-development-nepal",
-        "E-commerce Development",
-        ["e-commerce website development in Nepal", "online store development in Nepal"],
+        "Ecommerce Development",
+        ["ecommerce website development in Nepal", "online store development in Nepal"],
         "Stores with local payments, delivery, and stock that reconciles.",
         "web",
       ),
@@ -349,7 +349,7 @@ export const clusters: Cluster[] = [
       "/digital-marketing-company-in-nepal",
       "Digital Marketing Company in Nepal",
       ["digital marketing company in Nepal", "digital marketing agency in Nepal", "digital marketing in Nepal"],
-      "Campaigns, content, and channels connected to real follow-up.",
+      "Campaigns, content, and channels connected to real follow up.",
       "marketing",
     ),
     members: [
@@ -396,7 +396,7 @@ export const clusters: Cluster[] = [
     pillar: node(
       "/products",
       "Products",
-      ["Infobytes Nepal products", "our software products", "ready-made systems from Infobytes Nepal"],
+      ["Infobytes Nepal products", "our software products", "ready made systems from Infobytes Nepal"],
       "Five systems covering labs, field service, field sales, leads, and student talent.",
       "products",
     ),

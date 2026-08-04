@@ -12,9 +12,9 @@ const geistSans = Geist({
 });
 
 const siteUrl = getCanonicalSiteUrl();
-const defaultTitle = "Software Development Company in Nepal | Infobytes Nepal";
+const defaultTitle = "Best IT Company in Nepal | Infobytes Nepal";
 const defaultDescription =
-  "Infobytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation solutions.";
+  "Looking for the best IT company in Nepal? We build fast websites, custom software, and business automation for companies across Nepal. Get a free consultation today.";
 const defaultOgImage = "/assets/hero/infobytes-hero-fallback.webp";
 const faviconPng = "/favicon.png";
 const faviconIco = "/favicon.ico";
