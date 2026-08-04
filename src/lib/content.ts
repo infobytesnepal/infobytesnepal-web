@@ -132,13 +132,13 @@ export const defaultPageContent = {
     headline: "Best IT Company in Nepal",
     tagline: "Complexities, now simplified.",
     supportingText:
-      "We are Infobytes Nepal. We build fast websites, custom software, and automation that takes the manual work out of your day. Based in Kathmandu Valley, working with businesses right across Nepal.",
+      "We are Infobytes Nepal. We build fast websites, custom software, and automation that takes the manual work out of your day. We deliver for businesses across Nepal and internationally.",
     heroVideoUrl: "/assets/hero/infobytes-hero.mp4",
     fallbackImageUrl: "/assets/hero/infobytes-hero-fallback.webp",
   },
   aboutSection1: {
     title: "An IT company built in Nepal, for Nepal",
-    text: "Infobytes Nepal builds custom software, websites, and automation for teams who are tired of running the business out of spreadsheets and chat groups.",
+    text: "Infobytes Nepal builds custom software, websites, and automation for teams in Nepal and overseas who are tired of running the business out of spreadsheets and chat groups.",
     buttonLabel: "Explore Products",
     buttonUrl: "/products",
     imageUrl: "/assets/about/about-section-1.webp",
@@ -192,7 +192,7 @@ export const defaultPageContent = {
   aboutGoals: {
     goal: "Build systems that busy teams in Nepal actually open every morning, because they make the day easier.",
     vision: "Make complicated business work simple enough that anyone on the team can understand and improve it.",
-    mission: "Give growing companies in Nepal software and websites of the standard usually reserved for much bigger budgets.",
+    mission: "Give growing companies software and websites of the standard usually reserved for much bigger budgets, wherever they are.",
   },
   contactHero: {
     title: "Tell us what is slowing you down",

@@ -120,7 +120,7 @@ export async function organizationSchema() {
     image: toAbsoluteUrl(settings.defaultOgImage),
     slogan: settings.tagline,
     description:
-      "Infobytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, and business automation. It also builds Nidanyo, a laboratory operations and information management system for medical laboratories in Nepal.",
+      "Infobytes Nepal is an IT company delivering custom software development, web development, SEO, digital marketing, and business automation for clients in Nepal and internationally. It also builds Nidanyo, a laboratory operations and information management system for medical laboratories.",
     email: settings.contactEmail || "info@infobytesnepal.com",
     telephone: "+977-9843468715",
     address: {
@@ -130,10 +130,13 @@ export async function organizationSchema() {
       addressRegion: "Bagmati",
       addressCountry: "NP",
     },
-    areaServed: {
-      "@type": "Country",
-      name: "Nepal",
-    },
+    // Nepal stays first because that is the primary search market, but the
+    // company delivers internationally and the entity data should say so.
+    areaServed: [
+      { "@type": "Country", name: "Nepal" },
+      { "@type": "Place", name: "Europe" },
+      { "@type": "Place", name: "Worldwide" },
+    ],
     sameAs: [
       "https://www.facebook.com/infobytesnepal",
       "https://www.instagram.com/infobytesnepal/",
@@ -143,7 +146,7 @@ export async function organizationSchema() {
       contactType: "customer service",
       email: settings.contactEmail || "info@infobytesnepal.com",
       telephone: "+977-9843468715",
-      areaServed: "NP",
+      areaServed: ["NP", "Worldwide"],
       availableLanguage: ["en", "ne"],
     },
     // Wire the people into the Organization entity graph so search engines
@@ -198,10 +201,10 @@ export function professionalServiceSchema() {
       addressRegion: "Bagmati",
       addressCountry: "NP",
     },
-    areaServed: {
-      "@type": "Country",
-      name: "Nepal",
-    },
+    areaServed: [
+      { "@type": "Country", name: "Nepal" },
+      { "@type": "Place", name: "Europe" },
+    ],
     serviceType: [
       "Software Development",
       "Web Design & Development",

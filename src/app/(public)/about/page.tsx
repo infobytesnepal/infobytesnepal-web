@@ -187,8 +187,8 @@ export default async function AboutPage() {
           <h2 className="text-2xl font-semibold text-deep-navy md:text-4xl">What is Infobytes Nepal?</h2>
           <p className="mt-5 max-w-4xl text-lg leading-8 text-dark-text/78">
             Infobytes Nepal Pvt. Ltd. is a registered IT company in Nepal. We build custom software, websites, and business
-            automation for companies that have outgrown spreadsheets and want systems their staff will actually use. We also
-            build and support five of our own products, which means we live with the same code we sell.
+            automation for companies in Nepal and internationally that have outgrown spreadsheets and want systems their staff will actually use. We also
+            build and support our own product suite, which means we live with the same code we sell.
           </p>
           <dl className="mt-9 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
@@ -312,7 +312,7 @@ export default async function AboutPage() {
         <div>
           <h2 className="text-3xl font-semibold text-deep-navy md:text-5xl">How we actually work</h2>
           <p className="mt-6 text-lg leading-8 text-dark-text/76">
-            We keep the team small on purpose. The person who plans your system is the person who builds it, and the person you
+            The person who plans your system is the person who builds it, and the person you
             call when something breaks is someone who already knows your setup. No handovers between departments, no ticket
             queue, no explaining your business twice.
           </p>

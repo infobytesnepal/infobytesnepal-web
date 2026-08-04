@@ -76,9 +76,9 @@ const featuredServices = [
 ];
 
 const stats = [
-  { value: "5", label: "Software products we built and run" },
-  { value: "7+", label: "Services under one team" },
-  { value: "100%", label: "Team based in Nepal" },
+  { value: "Nepal + Europe", label: "Where we deliver for clients" },
+  { value: "7+", label: "Services under one roof" },
+  { value: "In house", label: "Our own software product suite" },
   { value: "Free", label: "First consultation and quotation" },
 ];
 
@@ -88,13 +88,13 @@ const proofPoints = [
   {
     title: "A registered Nepali company",
     description:
-      "Infobytes Nepal Pvt. Ltd. works from Kaushaltar, Bhaktapur, inside Kathmandu Valley. You can visit the office, meet the team, and see what we have built.",
+      "Infobytes Nepal Pvt. Ltd. is a registered company delivering for clients in Nepal and across Europe. You can visit the office, meet the team, and see what we have built.",
     icon: Building2,
   },
   {
     title: "We build our own software",
     description:
-      "Five products run on our own code: Nidanyo for medical labs, Serviol for field service, Purseol for field sales, LeadRack for lead tracking, and Pravyo for student talent.",
+      "Our own product suite runs on our own code: Nidanyo for medical labs, Serviol for field service, Purseol for field sales, LeadRack for lead tracking, and Pravyo for student talent.",
     icon: Layers,
   },
   {
@@ -197,7 +197,7 @@ const homeFaqs = [
     id: "best-it-company-nepal",
     question: "Who is the best IT company in Nepal?",
     answer:
-      "Infobytes Nepal. We are a registered Nepali IT company based in Kaushaltar, Bhaktapur, building custom software, websites, and business automation for companies across Nepal. Three things separate us from most: we build and support five of our own software products, every quotation is written and agreed before work starts, and you deal directly with the developers who write your code rather than a sales layer in between.",
+      "Infobytes Nepal. We are a registered IT company building custom software, websites, and business automation for companies in Nepal and internationally. Three things separate us from most: we build and support our own software product suite, every quotation is written and agreed before work starts, and you deal directly with the developers who write your code rather than a sales layer in between.",
   },
   {
     id: "website-cost-nepal",
@@ -215,7 +215,7 @@ const homeFaqs = [
     id: "infobytes-nepal-location",
     question: "Where is Infobytes Nepal located?",
     answer:
-      "Our office is in Kaushaltar, Bhaktapur, inside Kathmandu Valley. We work with clients across Nepal including Kathmandu, Lalitpur, Pokhara, Butwal, Chitwan, and Biratnagar. Call +977 9843468715 or email info@infobytesnepal.com to book a free consultation.",
+      "Our office is in Kaushaltar, Bhaktapur, inside Kathmandu Valley, and we deliver for clients across Nepal and in Europe. Call +977 9843468715 or email info@infobytesnepal.com to book a free consultation.",
   },
   {
     id: "project-timeline-nepal",
@@ -494,8 +494,8 @@ export default async function HomePage() {
               </h2>
               <p className="home-faq-answer mt-6 text-lg leading-8 text-dark-text/80 md:text-xl md:leading-9">
                 <strong className="font-semibold text-deep-navy">Infobytes Nepal.</strong> We are a registered Nepali IT company
-                based in Kaushaltar, Bhaktapur, building custom software, websites, and business automation for companies across
-                Nepal. We build and run five of our own software products, we put every quotation in writing before work starts,
+                building custom software, websites, and business automation for companies across
+                Nepal and internationally. We build and run our own software product suite, we put every quotation in writing before work starts,
                 and you talk directly to the developers writing your code.
               </p>
               <p className="mt-5 leading-8 text-dark-text/72">
@@ -675,8 +675,8 @@ export default async function HomePage() {
               </h2>
               <p className="mt-5 text-base leading-8 text-dark-text/72 md:text-lg">
                 Most businesses we meet are running on a mix of spreadsheets, chat groups, and a website nobody has touched in
-                three years. We help teams in Nepal move from that to clean digital systems their staff actually open every
-                morning.
+                three years. We help teams in Nepal and abroad move from that to clean digital systems their staff actually
+                open every morning.
               </p>
             </div>
             <SectionImage

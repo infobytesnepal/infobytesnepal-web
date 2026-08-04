@@ -31,7 +31,17 @@ export type Job = {
   location: string;
   /** "Remote", "Hybrid", or "On site". Used for the JobPosting schema. */
   workplace: "On site" | "Hybrid" | "Remote";
+  /**
+   * The next five fields exist so a candidate never has to guess. Vague ranges
+   * ("1 to 3 years") were removed deliberately: every one of these should be a
+   * concrete, checkable answer.
+   */
   experience: string;
+  duration: string;
+  commitment: string;
+  startDate: string;
+  openings: number;
+  compensation: string;
   summary: string;
   postedAt: string;
   /** Roles stay live for a while after closing so the URL does not 404 overnight. */
@@ -45,249 +55,95 @@ export type Job = {
 
 const jobs: Job[] = [
   {
-    slug: "ui-ux-designer",
-    title: "UI/UX Designer",
-    department: "Design",
-    type: "Full time",
-    location: "Kaushaltar, Bhaktapur",
-    workplace: "On site",
-    experience: "1 to 3 years",
-    summary:
-      "Design the screens behind our own products and our client work, from first wireframe through to the handover the developers actually build from.",
-    postedAt: "2026-07-22",
-    isOpen: true,
-    about: [
-      "You would work on both sides of what we do: the interfaces for our own products (Nidanyo, Serviol, Purseol, LeadRack, Pravyo) and the websites and systems we build for clients across Nepal.",
-      "This is not a role where designs get thrown over a wall. You sit with the people who will write the code, and you will be asked why a screen works the way it does. If you like defending your decisions with reasons rather than taste, you will enjoy it here.",
-    ],
-    responsibilities: [
-      "Turn a workflow discussion into wireframes, then into screens a developer can build without guessing.",
-      "Design for the devices our users actually have, which is usually a mid range Android phone.",
-      "Keep a consistent component library across a product rather than styling each screen fresh.",
-      "Run short usability checks with real users and change the design when they struggle.",
-      "Hand over specs, states, and assets properly: empty, loading, error, and success.",
-    ],
-    requirements: [
-      "A portfolio showing real screens you designed, with your reasoning explained.",
-      "Working knowledge of Figma, including components and auto layout.",
-      "An eye for typography, spacing, and hierarchy that holds up on a small screen.",
-      "Enough understanding of the web to know what is cheap to build and what is not.",
-      "Clear written and spoken English and Nepali.",
-    ],
-    niceToHave: [
-      "Experience designing dashboards or admin panels rather than only marketing pages.",
-      "Some HTML and CSS, enough to prototype or check a build.",
-      "Exposure to accessibility basics such as contrast and focus states.",
-    ],
-    offer: [
-      "Work on products used by real businesses, not slide decks.",
-      "A small team where your design decisions are visible in the shipped result.",
-      "Salary matched to your experience, reviewed yearly.",
-      "Paid time off, festival leave, and a predictable schedule.",
-    ],
-  },
-  {
-    slug: "react-developer",
-    title: "React Developer",
-    department: "Engineering",
-    type: "Full time",
-    location: "Kaushaltar, Bhaktapur",
-    workplace: "Hybrid",
-    experience: "2 to 4 years",
-    summary:
-      "Build the front end of our products and client platforms in React and Next.js, with a real focus on how they perform on Nepali mobile networks.",
-    postedAt: "2026-07-18",
-    isOpen: true,
-    about: [
-      "Most of our front end work is React and Next.js against our own APIs. You would be building dashboards, admin panels, and public sites that need to stay fast on a mid range phone on mobile data.",
-      "We care more about a maintainable component and a fast first paint than about the newest library. If you have opinions about bundle size and re rendering, we will want to hear them.",
-    ],
-    responsibilities: [
-      "Build and maintain interfaces in React and Next.js with TypeScript.",
-      "Turn designs into accessible, responsive components that work from 360px up.",
-      "Keep Core Web Vitals healthy: lazy loading, correct image sizing, no layout shift.",
-      "Write components that the next developer can read without a walkthrough.",
-      "Review pull requests and explain your reasoning in them.",
-    ],
-    requirements: [
-      "Two or more years writing React in production, not only in tutorials.",
-      "Confident with TypeScript, modern CSS, and a component driven approach.",
-      "Understanding of how the browser actually loads and renders a page.",
-      "Comfortable with Git in a team, including branching and code review.",
-    ],
-    niceToHave: [
-      "Next.js App Router experience.",
-      "Experience with an ORM such as Drizzle or Prisma.",
-      "Any exposure to progressive web apps or offline behaviour.",
-    ],
-    offer: [
-      "Real ownership of features from planning through to production.",
-      "A modern stack that we keep current rather than letting rot.",
-      "Salary matched to your experience, reviewed yearly.",
-      "Hybrid working once you are settled in the team.",
-    ],
-  },
-  {
-    slug: "laravel-developer",
-    title: "Laravel Developer",
-    department: "Engineering",
-    type: "Full time",
-    location: "Kaushaltar, Bhaktapur",
-    workplace: "On site",
-    experience: "2 to 5 years",
-    summary:
-      "Build and maintain the PHP and Laravel systems behind client platforms: billing, inventory, reporting, and the integrations that hold them together.",
-    postedAt: "2026-07-11",
-    isOpen: true,
-    about: [
-      "A good part of the business software we deliver in Nepal runs on Laravel. You would be working on the parts where correctness matters most: billing, stock, permissions, and the reports management actually reads.",
-      "This work rewards care. A rounding error in a billing module is a phone call on a Saturday, so we write tests where they earn their keep and we review each other's schema changes.",
-    ],
-    responsibilities: [
-      "Design and build Laravel applications and REST APIs.",
-      "Model data properly, including migrations, indexes, and constraints.",
-      "Build reporting and export features that stay fast as tables grow.",
-      "Integrate third party services: payment gateways, SMS providers, and accounting tools.",
-      "Handle permissions and audit trails so every change has a name against it.",
-    ],
-    requirements: [
-      "Two or more years with PHP and Laravel on live systems.",
-      "Solid relational database skills, including query tuning.",
-      "Understanding of authentication, authorisation, and common web vulnerabilities.",
-      "Git in a team setting.",
-    ],
-    niceToHave: [
-      "Experience with Nepali payment gateways such as eSewa, Khalti, or Fonepay.",
-      "Queue and scheduled job experience.",
-      "Any front end skill, enough to be useful at the boundary.",
-    ],
-    offer: [
-      "Systems that run real operations, with the responsibility that comes with it.",
-      "Code review culture rather than merge and hope.",
-      "Salary matched to your experience, reviewed yearly.",
-      "Paid time off and festival leave.",
-    ],
-  },
-  {
-    slug: "qa-engineer",
-    title: "QA Engineer",
-    department: "Quality Assurance",
-    type: "Full time",
-    location: "Kaushaltar, Bhaktapur",
-    workplace: "On site",
-    experience: "1 to 3 years",
-    summary:
-      "Find the problems before our clients do, across web platforms, admin panels, and mobile apps, on the devices our users actually own.",
-    postedAt: "2026-06-30",
-    isOpen: true,
-    about: [
-      "We deliver in stages, which means testing happens continuously rather than in a panic at the end. You would own that: test plans, regression passes before each release, and the bug reports that developers can act on without a follow up conversation.",
-      "The most valuable testing we do is on real devices on real networks. A feature that works on office wifi and fails in a shop in Butwal has not been tested.",
-    ],
-    responsibilities: [
-      "Write and run test cases for new features and regression passes before release.",
-      "Test on real Android devices and on slow connections, not only on a laptop.",
-      "File bug reports with steps, expected result, actual result, and evidence.",
-      "Verify fixes and keep a regression suite that grows with the product.",
-      "Check accessibility basics: keyboard navigation, focus order, and contrast.",
-    ],
-    requirements: [
-      "One or more years in a QA role on web or mobile products.",
-      "Methodical approach and genuinely careful attention to detail.",
-      "Ability to write a bug report a developer can reproduce first time.",
-      "Comfortable with browser developer tools.",
-    ],
-    niceToHave: [
-      "Any test automation experience, for example Playwright or Cypress.",
-      "API testing with Postman or similar.",
-      "Basic SQL for checking what actually landed in the database.",
-    ],
-    offer: [
-      "A team that treats QA as part of delivery rather than a gate at the end.",
-      "Exposure across every product we build.",
-      "Salary matched to your experience, reviewed yearly.",
-      "Paid time off and festival leave.",
-    ],
-  },
-  {
-    slug: "digital-marketing-executive",
-    title: "Digital Marketing Executive",
+    slug: "seo-digital-marketing-intern",
+    title: "SEO and Digital Marketing Intern",
     department: "Marketing",
-    type: "Full time",
-    location: "Kaushaltar, Bhaktapur",
-    workplace: "Hybrid",
-    experience: "1 to 3 years",
-    summary:
-      "Run search and social work for our clients and for us, and report on it with the numbers that actually matter rather than reach.",
-    postedAt: "2026-06-24",
-    isOpen: true,
-    about: [
-      "You would handle SEO and paid campaigns for clients across Nepal, plus our own site. The work is a mix of technical SEO, content planning, campaign management, and the monthly reporting that tells a client whether their money did anything.",
-      "We do not promise page one in two weeks, and we do not buy followers. If you want to do marketing you can explain honestly to a client, this will suit you.",
-    ],
-    responsibilities: [
-      "Run on page and local SEO work: structure, content briefs, and Google Business Profile.",
-      "Plan and manage paid campaigns on Meta and Google within an agreed budget.",
-      "Write and schedule social content that sounds like the client, not like a template.",
-      "Report monthly on rankings, traffic, and inquiries, with what you plan to change next.",
-      "Keep an eye on what competitors in the same market are doing.",
-    ],
-    requirements: [
-      "One or more years running real campaigns or SEO work, with results you can talk through.",
-      "Working knowledge of Google Analytics and Google Search Console.",
-      "Clear writing in English and Nepali.",
-      "Comfort with numbers and a spreadsheet.",
-    ],
-    niceToHave: [
-      "Experience with local SEO for businesses in Nepal.",
-      "Basic design skills for social creatives.",
-      "Any familiarity with structured data or technical SEO.",
-    ],
-    offer: [
-      "A portfolio of real clients across several industries.",
-      "Budget authority once you have shown your judgement.",
-      "Salary matched to your experience, reviewed yearly.",
-      "Hybrid working once you are settled in the team.",
-    ],
-  },
-  {
-    slug: "it-support-intern",
-    title: "IT Support Intern",
-    department: "Support",
     type: "Internship",
     location: "Kaushaltar, Bhaktapur",
     workplace: "On site",
-    experience: "Fresh graduates welcome",
+    experience: "No prior experience required",
+    duration: "6 months, with a full time role on completion for those who do well",
+    commitment: "Full time, Sunday to Friday, 10:00 to 18:00",
+    startDate: "Immediate",
+    openings: 2,
+    compensation: "Paid internship. The stipend is confirmed at offer stage.",
     summary:
-      "A paid six month internship helping our clients get the most out of the systems we have delivered, with a route into a full time role.",
-    postedAt: "2026-06-12",
+      "Learn search and paid marketing by running real campaigns for real clients from your first month, with someone senior reviewing the work.",
+    postedAt: "2026-08-05",
     isOpen: true,
     about: [
-      "This is a real internship, not filing. You would sit with the implementation team, help clients through their first weeks on a new system, and learn how software behaves once actual people start using it.",
-      "Interns who do well here are offered full time roles. That is the point of the programme.",
+      "This is a working internship rather than a shadowing one. Within the first month you will be doing keyword research, writing content briefs, and making on page changes that go live on client sites in Nepal and overseas.",
+      "You will be reviewed, corrected, and asked to explain your reasoning. That is the point. Marketing you cannot justify to a client is marketing we will not run.",
     ],
     responsibilities: [
-      "Answer client questions about the systems we have delivered.",
-      "Help with data migration and cleanup before a system goes live.",
-      "Run training sessions for client staff on the screens they will use.",
-      "Log issues clearly and pass the real ones to the development team.",
-      "Keep short setup and troubleshooting notes for the next person.",
+      "Run keyword research and competitor checks for client and in house projects.",
+      "Write content briefs and on page copy, then measure whether it moved anything.",
+      "Maintain Google Business Profiles and local listings.",
+      "Help plan, launch, and monitor Meta and Google campaigns within an agreed budget.",
+      "Build the monthly client report: rankings, traffic, inquiries, and what changes next.",
     ],
     requirements: [
-      "A degree, or final year study, in IT, computer science, or something related.",
-      "Patience, and the ability to explain a technical thing to a nontechnical person.",
-      "Clear communication in Nepali and English.",
-      "Willingness to work from the Bhaktapur office.",
+      "Completed or final year study in marketing, IT, management, or a related field.",
+      "Clear written English. Nepali fluency for local client work.",
+      "Comfortable in a spreadsheet, and willing to be corrected on your numbers.",
+      "Able to work from the Bhaktapur office for the full six months.",
     ],
     niceToHave: [
-      "Any exposure to SQL or a scripting language.",
-      "Previous customer facing experience of any kind.",
+      "Any hands on use of Google Analytics or Search Console, even on a personal site.",
+      "A blog, a page, or a store you have run yourself.",
+      "Basic design skills for social creatives.",
     ],
     offer: [
-      "A paid six month internship with a mentor assigned from day one.",
-      "Genuine consideration for a full time role at the end.",
-      "Exposure to every product we build and support.",
-      "A certificate and a reference either way.",
+      "A named mentor from day one and weekly review of your work.",
+      "Live client accounts, not practice exercises.",
+      "A full time offer at the end for interns who perform.",
+      "A written reference and certificate either way.",
+    ],
+  },
+  {
+    slug: "ui-ux-designer-intern",
+    title: "UI/UX Designer Intern",
+    department: "Design",
+    type: "Internship",
+    location: "Kaushaltar, Bhaktapur",
+    workplace: "On site",
+    experience: "No prior experience required",
+    duration: "6 months, with a full time role on completion for those who do well",
+    commitment: "Full time, Sunday to Friday, 10:00 to 18:00",
+    startDate: "Immediate",
+    openings: 1,
+    compensation: "Paid internship. The stipend is confirmed at offer stage.",
+    summary:
+      "Design real screens for our product suite and client platforms, and sit with the developers who build what you hand over.",
+    postedAt: "2026-08-05",
+    isOpen: true,
+    about: [
+      "You would work on our own products and on client platforms, taking screens from wireframe to a handover a developer can build without guessing.",
+      "Designs here are discussed, not decorated. You will be asked why a screen works the way it does, and a good answer beats a pretty one.",
+    ],
+    responsibilities: [
+      "Turn a workflow discussion into wireframes, then into finished screens.",
+      "Design for the devices people actually use, including mid range Android phones.",
+      "Build and maintain components in Figma instead of styling each screen fresh.",
+      "Cover every state: empty, loading, error, and success.",
+      "Sit with developers during the build and adjust when something does not work.",
+    ],
+    requirements: [
+      "Completed or final year study in design, IT, or a related field, or a portfolio that speaks for itself.",
+      "Working knowledge of Figma, including components and auto layout.",
+      "An eye for typography, spacing, and hierarchy on a small screen.",
+      "Able to work from the Bhaktapur office for the full six months.",
+    ],
+    niceToHave: [
+      "Any dashboard or admin panel work, not only marketing pages.",
+      "Enough HTML and CSS to prototype or sanity check a build.",
+      "Awareness of contrast and focus states.",
+    ],
+    offer: [
+      "A named mentor from day one and weekly design review.",
+      "Your work shipped in products that are in daily use.",
+      "A full time offer at the end for interns who perform.",
+      "A written reference and certificate either way.",
     ],
   },
 ];
@@ -313,15 +169,8 @@ export async function getJobSlugs(): Promise<string[]> {
   return jobs.map((job) => job.slug);
 }
 
-export async function getOpenDepartments(): Promise<Department[]> {
-  const open = await getJobs();
-  return departments.filter((department) => open.some((job) => job.department === department));
-}
-
-export async function getOpenTypes(): Promise<EmploymentType[]> {
-  const open = await getJobs();
-  return employmentTypes.filter((type) => open.some((job) => job.type === type));
-}
+/** Where applications and general CVs go. */
+export const careersEmail = "careers@infobytesnepal.com";
 
 export function formatJobDate(value: string) {
   const parsed = new Date(`${value}T00:00:00Z`);

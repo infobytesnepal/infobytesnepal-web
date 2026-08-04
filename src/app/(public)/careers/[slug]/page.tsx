@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowRight, Briefcase, Building2, Clock, Mail, MapPin } from "lucide-react";
+import { ArrowRight, Briefcase, Building2, CalendarDays, Clock, Mail, MapPin, Users } from "lucide-react";
 import Breadcrumbs, { breadcrumbSchema } from "@/components/public/breadcrumbs";
 import JobApplicationForm from "@/components/public/job-application-form";
-import { formatJobDate, getJob, getJobSlugs, getJobs, jobValidThrough } from "@/lib/careers";
+import { careersEmail, formatJobDate, getJob, getJobSlugs, getJobs, jobValidThrough } from "@/lib/careers";
 import { getCanonicalSiteUrl } from "@/lib/utils";
 
 export async function generateStaticParams() {
@@ -114,7 +114,7 @@ export default async function JobPage({ params }: PageProps) {
           {!job.isOpen && (
             <p className="mb-5 rounded-2xl border border-primary-blue/15 bg-white px-5 py-3 text-sm font-medium text-deep-navy">
               This role has been filled. You can still{" "}
-              <a href="mailto:info@infobytesnepal.com?subject=General%20application" className="focus-ring rounded font-semibold text-primary-blue underline decoration-primary-blue/30 underline-offset-4">
+              <a href={`mailto:${careersEmail}?subject=General%20application`} className="focus-ring rounded font-semibold text-primary-blue underline decoration-primary-blue/30 underline-offset-4">
                 send a general application
               </a>
               , or see the{" "}
@@ -129,7 +129,7 @@ export default async function JobPage({ params }: PageProps) {
             <span className="chip !text-primary-blue">{job.department}</span>
             <span className="chip">{job.type}</span>
             <span className="chip">{job.workplace}</span>
-            <span className="chip">{job.experience}</span>
+            <span className="chip">{job.openings} {job.openings === 1 ? "opening" : "openings"}</span>
           </div>
           <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-dark-text/62">
             <span className="inline-flex items-center gap-1.5">
@@ -138,8 +138,13 @@ export default async function JobPage({ params }: PageProps) {
             </span>
             <span className="inline-flex items-center gap-1.5">
               <Clock size={14} aria-hidden="true" />
-              Posted {formatJobDate(job.postedAt)}
+              {job.commitment}
             </span>
+            <span className="inline-flex items-center gap-1.5">
+              <CalendarDays size={14} aria-hidden="true" />
+              Starts {job.startDate.toLowerCase()}
+            </span>
+            <span className="text-dark-text/45">Posted {formatJobDate(job.postedAt)}</span>
           </div>
         </div>
       </section>
@@ -163,8 +168,8 @@ export default async function JobPage({ params }: PageProps) {
             <h2 className="mt-12 text-2xl font-semibold text-deep-navy md:text-3xl">How to apply</h2>
             <p className="mt-5 leading-8 text-dark-text/78">
               Fill in the form below, or email your CV to{" "}
-              <a href={`mailto:info@infobytesnepal.com?subject=${encodeURIComponent(job.title)}`} className="focus-ring rounded font-semibold text-primary-blue underline decoration-primary-blue/30 underline-offset-4">
-                info@infobytesnepal.com
+              <a href={`mailto:${careersEmail}?subject=${encodeURIComponent(job.title)}`} className="focus-ring rounded font-semibold text-primary-blue underline decoration-primary-blue/30 underline-offset-4">
+                {careersEmail}
               </a>{" "}
               with the role name in the subject. We read every application and reply either way, usually within a week.
             </p>
@@ -180,7 +185,7 @@ export default async function JobPage({ params }: PageProps) {
                   We are no longer accepting applications for it. Send a general application and we will keep it on file.
                 </p>
                 <a
-                  href="mailto:info@infobytesnepal.com?subject=General%20application"
+                  href={`mailto:${careersEmail}?subject=General%20application`}
                   className="focus-ring site-button mt-6 inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold"
                 >
                   <Mail size={16} aria-hidden="true" />
@@ -222,11 +227,32 @@ export default async function JobPage({ params }: PageProps) {
                   <div className="flex items-start gap-3">
                     <Clock size={15} className="mt-0.5 shrink-0 text-primary-blue" aria-hidden="true" />
                     <div>
-                      <dt className="text-dark-text/55">Experience</dt>
-                      <dd className="font-semibold text-deep-navy">{job.experience}</dd>
+                      <dt className="text-dark-text/55">Hours</dt>
+                      <dd className="font-semibold text-deep-navy">{job.commitment}</dd>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CalendarDays size={15} className="mt-0.5 shrink-0 text-primary-blue" aria-hidden="true" />
+                    <div>
+                      <dt className="text-dark-text/55">Duration and start</dt>
+                      <dd className="font-semibold text-deep-navy">{job.duration}</dd>
+                      <dd className="text-dark-text/62">Starts {job.startDate.toLowerCase()}</dd>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Users size={15} className="mt-0.5 shrink-0 text-primary-blue" aria-hidden="true" />
+                    <div>
+                      <dt className="text-dark-text/55">Openings and experience</dt>
+                      <dd className="font-semibold text-deep-navy">
+                        {job.openings} {job.openings === 1 ? "opening" : "openings"}
+                      </dd>
+                      <dd className="text-dark-text/62">{job.experience}</dd>
                     </div>
                   </div>
                 </dl>
+                <p className="mt-4 rounded-2xl bg-soft-blue/60 px-4 py-3 text-xs leading-5 text-dark-text/70">
+                  {job.compensation}
+                </p>
                 {job.isOpen && (
                   <a href="#apply" className="focus-ring site-button mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold">
                     Apply for this role

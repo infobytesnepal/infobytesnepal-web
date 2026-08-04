@@ -4,7 +4,6 @@ import { Mail, MapPin } from "lucide-react";
 import type { SVGProps } from "react";
 import { getPageSection, getProducts, getSettings } from "@/lib/data";
 import { defaultPageContent } from "@/lib/content";
-import { team } from "@/lib/team";
 
 /**
  * Footer columns mirror the topical clusters in `lib/internal-links`. Every page
@@ -103,10 +102,10 @@ export default async function Footer() {
     getPageSection("footer", "content", defaultPageContent.footer),
   ]);
   return (
-    <footer className="bg-primary-green text-white">
-      <div className="page-x grid gap-x-8 gap-y-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="sm:col-span-2 lg:col-span-1">
-          <Image src="/assets/brand/infobytes-nepal-logo-white.png" alt="Infobytes Nepal logo" width={230} height={70} className="h-16 w-auto object-contain md:h-[4.5rem]" />
+    <footer className="bg-deep-navy text-white">
+      <div className="page-x grid gap-x-8 gap-y-8 py-9 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+        <div className="sm:col-span-2 lg:col-span-3 xl:col-span-2">
+          <Image src="/assets/brand/infobytes-nepal-logo-white.png" alt="Infobytes Nepal logo" width={230} height={70} className="h-12 w-auto object-contain" />
           <p className="mt-4 font-semibold text-white">{settings.tagline}</p>
           <p className="mt-3 max-w-sm text-sm leading-6 text-white/78">{footer.text}</p>
           <div className="mt-5 flex items-center gap-3 text-white/78">
@@ -114,7 +113,7 @@ export default async function Footer() {
               <a
                 key={label}
                 href={href}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-white/80 transition hover:border-white/55 hover:bg-white/10 hover:text-deep-navy"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-white/80 transition hover:border-white/55 hover:bg-white/10 hover:text-white"
                 aria-label={label}
                 target={external ? "_blank" : undefined}
                 rel={external ? "noopener noreferrer" : undefined}
@@ -126,10 +125,10 @@ export default async function Footer() {
         </div>
         {footerColumns.map((column) => (
           <div key={column.title}>
-            <h2 className="text-sm font-semibold text-white">{column.title}</h2>
-            <div className="mt-4 grid gap-2 text-sm text-white/78">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-white/90">{column.title}</h2>
+            <div className="mt-3 grid gap-1.5 text-[13px] text-white/75">
               {column.links.map((link) => (
-                <Link key={link.href} href={link.href} className="transition hover:text-deep-navy">
+                <Link key={link.href} href={link.href} className="transition hover:text-white">
                   {link.label}
                 </Link>
               ))}
@@ -137,48 +136,38 @@ export default async function Footer() {
           </div>
         ))}
         <div>
-          <h2 className="text-sm font-semibold text-white">Company</h2>
-          <div className="mt-4 grid gap-2 text-sm text-white/78">
-            <Link href="/services" className="transition hover:text-deep-navy">Services</Link>
-            <Link href="/products" className="transition hover:text-deep-navy">Our Products</Link>
-            <Link href="/about" className="transition hover:text-deep-navy">About</Link>
-            <Link href="/blog" className="transition hover:text-deep-navy">Blog</Link>
-            <Link href="/careers" className="transition hover:text-deep-navy">Careers</Link>
-            <Link href="/faq" className="transition hover:text-deep-navy">FAQ</Link>
-            <Link href="/contact" className="transition hover:text-deep-navy">Contact</Link>
-            <Link href="/privacy-policy" className="transition hover:text-deep-navy">Privacy Policy</Link>
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-white/90">Company</h2>
+          <div className="mt-3 grid gap-1.5 text-[13px] text-white/75">
+            <Link href="/services" className="transition hover:text-white">Services</Link>
+            <Link href="/products" className="transition hover:text-white">Our Products</Link>
+            <Link href="/about" className="transition hover:text-white">About</Link>
+            <Link href="/blog" className="transition hover:text-white">Blog</Link>
+            <Link href="/careers" className="transition hover:text-white">Careers</Link>
+            <Link href="/faq" className="transition hover:text-white">FAQ</Link>
+            <Link href="/contact" className="transition hover:text-white">Contact</Link>
+            <Link href="/about#team" className="transition hover:text-white">Our People</Link>
+            <Link href="/privacy-policy" className="transition hover:text-white">Privacy Policy</Link>
           </div>
         </div>
         <div>
-          <h2 className="text-sm font-semibold text-white">Products</h2>
-          <div className="mt-4 grid gap-2 text-sm text-white/78">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-white/90">Products</h2>
+          <div className="mt-3 grid gap-1.5 text-[13px] text-white/75">
             {products.map((product) => (
-              <Link key={product.slug} href={`/products/${product.slug}`} className="transition hover:text-deep-navy">
+              <Link key={product.slug} href={`/products/${product.slug}`} className="transition hover:text-white">
                 {product.name}
               </Link>
             ))}
           </div>
         </div>
         <div>
-          <h2 className="text-sm font-semibold text-white">Team</h2>
-          <div className="mt-4 grid gap-2 text-sm text-white/78">
-            {team.map((member) => (
-              <Link key={member.slug} href={`/team/${member.slug}`} className="transition hover:text-deep-navy">
-                {member.name}
-              </Link>
-            ))}
-            <Link href="/about#team" className="transition hover:text-deep-navy">All People</Link>
-          </div>
-        </div>
-        <div>
-          <h2 className="text-sm font-semibold text-white">Contact</h2>
-          <div className="mt-4 grid gap-3 text-sm text-white/78">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-white/90">Contact</h2>
+          <div className="mt-3 grid gap-2 text-[13px] text-white/75">
             <p className="flex items-start gap-2">
               <MapPin size={16} className="mt-0.5 shrink-0" /> Kaushaltar, Bhaktapur, Nepal
             </p>
-            <a href="mailto:info@infobytesnepal.com" className="transition hover:text-deep-navy">info@infobytesnepal.com</a>
-            <a href="tel:+9779843468715" className="transition hover:text-deep-navy">+977 9843468715</a>
-            <a href="tel:+9779863777171" className="transition hover:text-deep-navy">+977 9863777171</a>
+            <a href="mailto:info@infobytesnepal.com" className="transition hover:text-white">info@infobytesnepal.com</a>
+            <a href="tel:+9779843468715" className="transition hover:text-white">+977 9843468715</a>
+            <a href="tel:+9779863777171" className="transition hover:text-white">+977 9863777171</a>
           </div>
         </div>
       </div>
