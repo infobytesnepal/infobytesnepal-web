@@ -177,7 +177,9 @@ const posts: Post[] = [
     publishedAt: "2026-06-28",
     updatedAt: "2026-06-28",
     readTime: 6,
-    metaTitle: "When to Replace Spreadsheets With Custom Software | Infobytes Nepal",
+    // 59 characters. The previous version ran to 67, past the point Google
+    // truncates a title in results.
+    metaTitle: "Replace Spreadsheets With Custom Software | Infobytes Nepal",
     metaDescription:
       "Five practical signs a growing business in Nepal has outgrown spreadsheets, and what a focused first version of custom software should cover.",
     body: [
@@ -311,6 +313,9 @@ const posts: Post[] = [
     publishedAt: "2026-05-21",
     updatedAt: "2026-05-21",
     readTime: 5,
+    metaTitle: "What Business Automation Actually Means | Infobytes Nepal",
+    metaDescription:
+      "Business automation in plain terms: where to start, what to leave alone, and what a Nepali business should expect after the first three months.",
     body: [
       {
         type: "p",
@@ -355,6 +360,9 @@ const posts: Post[] = [
     publishedAt: "2026-04-30",
     updatedAt: "2026-04-30",
     readTime: 6,
+    metaTitle: "How to Choose an IT Company in Nepal | Infobytes Nepal",
+    metaDescription:
+      "Eight questions to ask before you hire an IT company in Nepal, plus the warning signs that a project will go quiet after month three.",
     body: [
       {
         type: "p",
@@ -411,6 +419,9 @@ const posts: Post[] = [
     publishedAt: "2026-04-02",
     updatedAt: "2026-04-02",
     readTime: 7,
+    metaTitle: "Why Your Website Is Slow on Mobile Data | Infobytes Nepal",
+    metaDescription:
+      "Four reasons a website crawls on Nepali mobile data, how to check each one, and the fixes that take an afternoon instead of a full rebuild.",
     body: [
       {
         type: "p",
