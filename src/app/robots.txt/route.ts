@@ -42,7 +42,17 @@ export function GET() {
     "# Infobytes Nepal",
     "# Search crawlers and AI answer engines are both welcome here.",
     "",
+    // Content Signals (contentsignals.org). This is a declaration of intent
+    // attached to the crawl permission above, not a second access rule: search
+    // indexing and use as input to a live AI answer are both wanted, because
+    // that is how this site gets cited. Training a model on the content is not
+    // granted. A crawler that ignores this is not blocked by it — the signal
+    // exists so that a crawler which does honour preferences knows ours.
+    "# Content-Signal: search=yes, ai-input=yes, ai-train=no",
+    "# See https://contentsignals.org for what these mean.",
+    "",
     "User-agent: *",
+    "Content-Signal: search=yes, ai-input=yes, ai-train=no",
     "Allow: /",
     "Disallow: /admin-infobytesnepal",
     "",
@@ -50,12 +60,20 @@ export function GET() {
     // crawlers only obey the first group that names them, so each gets its own.
     ...aiCrawlers.flatMap((agent) => [
       `User-agent: ${agent}`,
+      "Content-Signal: search=yes, ai-input=yes, ai-train=no",
       "Allow: /",
       "Disallow: /admin-infobytesnepal",
       "",
     ]),
     `Sitemap: ${siteUrl}/sitemap.xml`,
-    `# Plain text company summary for AI assistants: ${siteUrl}/llms.txt`,
+    "",
+    "# Machine-readable entry points for agents:",
+    `# Company summary ....... ${siteUrl}/llms.txt`,
+    `# API catalog ........... ${siteUrl}/.well-known/api-catalog`,
+    `# OpenAPI description ... ${siteUrl}/api/openapi.json`,
+    `# MCP server card ....... ${siteUrl}/.well-known/mcp/server-card.json`,
+    `# Agent skills index .... ${siteUrl}/.well-known/agent-skills/index.json`,
+    `# Access and auth policy  ${siteUrl}/auth.md`,
   ].join("\n");
 
   return new Response(body, {

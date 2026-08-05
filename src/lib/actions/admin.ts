@@ -33,13 +33,20 @@ const maxImageBytes = 1_500_000;
  *
  * The `"layout"` type invalidates the segment and everything beneath it, which
  * is what makes the timers a safety net rather than the propagation mechanism.
- * The two route handlers are listed separately because they sit outside the
- * public layout but still read the product list.
+ * The route handlers are listed separately because they sit outside the public
+ * layout but still read the product list or the CMS sections: the sitemap,
+ * llms.txt, the content API endpoints under /api/v1, and the markdown renderings
+ * agents get from `Accept: text/markdown`. An agent reading a stale product list
+ * is the same bug as a visitor seeing a stale footer.
  */
 function revalidatePublicSite() {
   revalidatePath("/", "layout");
   revalidatePath("/sitemap.xml");
   revalidatePath("/llms.txt");
+  revalidatePath("/api/v1/company");
+  revalidatePath("/api/v1/products");
+  revalidatePath("/api/v1/products/[slug]", "page");
+  revalidatePath("/api/markdown/[[...path]]", "page");
 }
 
 function formFile(formData: FormData, key: string) {

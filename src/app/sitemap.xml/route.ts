@@ -133,6 +133,10 @@ export async function GET() {
     { path: "/faq", changefreq: "weekly", priority: "0.8", lastmod: CONTENT_LAST_UPDATED },
     { path: "/contact", changefreq: "monthly", priority: "0.7", lastmod: CONTENT_LAST_UPDATED },
     { path: "/privacy-policy", changefreq: "yearly", priority: "0.3", lastmod: CONTENT_LAST_UPDATED },
+    // Listed so the API documentation is indexable in its own right: it is the
+    // `service-doc` target in /.well-known/api-catalog, and the page people are
+    // sent to when they ask whether this site can be queried programmatically.
+    { path: "/docs/api", changefreq: "monthly", priority: "0.4", lastmod: CONTENT_LAST_UPDATED },
   ];
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries
