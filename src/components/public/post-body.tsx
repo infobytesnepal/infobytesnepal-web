@@ -180,7 +180,8 @@ export default function PostBody({ blocks }: { blocks: PostBlock[] }) {
                 <table className="w-full min-w-[32rem] border-collapse text-left">
                   <caption className="sr-only">{block.caption}</caption>
                   <thead>
-                    <tr className="border-b border-primary-blue/12 text-sm uppercase tracking-wider text-dark-text/55">
+                    {/* Same contrast fix as the pricing table on the home page. */}
+                    <tr className="border-b border-primary-blue/12 text-sm uppercase tracking-wider text-dark-text/65">
                       {block.head.map((cell) => (
                         <th key={cell} scope="col" className="py-3 pr-4 font-semibold">
                           {cell}

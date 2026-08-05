@@ -447,7 +447,18 @@ export default async function HomePage() {
           aria-hidden="true"
         />
         <div className="relative z-10 mx-auto w-full max-w-7xl">
-          <Reveal className="max-w-2xl md:w-3/5">
+          {/*
+            Deliberately not wrapped in <Reveal>. Reveal is a client component
+            that renders its children at `opacity: 0` and only animates them in
+            after framer-motion has hydrated and its viewport observer has
+            fired. For content below the fold that is invisible anyway, but the
+            hero paragraph here is the LCP element, so gating it on hydration
+            put the whole largest paint behind the JS bundle: PageSpeed measured
+            an LCP of 6.6s made up of a 120ms TTFB and 2,520ms of "element
+            render delay". A scroll-triggered entrance on content that is
+            already in view on load buys nothing to begin with.
+          */}
+          <div className="max-w-2xl md:w-3/5">
             <span className="eyebrow">
               <Sparkles size={14} /> IT Company in Kathmandu Valley, Serving All of Nepal
             </span>
@@ -474,7 +485,7 @@ export default async function HomePage() {
                 </span>
               ))}
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 
@@ -631,7 +642,13 @@ export default async function HomePage() {
                 Indicative prices and timelines for websites, software, and apps in Nepal from Infobytes Nepal
               </caption>
               <thead>
-                <tr className="border-b border-primary-blue/12 text-sm uppercase tracking-wider text-dark-text/55">
+                {/*
+                  /65 rather than /55: #071426 at 55% over white lands at about
+                  4.1:1, under the 4.5:1 WCAG AA needs for text this size, and
+                  Lighthouse flagged all four headers. 65% gives roughly 5.8:1
+                  without visibly changing the muted look.
+                */}
+                <tr className="border-b border-primary-blue/12 text-sm uppercase tracking-wider text-dark-text/65">
                   <th scope="col" className="py-4 pr-4 font-semibold">What you need</th>
                   <th scope="col" className="py-4 pr-4 font-semibold">Indicative price</th>
                   <th scope="col" className="py-4 pr-4 font-semibold">Typical timeline</th>

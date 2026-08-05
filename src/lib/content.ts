@@ -3,6 +3,13 @@ export const siteDefaults = {
   tagline: "Complexities, now simplified.",
   contactEmail: "info@infobytesnepal.com",
   whatsappNumber: "",
+  // This must stay pointing at a real file rather than an uploaded image. The
+  // admin settings panel stores uploads as base64 data URIs, and because the
+  // navbar sits in the public layout, an uploaded logo gets inlined into the
+  // HTML of every page: 123 KiB per page, counted twice once the RSC payload
+  // repeats it, and invisible to next/image so it is never resized or served
+  // as AVIF. That is exactly what had happened in production — the stored data
+  // URI decoded to a byte-for-byte copy of this same file.
   logoUrl: "/assets/brand/infobytes-nepal-logo.png",
   defaultOgImage: "/assets/hero/infobytes-hero-fallback.webp",
 };
