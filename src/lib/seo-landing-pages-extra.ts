@@ -18,7 +18,7 @@ export const extraSeoLandingPages = {
     keyword: "Lab Software in Nepal",
     heroTitle: "Lab Software in Nepal",
     heroIntro:
-      "Infobytes Nepal builds Nidanyo, a laboratory operations and information management system for medical laboratories, diagnostic centres, and pathology labs across Nepal. One system carries a sample from the registration counter to a verified, printed report and the bill that goes with it.",
+      "Infobytes Nepal builds Nidanyo, a complete medical laboratory information and operations management system for polyclinics, medical laboratories, diagnostic centres, and pathology labs across Nepal and the World. One system carries a sample from the registration counter to a verified, printed report and the bill that goes with it.",
     overview: {
       title: "One system from the registration counter to the signed report",
       paragraphs: [

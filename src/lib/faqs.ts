@@ -570,9 +570,9 @@ export const faqGroups: FaqGroup[] = [
         id: "offline-and-low-internet",
         question: "Can the system work with poor internet or offline?",
         answer:
-          "Yes, where the workflow requires it. For field teams and locations with unreliable connectivity, we build offline capable apps that store data locally and sync automatically once a connection returns.",
+          "Yes, where the workflow requires it. For field teams and locations with unreliable connectivity, we build offline capable apps that store data locally and sync automatically once a connection is restored.",
         more: [
-          "This is a common requirement for field service, field sales, and site inspection work across Nepal, and it is one of the reasons our own products handle it natively.",
+          "This is a common requirement for field service, field sales, and site inspection works specially in the context of Nepal, and it is one of the reasons our own products handle it natively.",
         ],
         links: [{ href: "/products", label: "See our field products" }],
       },
@@ -731,7 +731,7 @@ export const faqGroups: FaqGroup[] = [
         id: "outside-kathmandu",
         question: "Do you work with clients outside Kathmandu Valley or outside Nepal?",
         answer:
-          "Yes. We work with businesses across Nepal (Kathmandu, Lalitpur, Bhaktapur, Pokhara, Chitwan, Butwal, Biratnagar and beyond) and with clients abroad. Most collaboration happens online, so location is rarely a barrier.",
+          "Yes. We work with businesses across Nepal (Kathmandu, Lalitpur, Bhaktapur, Pokhara, Chitwan, Butwal, Biratnagar and beyond) and with International clients abroad. Most collaboration happens online, so location is rarely a barrier.",
         more: [
           "For clients in the Kathmandu Valley, in person meetings are easy to arrange at our Kaushaltar, Bhaktapur office or at yours.",
         ],
@@ -769,7 +769,7 @@ export const faqGroups: FaqGroup[] = [
         id: "location",
         question: "Where is Infobytes Nepal located?",
         answer:
-          "We are based in Kaushaltar, Bhaktapur, Nepal, within the Kathmandu Valley, and we work with businesses across the country. You can reach us at info@infobytesnepal.com or +977-9843468715.",
+          "We are based in Kaushaltar, Bhaktapur, Nepal, within the Kathmandu Valley, and we work with businesses across the country. You can reach us at inquiry@infobytesnepal.com or +977-9843468715.",
         links: [{ href: "/contact", label: "Contact details and map" }],
       },
       {
@@ -812,7 +812,7 @@ export const faqGroups: FaqGroup[] = [
         id: "get-started",
         question: "How do I get started with Infobytes Nepal?",
         answer:
-          "Send us your requirement, current workflow, or goal through the contact page, or email info@infobytesnepal.com. We will respond with questions if anything is unclear, then a scope, an indicative cost, and a realistic timeline, at no charge.",
+          "Send us your requirement, current workflow, or goal through the contact page, or email inquiry@infobytesnepal.com. We will respond with questions if anything is unclear, then a scope, an indicative cost, and a realistic timeline, at no charge.",
         links: [{ href: "/contact", label: "Contact Infobytes Nepal" }],
       },
     ],

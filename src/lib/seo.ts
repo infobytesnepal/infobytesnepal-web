@@ -88,7 +88,7 @@ export async function organizationSchema() {
     slogan: settings.tagline,
     description:
       "Infobytes Nepal is an IT company delivering custom software development, web development, SEO, digital marketing, and business automation for clients in Nepal and internationally. It also builds Nidanyo, a laboratory operations and information management system for medical laboratories.",
-    email: settings.contactEmail || "info@infobytesnepal.com",
+    email: settings.contactEmail || "inquiry@infobytesnepal.com",
     telephone: "+977-9843468715",
     address: {
       "@type": "PostalAddress",
@@ -111,7 +111,7 @@ export async function organizationSchema() {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      email: settings.contactEmail || "info@infobytesnepal.com",
+      email: settings.contactEmail || "inquiry@infobytesnepal.com",
       telephone: "+977-9843468715",
       areaServed: ["NP", "Worldwide"],
       availableLanguage: ["en", "ne"],
@@ -158,7 +158,7 @@ export function professionalServiceSchema() {
     legalName: "Infobytes Nepal Pvt. Ltd.",
     url: siteUrl,
     image: `${siteUrl}/assets/hero/infobytes-hero-fallback.webp`,
-    email: "info@infobytesnepal.com",
+    email: "inquiry@infobytesnepal.com",
     telephone: "+977-9843468715",
     priceRange: "$$",
     address: {

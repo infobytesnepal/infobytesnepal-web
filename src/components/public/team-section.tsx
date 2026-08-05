@@ -33,7 +33,7 @@ export default function TeamSection() {
         <span className="eyebrow">Our People</span>
         <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">Meet the team behind Infobytes Nepal</h2>
         <p className="mt-5 leading-8 text-dark-text/72">
-          The people building practical software, websites, and digital products for teams across Nepal.
+          The Faces behind the Impact we have made.
         </p>
       </div>
 

@@ -1,7 +1,7 @@
 export const siteDefaults = {
   companyName: "Infobytes Nepal",
   tagline: "Complexities, now simplified.",
-  contactEmail: "info@infobytesnepal.com",
+  contactEmail: "inquiry@infobytesnepal.com",
   whatsappNumber: "",
   // This must stay pointing at a real file rather than an uploaded image. The
   // admin settings panel stores uploads as base64 data URIs, and because the

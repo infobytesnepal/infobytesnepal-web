@@ -31,7 +31,7 @@ export async function GET() {
     "Infobytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, graphic design, IT training, website maintenance, and business automation. We also build and support our own software products: Nidanyo (laboratory operations and information management for medical laboratories), Serviol (field service management), Purseol (field sales management), LeadRack (lead tracking), and Pravyo (student talent bench).",
     "",
     "Location: Kaushaltar, Bhaktapur, Nepal",
-    "Email: info@infobytesnepal.com",
+    "Email: inquiryo@infobytesnepal.com",
     "Phone: +977-9843468715",
     "",
     "## Main pages",

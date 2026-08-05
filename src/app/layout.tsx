@@ -14,7 +14,7 @@ const geistSans = Geist({
 const siteUrl = getCanonicalSiteUrl();
 const defaultTitle = "Best IT Company in Nepal | Infobytes Nepal";
 const defaultDescription =
-  "Looking for the best IT company in Nepal? We build fast websites, custom software, and business automation for companies across Nepal. Get a free consultation today.";
+  "Looking for the best IT company in Nepal? We build Optimized Websites, Custom Softwares, and Business Automations Tools.";
 const defaultOgImage = "/assets/hero/infobytes-hero-fallback.webp";
 const faviconPng = "/favicon.png";
 const faviconIco = "/favicon.ico";

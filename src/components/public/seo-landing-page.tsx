@@ -27,7 +27,7 @@ function buildSchemas(page: SeoLandingPageData, crumbs: ReturnType<typeof getBre
         "@id": `${siteUrl}/#organization`,
         name: "Infobytes Nepal",
         url: siteUrl,
-        email: "info@infobytesnepal.com",
+        email: "inquiry@infobytesnepal.com",
         telephone: "+977-9843468715",
       },
       url: pageUrl,

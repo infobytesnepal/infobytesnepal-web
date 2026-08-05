@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getCanonicalSiteUrl();
   const title = "About Infobytes Nepal | IT Company in Bhaktapur";
   const description =
-    "Meet the team behind Infobytes Nepal, an IT company in Kaushaltar, Bhaktapur building custom software, websites, and business automation for companies across Nepal.";
+    "Meet the team of Professionalsbehind Infobytes Nepal.";
 
   return {
     title,
@@ -84,7 +84,7 @@ export default async function AboutPage() {
       url: `${siteUrl}/about`,
       name: "About Infobytes Nepal",
       description:
-        "Infobytes Nepal Pvt. Ltd. is an IT company based in Kaushaltar, Bhaktapur, Nepal, building custom software, websites, and business automation for companies across Nepal.",
+        "Infobytes Nepal Pvt. Ltd. is a Software Development & IT Company based in Nepal.",
       inLanguage: "en",
       isPartOf: { "@id": `${siteUrl}/#website` },
       about: { "@id": `${siteUrl}/#organization` },
@@ -195,7 +195,7 @@ export default async function AboutPage() {
               { term: "Legal name", value: "Infobytes Nepal Pvt. Ltd.", icon: Building2 },
               { term: "Office", value: "Kaushaltar, Bhaktapur, Nepal", icon: MapPin },
               { term: "Phone", value: "+977 9843468715", icon: Phone, href: "tel:+9779843468715" },
-              { term: "Email", value: "inquiry@infobytesnepal.com", icon: Mail, href: "mailto:info@infobytesnepal.com" },
+              { term: "Email", value: "inquiry@infobytesnepal.com", icon: Mail, href: "mailto:inquiry@infobytesnepal.com" },
             ].map((fact) => (
               <div key={fact.term}>
                 <dt className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-dark-text/55">

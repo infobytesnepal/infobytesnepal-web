@@ -215,7 +215,7 @@ const homeFaqs = [
     id: "infobytes-nepal-location",
     question: "Where is Infobytes Nepal located?",
     answer:
-      "Our office is in Kaushaltar, Bhaktapur, inside Kathmandu Valley, and we deliver for clients across Nepal and in Europe. Call +977 9843468715 or email info@infobytesnepal.com to book a free consultation.",
+      "Our office is in Kaushaltar, Bhaktapur. We serve the clients across Nepal and the World. Call +977 9843468715 or email inquiry@infobytesnepal.com to book a free consultation.",
   },
   {
     id: "project-timeline-nepal",
@@ -307,7 +307,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getCanonicalSiteUrl();
   const title = "Best IT Company in Nepal | Infobytes Nepal";
   const description =
-    "Looking for the best IT company in Nepal? We build fast websites, custom software, and business automation for companies across Nepal. Get a free consultation today.";
+    "Looking for the best IT company in Nepal? We build Optimized Websites, Custom Softwares, and Business Automations Tools.";
   const ogImage = "/assets/hero/infobytes-hero-fallback.webp";
 
   return {
@@ -799,7 +799,7 @@ export default async function HomePage() {
             <span className="eyebrow">Our partners</span>
             <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">The partners we build alongside.</h2>
             <p className="mt-5 leading-8 text-dark-text/72">
-              We work with focused partners who strengthen what we deliver for growing teams across Nepal.
+              We work with Partners who supports us in every works we do.
             </p>
           </div>
 

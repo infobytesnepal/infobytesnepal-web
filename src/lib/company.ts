@@ -14,7 +14,7 @@ export const company = {
   description:
     "Infobytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, graphic design, IT training, website maintenance, and business automation. We also build and support our own software products.",
   founded: "2023",
-  email: "info@infobytesnepal.com",
+  email: "inquiry@infobytesnepal.com",
   careersEmail: "careers@infobytesnepal.com",
   phone: "+977-9843468715",
   address: {
