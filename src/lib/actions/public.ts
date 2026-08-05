@@ -176,7 +176,7 @@ export async function submitJobApplication(_: FormState, formData: FormData): Pr
     return { ok: false, message: "That role could not be found. Please reload the page and try again." };
   }
   if (!job.isOpen) {
-    return { ok: false, message: "Applications for this role are now closed. Email info@infobytesnepal.com to register interest." };
+    return { ok: false, message: "Applications for this role are now closed. Email inquiry@infobytesnepal.com to register interest." };
   }
 
   // CV is optional in the schema but validated strictly when present, so an
@@ -222,6 +222,6 @@ export async function submitJobApplication(_: FormState, formData: FormData): Pr
       message: `Thank you. Your application for ${job.title} has been received. We reply to every applicant, usually within a week.`,
     };
   } catch {
-    return { ok: false, message: "We could not receive your application right now. Please try again shortly, or email info@infobytesnepal.com." };
+    return { ok: false, message: "We could not receive your application right now. Please try again shortly, or email inquiry@infobytesnepal.com." };
   }
 }

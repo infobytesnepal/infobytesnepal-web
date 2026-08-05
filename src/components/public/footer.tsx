@@ -88,7 +88,7 @@ const socialLinks = [
     external: true,
   },
   {
-    href: "mailto:info@infobytesnepal.com",
+    href: "mailto:inquiry@infobytesnepal.com",
     label: "Email Infobytes Nepal",
     icon: Mail,
     external: false,
@@ -165,7 +165,7 @@ export default async function Footer() {
             <p className="flex items-start gap-2">
               <MapPin size={16} className="mt-0.5 shrink-0" /> Kaushaltar, Bhaktapur, Nepal
             </p>
-            <a href="mailto:info@infobytesnepal.com" className="transition hover:text-white">info@infobytesnepal.com</a>
+            <a href="mailto:inquiry@infobytesnepal.com" className="transition hover:text-white">inquiry@infobytesnepal.com</a>
             <a href="tel:+9779843468715" className="transition hover:text-white">+977 9843468715</a>
             <a href="tel:+9779863777171" className="transition hover:text-white">+977 9863777171</a>
           </div>
