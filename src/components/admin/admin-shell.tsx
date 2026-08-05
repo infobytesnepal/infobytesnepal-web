@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BarChart3, BriefcaseBusiness, FileText, ImageIcon, Inbox, LayoutDashboard, LogOut, Package, Search, SlidersHorizontal, UserRound } from "lucide-react";
+import { BarChart3, BriefcaseBusiness, FileText, ImageIcon, Inbox, LayoutDashboard, LogOut, Package, SlidersHorizontal, UserRound } from "lucide-react";
 import { logoutAction } from "@/lib/actions/auth";
 import { getInquiryStats } from "@/lib/data";
 
@@ -12,7 +12,6 @@ const nav = [
   { href: "/admin-infobytesnepal/products", label: "Products", icon: Package },
   { href: "/admin-infobytesnepal/pages", label: "Pages", icon: BarChart3 },
   { href: "/admin-infobytesnepal/media", label: "Media / Assets", icon: ImageIcon },
-  { href: "/admin-infobytesnepal/seo", label: "SEO Settings", icon: Search },
   { href: "/admin-infobytesnepal/settings", label: "Site Settings", icon: SlidersHorizontal },
 ];
 

@@ -87,6 +87,25 @@ export function proxy(request: NextRequest) {
   return NextResponse.next();
 }
 
+/**
+ * The matcher is gated on the header that triggers this proxy, not just on the
+ * path.
+ *
+ * Middleware runs before the CDN cache lookup, so a path-only matcher would put
+ * an edge invocation in front of every visit to an otherwise fully static page —
+ * paying for a feature that only agents use. With the `has` condition, a request
+ * has to explicitly name `text/markdown` in `Accept` before this code runs at
+ * all, and ordinary browser traffic never reaches it.
+ *
+ * The path exclusions still matter for the agent requests that do match: the
+ * function body's own `SKIP_PREFIXES` handles /api and /.well-known, which a
+ * matcher pattern cannot express readably alongside the header condition.
+ */
 export const config = {
-  matcher: ["/((?!api|_next|assets|.*\\.[a-zA-Z0-9]+$).*)"],
+  matcher: [
+    {
+      source: "/((?!_next|assets).*)",
+      has: [{ type: "header", key: "accept", value: ".*text/markdown.*" }],
+    },
+  ],
 };

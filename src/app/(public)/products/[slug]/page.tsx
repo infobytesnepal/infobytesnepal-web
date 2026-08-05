@@ -5,19 +5,32 @@ import CmsImage from "@/components/public/cms-image";
 import GetStartedButton from "@/components/public/get-started-button";
 import InternalLinkHub from "@/components/public/internal-links";
 import { productSeoDefaults } from "@/lib/content";
-import { getProductBySlug } from "@/lib/data";
+import { getProductBySlug, getProducts } from "@/lib/data";
 import { getCanonicalSiteUrl } from "@/lib/utils";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
-/**
- * Matches `/products`. There is no `generateStaticParams` here, so each slug is
- * rendered on first request and then cached per path; six hours keeps a product
- * detail page in step with the catalogue listing it.
- */
+/** Matches `/products`: six hours keeps a detail page in step with the
+ * catalogue listing it. */
 export const revalidate = 21600;
+
+/**
+ * Without this the route was fully dynamic, so every visit to a product page
+ * cost a function invocation and a Turso query before anything could be sent.
+ * The slugs are known at build time — the products listing and the sitemap both
+ * already enumerate them — so there is no reason to discover them one visitor at
+ * a time.
+ *
+ * `dynamicParams` stays at its default of true: a product published from the
+ * admin after this build still renders on first request rather than 404ing, and
+ * the write path invalidates these paths anyway.
+ */
+export async function generateStaticParams() {
+  const products = await getProducts();
+  return products.map((product) => ({ slug: product.slug }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;

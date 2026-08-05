@@ -32,7 +32,7 @@ export const team: TeamMember[] = [
     slug: "sugam-dahal",
     name: "Sugam Dahal",
     role: "Implementation & Deployment Lead",
-    image: "/assets/about/sugam-dahal.png",
+    image: "/assets/about/sugam-dahal.webp",
     summary:
       "Sugam Dahal leads implementation and deployment at Infobytes Nepal, the stage where a finished build has to survive contact with a real office.",
     location: "Bhaktapur, Nepal",
@@ -55,7 +55,7 @@ export const team: TeamMember[] = [
     slug: "kapil-aryal",
     name: "Kapil Aryal",
     role: "Mobile Application & PWA Specialist",
-    image: "/assets/about/kapil-aryal.png",
+    image: "/assets/about/kapil-aryal.webp",
     summary:
       "Kapil Aryal builds the mobile and progressive web apps at Infobytes Nepal, with a particular focus on making them work on ordinary phones and unreliable connections.",
     location: "Bhaktapur, Nepal",
@@ -77,7 +77,7 @@ export const team: TeamMember[] = [
     slug: "bibek-neupane",
     name: "Bibek Neupane",
     role: "Operations Incharge for Europe",
-    image: "/assets/about/bibek-neupane.png",
+    image: "/assets/about/bibek-neupane.webp",
     summary:
       "Bibek Neupane is Operations Incharge for the Europe region at Infobytes Nepal, handling client communication and delivery for European projects.",
     location: "Bhaktapur, Nepal",

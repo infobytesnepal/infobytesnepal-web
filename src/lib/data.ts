@@ -8,7 +8,6 @@ import {
   mediaAssets,
   pageContent,
   products,
-  seoSettings,
   serviceInquiries,
   siteSettings,
   type ContactInquiry,
@@ -16,7 +15,6 @@ import {
   type JobApplication,
   type MediaAsset,
   type Product,
-  type SeoSetting,
   type ServiceInquiry,
 } from "./db/schema";
 import { productSeeds, productSeoDefaults, siteDefaults } from "./content";
@@ -73,7 +71,15 @@ export const getProductBySlug = cache(async (slug: string, includeUnpublished = 
   }
 });
 
-export async function getSettings() {
+/**
+ * Deduplicated per render pass.
+ *
+ * The public layout, the footer, and `organizationSchema()` each ask for site
+ * settings while rendering the same page, which was three separate Turso
+ * round-trips for one row set. React's `cache` collapses them into one — the
+ * layout pays for it and the other two read the memo.
+ */
+export const getSettings = cache(async () => {
   try {
     const rows = await db.select().from(siteSettings);
     return rows.reduce(
@@ -83,47 +89,49 @@ export async function getSettings() {
   } catch {
     return siteDefaults;
   }
-}
+});
 
-export async function getPageSection<T>(pageKey: string, sectionKey: string, fallback: T): Promise<T> {
+/**
+ * Only the query is memoised, not `getPageSection` itself.
+ *
+ * `cache` keys on argument identity, and `getPageSection` takes a generic
+ * `fallback` object — wrapping it directly would both erase the generic from
+ * the public signature and key the memo on an object reference. Caching the
+ * lookup by its two string arguments keeps the dedupe honest and leaves the
+ * merge logic below pure and cheap to repeat.
+ *
+ * This matters because the home page and /about both read
+ * `("about", "section2")`, and the markdown renderings read the same rows again.
+ */
+const getPageContentJson = cache(async (pageKey: string, sectionKey: string): Promise<string | null> => {
   try {
     const [row] = await db
       .select()
       .from(pageContent)
       .where(and(eq(pageContent.pageKey, pageKey), eq(pageContent.sectionKey, sectionKey)))
       .limit(1);
-    const parsed = jsonParse(row?.contentJson, fallback);
-    if (
-      fallback &&
-      parsed &&
-      typeof fallback === "object" &&
-      typeof parsed === "object" &&
-      !Array.isArray(fallback) &&
-      !Array.isArray(parsed)
-    ) {
-      return { ...fallback, ...parsed };
-    }
-    return parsed;
-  } catch {
-    return fallback;
-  }
-}
-
-export async function getSeo(route: string): Promise<SeoSetting | null> {
-  try {
-    const [row] = await db.select().from(seoSettings).where(eq(seoSettings.route, route)).limit(1);
-    return row || null;
+    return row?.contentJson ?? null;
   } catch {
     return null;
   }
-}
+});
 
-export async function getAllSeo() {
-  try {
-    return await db.select().from(seoSettings).orderBy(asc(seoSettings.route));
-  } catch {
-    return [];
+export async function getPageSection<T>(pageKey: string, sectionKey: string, fallback: T): Promise<T> {
+  // No try/catch here any more: the only throwing step was the query, which now
+  // lives in `getPageContentJson` and returns null on failure, and `jsonParse`
+  // already falls back on malformed JSON.
+  const parsed = jsonParse(await getPageContentJson(pageKey, sectionKey), fallback);
+  if (
+    fallback &&
+    parsed &&
+    typeof fallback === "object" &&
+    typeof parsed === "object" &&
+    !Array.isArray(fallback) &&
+    !Array.isArray(parsed)
+  ) {
+    return { ...fallback, ...parsed };
   }
+  return parsed;
 }
 
 export async function getMediaAssets(): Promise<MediaAsset[]> {

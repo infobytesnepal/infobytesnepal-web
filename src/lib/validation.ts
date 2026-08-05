@@ -85,15 +85,3 @@ export const mediaSchema = z.object({
   altText: z.string().trim().max(180).optional().default(""),
 });
 
-export const seoSchema = z.object({
-  id: z.string().optional(),
-  route: z.string().trim().min(1).max(180),
-  title: z.string().trim().max(180).optional().default(""),
-  description: z.string().trim().max(320).optional().default(""),
-  canonical: z.string().trim().max(300).optional().default(""),
-  robots: z.string().trim().max(80).optional().default(""),
-  ogTitle: z.string().trim().max(180).optional().default(""),
-  ogDescription: z.string().trim().max(320).optional().default(""),
-  ogImage: z.string().trim().optional().default(""),
-  schemaJson: z.string().trim().max(12000).optional().default(""),
-});

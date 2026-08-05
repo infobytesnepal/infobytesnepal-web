@@ -32,7 +32,7 @@ export const serviceCatalog = [
     subtitle: "Websites that load fast, look right on every phone, and bring in real inquiries.",
     description:
       "We design and build websites that are quick, easy to update, and built on clean code. Company websites, landing pages, online stores, or a full web platform. Whatever you need, the structure is set up for Google from the first day rather than patched on later. Most business websites take 2 to 4 weeks and start around NPR 50,000.",
-    image: "/assets/services/1web-design-and-development-ibn.png",
+    image: "/assets/services/1web-design-and-development-ibn.webp",
     imageAlt: "Web design and development service by Infobytes Nepal shown on a laptop and mobile phone",
     imagePosition: "left",
     features: [
@@ -55,7 +55,7 @@ export const serviceCatalog = [
     subtitle: "Get found on Google when someone in Nepal searches for what you sell.",
     description:
       "We fix what is holding your site back technically, then build the content and local signals that move you up the results. No promises of page one in two weeks, because anyone offering that is either targeting keywords nobody searches or doing something that will cost you later. Expect 3 to 6 months to see real movement, reported monthly with the numbers that matter.",
-    image: "/assets/services/2seo-ibn.png",
+    image: "/assets/services/2seo-ibn.webp",
     imageAlt: "Search engine optimization service by Infobytes Nepal showing Google ranking growth for a business in Nepal",
     imagePosition: "right",
     features: ["Technical SEO", "On Page SEO", "Local SEO for Nepal", "Keyword and Content Strategy", "Monthly Ranking Reports"],
@@ -72,7 +72,7 @@ export const serviceCatalog = [
     subtitle: "Campaigns that bring in inquiries, not just likes and reach.",
     description:
       "We plan and run social media and paid campaigns aimed at people who might actually buy from you. Content, targeting, budget, and reporting handled together, so you can see what every rupee brought back. If a campaign is not working, we tell you and change it rather than quietly spending the budget.",
-    image: "/assets/services/3digital-marketing-ibn.png",
+    image: "/assets/services/3digital-marketing-ibn.webp",
     imageAlt: "Digital marketing service by Infobytes Nepal running social media and paid campaigns for a Nepali business",
     imagePosition: "left",
     features: ["Social Media Marketing", "Paid Advertising", "Campaign Strategy", "Content Planning", "Performance Reporting"],
@@ -87,7 +87,7 @@ export const serviceCatalog = [
     subtitle: "Practical training where you build real things, not just watch slides.",
     description:
       "Training for students, working professionals, and whole teams, run by the same people who build client projects. You work on guided projects from the first session, because nobody learns web development or SEO by taking notes. Useful whether you want a job, a promotion, or a team that can manage its own website.",
-    image: "/assets/services/4training-ibn.png",
+    image: "/assets/services/4training-ibn.webp",
     imageAlt: "IT training class by Infobytes Nepal teaching web development and digital skills to students in Nepal",
     imagePosition: "right",
     features: [
@@ -109,7 +109,7 @@ export const serviceCatalog = [
     subtitle: "Visuals that make a small company look like a serious one.",
     description:
       "Logos, brand identity, social media creatives, and print material designed so your business looks credible the moment someone sees it. You get the source files and full ownership, not just exported images, so you are never stuck waiting on us to change a phone number on a flyer.",
-    image: "/assets/services/5graphics-design-ibn.png",
+    image: "/assets/services/5graphics-design-ibn.webp",
     imageAlt: "Graphic design work by Infobytes Nepal showing brand identity and social media creatives for a Nepali company",
     imagePosition: "left",
     features: ["Brand Identity Design", "Social Media Creatives", "Marketing Collaterals", "UI and Visual Assets", "Print Ready Designs"],

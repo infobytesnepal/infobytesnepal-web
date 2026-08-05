@@ -11,13 +11,12 @@ import {
   mediaAssets,
   pageContent,
   products,
-  seoSettings,
   serviceInquiries,
   siteSettings,
 } from "@/lib/db/schema";
 import { requireAdmin } from "@/lib/auth";
 import { formString, newId } from "@/lib/utils";
-import { productSchema, seoSchema } from "@/lib/validation";
+import { productSchema } from "@/lib/validation";
 
 const maxImageBytes = 1_500_000;
 
@@ -47,6 +46,42 @@ function revalidatePublicSite() {
   revalidatePath("/api/v1/products");
   revalidatePath("/api/v1/products/[slug]", "page");
   revalidatePath("/api/markdown/[[...path]]", "page");
+}
+
+/**
+ * Which public paths actually render a given CMS page key.
+ *
+ * `revalidatePublicSite()` above is the right hammer for a product or settings
+ * change, because the footer puts that data on every page. It is the wrong one
+ * for a page section: editing the home hero was rebuilding all ~60 public pages
+ * to change one of them, and every rebuilt page is an ISR write.
+ *
+ * Two entries are less obvious than they look:
+ *
+ * - `about` lists `/` as well, because the home page renders
+ *   `getPageSection("about", "section2")` alongside its own sections.
+ * - the `/api/markdown/...` paths are only listed where that page's markdown
+ *   rendering actually reads CMS content. `renderHome` reads the product list
+ *   rather than the home sections, so `home` does not need one.
+ *
+ * An unmapped key — `footer`, or anything added later — falls through to the
+ * full invalidation. That default is deliberate: forgetting to add a key here
+ * makes a save slower than it needs to be, never staler than it should be.
+ */
+const pageKeyPaths: Record<string, string[]> = {
+  home: ["/"],
+  about: ["/", "/about", "/api/markdown/about"],
+  contact: ["/contact"],
+  "privacy-policy": ["/privacy-policy", "/api/markdown/privacy-policy"],
+};
+
+function revalidatePageSection(pageKey: string) {
+  const paths = pageKeyPaths[pageKey];
+  if (!paths) {
+    revalidatePublicSite();
+    return;
+  }
+  for (const path of paths) revalidatePath(path);
 }
 
 function formFile(formData: FormData, key: string) {
@@ -215,7 +250,7 @@ export async function updatePageSection(formData: FormData) {
       target: [pageContent.pageKey, pageContent.sectionKey],
       set: { contentJson, updatedAt: new Date().toISOString() },
     });
-  revalidatePublicSite();
+  revalidatePageSection(pageKey);
   redirect("/admin-infobytesnepal/pages");
 }
 
@@ -269,40 +304,6 @@ export async function updateSiteSettings(formData: FormData) {
   }
   revalidatePublicSite();
   redirect("/admin-infobytesnepal/settings");
-}
-
-export async function upsertSeoSetting(formData: FormData) {
-  await requireAdmin();
-  const route = formString(formData, "route");
-  const ogImage = await storeUploadedImage(formFile(formData, "ogImageFile"), formString(formData, "ogImage"), `${route || "Route"} OG image`, route);
-  const parsed = seoSchema.safeParse({
-    id: formString(formData, "id"),
-    route,
-    title: formString(formData, "title"),
-    description: formString(formData, "description"),
-    canonical: formString(formData, "canonical"),
-    robots: formString(formData, "robots"),
-    ogTitle: formString(formData, "ogTitle"),
-    ogDescription: formString(formData, "ogDescription"),
-    ogImage,
-    schemaJson: formString(formData, "schemaJson"),
-  });
-  if (!parsed.success) redirect("/admin-infobytesnepal/seo?error=1");
-  const data = parsed.data;
-  const payload = { ...data, updatedAt: new Date().toISOString() };
-  if (data.id) {
-    await db.update(seoSettings).set(payload).where(eq(seoSettings.id, data.id));
-  } else {
-    await db.insert(seoSettings).values({ id: newId(), ...payload });
-  }
-  revalidatePublicSite();
-  redirect("/admin-infobytesnepal/seo");
-}
-
-export async function deleteSeoSetting(formData: FormData) {
-  await requireAdmin();
-  await db.delete(seoSettings).where(eq(seoSettings.id, formString(formData, "id")));
-  revalidatePublicSite();
 }
 
 export async function markJobApplicationRead(formData: FormData) {

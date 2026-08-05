@@ -69,21 +69,21 @@ export const authors: Author[] = [
     slug: "sugam-dahal",
     name: "Sugam Dahal",
     role: "Implementation and Deployment Lead",
-    image: "/assets/about/sugam-dahal.png",
+    image: "/assets/about/sugam-dahal.webp",
     bio: "Sugam gets finished systems into offices that already have a way of doing things. He writes about migration, training, and the first month after go live.",
   },
   {
     slug: "kapil-aryal",
     name: "Kapil Aryal",
     role: "Mobile Application and PWA Specialist",
-    image: "/assets/about/kapil-aryal.png",
+    image: "/assets/about/kapil-aryal.webp",
     bio: "Kapil builds the mobile and progressive web apps at Infobytes Nepal, with a focus on ordinary phones and unreliable connections.",
   },
   {
     slug: "bibek-neupane",
     name: "Bibek Neupane",
     role: "Operations Incharge for Europe",
-    image: "/assets/about/bibek-neupane.png",
+    image: "/assets/about/bibek-neupane.webp",
     bio: "Bibek looks after client operations and delivery, and writes about scoping work so both sides know what they agreed to.",
   },
 ];
@@ -238,7 +238,7 @@ const posts: Post[] = [
     title: "A local SEO checklist for businesses in Nepal",
     excerpt:
       "The unglamorous list that decides whether people in Kathmandu find you on a phone: your profile, your pages, your speed, and your reviews.",
-    coverImage: "/assets/services/2seo-ibn.png",
+    coverImage: "/assets/services/2seo-ibn.webp",
     coverAlt: "Local search engine optimization work by Infobytes Nepal for a business in Kathmandu Nepal",
     category: "SEO",
     tags: ["local seo", "google business profile", "core web vitals"],
@@ -305,7 +305,7 @@ const posts: Post[] = [
     title: "Business automation, without the buzzword",
     excerpt:
       "Automation is not robots. It is removing the third place your team retypes the same customer name. Here is where to start and what to leave alone.",
-    coverImage: "/assets/services/3digital-marketing-ibn.png",
+    coverImage: "/assets/services/3digital-marketing-ibn.webp",
     coverAlt: "Business automation workflow built by Infobytes Nepal connecting sales and service data",
     category: "Business Automation",
     tags: ["automation", "crm", "workflow"],
@@ -411,7 +411,7 @@ const posts: Post[] = [
     title: "Why your website is slow on Nepali mobile data",
     excerpt:
       "The four things that make a site crawl on a mid range Android phone, and the fixes that take an afternoon rather than a rebuild.",
-    coverImage: "/assets/services/1web-design-and-development-ibn.png",
+    coverImage: "/assets/services/1web-design-and-development-ibn.webp",
     coverAlt: "Website performance testing on mobile and desktop by Infobytes Nepal",
     category: "Web Development",
     tags: ["performance", "core web vitals", "mobile"],

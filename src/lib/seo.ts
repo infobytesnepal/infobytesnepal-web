@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getSeo, getSettings } from "./data";
+import { getSettings } from "./data";
 import { team } from "./team";
 import { getCanonicalSiteUrl } from "./utils";
 
@@ -19,39 +19,6 @@ function toCanonicalUrl(value: string) {
 function toAbsoluteUrl(value?: string | null) {
   if (!value || value.startsWith("data:")) return undefined;
   return toCanonicalUrl(value);
-}
-
-export async function buildMetadata(route: string, fallback: { title: string; description: string; robots?: string }): Promise<Metadata> {
-  const [seo, settings] = await Promise.all([getSeo(route), getSettings()]);
-  const siteUrl = getCanonicalSiteUrl();
-  const title = seo?.title || fallback.title;
-  const description = seo?.description || fallback.description;
-  const canonical = toCanonicalUrl(seo?.canonical || `${siteUrl}${route === "/" ? "" : route}`);
-  const ogTitle = seo?.ogTitle || title;
-  const ogDescription = seo?.ogDescription || description;
-  const ogImage = seo?.ogImage || settings.defaultOgImage;
-  const robots = seo?.robots || fallback.robots;
-
-  return {
-    title,
-    description,
-    alternates: { canonical },
-    robots,
-    openGraph: {
-      title: ogTitle,
-      description: ogDescription,
-      url: canonical,
-      siteName: settings.companyName,
-      images: ogImage ? [{ url: ogImage, alt: settings.companyName }] : undefined,
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: ogTitle,
-      description: ogDescription,
-      images: ogImage ? [ogImage] : undefined,
-    },
-  };
 }
 
 export function basicPageMetadata({

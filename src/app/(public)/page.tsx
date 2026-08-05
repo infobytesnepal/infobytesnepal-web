@@ -76,9 +76,9 @@ const featuredServices = [
 ];
 
 const stats = [
-  { value: "Nepal + Europe", label: "Where we deliver for clients" },
-  { value: "7+", label: "Services under one roof" },
-  { value: "In house", label: "Our own software product suite" },
+  { value: "Nepal & to the World", label: "We Serve across the Globe" },
+  { value: "Quality", label: "IT Services that we offer" },
+  { value: "Best-in-Class", label: "The Software Product we Build" },
   { value: "Free", label: "First consultation and quotation" },
 ];
 
@@ -290,13 +290,18 @@ const partners = [
 ];
 
 /**
- * The home page keeps the old hourly cadence while the rest of the site moves
- * to the layout's weekly backstop. It carries the most traffic, it is the page
- * an admin checks first after an edit, and it renders both the live product
- * list and several CMS sections, so it is the one page where a missed
- * invalidation is worth catching quickly rather than eventually.
+ * Six hours, not the hour this used to be.
+ *
+ * The hourly cadence was justified as a fast catch for a missed invalidation on
+ * the busiest page, but it was not behaving as a backstop: it regenerated this
+ * page 24 times a day whether or not anything had changed, and every one of
+ * those is an ISR write. Nothing here changes without an admin write, and every
+ * write path calls `revalidatePublicSite()`, which invalidates this page
+ * directly — so the timer only has to cover the case where that call never
+ * fired. Six hours still catches such a miss the same working day while cutting
+ * the writes by three quarters.
  */
-export const revalidate = 3600;
+export const revalidate = 21600;
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getCanonicalSiteUrl();
@@ -434,9 +439,7 @@ export default async function HomePage() {
             already in view on load buys nothing to begin with.
           */}
           <div className="max-w-2xl md:w-3/5">
-            <span className="eyebrow">
-              <Sparkles size={14} /> IT Company in Kathmandu Valley, Serving All of Nepal
-            </span>
+            
             <h1 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-tight text-deep-navy md:text-[3.6rem]">
               {hero.headline}
               <span className="mt-2 block text-gradient">{hero.tagline}</span>

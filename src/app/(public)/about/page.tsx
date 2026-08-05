@@ -37,15 +37,15 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: "Infobytes Nepal",
       type: "profile",
       images: [
-        { url: "/assets/about/shiwam-paudel.png", alt: "Shiwam Paudel, Co-Founder and CEO of Infobytes Nepal" },
-        { url: "/assets/about/rajesh-pandey.png", alt: "Rajesh Pandey, Founder of Infobytes Nepal" },
+        { url: "/assets/about/shiwam-paudel.webp", alt: "Shiwam Paudel, Co-Founder and CEO of Infobytes Nepal" },
+        { url: "/assets/about/rajesh-pandey.webp", alt: "Rajesh Pandey, Founder of Infobytes Nepal" },
       ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["/assets/about/shiwam-paudel.png"],
+      images: ["/assets/about/shiwam-paudel.webp"],
     },
   };
 }
@@ -106,7 +106,7 @@ export default async function AboutPage() {
       givenName: "Shiwam",
       familyName: "Paudel",
       jobTitle: "Cofounder and CEO",
-      image: `${siteUrl}/assets/about/shiwam-paudel.png`,
+      image: `${siteUrl}/assets/about/shiwam-paudel.webp`,
       url: `${siteUrl}/about#shiwam-paudel`,
       worksFor: {
         "@type": "Organization",
@@ -133,7 +133,7 @@ export default async function AboutPage() {
       givenName: "Rajesh",
       familyName: "Pandey",
       jobTitle: "Founder",
-      image: `${siteUrl}/assets/about/rajesh-pandey.png`,
+      image: `${siteUrl}/assets/about/rajesh-pandey.webp`,
       url: `${siteUrl}/about#rajesh-pandey`,
       worksFor: {
         "@type": "Organization",
@@ -263,7 +263,7 @@ export default async function AboutPage() {
       <section className="mx-auto mt-24 grid max-w-7xl gap-8 md:mt-28 md:gap-16">
         <article id="rajesh-pandey" className="relative overflow-hidden rounded-[24px] border-2 border-primary-green bg-gradient-to-r from-[#dfeaff] via-white to-soft-green px-6 py-6 text-primary-blue md:ml-4 md:min-h-[300px] md:overflow-visible md:px-12 md:py-9 lg:ml-10 lg:pl-[45%]">
           <CmsImage
-            src="/assets/about/rajesh-pandey.png"
+            src="/assets/about/rajesh-pandey.webp"
             alt="Rajesh Pandey"
             width={520}
             height={520}
@@ -284,7 +284,7 @@ export default async function AboutPage() {
 {/*  
         <article id="shiwam-paudel" className="relative overflow-hidden rounded-[24px] border-2 border-primary-green bg-gradient-to-r from-[#dfeaff] via-white to-soft-green px-6 py-6 text-primary-blue md:mr-4 md:min-h-[300px] md:overflow-visible md:px-12 md:py-9 lg:mr-10 lg:pr-[45%]">
           <CmsImage
-            src="/assets/about/shiwam-paudel.png"
+            src="/assets/about/shiwam-paudel.webp"
             alt="Shiwam Paudel"
             width={520}
             height={520}

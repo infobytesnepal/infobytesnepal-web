@@ -1,53 +1,38 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+
+/**
+ * Gate for the custom cursor.
+ *
+ * This component sits in the public layout, so whatever it imports is
+ * downloaded on every page by every visitor. It used to import `framer-motion`
+ * directly, which meant a phone fetched the animation library to run a media
+ * query and then render nothing — the cursor is desktop-and-fine-pointer only,
+ * and it also stands down for `prefers-reduced-motion`.
+ *
+ * The check now happens here, in a component that imports nothing but React,
+ * and the motion code is fetched only once the check passes. `ssr: false` is
+ * both allowed and correct: this is a client component, and there is nothing to
+ * render on the server for a cursor that does not exist until a pointer moves.
+ */
+const CustomCursorLayer = dynamic(() => import("./custom-cursor-layer"), { ssr: false });
 
 export default function CustomCursor() {
   const [enabled, setEnabled] = useState(false);
-  const [hovering, setHovering] = useState(false);
-  const x = useMotionValue(-100);
-  const y = useMotionValue(-100);
-  const smoothX = useSpring(x, { stiffness: 420, damping: 32, mass: 0.35 });
-  const smoothY = useSpring(y, { stiffness: 420, damping: 32, mass: 0.35 });
 
   useEffect(() => {
     const finePointer = window.matchMedia("(pointer: fine) and (min-width: 768px)").matches;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!finePointer || reducedMotion) return;
-    const frame = window.requestAnimationFrame(() => {
-      document.documentElement.classList.add("custom-cursor-enabled");
-      setEnabled(true);
-    });
-    const move = (event: PointerEvent) => {
-      x.set(event.clientX - 18);
-      y.set(event.clientY - 18);
-    };
-    const over = (event: PointerEvent) => {
-      const target = event.target as HTMLElement;
-      setHovering(Boolean(target.closest("a,button,input,textarea,select,label")));
-    };
-    window.addEventListener("pointermove", move);
-    window.addEventListener("pointerover", over);
-    return () => {
-      window.cancelAnimationFrame(frame);
-      document.documentElement.classList.remove("custom-cursor-enabled");
-      window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointerover", over);
-    };
-  }, [x, y]);
+
+    // Deferred by a frame, as before, so the first paint is never held up by
+    // this. It also gives the lazy chunk a head start before it is needed.
+    const frame = window.requestAnimationFrame(() => setEnabled(true));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   if (!enabled) return null;
-
-  return (
-    <motion.div
-      aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-[100] hidden h-9 w-9 rounded-full border border-primary-blue/70 md:block"
-      style={{ x: smoothX, y: smoothY }}
-      animate={{ scale: hovering ? 1.55 : 1 }}
-      transition={{ duration: 0.14 }}
-    >
-      <span className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-green" />
-    </motion.div>
-  );
+  return <CustomCursorLayer />;
 }

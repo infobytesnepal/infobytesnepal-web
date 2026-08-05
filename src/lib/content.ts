@@ -139,14 +139,14 @@ export const defaultPageContent = {
     headline: "Best IT Company in Nepal",
     tagline: "Complexities, now simplified.",
     supportingText:
-      "We are Infobytes Nepal. We build fast websites, custom software, and automation that takes the manual work out of your day. We deliver for businesses across Nepal and internationally.",
+      "Infobytes Nepal Pvt. Ltd. is a Software Development and IT Company based in Nepal. We deliver for businesses across Nepal and Internationally.",
     heroVideoUrl: "/assets/hero/infobytes-hero.mp4",
     fallbackImageUrl: "/assets/hero/infobytes-hero-fallback.webp",
   },
   aboutSection1: {
-    title: "An IT company built in Nepal, for Nepal",
-    text: "Infobytes Nepal builds custom software, websites, and automation for teams in Nepal and overseas who are tired of running the business out of spreadsheets and chat groups.",
-    buttonLabel: "Explore Products",
+    title: "A Software Company from Nepal to the World.",
+    text: "Infobytes Nepal builds Custom Softwares, Websites, and Automation for teams nationally & internationally.",
+    buttonLabel: "Explore our Products",
     buttonUrl: "/products",
     imageUrl: "/assets/about/about-section-1.webp",
   },
