@@ -7,6 +7,14 @@ import Reveal from "@/components/public/reveal";
 import { getProducts } from "@/lib/data";
 import { basicPageMetadata } from "@/lib/seo";
 
+/**
+ * The catalogue is admin-editable, so this sits below the layout's weekly
+ * backstop but well above the old hour. Publishing or reordering a product
+ * already invalidates this page on demand; six hours just bounds how long a
+ * missed invalidation could leave the catalogue wrong.
+ */
+export const revalidate = 21600;
+
 export async function generateMetadata(): Promise<Metadata> {
   return basicPageMetadata({
     route: "/products",

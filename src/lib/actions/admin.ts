@@ -21,6 +21,27 @@ import { productSchema, seoSchema } from "@/lib/validation";
 
 const maxImageBytes = 1_500_000;
 
+/**
+ * Invalidate every public page.
+ *
+ * The footer is rendered by the public layout, and it reads site settings, the
+ * product list, and its own CMS section. That means a settings edit or a
+ * product change is visible on all ~50 public pages, not just the one the
+ * editor was thinking about. `revalidatePath("/")` only invalidates the home
+ * page, so on its own it left the rest of the site serving the old footer until
+ * the layout's timer expired.
+ *
+ * The `"layout"` type invalidates the segment and everything beneath it, which
+ * is what makes the timers a safety net rather than the propagation mechanism.
+ * The two route handlers are listed separately because they sit outside the
+ * public layout but still read the product list.
+ */
+function revalidatePublicSite() {
+  revalidatePath("/", "layout");
+  revalidatePath("/sitemap.xml");
+  revalidatePath("/llms.txt");
+}
+
 function formFile(formData: FormData, key: string) {
   const value = formData.get(key);
   if (!value || typeof value === "string" || !("arrayBuffer" in value)) return null;
@@ -149,14 +170,14 @@ export async function upsertProduct(formData: FormData) {
   } else {
     await db.insert(products).values({ id: newId(), ...payload });
   }
-  revalidatePath("/products");
+  revalidatePublicSite();
   redirect("/admin-infobytesnepal/products");
 }
 
 export async function deleteProduct(formData: FormData) {
   await requireAdmin();
   await db.delete(products).where(eq(products.id, formString(formData, "id")));
-  revalidatePath("/products");
+  revalidatePublicSite();
   redirect("/admin-infobytesnepal/products");
 }
 
@@ -187,8 +208,7 @@ export async function updatePageSection(formData: FormData) {
       target: [pageContent.pageKey, pageContent.sectionKey],
       set: { contentJson, updatedAt: new Date().toISOString() },
     });
-  revalidatePath("/");
-  revalidatePath(`/${pageKey}`);
+  revalidatePublicSite();
   redirect("/admin-infobytesnepal/pages");
 }
 
@@ -240,7 +260,7 @@ export async function updateSiteSettings(formData: FormData) {
       .values({ id: newId(), key, value })
       .onConflictDoUpdate({ target: siteSettings.key, set: { value, updatedAt: new Date().toISOString() } });
   }
-  revalidatePath("/");
+  revalidatePublicSite();
   redirect("/admin-infobytesnepal/settings");
 }
 
@@ -268,14 +288,14 @@ export async function upsertSeoSetting(formData: FormData) {
   } else {
     await db.insert(seoSettings).values({ id: newId(), ...payload });
   }
-  revalidatePath("/");
+  revalidatePublicSite();
   redirect("/admin-infobytesnepal/seo");
 }
 
 export async function deleteSeoSetting(formData: FormData) {
   await requireAdmin();
   await db.delete(seoSettings).where(eq(seoSettings.id, formString(formData, "id")));
-  revalidatePath("/");
+  revalidatePublicSite();
 }
 
 export async function markJobApplicationRead(formData: FormData) {

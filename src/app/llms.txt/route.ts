@@ -4,6 +4,15 @@ import { seoLandingPageList } from "@/lib/seo-landing-pages";
 import { team } from "@/lib/team";
 import { getCanonicalSiteUrl } from "@/lib/utils";
 
+/**
+ * This handler reads the live product list but had no revalidate at all, so it
+ * was prerendered once at build time and never refreshed: a product published
+ * from the admin stayed missing from llms.txt until the next deploy, the same
+ * gap that the sitemap already had a comment about. Product writes now
+ * invalidate this path on demand, and a day bounds it if one is ever missed.
+ */
+export const revalidate = 86400;
+
 export async function GET() {
   const siteUrl = getCanonicalSiteUrl();
   const products = await getProducts();

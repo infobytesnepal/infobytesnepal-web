@@ -9,10 +9,16 @@ import { getCanonicalSiteUrl } from "@/lib/utils";
  * Products are published and unpublished from the admin at runtime, so a
  * sitemap prerendered at build time goes stale the moment the catalogue
  * changes. Nidanyo was added after a deploy and was missing from the sitemap
- * until the next build. An hour is frequent enough for crawlers and still
- * costs one query per hour rather than one per crawl.
+ * until the next build.
+ *
+ * The hourly rebuild that fixed this was aimed at a problem the product actions
+ * now solve directly: they call `revalidatePath("/sitemap.xml")`, so a
+ * catalogue change reaches crawlers on the next fetch instead of up to an hour
+ * later. Everything else in here is static route lists and a hand-bumped
+ * `CONTENT_LAST_UPDATED`, and crawlers refetch on their own schedule rather
+ * than ours, so a day is the right backstop.
  */
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 /**
  * The date the site's written content was last reviewed end to end.

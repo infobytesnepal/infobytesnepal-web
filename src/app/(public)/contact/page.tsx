@@ -6,6 +6,14 @@ import { getPageSection, getSettings } from "@/lib/data";
 import { basicPageMetadata } from "@/lib/seo";
 import { stripWhatsAppNumber } from "@/lib/utils";
 
+/**
+ * This page renders the phone number, WhatsApp number, and email straight from
+ * site settings. Those are the details a customer acts on, and a wrong one is
+ * worse than a stale marketing paragraph, so it does not inherit the weekly
+ * backstop.
+ */
+export const revalidate = 21600;
+
 export async function generateMetadata(): Promise<Metadata> {
   return basicPageMetadata({
     route: "/contact",

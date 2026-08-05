@@ -314,6 +314,15 @@ const partners = [
   },
 ];
 
+/**
+ * The home page keeps the old hourly cadence while the rest of the site moves
+ * to the layout's weekly backstop. It carries the most traffic, it is the page
+ * an admin checks first after an edit, and it renders both the live product
+ * list and several CMS sections, so it is the one page where a missed
+ * invalidation is worth catching quickly rather than eventually.
+ */
+export const revalidate = 3600;
+
 export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getCanonicalSiteUrl();
   const title = "Best IT Company in Nepal | Infobytes Nepal";

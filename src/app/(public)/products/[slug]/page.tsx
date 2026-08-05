@@ -12,7 +12,12 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-
+/**
+ * Matches `/products`. There is no `generateStaticParams` here, so each slug is
+ * rendered on first request and then cached per path; six hours keeps a product
+ * detail page in step with the catalogue listing it.
+ */
+export const revalidate = 21600;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
