@@ -270,7 +270,7 @@ const exploreLinks = [
   { href: "/business-automation-software-nepal", label: "Business Automation Software Nepal" },
 ];
 
-const heroChips = ["Software Development", "Web and Mobile", "SEO and Marketing", "Business Automation"];
+// const heroChips = ["Software Development", "Web and Mobile", "SEO and Marketing", "Business Automation"];
 
 // Featured partners. Add more objects here as new partnerships are formed.
 const partners = [
@@ -455,14 +455,14 @@ export default async function HomePage() {
                 <ArrowRight size={16} />
               </Link>
             </div>
-            <div className="mt-8 flex flex-wrap gap-2">
+            {/* <div className="mt-8 flex flex-wrap gap-2">
               {heroChips.map((chip) => (
                 <span key={chip} className="chip">
                   <Check size={13} className="text-primary-green" />
                   {chip}
                 </span>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
