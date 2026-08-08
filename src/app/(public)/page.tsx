@@ -3,15 +3,13 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import {
   ArrowRight,
-  BadgeCheck,
-  Banknote,
   Building2,
   Code2,
   FileCheck,
-  Gauge,
   Handshake,
   Megaphone,
   MonitorSmartphone,
+  PenLine,
   Search,
   Workflow,
   Smartphone,
@@ -19,22 +17,26 @@ import {
   Layers,
   Headset,
   Target,
-  Sparkles,
-  Check,
   Phone,
   Mail,
   MapPin,
   Users,
 } from "lucide-react";
+import BadgeStrip from "@/components/public/badge-strip";
 import CmsImage from "@/components/public/cms-image";
 import GetStartedButton from "@/components/public/get-started-button";
+import PostCard from "@/components/public/post-card";
 import Reveal from "@/components/public/reveal";
 import SectionImage from "@/components/public/section-image";
 import StackingCards from "@/components/public/stacking-cards";
+import { getPosts } from "@/lib/blog";
 import { defaultPageContent } from "@/lib/content";
 import { getPageSection, getProducts } from "@/lib/data";
 import { organizationSchema, professionalServiceSchema, websiteSchema } from "@/lib/seo";
 import { getCanonicalSiteUrl } from "@/lib/utils";
+
+/** Posts shown in the home page blog strip, newest first. */
+const HOME_POSTS = 3;
 
 const featuredServices = [
   {
@@ -75,10 +77,14 @@ const featuredServices = [
   },
 ];
 
+// Every figure here has to be something a visitor could check. "Best-in-Class"
+// used to sit in the third slot, which is a claim about ourselves that nobody
+// can verify; the product count is a fact, and the five products are listed and
+// linked further down the same page.
 const stats = [
   { value: "Nepal & to the World", label: "We Serve across the Globe" },
   { value: "Quality", label: "IT Services that we offer" },
-  { value: "Best-in-Class", label: "The Software Product we Build" },
+  { value: "Five", label: "Software products we build and support" },
   { value: "Free", label: "First consultation and quotation" },
 ];
 
@@ -111,53 +117,11 @@ const proofPoints = [
   },
 ];
 
-// Indicative ranges. These are the same numbers published on /faq and on the
-// pricing pages, kept identical everywhere so a crawler never sees us quote two
-// different figures for the same thing.
-const pricing = [
-  {
-    service: "Business website",
-    range: "NPR 50,000 to 150,000",
-    detail: "A professional company website, mobile ready, with contact forms and basic SEO in place.",
-    timeline: "2 to 4 weeks",
-    href: "/website-cost-in-nepal",
-  },
-  {
-    service: "Custom website with CMS",
-    range: "NPR 100,000 to 250,000",
-    detail: "Custom design, a content system you can update yourself, and a proper SEO structure from day one.",
-    timeline: "4 to 8 weeks",
-    href: "/web-design-company-in-nepal",
-  },
-  {
-    service: "Online store",
-    range: "NPR 80,000 to 200,000",
-    detail: "Products, cart, and checkout with eSewa, Khalti, or Fonepay wired in and an admin panel you control.",
-    timeline: "4 to 8 weeks",
-    href: "/ecommerce-website-development-nepal",
-  },
-  {
-    service: "Custom software",
-    range: "NPR 200,000 to 600,000",
-    detail: "A focused first version covering one department: real workflows, user roles, reports, and an admin panel.",
-    timeline: "6 to 12 weeks",
-    href: "/software-development-company-in-nepal",
-  },
-  {
-    service: "Mobile app",
-    range: "From NPR 150,000",
-    detail: "Android and iOS apps, quoted on the features you need rather than a package you will not use.",
-    timeline: "8 to 16 weeks",
-    href: "/mobile-app-development-cost-in-nepal",
-  },
-  {
-    service: "SEO and marketing",
-    range: "Monthly retainer",
-    detail: "Technical fixes, content, and local visibility work, reported monthly with the numbers that matter.",
-    timeline: "3 to 6 months to show",
-    href: "/seo-company-in-nepal",
-  },
-];
+// The price table that used to live here has been removed from the home page:
+// leading with a rate card frames the first visit as a shopping comparison
+// before we have said what we do. The same figures are still published, and
+// still consistent with each other, on /website-cost-in-nepal, on the per
+// service pages, and in the /faq answers.
 
 const differentiators = [
   {
@@ -182,22 +146,18 @@ const differentiators = [
   },
 ];
 
-const process = [
-  { title: "Discover", text: "We learn the business, the people using it, and the daily work that technology should take off their plate." },
-  { title: "Plan", text: "We agree the scope, the modules, and the priorities in writing, so the first version stays realistic and useful." },
-  { title: "Build", text: "We design and develop it properly: fast, responsive, and easy to maintain once it is yours." },
-  { title: "Launch", text: "We test against real cases, launch carefully, and train your team on the screens they will actually use." },
-  { title: "Improve", text: "We refine reports, content, and features as your team learns what the system should do next." },
-];
-
 // Home page questions, aimed at the queries people actually type and speak.
 // Answers stay consistent with the full set on /faq.
 const homeFaqs = [
   {
-    id: "best-it-company-nepal",
-    question: "Who is the best IT company in Nepal?",
+    // Was "Who is the best IT company in Nepal?", answered "Infobytes Nepal."
+    // Rewritten as a question we can answer with checkable facts instead of a
+    // superlative about ourselves, and it no longer competes with
+    // /best-it-company-in-nepal for the same query.
+    id: "what-infobytes-nepal-does",
+    question: "What does Infobytes Nepal do?",
     answer:
-      "Infobytes Nepal. We are a registered IT company building custom software, websites, and business automation for companies in Nepal and internationally. Three things separate us from most: we build and support our own software product suite, every quotation is written and agreed before work starts, and you deal directly with the developers who write your code rather than a sales layer in between.",
+      "Infobytes Nepal is a registered IT company in Nepal building custom software, websites, and business automation for companies in Nepal and internationally. Three things are worth checking before you choose anyone: we build and support our own software product suite, every quotation is written and agreed before work starts, and you deal directly with the developers who write your code rather than a sales layer in between.",
   },
   {
     id: "website-cost-nepal",
@@ -207,7 +167,7 @@ const homeFaqs = [
   },
   {
     id: "software-development-nepal",
-    question: "Which company is best for software development in Nepal?",
+    question: "How do I choose a software development company in Nepal?",
     answer:
       "Choose the company that will still pick up the phone a year after launch. Infobytes Nepal builds custom software for teams in Nepal that have outgrown spreadsheets and chat groups: CRM and lead systems, inventory, school and hospital management, laboratory software, and field service tools. A focused first version typically costs NPR 200,000 to NPR 600,000 and takes 6 to 12 weeks, delivered module by module so your team starts using it early.",
   },
@@ -305,9 +265,12 @@ export const revalidate = 21600;
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getCanonicalSiteUrl();
-  const title = "Best IT Company in Nepal | Infobytes Nepal";
+  // Drops the unverifiable "best" and says what we actually do. The query it
+  // used to chase is served by /best-it-company-in-nepal, which answers it as a
+  // buying guide — the form of that page Google has any reason to rank.
+  const title = "IT Company in Nepal : Custom Software Development & Web Solutions | Infobytes Nepal";
   const description =
-    "Looking for the best IT company in Nepal? We build Optimized Websites, Custom Softwares, and Business Automations Tools.";
+    "Infobytes Nepal is an IT company in Nepal building custom software, web solutions, and business automation. Get a free written scope and quote today.";
   const ogImage = "/assets/hero/infobytes-hero-fallback.webp";
 
   return {
@@ -333,13 +296,15 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [hero, products, aboutTech, media, orgSchema] = await Promise.all([
+  const [hero, products, aboutTech, media, posts, orgSchema] = await Promise.all([
     getPageSection("home", "hero", defaultPageContent.homeHero),
     getProducts(),
     getPageSection("about", "section2", defaultPageContent.aboutSection2),
     getPageSection("home", "media", defaultPageContent.homeMedia),
+    getPosts(),
     organizationSchema(),
   ]);
+  const latestPosts = posts.slice(0, HOME_POSTS);
   const serviceSchema = professionalServiceSchema();
   const siteUrl = getCanonicalSiteUrl();
 
@@ -440,9 +405,20 @@ export default async function HomePage() {
           */}
           <div className="max-w-2xl md:w-3/5">
             
-            <h1 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-tight text-deep-navy md:text-[3.6rem]">
+            {/*
+              Two lines, one H1: "Custom Software, Websites & Automation" over
+              "Infobytes Nepal". `tracking-tight` was tuned for Geist; Marcellus
+              is already narrow, and -0.025em closed the serifs into each other
+              at 3.6rem.
+            */}
+            <h1 className="mt-5 text-4xl leading-[1.08] tracking-[-0.01em] text-deep-navy md:text-[3.6rem]">
               {hero.headline}
-              <span className="mt-2 block text-gradient">{hero.tagline}</span>
+              {/* The tagline is CMS-editable, so any full stop it already
+                  carries is stripped rather than rendered as "..". */}
+              <span className="mt-2 block text-gradient">
+                {hero.tagline.replace(/\.\s*$/, "")}
+                <span className="accent-dot">.</span>
+              </span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-dark-text/78 md:text-lg md:leading-8">{hero.supportingText}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -487,19 +463,20 @@ export default async function HomePage() {
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div>
               <span className="eyebrow">Straight answer</span>
-              <h2 className="home-faq-question mt-3 text-3xl font-semibold leading-tight text-deep-navy md:text-5xl">
-                Who is the best IT company in Nepal?
+              <h2 className="home-faq-question mt-3 text-3xl leading-tight text-deep-navy md:text-5xl">
+                What does Infobytes Nepal do<span className="accent-dot">?</span>
               </h2>
               <p className="home-faq-answer mt-6 text-lg leading-8 text-dark-text/80 md:text-xl md:leading-9">
-                <strong className="font-semibold text-deep-navy">Infobytes Nepal.</strong> We are a registered Nepali IT company
-                building custom software, websites, and business automation for companies across
-                Nepal and internationally. We build and run our own software product suite, we put every quotation in writing before work starts,
-                and you talk directly to the developers writing your code.
+                We are a <strong className="text-deep-navy">registered IT company in Nepal</strong> building custom software,
+                websites, and business automation for companies across Nepal and internationally. We build and run our own
+                software product suite, we put every quotation in writing before work starts, and you talk directly to the
+                developers writing your code.
               </p>
-              <p className="mt-5 leading-8 text-dark-text/72">
-                That is our answer. Here is the fairer version: judge us on the four points below, then ask every other company
-                you are considering the same questions. If they cannot answer them clearly, that tells you what you need to know.
-              </p>
+              {/* <p className="mt-5 leading-8 text-dark-text/72">
+                We are not going to tell you we are the best; anyone can type that. Judge us on the four points below, then ask
+                every other company you are considering the same questions. If they cannot answer them clearly, that tells you
+                what you need to know.
+              </p> */}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="/best-it-company-in-nepal"
@@ -546,8 +523,8 @@ export default async function HomePage() {
           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div>
               <span className="eyebrow">What we do</span>
-              <h2 className="mt-3 max-w-2xl text-3xl font-semibold text-deep-navy md:text-5xl">
-                Everything your business needs to run and grow online.
+              <h2 className="mt-3 max-w-2xl text-3xl text-deep-navy md:text-5xl">
+                Everything your business needs to run and grow online<span className="accent-dot">.</span>
               </h2>
             </div>
             <Link href="/services" className="focus-ring inline-flex items-center gap-2 font-semibold text-primary-blue">
@@ -575,96 +552,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ---------- Pricing (trust signal for buyers and for LLM crawlers) ---------- */}
-      <section className="page-x bg-white py-20 md:py-24">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-            <SectionImage
-              src={media.pricingImageUrl}
-              alt={media.pricingImageAlt}
-              className="aspect-[4/3]"
-              sizes="(min-width: 1024px) 45vw, 100vw"
-            />
-            <div>
-              <span className="eyebrow">
-                <Banknote size={14} /> What it costs
-              </span>
-              <h2 className="mt-3 text-3xl font-semibold leading-tight text-deep-navy md:text-5xl">
-                Real prices, printed before you ask for them.
-              </h2>
-              <p className="mt-6 text-lg leading-8 text-dark-text/76">
-                Most IT companies in Nepal make you sit through a meeting before they mention a number. We would rather you know
-                the range now and decide whether it is worth your time. These are indicative ranges for 2026. Your exact figure
-                depends on scope, and it goes in writing before anything starts.
-              </p>
-              <ul className="mt-7 grid gap-3">
-                {[
-                  "The first consultation and the written quotation cost you nothing.",
-                  "Change requests are priced upfront, never added quietly to the final bill.",
-                  "You own the code, the domain, and the hosting accounts.",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-dark-text/76">
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-soft-green text-primary-green">
-                      <BadgeCheck size={13} />
-                    </span>
-                    <span className="leading-7">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-14 overflow-x-auto">
-            <table className="w-full min-w-[46rem] border-collapse text-left">
-              <caption className="sr-only">
-                Indicative prices and timelines for websites, software, and apps in Nepal from Infobytes Nepal
-              </caption>
-              <thead>
-                {/*
-                  /65 rather than /55: #071426 at 55% over white lands at about
-                  4.1:1, under the 4.5:1 WCAG AA needs for text this size, and
-                  Lighthouse flagged all four headers. 65% gives roughly 5.8:1
-                  without visibly changing the muted look.
-                */}
-                <tr className="border-b border-primary-blue/12 text-sm uppercase tracking-wider text-dark-text/65">
-                  <th scope="col" className="py-4 pr-4 font-semibold">What you need</th>
-                  <th scope="col" className="py-4 pr-4 font-semibold">Indicative price</th>
-                  <th scope="col" className="py-4 pr-4 font-semibold">Typical timeline</th>
-                  <th scope="col" className="py-4 font-semibold">What is included</th>
-                </tr>
-              </thead>
-              <tbody>
-                {pricing.map((row) => (
-                  <tr key={row.service} className="border-b border-primary-blue/8 align-top">
-                    <th scope="row" className="py-5 pr-4 font-semibold text-deep-navy">
-                      <Link href={row.href} className="focus-ring rounded underline decoration-primary-blue/25 underline-offset-4 transition hover:decoration-primary-blue">
-                        {row.service}
-                      </Link>
-                    </th>
-                    <td className="py-5 pr-4 font-semibold text-primary-blue">{row.range}</td>
-                    <td className="py-5 pr-4 text-sm text-dark-text/70">
-                      <span className="inline-flex items-center gap-1.5">
-                        <Gauge size={14} className="text-primary-green" />
-                        {row.timeline}
-                      </span>
-                    </td>
-                    <td className="py-5 text-sm leading-6 text-dark-text/70">{row.detail}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-6 text-sm leading-7 text-dark-text/60">
-            Ranges reflect typical project scopes in Nepal in 2026 and exclude domain, hosting, and payment gateway fees, which
-            are yearly or per transaction costs. See the{" "}
-            <Link href="/website-cost-in-nepal" className="focus-ring rounded font-semibold text-primary-blue underline decoration-primary-blue/30 underline-offset-4">
-              full website pricing guide
-            </Link>{" "}
-            for the detail behind these numbers.
-          </p>
-        </div>
-      </section>
-
       {/* ---------- Products (stacking cards) ---------- */}
       <StackingCards products={products} />
 
@@ -674,8 +561,9 @@ export default async function HomePage() {
           <div className="grid gap-12 lg:grid-cols-[1fr_0.85fr] lg:items-center">
             <div>
               <span className="eyebrow">Why Infobytes Nepal</span>
-              <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">
-                A technology partner, not just another vendor.
+              <h2 className="mt-3 text-3xl text-deep-navy md:text-5xl">
+                A technology partner, not just another <span className="word-gradient">vendor</span>
+                <span className="accent-dot">.</span>
               </h2>
               <p className="mt-5 text-base leading-8 text-dark-text/72 md:text-lg">
                 Most businesses we meet are running on a mix of spreadsheets, chat groups, and a website nobody has touched in
@@ -706,36 +594,14 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ---------- Process ---------- */}
-      <section className="page-x bg-soft-blue/40 py-20 md:py-24">
-        <div className="mx-auto max-w-7xl">
-          <div className="max-w-2xl">
-            <span className="eyebrow">How we work</span>
-            <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">From first call to live system.</h2>
-            <p className="mt-5 leading-8 text-dark-text/72">
-              Five steps, and you know exactly which one we are on at any point in the project.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-4 md:grid-cols-5">
-            {process.map((step, index) => (
-              <Reveal key={step.title}>
-                <div className="card-premium h-full p-6">
-                  <p className="text-sm font-semibold text-primary-blue">{String(index + 1).padStart(2, "0")}</p>
-                  <h3 className="mt-3 text-xl font-semibold text-deep-navy">{step.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-dark-text/70">{step.text}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ---------- FAQ ---------- */}
       <section className="page-x bg-white py-20 md:py-24">
         <div className="mx-auto max-w-4xl">
           <div className="text-center">
             <span className="eyebrow justify-center">Questions people ask us</span>
-            <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">Answers before you call.</h2>
+            <h2 className="mt-3 text-3xl text-deep-navy md:text-5xl">
+              Answers before you call<span className="accent-dot">.</span>
+            </h2>
             <p className="mx-auto mt-5 max-w-2xl leading-8 text-dark-text/72">
               The questions we get on almost every first call, answered plainly and with real numbers.
             </p>
@@ -771,6 +637,40 @@ export default async function HomePage() {
           </p>
         </div>
       </section>
+
+      {/* ---------- From the blog ---------- */}
+      {latestPosts.length > 0 && (
+        <section className="page-x bg-soft-blue/35 py-20 md:py-24">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-2xl">
+              <span className="eyebrow">
+                <PenLine size={14} /> From the blog
+              </span>
+              <h2 className="mt-3 text-3xl text-deep-navy md:text-5xl">
+                Notes from the people building it<span className="accent-dot">.</span>
+              </h2>
+              <p className="mt-5 leading-8 text-dark-text/72">
+                What things cost, how long they take, and what usually goes wrong. Written for business owners in Nepal who
+                want a straight answer before they spend money.
+              </p>
+            </div>
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {latestPosts.map((post) => (
+                <Reveal key={post.slug}>
+                  <PostCard post={post} variant="compact" />
+                </Reveal>
+              ))}
+            </div>
+            <Link
+              href="/blog"
+              className="focus-ring site-button mt-10 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold"
+            >
+              View more posts
+              <ArrowRight size={16} />
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* ---------- Tech stack ---------- */}
       <section className="bg-white py-16 md:py-20">
@@ -901,7 +801,7 @@ export default async function HomePage() {
       </section>
 
       {/* ---------- Final CTA ---------- */}
-      <section className="page-x bg-white pb-24 pt-4">
+      <section className="page-x bg-white pb-16 pt-4">
         <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[32px] brand-gradient px-7 py-14 text-center text-white shadow-[0_30px_90px_rgba(3,66,197,0.28)] md:px-12 md:py-16">
           <div className="grid-texture pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
           <div className="relative">
@@ -934,6 +834,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ---------- Directory listings and awards, last thing before the footer ---------- */}
+      <BadgeStrip className="page-x bg-white pb-16 pt-2" />
     </>
   );
 }

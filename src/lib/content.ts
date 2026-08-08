@@ -134,10 +134,17 @@ export const stackingCards = [
 
 export const defaultPageContent = {
   homeHero: {
-    // The headline is the page H1. It carries the primary search term, so keep
-    // the keyword in it if this is ever edited from the admin panel.
-    headline: "Best IT Company in Nepal",
-    tagline: "Complexities, now simplified.",
+    // Headline and tagline are rendered as the two lines of the page H1, so
+    // together they read "Custom Software, Websites & Automation / Infobytes
+    // Nepal". It is the highest value string on the site: keep it describing
+    // what we build, and keep the brand on the second line.
+    //
+    // It used to read "Best IT Company in Nepal". A self-awarded superlative is
+    // not a ranking signal — nothing corroborates it — and it pushed the H1 into
+    // competing with /best-it-company-in-nepal, which is the page that actually
+    // answers that query and does so as a buying guide rather than a boast.
+    headline: "Custom Software, Websites & Automation",
+    tagline: "Infobytes Nepal",
     supportingText:
       "Infobytes Nepal Pvt. Ltd. is a Software Development and IT Company based in Nepal. We deliver for businesses across Nepal and Internationally.",
     heroVideoUrl: "/assets/hero/infobytes-hero.mp4",

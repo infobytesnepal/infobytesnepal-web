@@ -1,20 +1,40 @@
 import type { Metadata, Viewport } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Marcellus } from "next/font/google";
 import { getCanonicalSiteUrl } from "@/lib/utils";
 import "./globals.css";
 
-// Only the sans family is loaded. Geist Mono was being downloaded on every page
-// without a single class using it.
+// Body, UI, and everything that is not a heading. Only the sans family is
+// loaded. Geist Mono was being downloaded on every page without a single class
+// using it.
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
 });
 
+/**
+ * Display face for headings.
+ *
+ * Marcellus ships exactly one weight (400) and no italic, so any heading that
+ * keeps a `font-semibold` utility would be rendered with a synthesised bold:
+ * thickened, smeared outlines, worst at the hero's 3.6rem. The `h1, h2, h3`
+ * rule in `globals.css` pins the weight back to 400 for every heading at once
+ * rather than editing the utility off ~200 of them.
+ */
+const marcellus = Marcellus({
+  variable: "--font-marcellus",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
 const siteUrl = getCanonicalSiteUrl();
-const defaultTitle = "Best IT Company in Nepal | Infobytes Nepal";
+// No "best". A self-declared superlative earns nothing in search and reads as
+// puffery to a buyer; the title now says what we do instead. The query itself
+// is still served, by the /best-it-company-in-nepal buying guide.
+const defaultTitle = "IT Company in Nepal : Custom Software Development & Web Solutions | Infobytes Nepal";
 const defaultDescription =
-  "Looking for the best IT company in Nepal? We build Optimized Websites, Custom Softwares, and Business Automations Tools.";
+  "Infobytes Nepal is an IT company in Nepal building custom software, web solutions, and business automation. Get a free written scope and quote today.";
 const defaultOgImage = "/assets/hero/infobytes-hero-fallback.webp";
 const faviconPng = "/favicon.png";
 const faviconIco = "/favicon.ico";
@@ -80,7 +100,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${marcellus.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-white text-dark-text">{children}</body>
     </html>

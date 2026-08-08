@@ -48,7 +48,7 @@ async function renderHome(): Promise<Rendered> {
   return {
     title: company.name,
     body: [
-      heading(`${company.name} — Best IT Company in Nepal`, "/"),
+      heading(`${company.name} — IT Company in Nepal`, "/"),
       "",
       `> ${company.tagline}`,
       "",

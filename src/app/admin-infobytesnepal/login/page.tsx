@@ -7,7 +7,7 @@ type Props = {
 export default async function LoginPage({ searchParams }: Props) {
   const params = await searchParams;
   return (
-    <main className="flex min-h-screen items-center justify-center bg-soft-blue p-5">
+    <main className="admin-ui flex min-h-screen items-center justify-center bg-soft-blue p-5">
       <form action={loginAction} className="w-full max-w-sm rounded-[20px] border border-primary-blue/10 bg-white p-6 shadow-[0_24px_70px_rgba(4,18,63,0.08)]">
         <h1 className="text-2xl font-semibold text-deep-navy">Login</h1>
         {params.error && <p className="mt-3 text-sm text-primary-blue">Please check your email and password.</p>}

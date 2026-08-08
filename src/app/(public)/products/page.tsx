@@ -1,8 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
-import CmsImage from "@/components/public/cms-image";
 import InternalLinkHub from "@/components/public/internal-links";
+import ProductLogo from "@/components/public/product-logo";
 import Reveal from "@/components/public/reveal";
 import { getProducts } from "@/lib/data";
 import { basicPageMetadata } from "@/lib/seo";
@@ -51,10 +51,10 @@ export default async function ProductsPage() {
                 className="group block h-full overflow-hidden rounded-[28px] border border-primary-blue/12 bg-white p-7 shadow-[0_24px_70px_rgba(4,18,63,0.08)] transition hover:-translate-y-1 hover:border-primary-green/40 hover:shadow-[0_28px_84px_rgba(4,18,63,0.13)]"
               >
                 <div className="flex items-start justify-between gap-6">
-                  <CmsImage src={product.logoUrl} alt={`${product.name} logo`} width={72} height={72} className="h-16 w-16" />
-                  <span className="site-button-light rounded-full px-4 py-2 text-sm font-semibold">Learn More</span>
+                  <ProductLogo src={product.logoUrl} name={product.name} />
+                  <span className="site-button-light shrink-0 rounded-full px-4 py-2 text-sm font-semibold">Learn More</span>
                 </div>
-                <h2 className="mt-10 text-3xl font-semibold text-deep-navy">{product.name}</h2>
+                <h2 className="mt-8 text-3xl font-semibold text-deep-navy">{product.name}</h2>
                 <p className="mt-4 max-w-xl leading-7 text-dark-text/72">{product.shortDescription}</p>
                 <span className="mt-8 inline-flex items-center gap-2 font-semibold text-primary-blue">
                   Learn More

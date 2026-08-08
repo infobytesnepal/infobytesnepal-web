@@ -9,7 +9,10 @@ export const extraSeoLandingPages = {
   labSoftware: {
     slug: "lab-software-in-nepal",
     path: "/lab-software-in-nepal",
-    metaTitle: "Best Lab Software in Nepal | Infobytes Nepal",
+    // Not "Best Lab Software in Nepal". The page's own H1, og:title, and body
+    // never made that claim; only the title tag did, which left the one string
+    // Google shows in results saying something the page does not support.
+    metaTitle: "Lab Software in Nepal | Nidanyo by Infobytes Nepal",
     metaDescription:
       "Nidanyo by Infobytes Nepal is lab management software for medical laboratories in Nepal. Patient registration, sample tracking, result verification, report printing, billing, and reagent stock in one system.",
     ogTitle: "Lab Software in Nepal | Nidanyo by Infobytes Nepal",

@@ -21,6 +21,7 @@
   --color-soft-green: var(--soft-green);
   --color-dark-text: var(--dark-text);
   --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-marcellus);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
@@ -34,6 +35,91 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* ---------- Display type ---------- */
+
+/**
+ * Every heading on the site is set in Marcellus; body, UI, buttons, and tables
+ * stay in the sans.
+ *
+ * The `font-weight: 400` is not cosmetic. Marcellus ships a single weight, and
+ * roughly two hundred headings across this codebase carry Tailwind's
+ * `font-semibold`. Left alone the browser would synthesise a bold for every one
+ * of them, which on a serif at hero size looks like a printing fault. Pinning
+ * the weight here fixes all of them from one place.
+ *
+ * These rules are deliberately unlayered. Tailwind v4 emits its utilities into
+ * `@layer utilities`, and unlayered CSS outranks *any* layer regardless of
+ * specificity, so a bare `h1` selector beats `.font-semibold` without needing
+ * `!important` or a specificity hack.
+ *
+ * Escape hatch: `.font-body` on a heading sends it back to the sans at 600. Use
+ * it for anything that is a heading structurally but reads as UI, not display
+ * type.
+ */
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-marcellus), "Iowan Old Style", Georgia, serif;
+  font-weight: 400;
+}
+
+h1.font-body,
+h2.font-body,
+h3.font-body,
+.font-display.font-body {
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+/* The CMS is a tool, not the website. Its headings stay in the UI sans at the
+   600 all 31 of them already ask for. */
+.admin-ui :is(h1, h2, h3) {
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+/**
+ * The brand full stop. A headline ends on a period in the brand green, which is
+ * the one flourish worth borrowing from the reference sites: it costs a span,
+ * survives without CSS, and never touches legibility.
+ *
+ * Strip the trailing "." from the heading string and append
+ * `<span className="accent-dot">.</span>` instead.
+ */
+.accent-dot {
+  color: var(--primary-green);
+}
+
+/**
+ * A single word inside a heading, filled with the brand gradient. Static rather
+ * than animated: `.text-gradient` pans, which is fine on a hero tagline set on
+ * its own line and distracting mid-sentence.
+ *
+ * `inline-block` plus the padding/margin pair keeps the last glyph's overhang
+ * from being clipped by the background box.
+ */
+.word-gradient {
+  display: inline-block;
+  padding-right: 0.06em;
+  margin-right: -0.06em;
+  background: linear-gradient(100deg, var(--primary-green) 0%, #1f7ae0 52%, var(--primary-blue) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Clipped-text fills resolve to nothing in forced-colours mode, which would
+   delete the word from the page entirely. Hand the glyphs back their colour. */
+@media (forced-colors: active) {
+  .word-gradient,
+  .text-gradient {
+    background: none;
+    color: CanvasText;
+    -webkit-text-fill-color: CanvasText;
+  }
 }
 
 button,

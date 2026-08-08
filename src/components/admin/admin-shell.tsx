@@ -18,7 +18,7 @@ const nav = [
 export default async function AdminShell({ children }: { children: React.ReactNode }) {
   const stats = await getInquiryStats();
   return (
-    <div className="min-h-screen bg-soft-blue text-dark-text lg:flex">
+    <div className="admin-ui min-h-screen bg-soft-blue text-dark-text lg:flex">
       <aside className="border-b border-primary-blue/10 bg-white p-4 lg:fixed lg:inset-y-0 lg:left-0 lg:w-72 lg:border-b-0 lg:border-r">
         <div className="mb-7">
           <p className="text-lg font-semibold text-deep-navy">Infobytes Nepal</p>
