@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Marcellus } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { getCanonicalSiteUrl } from "@/lib/utils";
 import "./globals.css";
 
@@ -102,7 +103,10 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${marcellus.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-white text-dark-text">{children}</body>
+      <body className="min-h-full bg-white text-dark-text">
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
