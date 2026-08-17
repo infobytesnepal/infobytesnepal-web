@@ -553,6 +553,7 @@ export default async function HomePage() {
       </section>
 
       {/* ---------- Products (stacking cards) ---------- */}
+      {/* ---------- Products (stacking cards) ---------- */}
       <StackingCards products={products} />
 
       {/* ---------- Why Infobytes ---------- */}
