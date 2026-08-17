@@ -1,31 +1,31 @@
 /**
  * Blog content and its read adapter.
  *
- * Editorial collections on this site (team, seo landing pages, faqs) live as
- * typed modules rather than in the database, and the blog follows that pattern.
- * Every read goes through the async functions at the bottom of this file, so
- * swapping this array for a `posts` table later means rewriting those functions
- * and nothing else: no page or component imports `posts` directly.
+ * Posts live in the `posts` table and are written in the CMS. Every read still
+ * goes through the async functions at the bottom of this file, which is what
+ * made moving the blog out of a typed module and into the database a change to
+ * this file and nothing else: no page or component ever imported the post array
+ * directly.
+ *
+ * Two things are still code rather than data, on purpose:
+ *
+ * - `categories`, because each one is a filter chip with a URL that is already
+ *   indexed. Letting an editor invent a category would create an orphan filter.
+ * - `authors`, because an author's byline card links to their `/team` page. An
+ *   author with no team page would render a link to a 404.
+ *
+ * Adding either is a small code change plus a deploy, which is the right amount
+ * of friction for something that changes once a year.
  */
 
-/**
- * A body block. Modelling the body as typed blocks instead of a markdown string
- * keeps every element stylable with the site's own tokens and avoids pulling in
- * a markdown parser and its sanitiser.
- *
- * Inline markup inside `text` fields is deliberately tiny: **bold**, `code`,
- * and [label](/href). See `renderInline` in the post page.
- */
-export type PostBlock =
-  | { type: "p"; text: string }
-  | { type: "h2"; text: string; id: string }
-  | { type: "h3"; text: string; id: string }
-  | { type: "ul"; items: string[] }
-  | { type: "ol"; items: string[] }
-  | { type: "quote"; text: string; cite?: string }
-  | { type: "code"; language: string; code: string }
-  | { type: "figure"; src: string; alt: string; caption: string; width: number; height: number }
-  | { type: "table"; caption: string; head: string[]; rows: string[][] };
+import { cache } from "react";
+import { and, asc, desc, eq } from "drizzle-orm";
+import { db } from "./db/client";
+import { posts as postsTable, type PostRow } from "./db/schema";
+import { postSeeds } from "./blog-seed";
+import { estimateReadTime, parsePostMarkdown, type PostBlock } from "./blog-markdown";
+
+export type { PostBlock };
 
 export type Author = {
   slug: string;
@@ -88,409 +88,136 @@ export const authors: Author[] = [
   },
 ];
 
-const posts: Post[] = [
-  {
-    slug: "how-much-does-a-website-cost-in-nepal",
-    title: "What a website actually costs in Nepal, and what moves the price",
-    excerpt:
-      "Real ranges for a business site, a custom build, and an online store in Nepal, plus the five things that decide which end of the range you land on.",
-    coverImage: "/assets/home/website-and-software-development-cost-in-nepal.jpg",
-    coverAlt: "A developer at Infobytes Nepal preparing a written website quotation for a client in Nepal",
-    category: "Web Development",
-    tags: ["pricing", "websites", "budgeting"],
-    authorSlug: "bibek-neupane",
-    publishedAt: "2026-07-14",
-    updatedAt: "2026-08-04",
-    readTime: 7,
-    metaTitle: "What a Website Costs in Nepal in 2026 | Infobytes Nepal",
-    metaDescription:
-      "Real website price ranges in Nepal for 2026, what pushes the number up or down, and the recurring costs most quotations leave out.",
-    body: [
-      {
-        type: "p",
-        text: "The first question in almost every first call is some version of this one, and the honest answer is a range rather than a number. Here is where that range sits in 2026, and what actually decides where in it you land.",
-      },
-      { type: "h2", text: "The ranges", id: "the-ranges" },
-      {
-        type: "table",
-        caption: "Indicative website prices in Nepal in 2026",
-        head: ["What you need", "Price", "Timeline"],
-        rows: [
-          ["Simple business website", "NPR 50,000 to 150,000", "2 to 4 weeks"],
-          ["Custom design with a CMS", "NPR 100,000 to 250,000", "4 to 8 weeks"],
-          ["Online store", "NPR 80,000 to 200,000", "4 to 8 weeks"],
-          ["Custom web platform", "From NPR 250,000", "8 to 16 weeks"],
-        ],
-      },
-      {
-        type: "p",
-        text: "Those are build costs. Domain and hosting are separate and recur every year, and a payment gateway takes a cut of every transaction. Any quotation that does not mention them is not finished.",
-      },
-      { type: "h2", text: "What moves the number", id: "what-moves-the-number" },
-      {
-        type: "ol",
-        items: [
-          "Page count. Five pages and fifty pages are different projects, even at the same design quality.",
-          "Custom design or template. A template is cheaper and faster, and it will look like a template.",
-          "Features. Forms are cheap. Bookings, dashboards, payments, and multi language are not.",
-          "Content. Somebody has to write the copy and supply the photos. That somebody is billable if it is not you.",
-          "Support after launch. A site nobody maintains is a site that breaks quietly.",
-        ],
-      },
-      { type: "h3", text: "The cheapest quote is rarely the cheapest project", id: "cheapest-quote" },
-      {
-        type: "p",
-        text: "A site built without a content structure has to be rebuilt when you want to rank, and a rebuild costs more than doing it once. Ask what happens when you need a new section in a year. The answer tells you what you are really buying. Our [full pricing guide](/website-cost-in-nepal) breaks this down further.",
-      },
-      {
-        type: "quote",
-        text: "Vague scope is the single biggest cause of failed projects in Nepal. Get the deliverables, the timeline, and the ownership terms written down before any money moves.",
-        cite: "Infobytes Nepal delivery notes",
-      },
-      { type: "h2", text: "What to ask before you sign", id: "what-to-ask" },
-      {
-        type: "ul",
-        items: [
-          "What exactly is included, and what is explicitly excluded?",
-          "Who owns the code, the domain, and the hosting accounts at the end?",
-          "What does a change request cost once we have started?",
-          "Is SEO structure part of the build or an extra?",
-          "What does support cost after launch?",
-        ],
-      },
-      {
-        type: "p",
-        text: "If you want the numbers for your own project rather than a range, send us the requirement. The first conversation and the written quotation are free.",
-      },
-    ],
-  },
-  {
-    slug: "when-to-move-off-spreadsheets",
-    title: "Five signs your business has outgrown spreadsheets",
-    excerpt:
-      "Spreadsheets are excellent until they are not. Here is how to tell when a shared sheet has quietly become the biggest risk in your operation.",
-    coverImage: "/assets/home/custom-software-development-company-nepal.jpg",
-    coverAlt: "A custom software dashboard replacing spreadsheet based tracking for a business in Nepal",
-    category: "Software",
-    tags: ["custom software", "operations", "automation"],
-    authorSlug: "sugam-dahal",
-    publishedAt: "2026-06-28",
-    updatedAt: "2026-06-28",
-    readTime: 6,
-    // 59 characters. The previous version ran to 67, past the point Google
-    // truncates a title in results.
-    metaTitle: "Replace Spreadsheets With Custom Software | Infobytes Nepal",
-    metaDescription:
-      "Five practical signs a growing business in Nepal has outgrown spreadsheets, and what a focused first version of custom software should cover.",
-    body: [
-      {
-        type: "p",
-        text: "Nobody sets out to run a company on a shared sheet. It happens because a spreadsheet is free, instant, and good enough on day one. The problem is that it stays good enough for exactly as long as one person holds the whole process in their head.",
-      },
-      { type: "h2", text: "The five signs", id: "the-five-signs" },
-      { type: "h3", text: "1. Somebody rebuilds the same report every month", id: "sign-one" },
-      {
-        type: "p",
-        text: "If a person spends two days a month copying between sheets to produce a number the business needs, you are paying a salary for something a query answers instantly.",
-      },
-      { type: "h3", text: "2. There are three versions and nobody knows which is current", id: "sign-two" },
-      {
-        type: "p",
-        text: "The moment a file gets a `_final_v2` suffix, the sheet has stopped being a record and started being a rumour.",
-      },
-      { type: "h3", text: "3. You cannot tell who changed what", id: "sign-three" },
-      {
-        type: "p",
-        text: "A cancelled bill or an edited price should have a name and a timestamp attached. Spreadsheets give you neither, which turns an ordinary mistake into an argument.",
-      },
-      { type: "h3", text: "4. Access is all or nothing", id: "sign-four" },
-      {
-        type: "p",
-        text: "Everyone can see salaries, or nobody can see anything. Real systems let you scope what each role sees, which is usually the point at which a growing team needs one.",
-      },
-      { type: "h3", text: "5. The answer to a simple question takes a day", id: "sign-five" },
-      {
-        type: "p",
-        text: "How many jobs are open right now? Which customers have not been followed up in two weeks? If those take an afternoon, decisions get made on feel rather than fact.",
-      },
-      { type: "h2", text: "What a first version should look like", id: "first-version" },
-      {
-        type: "p",
-        text: "Not everything at once. A focused first version covers one department, with the workflow, the roles, and the two or three reports that matter. That typically runs NPR 200,000 to 600,000 and takes 6 to 12 weeks, delivered module by module so your team is using part of it while the rest is being built.",
-      },
-      {
-        type: "ul",
-        items: [
-          "One workflow, end to end, not five workflows half done.",
-          "Roles and permissions from the start. Retrofitting them is painful.",
-          "An export path, so your data is never trapped.",
-          "Somebody on your side who owns adoption.",
-        ],
-      },
-      {
-        type: "p",
-        text: "If you recognise three or more of the five signs, the sheet is already costing you more than the software would. Read more about [custom software development in Nepal](/software-development-company-in-nepal).",
-      },
-    ],
-  },
-  {
-    slug: "local-seo-checklist-for-nepali-businesses",
-    title: "A local SEO checklist for businesses in Nepal",
-    excerpt:
-      "The unglamorous list that decides whether people in Kathmandu find you on a phone: your profile, your pages, your speed, and your reviews.",
-    coverImage: "/assets/services/2seo-ibn.webp",
-    coverAlt: "Local search engine optimization work by Infobytes Nepal for a business in Kathmandu Nepal",
-    category: "SEO",
-    tags: ["local seo", "google business profile", "core web vitals"],
-    authorSlug: "bibek-neupane",
-    publishedAt: "2026-06-09",
-    updatedAt: "2026-07-02",
-    readTime: 8,
-    metaTitle: "Local SEO Checklist for Businesses in Nepal | Infobytes Nepal",
-    metaDescription:
-      "A practical local SEO checklist for Nepali businesses: Google Business Profile, location pages, site speed, schema, and reviews that actually arrive.",
-    body: [
-      {
-        type: "p",
-        text: "Local search is won on details that nobody enjoys doing. None of this is clever. All of it matters more than another blog post about keywords.",
-      },
-      { type: "h2", text: "Start with the profile, not the website", id: "start-with-profile" },
-      {
-        type: "p",
-        text: "For a huge share of local searches, your Google Business Profile is the result. Complete every field, pick the right primary category, add real photos of the actual place, and keep the hours accurate through festivals. An abandoned profile outranks nothing.",
-      },
-      { type: "h2", text: "Make the name, address, and phone identical everywhere", id: "nap-consistency" },
-      {
-        type: "p",
-        text: "Your profile, your website footer, your Facebook page, and any directory listing should carry byte identical details. `+977 9843468715` in one place and `9843468715` in another is a small inconsistency that quietly weakens the signal.",
-      },
-      { type: "h2", text: "Give each location a real page", id: "location-pages" },
-      {
-        type: "p",
-        text: "A page per city only works if the page says something specific about that city. Duplicated text with the place name swapped is worse than not having the page. If you cannot write three genuinely local paragraphs, do not make the page.",
-      },
-      { type: "h2", text: "Speed is a local ranking factor on mobile", id: "speed" },
-      {
-        type: "p",
-        text: "Most local searches happen on a mid range Android phone on mobile data. Compress your images, serve modern formats, and set explicit dimensions so nothing jumps while loading.",
-      },
-      {
-        type: "code",
-        language: "html",
-        code: `<!-- Always set width and height. It costs nothing and prevents layout shift. -->\n<img\n  src="/office-bhaktapur.jpg"\n  alt="Infobytes Nepal office in Kaushaltar Bhaktapur"\n  width="1600"\n  height="1200"\n  loading="lazy"\n  decoding="async"\n/>`,
-      },
-      { type: "h2", text: "Add LocalBusiness structured data", id: "structured-data" },
-      {
-        type: "p",
-        text: "Structured data will not rank you on its own, but it removes ambiguity about who and where you are, which matters when an answer engine is deciding what to quote.",
-      },
-      { type: "h2", text: "Ask for reviews, properly", id: "reviews" },
-      {
-        type: "ul",
-        items: [
-          "Ask in person, at the moment the customer is happy, not by bulk SMS a month later.",
-          "Send the direct review link. Every extra tap loses people.",
-          "Reply to all of them, including the bad ones, without arguing.",
-          "Never buy reviews. It is detectable and the cleanup costs more than the reviews did.",
-        ],
-      },
-      {
-        type: "p",
-        text: "Work through this list before paying anyone for a monthly retainer. Half of local SEO is admin you can do yourself, and the other half is easier once the admin is done. If you want help with the rest, see [SEO services in Nepal](/seo-company-in-nepal).",
-      },
-    ],
-  },
-  {
-    slug: "what-business-automation-actually-means",
-    title: "Business automation, without the buzzword",
-    excerpt:
-      "Automation is not robots. It is removing the third place your team retypes the same customer name. Here is where to start and what to leave alone.",
-    coverImage: "/assets/services/3digital-marketing-ibn.webp",
-    coverAlt: "Business automation workflow built by Infobytes Nepal connecting sales and service data",
-    category: "Business Automation",
-    tags: ["automation", "crm", "workflow"],
-    authorSlug: "sugam-dahal",
-    publishedAt: "2026-05-21",
-    updatedAt: "2026-05-21",
-    readTime: 5,
-    metaTitle: "What Business Automation Actually Means | Infobytes Nepal",
-    metaDescription:
-      "Business automation in plain terms: where to start, what to leave alone, and what a Nepali business should expect after the first three months.",
-    body: [
-      {
-        type: "p",
-        text: "Automation has been sold badly for long enough that most business owners assume it means replacing people. In practice it usually means removing the fourth place somebody retypes a phone number.",
-      },
-      { type: "h2", text: "Start where the same data is entered twice", id: "start-here" },
-      {
-        type: "p",
-        text: "Every duplicate entry is a place where two records can disagree. Find those first. They are usually between the enquiry form, the sales sheet, and the billing system.",
-      },
-      { type: "h2", text: "Automate the handover, not the judgement", id: "handover-not-judgement" },
-      {
-        type: "p",
-        text: "Moving a lead from the website to the right salesperson with a due date is a good thing to automate. Deciding whether to discount is not. Keep people where judgement is needed and take the clerical work off them.",
-      },
-      { type: "h2", text: "What good looks like after three months", id: "what-good-looks-like" },
-      {
-        type: "ul",
-        items: [
-          "Nobody retypes a customer detail that the business already holds.",
-          "Every lead has an owner and a next step with a date.",
-          "The daily and monthly numbers come out of the system, not out of a sheet.",
-          "A manager can see status without asking three people.",
-        ],
-      },
-      {
-        type: "p",
-        text: "That is the whole ambition. It is not glamorous and it pays for itself faster than almost anything else you can buy. More on [business automation in Nepal](/business-automation-software-nepal).",
-      },
-    ],
-  },
-  {
-    slug: "choosing-an-it-company-in-nepal",
-    title: "How to judge an IT company before you hire one",
-    excerpt:
-      "Eight questions that separate a company that will finish your project from one that will go quiet in month three.",
-    coverImage: "/assets/home/best-it-company-in-nepal-infobytes-nepal-team.jpg",
-    coverAlt: "The Infobytes Nepal team discussing a client project at the office in Bhaktapur Nepal",
-    category: "Software",
-    tags: ["hiring", "vendor selection", "scope"],
-    authorSlug: "bibek-neupane",
-    publishedAt: "2026-04-30",
-    updatedAt: "2026-04-30",
-    readTime: 6,
-    metaTitle: "How to Choose an IT Company in Nepal | Infobytes Nepal",
-    metaDescription:
-      "Eight questions to ask before you hire an IT company in Nepal, plus the warning signs that a project will go quiet after month three.",
-    body: [
-      {
-        type: "p",
-        text: "Everyone claims the same things, so claims are useless as a filter. Questions are not. These are the ones whose answers actually predict how the project will go.",
-      },
-      { type: "h2", text: "The eight questions", id: "the-eight-questions" },
-      {
-        type: "ol",
-        items: [
-          "Will I be talking to the people who write the code, or to an account manager?",
-          "What exactly is in scope, and what is explicitly out?",
-          "Who owns the code, the domain, and the hosting accounts when we finish?",
-          "What happens to the timeline if something slips, and is that written down?",
-          "What does a change request cost, and how is it agreed?",
-          "Is SEO structure part of the build or billed separately?",
-          "What does support cost after launch, and what response time comes with it?",
-          "Can I speak to a client you delivered for over a year ago?",
-        ],
-      },
-      {
-        type: "p",
-        text: "The last one is the most revealing. Anybody can produce a happy client from last month. A client from two years ago tells you whether the work held up and whether the company stayed reachable.",
-      },
-      { type: "h2", text: "Warning signs", id: "warning-signs" },
-      {
-        type: "ul",
-        items: [
-          "A quotation with no exclusions listed.",
-          "A promise of first page rankings on a timeline.",
-          "Reluctance to put the timeline in the agreement.",
-          "No written change process.",
-        ],
-      },
-      {
-        type: "quote",
-        text: "Ask what happens when we disagree. A company that has thought about that has been through it and learned something. One that has not is telling you it has not delivered much.",
-      },
-      {
-        type: "p",
-        text: "We wrote a longer version of this as a buying guide: [how to choose the best IT company in Nepal](/best-it-company-in-nepal).",
-      },
-    ],
-  },
-  {
-    slug: "why-your-site-is-slow-on-mobile-data",
-    title: "Why your website is slow on Nepali mobile data",
-    excerpt:
-      "The four things that make a site crawl on a mid range Android phone, and the fixes that take an afternoon rather than a rebuild.",
-    coverImage: "/assets/services/1web-design-and-development-ibn.webp",
-    coverAlt: "Website performance testing on mobile and desktop by Infobytes Nepal",
-    category: "Web Development",
-    tags: ["performance", "core web vitals", "mobile"],
-    authorSlug: "kapil-aryal",
-    publishedAt: "2026-04-02",
-    updatedAt: "2026-04-02",
-    readTime: 7,
-    metaTitle: "Why Your Website Is Slow on Mobile Data | Infobytes Nepal",
-    metaDescription:
-      "Four reasons a website crawls on Nepali mobile data, how to check each one, and the fixes that take an afternoon instead of a full rebuild.",
-    body: [
-      {
-        type: "p",
-        text: "A site that feels instant on office wifi can take eleven seconds on a phone in Chitwan. The gap is almost always the same four things.",
-      },
-      { type: "h2", text: "1. Images nobody compressed", id: "images" },
-      {
-        type: "p",
-        text: "The single most common cause. A 3MB hero photo straight from a camera is real money on a mobile data pack, and it delays the largest contentful paint on exactly the devices most of your visitors use. Serve modern formats and size them for the slot they occupy.",
-      },
-      { type: "h2", text: "2. A video that autoplays on phones", id: "video" },
-      {
-        type: "p",
-        text: "Background video looks good in a demo and costs a megabyte before the page is usable. Show a still image on small screens and load the video only from tablet width up.",
-      },
-      { type: "h2", text: "3. Fonts that block the first paint", id: "fonts" },
-      {
-        type: "p",
-        text: "Every extra family and weight is another download. Pick one family, load the weights you actually use, and set `display: swap` so text is readable while the font arrives.",
-      },
-      { type: "h2", text: "4. Layout that jumps while loading", id: "layout-shift" },
-      {
-        type: "p",
-        text: "Not strictly speed, but it is what makes a site feel broken. Give every image and embed an explicit width and height so the browser reserves the space before the file lands.",
-      },
-      {
-        type: "code",
-        language: "css",
-        code: `/* Reserve the box before the image arrives. Zero layout shift. */\n.media {\n  aspect-ratio: 4 / 3;\n  width: 100%;\n  background: #eaf2ff;\n}`,
-      },
-      { type: "h2", text: "How to check", id: "how-to-check" },
-      {
-        type: "p",
-        text: "Test on a real mid range Android phone on mobile data, not on a laptop with the network throttled. Then use PageSpeed Insights and read the field data section, which reflects real visitors rather than a lab run.",
-      },
-      {
-        type: "p",
-        text: "Most of these are an afternoon of work rather than a rebuild. If the site is beyond patching, that is worth knowing too. See [website maintenance in Nepal](/website-maintenance-services-in-nepal).",
-      },
-    ],
-  },
-];
+export const defaultCoverImage = "/assets/hero/infobytes-hero-fallback.webp";
 
 /** Newest first. The order every listing uses. */
 function byNewest(a: Post, b: Post) {
   return b.publishedAt.localeCompare(a.publishedAt);
 }
 
-// ---------------------------------------------------------------------------
-// Read adapter. Pages and components use only these.
-// ---------------------------------------------------------------------------
-
-export async function getPosts(): Promise<Post[]> {
-  return [...posts].sort(byNewest);
+function isCategory(value: string): value is Category {
+  return (categories as readonly string[]).includes(value);
 }
 
-export async function getPost(slug: string): Promise<Post | null> {
-  return posts.find((post) => post.slug === slug) ?? null;
+/**
+ * A database row projected into the `Post` the site renders.
+ *
+ * The body is parsed here rather than at write time so the markdown in the
+ * database stays the single source of truth: the editor reopens exactly what
+ * was saved, and a fix to the parser reaches every existing post on the next
+ * revalidation instead of only posts saved after the fix.
+ */
+function fromRow(row: PostRow): Post {
+  const body = parsePostMarkdown(row.bodyMarkdown);
+  return {
+    slug: row.slug,
+    title: row.title,
+    excerpt: row.excerpt,
+    coverImage: row.coverImage || defaultCoverImage,
+    coverAlt: row.coverAlt || row.title,
+    category: isCategory(row.category) ? row.category : categories[0],
+    tags: row.tags
+      .split(",")
+      .map((tag) => tag.trim())
+      .filter(Boolean),
+    authorSlug: row.authorSlug,
+    publishedAt: row.publishedAt,
+    // Falls back to the publish date so a post never claims it was updated
+    // before it existed, which is what an empty `updatedAt` would put in schema.
+    updatedAt: (row.updatedAt || row.publishedAt).slice(0, 10),
+    readTime: row.readTime || estimateReadTime(row.bodyMarkdown),
+    body,
+    metaTitle: row.metaTitle || undefined,
+    metaDescription: row.metaDescription || undefined,
+  };
+}
+
+function seededPosts(): Post[] {
+  return postSeeds.map((seed) => ({ ...seed, tags: [...seed.tags], body: [...seed.body] }));
+}
+
+/**
+ * Every published post, newest first.
+ *
+ * Deduplicated per render pass: the blog index, the schema block on it, and the
+ * footer's recent-posts list all ask for this while rendering the same page.
+ *
+ * The fallbacks are the same contract `getProducts` has kept since the products
+ * table was added. An unseeded or unreachable database serves the six posts
+ * shipped in the repo rather than an empty blog, so a page that exists in the
+ * sitemap never starts returning a 404 because a query failed.
+ */
+export const getPosts = cache(async (includeDrafts = false): Promise<Post[]> => {
+  try {
+    const rows = await db
+      .select()
+      .from(postsTable)
+      .where(includeDrafts ? undefined : eq(postsTable.isPublished, true))
+      .orderBy(desc(postsTable.publishedAt), asc(postsTable.title));
+    if (!rows.length) return includeDrafts ? [] : seededPosts();
+    return rows.map(fromRow).sort(byNewest);
+  } catch {
+    return includeDrafts ? [] : seededPosts();
+  }
+});
+
+/** Whether the posts table holds anything at all. Decides whether a miss is a
+ * genuine 404 or an unseeded database that should still serve the repo posts. */
+const postsTableIsEmpty = cache(async () => {
+  const [row] = await db.select({ id: postsTable.id }).from(postsTable).limit(1);
+  return !row;
+});
+
+export async function getPost(slug: string, includeDrafts = false): Promise<Post | null> {
+  try {
+    const where = includeDrafts
+      ? eq(postsTable.slug, slug)
+      : and(eq(postsTable.slug, slug), eq(postsTable.isPublished, true));
+    const [row] = await db.select().from(postsTable).where(where).limit(1);
+    if (row) return fromRow(row);
+    /*
+      A miss only falls back to the seeds when the table is empty. Without that
+      check, deleting or unpublishing one of the six original posts in the CMS
+      would appear to work and then serve the repo's copy of it forever — the
+      one failure mode a blanket fallback would quietly introduce.
+    */
+    if (!(await postsTableIsEmpty())) return null;
+  } catch {
+    // Fall through to the seed lookup: the database is unreachable, and a
+    // cached page is better than a 404 on a URL that is in the sitemap.
+  }
+  return postSeeds.find((seed) => seed.slug === slug) ?? null;
+}
+
+/** The row behind a post, unparsed, for the admin editor. */
+export async function getPostRowById(id: string): Promise<PostRow | null> {
+  try {
+    const [row] = await db.select().from(postsTable).where(eq(postsTable.id, id)).limit(1);
+    return row ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/** Every post including drafts, for the admin list. */
+export async function getAdminPosts(): Promise<PostRow[]> {
+  try {
+    return await db.select().from(postsTable).orderBy(desc(postsTable.publishedAt), desc(postsTable.createdAt));
+  } catch {
+    return [];
+  }
 }
 
 export async function getPostSlugs(): Promise<string[]> {
-  return posts.map((post) => post.slug);
+  return (await getPosts()).map((post) => post.slug);
 }
 
 /** Posts in the same category first, topped up with the newest others. */
 export async function getRelatedPosts(slug: string, limit = 3): Promise<Post[]> {
-  const current = posts.find((post) => post.slug === slug);
+  const all = await getPosts();
+  const current = all.find((post) => post.slug === slug);
   if (!current) return [];
-  const others = posts.filter((post) => post.slug !== slug).sort(byNewest);
+  const others = all.filter((post) => post.slug !== slug).sort(byNewest);
   const sameCategory = others.filter((post) => post.category === current.category);
   const rest = others.filter((post) => post.category !== current.category);
   return [...sameCategory, ...rest].slice(0, limit);
@@ -502,8 +229,9 @@ export function getAuthor(slug: string): Author | null {
 
 /** Categories that actually have posts, with counts, for the filter row. */
 export async function getCategoryCounts(): Promise<Array<{ name: Category; count: number }>> {
+  const all = await getPosts();
   return categories
-    .map((name) => ({ name, count: posts.filter((post) => post.category === name).length }))
+    .map((name) => ({ name, count: all.filter((post) => post.category === name).length }))
     .filter((entry) => entry.count > 0);
 }
 

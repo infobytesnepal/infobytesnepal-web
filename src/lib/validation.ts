@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { authors, categories } from "./blog";
 import { productInterests } from "./content";
 import { serviceInquiryOptions } from "./services";
 
@@ -75,6 +76,42 @@ export const productSchema = z.object({
   seoTitle: z.string().trim().max(180).optional().default(""),
   seoDescription: z.string().trim().max(320).optional().default(""),
   ogImage: z.string().trim().optional().default(""),
+});
+
+const authorSlugs = authors.map((author) => author.slug) as [string, ...string[]];
+
+/**
+ * A blog post as the CMS form submits it.
+ *
+ * The limits on `metaTitle` and `metaDescription` are the points past which
+ * Google stops showing the text rather than arbitrary column widths, and the
+ * editor counts characters against the same numbers so the author sees the
+ * problem before saving rather than in a search result three weeks later.
+ */
+export const postSchema = z.object({
+  id: z.string().optional(),
+  title: z.string().trim().min(1, "A title is required.").max(180, "Title is too long."),
+  slug: z
+    .string()
+    .trim()
+    .min(1, "A slug is required.")
+    .max(140, "Slug is too long.")
+    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Use lowercase letters, numbers and hyphens only."),
+  excerpt: z.string().trim().min(1, "A summary is required.").max(400, "Summary is too long."),
+  coverImage: z.string().trim().max(2000).optional().default(""),
+  coverAlt: z.string().trim().max(220, "Cover alt text is too long.").optional().default(""),
+  category: z.enum(categories, { message: "Choose a category." }),
+  tags: z.string().trim().max(300, "Too many tags.").optional().default(""),
+  authorSlug: z.enum(authorSlugs, { message: "Choose an author." }),
+  bodyMarkdown: z.string().min(1, "The post has no body.").max(200_000, "The post is too long."),
+  metaTitle: z.string().trim().max(180, "Meta title is too long.").optional().default(""),
+  metaDescription: z.string().trim().max(360, "Meta description is too long.").optional().default(""),
+  readTime: z.coerce.number().int().min(0).max(180).optional().default(0),
+  isPublished: z.boolean().default(false),
+  publishedAt: z
+    .string()
+    .trim()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Use a date in YYYY-MM-DD form."),
 });
 
 export const mediaSchema = z.object({

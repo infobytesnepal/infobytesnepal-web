@@ -2,10 +2,12 @@ import ConfirmButton from "@/components/admin/confirm-button";
 import { AdminCard, SaveButton } from "@/components/admin/ui";
 import { deleteContactInquiry, markAllContactsRead, markContactRead } from "@/lib/actions/admin";
 import { searchContactInquiries } from "@/lib/data";
+import { requireAdmin } from "@/lib/auth";
 
 type Props = { searchParams: Promise<{ filter?: string; q?: string }> };
 
 export default async function InquiriesPage({ searchParams }: Props) {
+  await requireAdmin();
   const params = await searchParams;
   const rows = await searchContactInquiries(params.filter, params.q);
   return (

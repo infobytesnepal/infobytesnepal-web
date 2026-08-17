@@ -2,8 +2,10 @@ import { AdminCard, AdminFileInput, AdminInput, AdminTextarea, SaveButton } from
 import { updatePageSection } from "@/lib/actions/admin";
 import { defaultPageContent } from "@/lib/content";
 import { getPageSection } from "@/lib/data";
+import { requireAdmin } from "@/lib/auth";
 
 export default async function PagesAdminPage() {
+  await requireAdmin();
   const [homeHero, homeMedia, about1, about2, aboutWorking, started, goals, contactHero, privacy, footer] = await Promise.all([
     getPageSection("home", "hero", defaultPageContent.homeHero),
     getPageSection("home", "media", defaultPageContent.homeMedia),

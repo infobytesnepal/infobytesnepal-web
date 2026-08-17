@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import SectionImage from "@/components/public/section-image";
-import type { PostBlock } from "@/lib/blog";
+import type { PostBlock } from "@/lib/blog-markdown";
 
 /**
  * Renders the small inline vocabulary allowed inside body text: **bold**,
@@ -82,6 +82,23 @@ export default function PostBody({ blocks }: { blocks: PostBlock[] }) {
         const key = `block-${index}`;
 
         switch (block.type) {
+          /*
+            A body h1 is unusual — the post title above is already the page's
+            h1 — but an author who writes one gets a real <h1>, because the
+            point of this renderer is that the tag in the source is the tag in
+            the HTML. The editor warns about it rather than rewriting it.
+          */
+          case "h1":
+            return (
+              <h1
+                key={key}
+                id={block.id}
+                className="mt-6 scroll-mt-32 text-3xl font-semibold leading-snug text-deep-navy md:text-4xl"
+              >
+                {block.text}
+              </h1>
+            );
+
           case "h2":
             return (
               <h2

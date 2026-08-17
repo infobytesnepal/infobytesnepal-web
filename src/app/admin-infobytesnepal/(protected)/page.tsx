@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { AdminCard } from "@/components/admin/ui";
+import { requireAdmin } from "@/lib/auth";
 import { getInquiryStats } from "@/lib/data";
 
 export default async function DashboardPage() {
+  // The dashboard is inquiry counts and customer names. `requireAdmin` bounces
+  // an editor to the blog rather than showing them a page of it.
+  await requireAdmin();
   const stats = await getInquiryStats();
   return (
     <div>

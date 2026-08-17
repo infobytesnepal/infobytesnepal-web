@@ -2,10 +2,12 @@ import { AdminCard, SaveButton } from "@/components/admin/ui";
 import { markAllRequestsRead, markRequestRead } from "@/lib/actions/admin";
 import { productInterests } from "@/lib/content";
 import { searchGetStartedRequests } from "@/lib/data";
+import { requireAdmin } from "@/lib/auth";
 
 type Props = { searchParams: Promise<{ filter?: string; product?: string; q?: string }> };
 
 export default async function RequestsPage({ searchParams }: Props) {
+  await requireAdmin();
   const params = await searchParams;
   const rows = await searchGetStartedRequests(params.filter, params.product, params.q);
   return (

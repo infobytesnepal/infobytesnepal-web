@@ -3,8 +3,10 @@ import { AdminCard, AdminFileInput, AdminInput, SaveButton } from "@/components/
 import CmsImage from "@/components/public/cms-image";
 import { deleteMediaAsset, upsertMediaAsset } from "@/lib/actions/admin";
 import { getMediaAssets } from "@/lib/data";
+import { requireAdmin } from "@/lib/auth";
 
 export default async function MediaAdminPage() {
+  await requireAdmin();
   const assets = await getMediaAssets();
   return (
     <div>

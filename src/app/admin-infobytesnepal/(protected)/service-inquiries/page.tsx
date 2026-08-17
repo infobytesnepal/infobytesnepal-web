@@ -3,10 +3,12 @@ import { AdminCard, SaveButton } from "@/components/admin/ui";
 import { deleteServiceInquiry, markAllServiceInquiriesRead, markServiceInquiryRead } from "@/lib/actions/admin";
 import { searchServiceInquiries } from "@/lib/data";
 import { serviceInquiryOptions } from "@/lib/services";
+import { requireAdmin } from "@/lib/auth";
 
 type Props = { searchParams: Promise<{ filter?: string; service?: string; q?: string }> };
 
 export default async function ServiceInquiriesPage({ searchParams }: Props) {
+  await requireAdmin();
   const params = await searchParams;
   const rows = await searchServiceInquiries(params.filter, params.service, params.q);
 

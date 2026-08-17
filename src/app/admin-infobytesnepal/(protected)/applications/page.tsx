@@ -3,6 +3,7 @@ import { AdminCard, SaveButton } from "@/components/admin/ui";
 import { deleteJobApplication, markJobApplicationRead } from "@/lib/actions/admin";
 import { getJobSlugs } from "@/lib/careers";
 import { searchJobApplications } from "@/lib/data";
+import { requireAdmin } from "@/lib/auth";
 
 type Props = { searchParams: Promise<{ filter?: string; job?: string }> };
 
@@ -13,6 +14,7 @@ function formatSize(bytes: number | null) {
 }
 
 export default async function JobApplicationsPage({ searchParams }: Props) {
+  await requireAdmin();
   const params = await searchParams;
   const [rows, slugs] = await Promise.all([searchJobApplications(params.filter, params.job), getJobSlugs()]);
 

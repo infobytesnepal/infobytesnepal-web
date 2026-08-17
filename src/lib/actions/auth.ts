@@ -1,7 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { createSession, destroySession, verifyAdmin } from "@/lib/auth";
+import { blogHome, createSession, destroySession, verifyAdmin } from "@/lib/auth";
 import { isRateLimited } from "@/lib/rate-limit";
 import { loginSchema } from "@/lib/validation";
 import { formString } from "@/lib/utils";
@@ -26,7 +26,9 @@ export async function loginAction(formData: FormData) {
   }
 
   await createSession(user.id, user.email);
-  redirect("/admin-infobytesnepal");
+  // An editor has no dashboard to land on: it is a page of inquiry counts they
+  // are not allowed to see. Send them straight to the only section they can use.
+  redirect(user.role === "editor" ? blogHome : "/admin-infobytesnepal");
 }
 
 export async function logoutAction() {

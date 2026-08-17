@@ -15,10 +15,9 @@ import {
   siteSettings,
 } from "@/lib/db/schema";
 import { requireAdmin } from "@/lib/auth";
+import { formFile, storeUploadedImage } from "@/lib/media";
 import { formString, newId } from "@/lib/utils";
 import { productSchema } from "@/lib/validation";
-
-const maxImageBytes = 1_500_000;
 
 /**
  * Invalidate every public page.
@@ -82,35 +81,6 @@ function revalidatePageSection(pageKey: string) {
     return;
   }
   for (const path of paths) revalidatePath(path);
-}
-
-function formFile(formData: FormData, key: string) {
-  const value = formData.get(key);
-  if (!value || typeof value === "string" || !("arrayBuffer" in value)) return null;
-  return value as File;
-}
-
-async function storeUploadedImage(file: File | null, fallbackUrl: string, name: string, altText = "") {
-  if (!file || file.size === 0) return fallbackUrl;
-  if (!file.type.startsWith("image/")) throw new Error("Only image uploads are supported.");
-  if (file.size > maxImageBytes) throw new Error("Image uploads must be 1.5MB or smaller.");
-
-  const id = newId();
-  const bytes = Buffer.from(await file.arrayBuffer());
-  const url = `data:${file.type};base64,${bytes.toString("base64")}`;
-  const now = new Date().toISOString();
-
-  await db.insert(mediaAssets).values({
-    id,
-    name: name || file.name || "Uploaded image",
-    url,
-    type: file.type,
-    altText,
-    createdAt: now,
-    updatedAt: now,
-  });
-
-  return url;
 }
 
 export async function markContactRead(formData: FormData) {

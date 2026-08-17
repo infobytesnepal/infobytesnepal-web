@@ -6,6 +6,17 @@ const timestamps = {
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 };
 
+/**
+ * `role` decides how much of the CMS a login can reach.
+ *
+ * - `admin`  — everything, which is what every pre-existing account has.
+ * - `editor` — the blog section and nothing else. Enforced in `lib/auth.ts`,
+ *   not here; the column is only the record of it.
+ *
+ * The column already defaulted to "admin" before editors existed, so an account
+ * created without thinking about roles stays an admin rather than silently
+ * losing access.
+ */
 export const adminUsers = sqliteTable("admin_users", {
   id: text("id").primaryKey(),
   email: text("email").notNull().unique(),
@@ -26,6 +37,39 @@ export const products = sqliteTable("products", {
   seoTitle: text("seo_title"),
   seoDescription: text("seo_description"),
   ogImage: text("og_image"),
+  ...timestamps,
+});
+
+/**
+ * Blog posts written in the CMS.
+ *
+ * The body is stored as the markdown the author actually typed rather than as
+ * parsed blocks, so what is saved is exactly what the editor reopens. Parsing to
+ * the `PostBlock[]` the site renders happens on read, in `lib/blog.ts`.
+ *
+ * `tags` is a comma separated string rather than a join table. The blog is a few
+ * dozen posts with a handful of free text tags each, nothing queries by tag, and
+ * the rest of this schema stores small lists the same way.
+ */
+export const posts = sqliteTable("posts", {
+  id: text("id").primaryKey(),
+  slug: text("slug").notNull().unique(),
+  title: text("title").notNull(),
+  excerpt: text("excerpt").notNull(),
+  coverImage: text("cover_image").notNull().default(""),
+  coverAlt: text("cover_alt").notNull().default(""),
+  category: text("category").notNull(),
+  tags: text("tags").notNull().default(""),
+  authorSlug: text("author_slug").notNull(),
+  bodyMarkdown: text("body_markdown").notNull().default(""),
+  /** Overrides the `<title>`. Falls back to the post title when empty. */
+  metaTitle: text("meta_title"),
+  /** Overrides the meta description. Falls back to the excerpt when empty. */
+  metaDescription: text("meta_description"),
+  /** Minutes. 0 means "work it out from the body length on read". */
+  readTime: integer("read_time").notNull().default(0),
+  isPublished: integer("is_published", { mode: "boolean" }).notNull().default(false),
+  publishedAt: text("published_at").notNull(),
   ...timestamps,
 });
 
@@ -132,6 +176,8 @@ export const mediaAssets = sqliteTable("media_assets", {
   ...timestamps,
 });
 
+export type AdminUser = typeof adminUsers.$inferSelect;
+export type PostRow = typeof posts.$inferSelect;
 export type JobApplication = typeof jobApplications.$inferSelect;
 export type Product = typeof products.$inferSelect;
 export type ContactInquiry = typeof contactInquiries.$inferSelect;

@@ -11,7 +11,10 @@
     "db:migrate": "node ./node_modules/tsx/dist/cli.cjs scripts/migrate.ts",
     "db:seed": "node ./node_modules/tsx/dist/cli.cjs scripts/seed.ts",
     "db:sync-copy": "node ./node_modules/tsx/dist/cli.cjs scripts/sync-page-copy.ts",
-    "db:seed:products": "node ./node_modules/tsx/dist/cli.cjs scripts/seed-products.ts"
+    "db:seed:products": "node ./node_modules/tsx/dist/cli.cjs scripts/seed-products.ts",
+    "db:seed:blog": "node ./node_modules/tsx/dist/cli.cjs scripts/seed-blog.ts",
+    "db:user": "node ./node_modules/tsx/dist/cli.cjs scripts/create-cms-user.ts",
+    "check:blog": "node ./node_modules/tsx/dist/cli.cjs scripts/check-blog-roundtrip.ts"
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",

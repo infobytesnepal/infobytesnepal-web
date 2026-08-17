@@ -3,8 +3,10 @@ import { AdminCard, AdminFileInput, AdminInput, AdminTextarea, SaveButton } from
 import CmsImage from "@/components/public/cms-image";
 import { deleteProduct, upsertProduct } from "@/lib/actions/admin";
 import { getProducts } from "@/lib/data";
+import { requireAdmin } from "@/lib/auth";
 
 export default async function ProductsAdminPage() {
+  await requireAdmin();
   const products = await getProducts(true);
   return (
     <div>

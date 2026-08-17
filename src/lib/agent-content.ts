@@ -109,6 +109,10 @@ export function postBodyToMarkdown(body: PostBlock[]): string {
       switch (block.type) {
         case "p":
           return block.text;
+        case "h1":
+          // Only reachable if an author wrote one in the body. Kept so the
+          // agent-facing copy of a post never silently drops a whole heading.
+          return `# ${block.text}`;
         case "h2":
           return `## ${block.text}`;
         case "h3":

@@ -1,8 +1,10 @@
 import { AdminCard, AdminFileInput, AdminInput, SaveButton } from "@/components/admin/ui";
 import { updateSiteSettings } from "@/lib/actions/admin";
 import { getSettings } from "@/lib/data";
+import { requireAdmin } from "@/lib/auth";
 
 export default async function SettingsAdminPage() {
+  await requireAdmin();
   const settings = await getSettings();
   return (
     <div>
