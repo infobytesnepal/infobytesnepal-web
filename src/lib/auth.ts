@@ -11,10 +11,11 @@ import { adminUsers } from "./db/schema";
 const cookieName = "ibn_admin_session";
 
 /**
- * `admin` reaches the whole CMS. `editor` reaches the blog section and nothing
- * else — no inquiries, no job applications, no products, no site settings. The
- * distinction exists so writing can be delegated without also handing over
- * every customer phone number the contact form has ever collected.
+ * `admin` reaches the whole CMS. `editor` reaches the content sections — the
+ * blog and the SEO landing pages — and nothing else: no inquiries, no job
+ * applications, no products, no site settings. The distinction exists so
+ * writing and on-page SEO can be delegated without also handing over every
+ * customer phone number the contact form has ever collected.
  */
 export type AdminRole = "admin" | "editor";
 
@@ -124,8 +125,14 @@ export async function requireAdmin(): Promise<AdminSession> {
   return session;
 }
 
-/** The blog section: admins and editors. */
-export async function requireBlogAccess(): Promise<AdminSession> {
+/**
+ * The content sections — the blog and the landing pages. Admins and editors.
+ *
+ * One function rather than one per section: the two roles that exist are
+ * "everything" and "the words on the site", and splitting content access
+ * further would be inventing a distinction nobody has asked for.
+ */
+export async function requireContentAccess(): Promise<AdminSession> {
   const session = await requireSession();
   if (session.role !== "admin" && session.role !== "editor") redirect(loginPath);
   return session;

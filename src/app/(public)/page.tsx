@@ -24,7 +24,6 @@ import {
 } from "lucide-react";
 import BadgeStrip from "@/components/public/badge-strip";
 import CmsImage from "@/components/public/cms-image";
-import GetStartedButton from "@/components/public/get-started-button";
 import PostCard from "@/components/public/post-card";
 import Reveal from "@/components/public/reveal";
 import SectionImage from "@/components/public/section-image";
@@ -421,8 +420,13 @@ export default async function HomePage() {
               </span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-dark-text/78 md:text-lg md:leading-8">{hero.supportingText}</p>
+            {/*
+              The hero used to lead with a Get Started button beside this one.
+              It was removed deliberately: the same button sits in the navbar on
+              every page including this one, so the landing view was offering the
+              identical action twice within one screen.
+            */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <GetStartedButton />
               <Link
                 href="/products"
                 className="focus-ring site-button-light inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold shadow-[0_16px_42px_rgba(4,18,63,0.12)]"

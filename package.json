@@ -14,7 +14,8 @@
     "db:seed:products": "node ./node_modules/tsx/dist/cli.cjs scripts/seed-products.ts",
     "db:seed:blog": "node ./node_modules/tsx/dist/cli.cjs scripts/seed-blog.ts",
     "db:user": "node ./node_modules/tsx/dist/cli.cjs scripts/create-cms-user.ts",
-    "check:blog": "node ./node_modules/tsx/dist/cli.cjs scripts/check-blog-roundtrip.ts"
+    "check:blog": "node ./node_modules/tsx/dist/cli.cjs scripts/check-blog-roundtrip.ts",
+    "check:pages": "node ./node_modules/tsx/dist/cli.cjs scripts/check-landing-pages.ts"
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",

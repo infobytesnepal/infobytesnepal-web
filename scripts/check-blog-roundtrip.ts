@@ -1,5 +1,7 @@
 import { postSeeds } from "../src/lib/blog-seed";
 import { blocksToMarkdown, parsePostMarkdown } from "../src/lib/blog-markdown";
+import { authors } from "../src/lib/blog";
+import { team } from "../src/lib/team";
 
 /**
  * Checks that the markdown authors write is a lossless representation of the
@@ -37,5 +39,22 @@ if (differences) {
   process.exit(1);
 }
 
+/*
+ * Every blog author's byline card links to /team/<slug>. An author who is not
+ * in `lib/team.ts` renders a link to a 404 - invisible in review, and only
+ * noticed once a post by that person is published.
+ */
+const orphanAuthors = authors.filter((author) => !team.some((member) => member.slug === author.slug));
+if (orphanAuthors.length) {
+  console.error("");
+  console.error("These blog authors have no /team page, so their byline would link to a 404:");
+  for (const author of orphanAuthors) console.error(`  ${author.slug}`);
+  console.error("");
+  console.error("Add them to src/lib/team.ts, or remove them from the authors list.");
+  process.exit(1);
+}
+
 const blocks = postSeeds.reduce((total, seed) => total + seed.body.length, 0);
 console.log(`\n${blocks} blocks across ${postSeeds.length} posts round trip unchanged.\n`);
+console.log(`${authors.length} blog authors, all with a /team page.
+`);

@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { eq, ne, and } from "drizzle-orm";
 import { db } from "@/lib/db/client";
 import { posts } from "@/lib/db/schema";
-import { requireBlogAccess } from "@/lib/auth";
+import { requireContentAccess } from "@/lib/auth";
 import { estimateReadTime } from "@/lib/blog-markdown";
 import { formFile, storeBlogImage } from "@/lib/media";
 import { formString, newId } from "@/lib/utils";
@@ -77,7 +77,7 @@ async function uniqueSlug(desired: string, excludeId: string | null) {
 }
 
 export async function upsertPost(formData: FormData) {
-  await requireBlogAccess();
+  await requireContentAccess();
 
   const id = formString(formData, "id") || null;
   const title = formString(formData, "title");
@@ -174,7 +174,7 @@ export async function upsertPost(formData: FormData) {
 }
 
 export async function deletePost(formData: FormData) {
-  await requireBlogAccess();
+  await requireContentAccess();
   const id = formString(formData, "id");
   if (id) await db.delete(posts).where(eq(posts.id, id));
   revalidateBlog();
@@ -183,7 +183,7 @@ export async function deletePost(formData: FormData) {
 
 /** Publish or unpublish from the list, without opening the post. */
 export async function togglePostPublished(formData: FormData) {
-  await requireBlogAccess();
+  await requireContentAccess();
   const id = formString(formData, "id");
   if (!id) return;
   const [row] = await db.select().from(posts).where(eq(posts.id, id)).limit(1);
@@ -208,7 +208,7 @@ export async function togglePostPublished(formData: FormData) {
 export async function uploadBlogImage(
   formData: FormData,
 ): Promise<{ ok: true; url: string } | { ok: false; error: string }> {
-  await requireBlogAccess();
+  await requireContentAccess();
   const file = formFile(formData, "file");
   if (!file || file.size === 0) return { ok: false, error: "Choose an image first." };
   try {

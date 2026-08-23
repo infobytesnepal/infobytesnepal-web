@@ -1,6 +1,6 @@
 import { getProducts } from "@/lib/data";
 import { allFaqs } from "@/lib/faqs";
-import { seoLandingPageList } from "@/lib/seo-landing-pages";
+import { getLandingPageList } from "@/lib/landing-pages";
 import { team } from "@/lib/team";
 import { getCanonicalSiteUrl } from "@/lib/utils";
 
@@ -15,7 +15,7 @@ export const revalidate = 86400;
 
 export async function GET() {
   const siteUrl = getCanonicalSiteUrl();
-  const products = await getProducts();
+  const [products, landingPages] = await Promise.all([getProducts(), getLandingPageList()]);
   // llms.txt is expected to be Markdown: one H1, and real links rather than
   // bare URLs. Lighthouse's "llms.txt does not follow recommendations" audit
   // fails with "File does not appear to contain any links" when the URLs are
@@ -58,7 +58,7 @@ export async function GET() {
     "",
     "## Service and location pages",
     "",
-    ...seoLandingPageList.map((page) => `- [${page.keyword}](${siteUrl}${page.path})`),
+    ...landingPages.map((page) => `- [${page.keyword}](${siteUrl}${page.path})`),
     "",
     "## Frequently asked questions",
     "",

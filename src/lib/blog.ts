@@ -12,7 +12,8 @@
  * - `categories`, because each one is a filter chip with a URL that is already
  *   indexed. Letting an editor invent a category would create an orphan filter.
  * - `authors`, because an author's byline card links to their `/team` page. An
- *   author with no team page would render a link to a 404.
+ *   author with no team page would render a link to a 404. Every slug here
+ *   must therefore exist in `lib/team.ts`; `npm run check:blog` enforces it.
  *
  * Adding either is a small code change plus a deploy, which is the right amount
  * of friction for something that changes once a year.
@@ -85,6 +86,13 @@ export const authors: Author[] = [
     role: "Operations Incharge for Europe",
     image: "/assets/about/bibek-neupane.webp",
     bio: "Bibek looks after client operations and delivery, and writes about scoping work so both sides know what they agreed to.",
+  },
+  {
+    slug: "kritika-ghimire",
+    name: "Kritika Ghimire",
+    role: "SEO & Digital Marketing Intern",
+    image: "/assets/about/kritika_ghimire.jpeg",
+    bio: "Kritika works on search visibility and the content behind it, and writes about what actually moves a page up the results for a business in Nepal.",
   },
 ];
 

@@ -3,7 +3,7 @@ import { careersEmail, getJob, getJobs } from "./careers";
 import { company } from "./company";
 import { getProductBySlug, getProducts } from "./data";
 import { allFaqs, faqGroups } from "./faqs";
-import { seoLandingPageList } from "./seo-landing-pages";
+import { getLandingPageList } from "./landing-pages";
 import { serviceCatalog } from "./services";
 import { team } from "./team";
 import { siteUrl } from "./agent-api";
@@ -250,8 +250,9 @@ export function listFaqs(options: { topic?: string; limit?: number } = {}) {
   return options.limit ? items.slice(0, options.limit) : items;
 }
 
-export function listLandingPages() {
-  return seoLandingPageList.map((page) => ({
+export async function listLandingPages() {
+  const pages = await getLandingPageList();
+  return pages.map((page) => ({
     slug: page.slug,
     keyword: page.keyword,
     title: page.heroTitle,
@@ -276,7 +277,12 @@ export async function searchSite(query: string, limit = 10): Promise<SearchResul
   const matches = (...fields: Array<string | undefined>) =>
     fields.some((field) => field?.toLowerCase().includes(needle));
 
-  const [products, posts, jobs] = await Promise.all([listProducts(), listPosts(), listJobs()]);
+  const [products, posts, jobs, landingPages] = await Promise.all([
+    listProducts(),
+    listPosts(),
+    listJobs(),
+    listLandingPages(),
+  ]);
 
   const results: SearchResult[] = [
     ...products
@@ -288,7 +294,7 @@ export async function searchSite(query: string, limit = 10): Promise<SearchResul
     ...posts
       .filter((item) => matches(item.title, item.excerpt, item.tags.join(" ")))
       .map((item) => ({ type: "post" as const, title: item.title, summary: item.excerpt, url: item.url })),
-    ...listLandingPages()
+    ...landingPages
       .filter((item) => matches(item.keyword, item.title, item.summary))
       .map((item) => ({ type: "page" as const, title: item.title, summary: item.summary, url: item.url })),
     ...allFaqs

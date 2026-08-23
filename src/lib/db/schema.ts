@@ -73,6 +73,32 @@ export const posts = sqliteTable("posts", {
   ...timestamps,
 });
 
+/**
+ * CMS overrides for the SEO landing pages.
+ *
+ * The ~38 landing pages ship as typed objects in `lib/seo-landing-pages.ts`,
+ * which is where their copy was written and where it stays: this table holds
+ * only the pages somebody has since edited in the CMS. A page with no row here
+ * renders the version in the repo, so the table starts empty and the site
+ * behaves exactly as it did before it existed.
+ *
+ * `content_json` holds the whole edited document rather than a diff. The read
+ * side still merges it over the code version key by key, which means a field
+ * added to the type later reaches every page — even ones edited long ago —
+ * instead of being missing on precisely the pages people cared enough to change.
+ *
+ * `updated_by` records the email that last saved it. Two roles can now write
+ * here, so "who changed this page" needs an answer.
+ */
+export const landingPageContent = sqliteTable("landing_page_content", {
+  id: text("id").primaryKey(),
+  /** Key into `allSeoLandingPages`, e.g. "itCompany". */
+  pageKey: text("page_key").notNull().unique(),
+  contentJson: text("content_json").notNull(),
+  updatedBy: text("updated_by"),
+  ...timestamps,
+});
+
 export const contactInquiries = sqliteTable("contact_inquiries", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
@@ -178,6 +204,7 @@ export const mediaAssets = sqliteTable("media_assets", {
 
 export type AdminUser = typeof adminUsers.$inferSelect;
 export type PostRow = typeof posts.$inferSelect;
+export type LandingPageContentRow = typeof landingPageContent.$inferSelect;
 export type JobApplication = typeof jobApplications.$inferSelect;
 export type Product = typeof products.$inferSelect;
 export type ContactInquiry = typeof contactInquiries.$inferSelect;

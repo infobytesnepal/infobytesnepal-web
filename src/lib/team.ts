@@ -94,6 +94,27 @@ export const team: TeamMember[] = [
     ],
     sameAs: [],
   },
+  {
+    slug: "kritika-ghimire",
+    name: "Kritika Ghimire",
+    role: "SEO & Digital Marketing Intern",
+    image: "/assets/about/kritika_ghimire.jpeg",
+    summary:
+      "Kritika Ghimire works on SEO and digital marketing at Infobytes Nepal, covering search visibility, content, and the writing that supports both.",
+    location: "Bhaktapur, Nepal",
+    expertise: [
+      "Search Engine Optimization",
+      "Content Writing",
+      "On Page SEO",
+      "Digital Marketing",
+      "Keyword Research",
+    ],
+    bio: [
+      "Kritika works on the search side of Infobytes Nepal: keyword research, on page structure, and the content that has to carry both. Much of it is unglamorous — headings in the right order, descriptions that fit before they are truncated, internal links that actually go somewhere useful — and it is the part that decides whether a page is found at all.",
+      "She writes for the blog as well as optimising it, which keeps the two jobs in the same pair of hands. A post planned around a real question people search for reads better than one written first and fitted to a keyword afterwards.",
+    ],
+    sameAs: [],
+  },
 ];
 
 export function getTeamMember(slug: string) {

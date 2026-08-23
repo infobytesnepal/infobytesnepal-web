@@ -4,7 +4,7 @@ import { requireSession } from "@/lib/auth";
 /**
  * The layout only proves somebody is logged in. Which sections they may open is
  * decided by each page: an admin-only page calls `requireAdmin()`, the blog
- * pages call `requireBlogAccess()`. Doing it per page rather than here means a
+ * pages call `requireContentAccess()`. Doing it per page rather than here means a
  * page added later has to state what it needs, instead of inheriting whatever
  * this layout happened to allow.
  */

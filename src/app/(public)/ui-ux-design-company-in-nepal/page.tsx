@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import SeoLandingPage from "@/components/public/seo-landing-page";
 import { basicPageMetadata } from "@/lib/seo";
-import { seoLandingPages } from "@/lib/seo-landing-pages";
+import { getLandingPage } from "@/lib/landing-pages";
 
-const page = seoLandingPages.uiux;
-
-export function generateMetadata(): Metadata {
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getLandingPage("uiux");
   return basicPageMetadata({
     route: page.path,
     title: page.metaTitle,
@@ -16,6 +15,7 @@ export function generateMetadata(): Metadata {
   });
 }
 
-export default function UiUxDesignCompanyInNepalPage() {
+export default async function UiUxDesignCompanyInNepalPage() {
+  const page = await getLandingPage("uiux");
   return <SeoLandingPage page={page} />;
 }

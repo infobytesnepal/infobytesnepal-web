@@ -4,7 +4,11 @@ import { company, companyAddressLine } from "./company";
 import { faqGroups } from "./faqs";
 import { defaultPageContent } from "./content";
 import { getPageSection, getProductBySlug, getProducts } from "./data";
-import { getSeoLandingPageByPath, seoLandingPageList } from "./seo-landing-pages";
+// `seoLandingPageList` is still the sync source for `hasMarkdownRoute`, which
+// only compares paths — and a path is the one part of a landing page the CMS
+// cannot change. The rendered content goes through the read adapter.
+import { seoLandingPageList } from "./seo-landing-pages";
+import { getLandingPageByPath } from "./landing-pages";
 import { serviceCatalog } from "./services";
 import { team, getTeamMember } from "./team";
 import { postBodyToMarkdown } from "./agent-content";
@@ -367,8 +371,8 @@ function renderContact(): Rendered {
   };
 }
 
-function renderLandingPage(path: string): Rendered | null {
-  const page = getSeoLandingPageByPath(path);
+async function renderLandingPage(path: string): Promise<Rendered | null> {
+  const page = await getLandingPageByPath(path);
   if (!page) return null;
   return {
     title: `${page.keyword} — ${company.name}`,

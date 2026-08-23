@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import PostEditor from "@/components/admin/post-editor";
-import { requireBlogAccess } from "@/lib/auth";
+import { requireContentAccess } from "@/lib/auth";
 import { authors, categories, getPostRowById } from "@/lib/blog";
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
  * "save failed, here is why" redirect has somewhere to land in both cases.
  */
 export default async function PostEditorPage({ params, searchParams }: Props) {
-  await requireBlogAccess();
+  await requireContentAccess();
   const { id } = await params;
   const { error, saved } = await searchParams;
 

@@ -114,6 +114,73 @@ export const postSchema = z.object({
     .regex(/^\d{4}-\d{2}-\d{2}$/, "Use a date in YYYY-MM-DD form."),
 });
 
+/**
+ * A landing page as the CMS form submits it.
+ *
+ * Lists are required to be non-empty because the page template renders a
+ * heading above each one. An empty `problems` array does not hide the section,
+ * it publishes a "Common challenges" heading with nothing underneath it.
+ */
+const nonEmptyLine = z.string().trim().min(1);
+
+export const landingPageSchema = z.object({
+  metaTitle: z.string().trim().min(1, "A meta title is required.").max(200, "Meta title is too long."),
+  metaDescription: z
+    .string()
+    .trim()
+    .min(1, "A meta description is required.")
+    .max(400, "Meta description is too long."),
+  ogTitle: z.string().trim().min(1, "An OG title is required.").max(200, "OG title is too long."),
+  ogDescription: z
+    .string()
+    .trim()
+    .min(1, "An OG description is required.")
+    .max(400, "OG description is too long."),
+  keyword: z.string().trim().min(1, "A keyword is required.").max(160, "Keyword is too long."),
+  heroTitle: z.string().trim().min(1, "A hero title is required.").max(200, "Hero title is too long."),
+  heroIntro: z.string().trim().min(1, "A hero intro is required.").max(2000, "Hero intro is too long."),
+  overview: z.object({
+    title: z.string().trim().min(1, "The overview needs a heading.").max(200, "Overview heading is too long."),
+    paragraphs: z.array(nonEmptyLine.max(4000)).min(1, "The overview needs at least one paragraph."),
+  }),
+  problems: z.array(nonEmptyLine.max(1000)).min(1, "Add at least one problem."),
+  solutions: z.array(nonEmptyLine.max(1000)).min(1, "Add at least one solution."),
+  features: z.array(nonEmptyLine.max(300)).min(1, "Add at least one feature."),
+  process: z
+    .array(
+      z.object({
+        title: nonEmptyLine.max(160),
+        text: nonEmptyLine.max(2000),
+      }),
+    )
+    .min(1, "Add at least one process step."),
+  reasons: z.array(nonEmptyLine.max(1000)).min(1, "Add at least one reason."),
+  related: z
+    .array(
+      z.object({
+        // Internal paths only. An editor pasting a competitor's URL into a
+        // "related pages" block would hand them a site-wide followed link.
+        href: z
+          .string()
+          .trim()
+          .min(1)
+          .max(300)
+          .regex(/^\/[A-Za-z0-9\-/_#?=&.]*$/, "Related links must be paths on this site, starting with /."),
+        label: nonEmptyLine.max(200),
+        text: nonEmptyLine.max(600),
+      }),
+    )
+    .min(1, "Add at least one related link."),
+  faqs: z
+    .array(
+      z.object({
+        question: nonEmptyLine.max(400),
+        answer: nonEmptyLine.max(3000),
+      }),
+    )
+    .min(1, "Add at least one FAQ."),
+});
+
 export const mediaSchema = z.object({
   id: z.string().optional(),
   name: z.string().trim().min(1).max(160),

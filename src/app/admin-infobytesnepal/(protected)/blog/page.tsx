@@ -3,11 +3,11 @@ import { ExternalLink, PenLine, Plus } from "lucide-react";
 import ConfirmButton from "@/components/admin/confirm-button";
 import { AdminCard } from "@/components/admin/ui";
 import { deletePost, togglePostPublished } from "@/lib/actions/blog";
-import { requireBlogAccess } from "@/lib/auth";
+import { requireContentAccess } from "@/lib/auth";
 import { getAdminPosts, getAuthor, formatPostDate } from "@/lib/blog";
 
 export default async function BlogAdminPage() {
-  await requireBlogAccess();
+  await requireContentAccess();
   const posts = await getAdminPosts();
   const published = posts.filter((post) => post.isPublished).length;
 

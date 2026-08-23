@@ -1,14 +1,15 @@
 import Link from "next/link";
-import { BarChart3, BriefcaseBusiness, FileText, ImageIcon, Inbox, LayoutDashboard, LogOut, Newspaper, Package, SlidersHorizontal, UserRound } from "lucide-react";
+import { BarChart3, BriefcaseBusiness, FileText, Globe, ImageIcon, Inbox, LayoutDashboard, LogOut, Newspaper, Package, SlidersHorizontal, UserRound } from "lucide-react";
 import { logoutAction } from "@/lib/actions/auth";
 import type { AdminRole } from "@/lib/auth";
 import { getInquiryStats } from "@/lib/data";
 
 /**
- * `editor: true` marks the handful of destinations a blog editor may reach.
- * Everything else is admin only. This list is what the sidebar renders; it is
- * not what enforces access — each page and each server action checks the role
- * itself, so hiding a link is presentation, not security.
+ * `editor: true` marks the destinations a content editor may reach — the blog
+ * and the search landing pages. Everything else is admin only. This list is
+ * what the sidebar renders; it is not what enforces access — each page and each
+ * server action checks the role itself, so hiding a link is presentation, not
+ * security.
  */
 const nav = [
   { href: "/admin-infobytesnepal", label: "Dashboard", icon: LayoutDashboard },
@@ -17,6 +18,7 @@ const nav = [
   { href: "/admin-infobytesnepal/service-inquiries", label: "Service Inquiries", icon: BriefcaseBusiness, dot: "serviceRequests" },
   { href: "/admin-infobytesnepal/applications", label: "Job Applications", icon: UserRound },
   { href: "/admin-infobytesnepal/blog", label: "Blog", icon: Newspaper, editor: true },
+  { href: "/admin-infobytesnepal/landing-pages", label: "Website Pages", icon: Globe, editor: true },
   { href: "/admin-infobytesnepal/products", label: "Products", icon: Package },
   { href: "/admin-infobytesnepal/pages", label: "Pages", icon: BarChart3 },
   { href: "/admin-infobytesnepal/media", label: "Media / Assets", icon: ImageIcon },

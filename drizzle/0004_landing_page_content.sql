@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS landing_page_content (
+  id TEXT PRIMARY KEY NOT NULL,
+  page_key TEXT NOT NULL UNIQUE,
+  content_json TEXT NOT NULL,
+  updated_by TEXT,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

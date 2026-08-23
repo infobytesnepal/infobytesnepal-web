@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import SeoLandingPage from "@/components/public/seo-landing-page";
 import { basicPageMetadata } from "@/lib/seo";
-import { extraSeoLandingPages } from "@/lib/seo-landing-pages-extra";
+import { getLandingPage } from "@/lib/landing-pages";
 
-const page = extraSeoLandingPages.butwal;
-
-export function generateMetadata(): Metadata {
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getLandingPage("butwal");
   return basicPageMetadata({
     route: page.path,
     title: page.metaTitle,
@@ -16,6 +15,7 @@ export function generateMetadata(): Metadata {
   });
 }
 
-export default function ItCompanyInButwalPage() {
+export default async function ItCompanyInButwalPage() {
+  const page = await getLandingPage("butwal");
   return <SeoLandingPage page={page} />;
 }
