@@ -186,6 +186,52 @@ export const clusters: Cluster[] = [
         "Leads, follow up, and customer history in one place.",
         "software",
       ),
+      /*
+        The Serviol cluster. These five sit in the software cluster rather than
+        in `products` on purpose: people search for the capability ("service CRM
+        in Nepal") long before they search for our product name, so the pages
+        have to be siblings of the other software categories. Each one links
+        down to /products/serviol itself.
+      */
+      node(
+        "/service-crm-in-nepal",
+        "Service CRM",
+        ["service CRM in Nepal", "CRM for service businesses in Nepal", "after sales customer management"],
+        "Customers, installed equipment, contracts, and complaint history together.",
+        "software",
+      ),
+      node(
+        "/field-service-management-software-in-nepal",
+        "Field Service Management",
+        [
+          "field service management software in Nepal",
+          "FSM software in Nepal",
+          "managing technicians in the field",
+        ],
+        "Day planners, job assignment, and proof of work from the site.",
+        "software",
+      ),
+      node(
+        "/best-service-management-system",
+        "Choosing a Service Management System",
+        ["best service management system", "how to choose service management software"],
+        "The criteria that decide whether a rollout survives its first year.",
+        "software",
+      ),
+      node(
+        "/amc-management-software-nepal",
+        "AMC Management Software",
+        ["AMC management software in Nepal", "annual maintenance contract software"],
+        "Contracts, preventive schedules, renewals, and contract profitability.",
+        "software",
+      ),
+      node(
+        "/complaint-management-system-nepal",
+        "Complaint Management System",
+        ["complaint management system in Nepal", "customer complaint software in Nepal"],
+        "Every complaint given an owner, a deadline, and a closure record.",
+        "software",
+      ),
       node(
         "/erp-software-in-nepal",
         "ERP Software",

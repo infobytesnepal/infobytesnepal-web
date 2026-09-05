@@ -34,6 +34,8 @@ function revalidateBlog() {
   revalidatePath("/blog/[slug]", "page");
   revalidatePath("/");
   revalidatePath("/sitemap.xml");
+  // llms.txt carries the recent-posts list, so it goes stale on a publish too.
+  revalidatePath("/llms.txt");
   revalidatePath("/api/v1/blog/[slug]", "page");
   revalidatePath("/api/markdown/[[...path]]", "page");
 }

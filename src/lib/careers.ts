@@ -70,7 +70,7 @@ const jobs: Job[] = [
     summary:
       "Learn search and paid marketing by running real campaigns for real clients from your first month, with someone senior reviewing the work.",
     postedAt: "2026-08-05",
-    isOpen: true,
+    isOpen: false,
     about: [
       "This is a working internship rather than a shadowing one. Within the first month you will be doing keyword research, writing content briefs, and making on page changes that go live on client sites in Nepal and overseas.",
       "You will be reviewed, corrected, and asked to explain your reasoning. That is the point. Marketing you cannot justify to a client is marketing we will not run.",
@@ -116,7 +116,7 @@ const jobs: Job[] = [
     summary:
       "Design real screens for our product suite and client platforms, and sit with the developers who build what you hand over.",
     postedAt: "2026-08-05",
-    isOpen: true,
+    isOpen: false,
     about: [
       "You would work on our own products and on client platforms, taking screens from wireframe to a handover a developer can build without guessing.",
       "Designs here are discussed, not decorated. You will be asked why a screen works the way it does, and a good answer beats a pretty one.",

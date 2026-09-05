@@ -1,4 +1,5 @@
 import { extraSeoLandingPages } from "./seo-landing-pages-extra";
+import { serviolSeoLandingPages } from "./seo-landing-pages-serviol";
 
 export type SeoLandingPage = {
   slug: string;
@@ -3909,9 +3910,14 @@ export const seoLandingPages = {
 export const seoLandingPageList: SeoLandingPage[] = [
   ...Object.values(seoLandingPages),
   ...Object.values(extraSeoLandingPages),
+  ...Object.values(serviolSeoLandingPages),
 ];
 
-export const allSeoLandingPages = { ...seoLandingPages, ...extraSeoLandingPages };
+export const allSeoLandingPages = {
+  ...seoLandingPages,
+  ...extraSeoLandingPages,
+  ...serviolSeoLandingPages,
+};
 
 export function getSeoLandingPageByPath(path: string) {
   return seoLandingPageList.find((page) => page.path === path);

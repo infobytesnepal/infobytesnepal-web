@@ -104,6 +104,94 @@ export const productSeoDefaults: Record<string, { title: string; description: st
   },
 };
 
+/**
+ * Extra product facts written for machines rather than for the page.
+ *
+ * `alsoKnownAs` is the important field. Somebody looking for Serviol almost
+ * never searches for "Serviol" — they search for the category, as "service CRM
+ * in Nepal" or "field service management software". An answer engine can only
+ * connect that question to this product if the product is described in the
+ * words of the question somewhere it can read, so the category terms are stated
+ * explicitly rather than left to be inferred from marketing prose.
+ *
+ * Kept beside `productSeoDefaults` because it is the same kind of thing: static
+ * per-product metadata that several surfaces need to agree on.
+ */
+export const productAgentProfiles: Record<
+  string,
+  { alsoKnownAs: string[]; audience: string; capabilities: string[] }
+> = {
+  serviol: {
+    alsoKnownAs: [
+      "service CRM",
+      "field service management software",
+      "FSM software",
+      "service management system",
+      "AMC management software",
+      "complaint management system",
+      "ticket and job management software",
+    ],
+    audience:
+      "Businesses in Nepal that sell equipment and then support it: medical and laboratory equipment suppliers, lift and escalator companies, HVAC and generator dealers, IT hardware vendors, and industrial machinery distributors.",
+    capabilities: [
+      "Customer, site, and installed equipment records with serial numbers",
+      "Warranty and annual maintenance contract (AMC) tracking with renewal reminders",
+      "Complaint and ticket intake with owner, priority, and due date",
+      "Technician day planners, job assignment, and dispatch",
+      "Offline capable field app for ordinary Android phones",
+      "Proof of work capture: photos, signature, parts used, time on job",
+      "Attendance and check in / check out",
+      "Full service history per customer and per machine",
+      "Contract profitability and backlog reporting",
+    ],
+  },
+  purseol: {
+    alsoKnownAs: ["field sales management software", "sales force automation", "field sales tracking"],
+    audience: "Companies in Nepal running outside sales teams who visit clients rather than sell from an office.",
+    capabilities: [
+      "Client visit logging from the field",
+      "Product pitch and outcome recording",
+      "Field sales team tracking and visibility",
+      "Deal progression without end of day paperwork",
+    ],
+  },
+  leadrack: {
+    alsoKnownAs: ["lead management software", "sales CRM", "lead tracking system"],
+    audience: "Teams in Nepal whose leads arrive faster than they can be followed up reliably.",
+    capabilities: [
+      "Leads on boards with stages",
+      "An owner and a next step on every lead",
+      "Follow up scheduling so nothing goes cold",
+      "Source and conversion reporting",
+    ],
+  },
+  nidanyo: {
+    alsoKnownAs: [
+      "lab software",
+      "laboratory information management system",
+      "LIMS",
+      "pathology lab software",
+      "medical laboratory management system",
+    ],
+    audience: "Medical and pathology laboratories in Nepal.",
+    capabilities: [
+      "Patient registration and sample tracking",
+      "Test result entry and verification",
+      "Report generation and printing",
+      "Billing and reagent stock control",
+    ],
+  },
+  pravyo: {
+    alsoKnownAs: ["student talent platform", "talent bench", "student profile and placement system"],
+    audience: "Education institutions, training providers, and consultancies in Nepal working with student talent.",
+    capabilities: [
+      "Structured student and candidate profiles",
+      "Talent discovery and shortlisting",
+      "Presenting candidates to hiring organisations",
+    ],
+  },
+};
+
 export const stackingCards = [
   {
     title: "A Student Talent Bench: Pravyo",
