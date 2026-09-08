@@ -1,38 +1,52 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ComponentType } from "react";
 
 /**
  * Gate for the custom cursor.
  *
- * This component sits in the public layout, so whatever it imports is
- * downloaded on every page by every visitor. It used to import `framer-motion`
- * directly, which meant a phone fetched the animation library to run a media
- * query and then render nothing — the cursor is desktop-and-fine-pointer only,
- * and it also stands down for `prefers-reduced-motion`.
+ * This component sits in the public layout, so whatever it references is paid
+ * for on every page by every visitor. The cursor itself is desktop-and-fine-
+ * pointer only and stands down for `prefers-reduced-motion`, so a phone should
+ * never fetch the animation library it needs.
  *
- * The check now happens here, in a component that imports nothing but React,
- * and the motion code is fetched only once the check passes. `ssr: false` is
- * both allowed and correct: this is a client component, and there is nothing to
- * render on the server for a cursor that does not exist until a pointer moves.
+ * It previously used `next/dynamic` for that, and the deferral did not hold:
+ * `dynamic()` at module scope keeps the chunk in the route's static graph, and
+ * Next emitted a `<script async>` preload for it on every page. Measured, that
+ * was 131 KB of animation library fetched by every visitor — including the
+ * phones the check exists to protect — to render nothing.
+ *
+ * A bare `import()` inside the effect has no such reference. The chunk is still
+ * code-split, but nothing points at it until the media query has actually
+ * passed, which is what "load it only when it is needed" was supposed to mean.
  */
-const CustomCursorLayer = dynamic(() => import("./custom-cursor-layer"), { ssr: false });
-
 export default function CustomCursor() {
-  const [enabled, setEnabled] = useState(false);
+  const [Layer, setLayer] = useState<ComponentType | null>(null);
 
   useEffect(() => {
     const finePointer = window.matchMedia("(pointer: fine) and (min-width: 768px)").matches;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!finePointer || reducedMotion) return;
 
-    // Deferred by a frame, as before, so the first paint is never held up by
-    // this. It also gives the lazy chunk a head start before it is needed.
-    const frame = window.requestAnimationFrame(() => setEnabled(true));
-    return () => window.cancelAnimationFrame(frame);
+    let cancelled = false;
+    // Deferred by a frame, as before, so the first paint is never held up.
+    const frame = window.requestAnimationFrame(() => {
+      import("./custom-cursor-layer")
+        .then((module) => {
+          // `setState(fn)` treats a function argument as an updater, so the
+          // component has to be wrapped to be stored rather than called.
+          if (!cancelled) setLayer(() => module.default);
+        })
+        .catch(() => {
+          // A decorative cursor is not worth reporting or retrying.
+        });
+    });
+
+    return () => {
+      cancelled = true;
+      window.cancelAnimationFrame(frame);
+    };
   }, []);
 
-  if (!enabled) return null;
-  return <CustomCursorLayer />;
+  return Layer ? <Layer /> : null;
 }

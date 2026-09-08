@@ -15,7 +15,8 @@
     "db:seed:blog": "node ./node_modules/tsx/dist/cli.cjs scripts/seed-blog.ts",
     "db:user": "node ./node_modules/tsx/dist/cli.cjs scripts/create-cms-user.ts",
     "check:blog": "node ./node_modules/tsx/dist/cli.cjs scripts/check-blog-roundtrip.ts",
-    "check:pages": "node ./node_modules/tsx/dist/cli.cjs scripts/check-landing-pages.ts"
+    "check:pages": "node ./node_modules/tsx/dist/cli.cjs scripts/check-landing-pages.ts",
+    "db:optimize-images": "node ./node_modules/tsx/dist/cli.cjs scripts/optimize-stored-images.ts"
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",
@@ -23,7 +24,6 @@
     "bcryptjs": "^3.0.3",
     "drizzle-orm": "^0.45.2",
     "framer-motion": "^12.40.0",
-    "gsap": "^3.15.0",
     "jose": "^6.2.3",
     "lucide-react": "^1.17.0",
     "next": "16.2.9",

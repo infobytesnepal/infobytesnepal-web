@@ -2,7 +2,7 @@ import "server-only";
 
 import { db } from "./db/client";
 import { mediaAssets } from "./db/schema";
-import { newId } from "./utils";
+import { mediaPath, newId } from "./utils";
 
 /**
  * Upload handling shared by the product, page-section, settings and blog forms.
@@ -37,10 +37,30 @@ export function formatBytes(bytes: number) {
   return `${(bytes / 1_000_000).toFixed(1)}MB`;
 }
 
+
+/** Encodes a file as a base64 data URI. The `media_assets.url` column holds
+ * these: it is the byte store that `/api/media/<id>` reads from. */
+export async function toDataUri(file: File) {
+  const bytes = Buffer.from(await file.arrayBuffer());
+  return `data:${file.type};base64,${bytes.toString("base64")}`;
+}
+
+function assertUsableImage(file: File, maxBytes: number) {
+  if (!file.type.startsWith("image/")) throw new Error("Only image uploads are supported.");
+  if (file.size > maxBytes) throw new Error(`Image uploads must be ${formatBytes(maxBytes)} or smaller.`);
+}
+
 /**
- * Stores an upload as a media asset and returns its URL, or `fallbackUrl` when
- * no file was chosen — which is how "leave the existing image alone" is
- * expressed by every form that calls this.
+ * Stores an upload and returns the URL to save on the referencing row, or
+ * `fallbackUrl` when no file was chosen — which is how every form here says
+ * "leave the existing image alone".
+ *
+ * The returned value is a `/api/media/<id>` path, not the data URI itself.
+ * That distinction is the whole point: the bytes still live in the database,
+ * but the row that points at them holds a short cacheable URL instead of 120 KB
+ * of base64 that would otherwise be pasted into the HTML of every page showing
+ * the image. See `scripts/optimize-stored-images.ts` for the measurements that
+ * prompted the change, and for the backfill of rows written before it.
  */
 export async function storeUploadedImage(
   file: File | null,
@@ -50,51 +70,38 @@ export async function storeUploadedImage(
   maxBytes = maxImageBytes,
 ) {
   if (!file || file.size === 0) return fallbackUrl;
-  if (!file.type.startsWith("image/")) throw new Error("Only image uploads are supported.");
-  if (file.size > maxBytes) throw new Error(`Image uploads must be ${formatBytes(maxBytes)} or smaller.`);
+  assertUsableImage(file, maxBytes);
 
   const id = newId();
-  const bytes = Buffer.from(await file.arrayBuffer());
-  const url = `data:${file.type};base64,${bytes.toString("base64")}`;
   const now = new Date().toISOString();
-
   await db.insert(mediaAssets).values({
     id,
     name: name || file.name || "Uploaded image",
-    url,
+    url: await toDataUri(file),
     type: file.type,
     altText,
     createdAt: now,
     updatedAt: now,
   });
 
-  return url;
+  return mediaPath(id, file.type);
 }
 
-/**
- * The same store, but returning a `/api/media/<id>` path instead of the data
- * URI itself. Used by the blog editor: see the route handler for why a post
- * body must not carry the base64 inline.
- */
+/** The blog editor's upload. Same store, higher size ceiling for photographs. */
 export async function storeBlogImage(file: File, name: string, altText = "") {
-  if (!file.type.startsWith("image/")) throw new Error("Only image uploads are supported.");
-  if (file.size > maxBlogImageBytes) {
-    throw new Error(`Images must be ${formatBytes(maxBlogImageBytes)} or smaller. Compress it and try again.`);
-  }
+  assertUsableImage(file, maxBlogImageBytes);
 
   const id = newId();
-  const bytes = Buffer.from(await file.arrayBuffer());
   const now = new Date().toISOString();
-
   await db.insert(mediaAssets).values({
     id,
     name: name || file.name || "Blog image",
-    url: `data:${file.type};base64,${bytes.toString("base64")}`,
+    url: await toDataUri(file),
     type: file.type,
     altText,
     createdAt: now,
     updatedAt: now,
   });
 
-  return { id, url: `/api/media/${id}` };
+  return { id, url: mediaPath(id, file.type) };
 }

@@ -22,15 +22,32 @@ import { mediaAssets } from "@/lib/db/schema";
 export async function GET(request: Request, ctx: { params: Promise<{ id: string }> }) {
   const { id } = await ctx.params;
 
-  const [asset] = await db.select().from(mediaAssets).where(eq(mediaAssets.id, id)).limit(1);
+  /*
+    The URL carries the file extension — /api/media/<uuid>.svg — because
+    `next/image` only skips optimizing an SVG when it can see `.svg` on the end
+    of the src. The id is the part before it; ids written before extensions
+    existed still resolve, since a path with no extension simply has nothing to
+    strip.
+  */
+  const assetId = id.replace(/\.[a-z0-9]+$/i, "");
+
+  const [asset] = await db.select().from(mediaAssets).where(eq(mediaAssets.id, assetId)).limit(1);
   if (!asset) return new Response("Not found", { status: 404 });
 
   // `[\s\S]` rather than the /s flag, which this project's target predates.
   const match = asset.url.match(/^data:([^;,]+)(;base64)?,([\s\S]*)$/);
   if (!match) {
-    // Assets added before uploads existed hold a plain path such as
-    // /assets/home/hero.jpg. Point the caller at the real file rather than
-    // reading it back through the database.
+    /*
+      Assets added before uploads existed hold a plain path such as
+      /assets/home/hero.jpg, so the caller is sent to the real file rather than
+      reading it back through the database.
+
+      The guard matters: a row whose url points back into /api/media would make
+      this handler redirect to itself forever. Nothing should write that — the
+      Media tab stores data URIs in place for exactly this reason — but a 404 is
+      the right answer to a corrupt row, not an infinite loop.
+    */
+    if (asset.url.startsWith("/api/media/")) return new Response("Not found", { status: 404 });
     return Response.redirect(new URL(asset.url, request.url), 308);
   }
 

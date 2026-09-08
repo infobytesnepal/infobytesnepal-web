@@ -15,7 +15,7 @@ import {
   siteSettings,
 } from "@/lib/db/schema";
 import { requireAdmin } from "@/lib/auth";
-import { formFile, storeUploadedImage } from "@/lib/media";
+import { formFile, storeUploadedImage, toDataUri } from "@/lib/media";
 import { formString, newId } from "@/lib/utils";
 import { productSchema } from "@/lib/validation";
 
@@ -235,7 +235,13 @@ export async function upsertMediaAsset(formData: FormData) {
   if (id) {
     const [existing] = await db.select().from(mediaAssets).where(eq(mediaAssets.id, id)).limit(1);
     if (!existing) redirect("/admin-infobytesnepal/media?error=1");
-    const url = await storeUploadedImage(file, existing.url, name, altText);
+    /*
+      This row IS the byte store, so replacing an asset writes the data URI in
+      place. It must not go through `storeUploadedImage`, which now returns a
+      /api/media/<id> path: writing a path into this column would leave the
+      media route reading a row that points at a route that reads the same row.
+    */
+    const url = file && file.size > 0 ? await toDataUri(file) : existing.url;
     await db.update(mediaAssets).set({
       name,
       url,
@@ -244,6 +250,8 @@ export async function upsertMediaAsset(formData: FormData) {
       updatedAt: new Date().toISOString(),
     }).where(eq(mediaAssets.id, id));
   } else {
+    // Creating an asset only needs the row; the returned path is unused here
+    // because the Media tab is a library, not a reference to one image.
     await storeUploadedImage(file, "", name, altText);
   }
   revalidatePath("/admin-infobytesnepal/media");

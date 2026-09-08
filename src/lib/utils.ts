@@ -68,3 +68,34 @@ export function formString(formData: FormData, key: string) {
 export function newId() {
   return crypto.randomUUID();
 }
+
+/**
+ * File extension for a media path, derived from the stored MIME type.
+ *
+ * The extension is not decoration. `next/image` refuses to optimize SVG unless
+ * `dangerouslyAllowSVG` is set — and the Next docs recommend not that flag but
+ * letting the URL end in `.svg`, which makes the component skip optimization
+ * for that one image by itself. Without it, an SVG logo stored in the CMS
+ * returned a 400 from the optimizer and rendered as a broken image.
+ *
+ * Lives here rather than in `lib/media.ts` because the backfill script needs it
+ * too, and that module is `server-only`.
+ */
+export function extensionForType(type: string) {
+  const map: Record<string, string> = {
+    "image/png": "png",
+    "image/jpeg": "jpg",
+    "image/jpg": "jpg",
+    "image/webp": "webp",
+    "image/avif": "avif",
+    "image/gif": "gif",
+    "image/svg+xml": "svg",
+    "image/x-icon": "ico",
+  };
+  return map[type.toLowerCase()] ?? "bin";
+}
+
+/** The public URL for a stored media asset. */
+export function mediaPath(id: string, type: string) {
+  return `/api/media/${id}.${extensionForType(type)}`;
+}

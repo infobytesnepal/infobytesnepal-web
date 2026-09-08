@@ -231,8 +231,28 @@ const exploreLinks = [
 
 // const heroChips = ["Software Development", "Web and Mobile", "SEO and Marketing", "Business Automation"];
 
-// Featured partners. Add more objects here as new partnerships are formed.
-const partners = [
+/**
+ * Featured partners. Add more objects here as new partnerships are formed.
+ *
+ * `website`, `phone` and `email` are optional because a partnership is often
+ * announced before the details exist. The card renders whichever of them are
+ * present rather than showing an empty row or a dead link, so a new partner can
+ * go up the day it is agreed and gain its contact lines later.
+ */
+type Partner = {
+  name: string;
+  role: string;
+  logo: string;
+  logoWidth: number;
+  logoHeight: number;
+  description: string;
+  location: string;
+  website?: string;
+  phone?: { label: string; href: string };
+  email?: { label: string; href: string };
+};
+
+const partners: Partner[] = [
   {
     name: "Zuliox",
     role: "Recruitment Partner",
@@ -245,6 +265,18 @@ const partners = [
     phone: { label: "+977 970 6577634", href: "tel:+9779706577634" },
     email: { label: "info@zuliox.com", href: "mailto:info@zuliox.com" },
     location: "Patan Dhoka, Lalitpur",
+  },
+  {
+    name: "Himal Health Clinic",
+    role: "Health Partner",
+    logo: "/assets/partners/himal-health-clinic-logo.png",
+    // Must match the real pixel dimensions of the file: next/image reserves the
+    // box from this ratio, so a stale value renders the logo at the wrong size.
+    logoWidth: 500,
+    logoHeight: 168,
+    description:
+      "Himal Health Clinic Pvt. Ltd. is our health partner in Bhaktapur, looking after the wellbeing of the people behind the work we deliver.",
+    location: "Sallaghari, Bhaktapur",
   },
 ];
 
@@ -708,68 +740,93 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6">
+          {/*
+            Two across from md up. This was one full width card per partner,
+            which was the right shape while there was exactly one partner and
+            the wrong one the moment there were two: a single card stretched to
+            the full 7xl container reads as a section rather than as one item in
+            a set. The card is now a vertical stack so it stays legible at half
+            width, and the divider that separated brand from contact runs
+            horizontally instead of vertically.
+          */}
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
             {partners.map((partner) => (
               <Reveal key={partner.name}>
-                <article className="card-premium grid gap-8 p-7 md:grid-cols-[1fr_1px_0.9fr] md:items-center md:p-10">
-                  {/* Brand and description */}
-                  <div>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-soft-blue px-3 py-1 text-xs font-semibold text-primary-blue">
-                      <Users size={13} /> {partner.role}
-                    </span>
-                    <div className="mt-6 flex h-[64px] w-[232px] max-w-full items-center">
-                      <CmsImage
-                        src={partner.logo}
-                        alt={`${partner.name}, ${partner.role} of Infobytes Nepal`}
-                        width={partner.logoWidth}
-                        height={partner.logoHeight}
-                        className="h-auto w-full object-contain object-left"
-                      />
-                    </div>
-                    <p className="mt-6 max-w-md leading-7 text-dark-text/72">{partner.description}</p>
+                <article className="card-premium flex h-full flex-col p-7 md:p-8">
+                  <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-soft-blue px-3 py-1 text-xs font-semibold text-primary-blue">
+                    <Users size={13} /> {partner.role}
+                  </span>
+
+                  {/* Fixed height, natural width: logos differ in aspect ratio,
+                      and matching their heights is what makes them look like a
+                      set rather than one large and one small. */}
+                  <div className="mt-6 flex h-[64px] items-center">
+                    <CmsImage
+                      src={partner.logo}
+                      alt={`${partner.name}, ${partner.role} of Infobytes Nepal`}
+                      width={partner.logoWidth}
+                      height={partner.logoHeight}
+                      className="h-full w-auto max-w-[260px] object-contain object-left"
+                    />
+                  </div>
+
+                  <p className="mt-6 leading-7 text-dark-text/72">{partner.description}</p>
+
+                  {partner.website && (
                     <a
                       href={partner.website}
                       target="_blank"
                       rel="noopener"
-                      className="focus-ring site-button mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold"
+                      className="focus-ring site-button mt-7 inline-flex w-fit items-center gap-2 rounded-full px-6 py-3 font-semibold"
                       aria-label={`Visit the ${partner.name} website`}
                     >
                       Visit {partner.name}
                       <ArrowRight size={16} />
                     </a>
-                  </div>
+                  )}
 
-                  {/* Divider */}
-                  <div className="hidden h-full w-px bg-primary-blue/10 md:block" aria-hidden="true" />
+                  {/* `mt-auto` pins the contact block to the bottom, so two cards
+                      of unequal text length still line their details up. */}
+                  {!partner.website && !partner.phone && !partner.email && (
+                    <p className="mt-5 text-sm leading-6 text-dark-text/55">
+                      Website and contact details will be added here as the partnership develops.
+                    </p>
+                  )}
 
-                  {/* Contact CTA */}
-                  <div className="grid gap-5">
-                    <a href={partner.phone.href} className="focus-ring group flex items-center gap-4">
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-deep-navy text-white">
-                        <Phone size={18} />
-                      </span>
-                      <span>
-                        <span className="block text-xs font-semibold uppercase tracking-wider text-dark-text/50">Call us</span>
-                        <span className="block font-semibold text-deep-navy transition group-hover:text-primary-blue">{partner.phone.label}</span>
-                      </span>
-                    </a>
-                    <a href={partner.email.href} className="focus-ring group flex items-center gap-4">
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-deep-navy text-white">
-                        <Mail size={18} />
-                      </span>
-                      <span>
-                        <span className="block text-xs font-semibold uppercase tracking-wider text-dark-text/50">Email</span>
-                        <span className="block font-semibold text-deep-navy transition group-hover:text-primary-blue">{partner.email.label}</span>
-                      </span>
-                    </a>
-                    <div className="flex items-center gap-4">
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-deep-navy text-white">
-                        <MapPin size={18} />
-                      </span>
-                      <span>
-                        <span className="block text-xs font-semibold uppercase tracking-wider text-dark-text/50">Location</span>
-                        <span className="block font-semibold text-deep-navy">{partner.location}</span>
-                      </span>
+                  <div className="mt-auto pt-8">
+                    <div className="h-px w-full bg-primary-blue/10" aria-hidden="true" />
+                    <div className="grid gap-5 pt-6">
+                      {partner.phone && (
+                        <a href={partner.phone.href} className="focus-ring group flex items-center gap-4">
+                          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-deep-navy text-white">
+                            <Phone size={18} />
+                          </span>
+                          <span>
+                            <span className="block text-xs font-semibold uppercase tracking-wider text-dark-text/50">Call us</span>
+                            <span className="block font-semibold text-deep-navy transition group-hover:text-primary-blue">{partner.phone.label}</span>
+                          </span>
+                        </a>
+                      )}
+                      {partner.email && (
+                        <a href={partner.email.href} className="focus-ring group flex items-center gap-4">
+                          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-deep-navy text-white">
+                            <Mail size={18} />
+                          </span>
+                          <span>
+                            <span className="block text-xs font-semibold uppercase tracking-wider text-dark-text/50">Email</span>
+                            <span className="block font-semibold text-deep-navy transition group-hover:text-primary-blue">{partner.email.label}</span>
+                          </span>
+                        </a>
+                      )}
+                      <div className="flex items-center gap-4">
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-deep-navy text-white">
+                          <MapPin size={18} />
+                        </span>
+                        <span>
+                          <span className="block text-xs font-semibold uppercase tracking-wider text-dark-text/50">Location</span>
+                          <span className="block font-semibold text-deep-navy">{partner.location}</span>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </article>

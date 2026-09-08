@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import CmsImage from "./cms-image";
 import GetStartedButton from "./get-started-button";
@@ -42,11 +41,19 @@ export default function Navbar({ logoUrl }: { logoUrl: string }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const collapsed = hidden && !open;
+
+  /*
+    The header hide-on-scroll and the mobile menu were animated with an
+    animation library. Both are a transform plus an opacity fade, which CSS does
+    natively — and because the navbar renders on every page, importing that
+    library for them put it in the critical path of the entire site.
+  */
   return (
-    <motion.header
-      className="page-x fixed inset-x-0 top-0 z-50 border-b border-primary-blue/10 bg-white/92 py-2 shadow-[0_10px_28px_rgba(4,18,63,0.06)] backdrop-blur-xl"
-      animate={{ y: hidden && !open ? "-115%" : "0%" }}
-      transition={{ duration: 0.24, ease: "easeOut" }}
+    <header
+      className={`page-x fixed inset-x-0 top-0 z-50 border-b border-primary-blue/10 bg-white/92 py-2 shadow-[0_10px_28px_rgba(4,18,63,0.06)] backdrop-blur-xl transition-transform duration-300 ease-out ${
+        collapsed ? "-translate-y-[115%]" : "translate-y-0"
+      }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between">
         <Link href="/" className="focus-ring flex items-center gap-3 rounded-full" aria-label="Infobytes Nepal home">
@@ -76,14 +83,18 @@ export default function Navbar({ logoUrl }: { logoUrl: string }) {
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </nav>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-            className="mt-2 border-t border-primary-blue/10 bg-white/96 p-4 shadow-[0_18px_55px_rgba(4,18,63,0.12)] backdrop-blur-xl md:hidden"
-          >
+      {/*
+        Kept mounted rather than conditionally rendered so it can animate closed
+        as well as open. `inert` takes it out of the tab order and the
+        accessibility tree while hidden, which a CSS-only fade would otherwise
+        leave reachable by keyboard.
+      */}
+      <div
+        inert={!open}
+        className={`mt-2 origin-top border-t border-primary-blue/10 bg-white/96 p-4 shadow-[0_18px_55px_rgba(4,18,63,0.12)] backdrop-blur-xl transition-all duration-200 ease-out md:hidden ${
+          open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"
+        }`}
+      >
             <div className="grid gap-2">
               {navLinks.map((link) => (
                 <Link
@@ -96,10 +107,8 @@ export default function Navbar({ logoUrl }: { logoUrl: string }) {
                 </Link>
               ))}
               <GetStartedButton className="mt-2 w-full" />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+        </div>
+      </div>
+    </header>
   );
 }

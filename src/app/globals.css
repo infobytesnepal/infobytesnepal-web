@@ -391,6 +391,29 @@ select {
   }
 }
 
+/* ---------- Scroll reveal ----------
+   Paired with `components/public/reveal.tsx`. The hidden state is applied by
+   the component only once JS has confirmed it can animate the element back in,
+   so a blocked bundle leaves the content visible rather than blank. Only
+   `opacity` and `transform` are animated, both compositor properties. */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+  will-change: opacity, transform;
+}
+
+.reveal-shown {
+  opacity: 1;
+  transform: none;
+  /* Dropped once the animation is done so long pages are not holding dozens of
+     promoted layers for elements that will never move again. */
+  will-change: auto;
+}
+
 /* ---------- Reduced motion ---------- */
 
 @media (prefers-reduced-motion: reduce) {
@@ -408,5 +431,12 @@ select {
   .marquee-track,
   .animate-float {
     animation: none !important;
+  }
+
+  /* Reveal is inert under reduced motion: the component skips the observer, and
+     this guarantees nothing stays hidden even if that path is ever missed. */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
