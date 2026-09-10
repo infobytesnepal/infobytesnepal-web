@@ -91,7 +91,7 @@ export const authors: Author[] = [
     slug: "kritika-ghimire",
     name: "Kritika Ghimire",
     role: "SEO & Digital Marketing Intern",
-    image: "/assets/about/kritika_ghimire.jpeg",
+    image: "/assets/about/kritika.png",
     bio: "Kritika works on search visibility and the content behind it, and writes about what actually moves a page up the results for a business in Nepal.",
   },
 ];

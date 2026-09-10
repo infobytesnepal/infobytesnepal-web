@@ -98,7 +98,7 @@ export const team: TeamMember[] = [
     slug: "kritika-ghimire",
     name: "Kritika Ghimire",
     role: "SEO & Digital Marketing Intern",
-    image: "/assets/about/kritika_ghimire.jpeg",
+    image: "/assets/about/kritika.png",
     summary:
       "Kritika Ghimire works on SEO and digital marketing at Infobytes Nepal, covering search visibility, content, and the writing that supports both.",
     location: "Bhaktapur, Nepal",
