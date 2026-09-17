@@ -157,6 +157,29 @@ export function isLandingPageKey(value: string): value is LandingPageKey {
   return (landingPageKeys as string[]).includes(value);
 }
 
+/**
+ * When an editor last saved each landing page, keyed by path.
+ *
+ * Only for the sitemap's `<lastmod>`, which is why it returns paths rather than
+ * page keys — the sitemap thinks in URLs. Pages nobody has edited are absent
+ * rather than dated, because the absence is the useful answer: the caller then
+ * falls back to the repo-side date instead of inventing one.
+ *
+ * This is deliberately not folded into `getLandingPageIndex`, which is the
+ * admin screen's query and carries the editor's name and the merged title. The
+ * sitemap should not be pulling a rendered heading and a user's identity out of
+ * the database to decide a date.
+ */
+export async function getLandingPageEditDates(): Promise<Map<string, string>> {
+  const overrides = await getOverrides();
+  const dates = new Map<string, string>();
+  for (const key of landingPageKeys) {
+    const updatedAt = overrides.get(key)?.updatedAt;
+    if (updatedAt) dates.set(allSeoLandingPages[key].path, updatedAt);
+  }
+  return dates;
+}
+
 /** Admin list: the repo version plus who last edited it, if anyone. */
 export async function getLandingPageIndex() {
   const overrides = await getOverrides();

@@ -62,6 +62,38 @@ const nextConfig: NextConfig = {
    * leading-dot segment; a rewrite depends on nothing and keeps the handlers
    * where the rest of the API lives.
    */
+  /**
+   * URLs the previous WordPress site owned, kept alive as 301s.
+   *
+   * Search Console still lists these under "Not found (404)" — `/category/…` is
+   * the WordPress category-archive prefix and `/services/…` was a WP page path,
+   * so both are Google remembering a site that no longer exists. A 404 is the
+   * correct answer for a genuinely deleted page and does no harm, but these two
+   * have obvious live equivalents, and a 301 passes on whatever link equity
+   * they accumulated instead of discarding it.
+   *
+   * Deliberately narrow. Catch-all rules that send every unknown legacy path to
+   * the homepage are worse than the 404 they replace: Google treats a redirect
+   * to an irrelevant page as a soft 404, and it hides genuine mistakes. Anything
+   * without a real equivalent should keep returning 404.
+   *
+   * Sources are written without a trailing slash because `trailingSlash` is
+   * false, so `/services/web-development/` is normalised before matching.
+   */
+  async redirects() {
+    return [
+      {
+        source: "/services/web-development",
+        destination: "/web-development-company-in-nepal",
+        permanent: true,
+      },
+      {
+        source: "/category/web-development",
+        destination: "/web-development-company-in-nepal",
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       { source: "/.well-known/api-catalog", destination: "/api/well-known/api-catalog" },

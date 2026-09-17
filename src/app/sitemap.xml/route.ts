@@ -1,6 +1,7 @@
 import { getPosts } from "@/lib/blog";
 import { getJobs } from "@/lib/careers";
 import { getProducts } from "@/lib/data";
+import { getLandingPageEditDates } from "@/lib/landing-pages";
 import { seoLandingPageList } from "@/lib/seo-landing-pages";
 import { team } from "@/lib/team";
 import { getCanonicalSiteUrl } from "@/lib/utils";
@@ -30,6 +31,69 @@ export const revalidate = 86400;
  * copy actually changes.
  */
 const CONTENT_LAST_UPDATED = "2026-08-04";
+
+/**
+ * Per-page override for pages whose copy changed after `CONTENT_LAST_UPDATED`.
+ *
+ * This exists because the alternative — bumping `CONTENT_LAST_UPDATED` itself —
+ * re-dates all 59 static URLs at once, which is precisely the "Search Console
+ * sees 50 pages that all claim to have changed an hour ago" failure the comment
+ * above warns about. Changing five pages and telling crawlers that fifty-nine
+ * changed destroys the signal you were trying to send.
+ *
+ * Add a line here when you change one page's copy. Bump `CONTENT_LAST_UPDATED`
+ * and clear this map when the site genuinely gets reviewed end to end.
+ *
+ * Why this matters more than it looks: Search Console had eighteen URLs sitting
+ * in "Discovered – currently not indexed" with no crawl date at all, including
+ * /about, /services and /products. When most of the sitemap shares one stale
+ * date, a crawler has no basis for choosing which URL to spend its next slot
+ * on, and `lastmod` stops being a reason to come back.
+ */
+const PAGE_CONTENT_UPDATED: Record<string, string> = {
+  // The Nidanyo cluster: two pages created and two rewritten on 2026-09-18.
+  "/best-lab-software-in-nepal": "2026-09-18",
+  "/lab-software-cost-in-nepal": "2026-09-18",
+  "/lab-software-in-nepal": "2026-09-18",
+  "/laboratory-information-management-system-nepal": "2026-09-18",
+  // Gained the LIS / LIMS / LIOMS answer in the same change.
+  "/faq": "2026-09-18",
+  /*
+    Product pages normally take their date from `products.updated_at`, but this
+    page's content changed in the repo (a capability list and eight FAQs that
+    render from `content.ts`) while the database row stayed untouched — nobody
+    edited the product. Dating it here rather than writing to production keeps
+    `updated_at` meaning "an admin edited this record", which is the only thing
+    it should mean, and `lastmodFor` takes whichever of the two is later.
+  */
+  "/products/nidanyo": "2026-09-18",
+};
+
+/**
+ * The later of what the repo knows and what the database knows.
+ *
+ * A page can change two ways: someone edits the copy in the CMS, which stamps
+ * the stored row, or someone changes it in the repo and deploys, which stamps
+ * nothing. Taking the maximum covers both without either one silently winning —
+ * a CMS edit from last week must not overwrite a repo edit from today, and a
+ * repo date must not hide an edit an editor made afterwards.
+ *
+ * Both sides are normalised to `YYYY-MM-DD` first, which makes them safe to
+ * compare as strings.
+ */
+function lastmodFor(
+  path: string,
+  editDates: Map<string, string>,
+  /** Any further date this URL knows about, such as a product row's `updated_at`. */
+  ...extra: Array<string | null | undefined>
+): string {
+  const candidates = [PAGE_CONTENT_UPDATED[path], editDates.get(path), ...extra]
+    .filter((value): value is string => Boolean(value))
+    .map((value) => toSitemapDate(value));
+
+  if (candidates.length === 0) return CONTENT_LAST_UPDATED;
+  return candidates.reduce((latest, value) => (value > latest ? value : latest));
+}
 
 /**
  * Normalise any stored timestamp into the W3C date format sitemaps require.
@@ -89,23 +153,28 @@ type SitemapEntry = {
 
 export async function GET() {
   const siteUrl = getCanonicalSiteUrl();
-  const [products, posts, jobs] = await Promise.all([getProducts(), getPosts(), getJobs()]);
+  const [products, posts, jobs, editDates] = await Promise.all([
+    getProducts(),
+    getPosts(),
+    getJobs(),
+    getLandingPageEditDates(),
+  ]);
 
   const entries: SitemapEntry[] = [
-    { path: "/", changefreq: "weekly", priority: "1.0", lastmod: CONTENT_LAST_UPDATED },
-    { path: "/products", changefreq: "weekly", priority: "0.9", lastmod: CONTENT_LAST_UPDATED },
-    { path: "/services", changefreq: "weekly", priority: "0.9", lastmod: CONTENT_LAST_UPDATED },
+    { path: "/", changefreq: "weekly", priority: "1.0", lastmod: lastmodFor("/", editDates) },
+    { path: "/products", changefreq: "weekly", priority: "0.9", lastmod: lastmodFor("/products", editDates) },
+    { path: "/services", changefreq: "weekly", priority: "0.9", lastmod: lastmodFor("/services", editDates) },
     ...seoLandingPageList.map((page) => ({
       path: page.path,
       changefreq: "monthly" as const,
       priority: "0.8",
-      lastmod: CONTENT_LAST_UPDATED,
+      lastmod: lastmodFor(page.path, editDates),
     })),
     ...products.map((product) => ({
       path: `/products/${product.slug}`,
       changefreq: "monthly" as const,
       priority: "0.8",
-      lastmod: toSitemapDate(product.updatedAt),
+      lastmod: lastmodFor(`/products/${product.slug}`, editDates, product.updatedAt),
     })),
     { path: "/blog", changefreq: "weekly", priority: "0.8", lastmod: posts[0]?.updatedAt ?? CONTENT_LAST_UPDATED },
     ...posts.map((post) => ({
@@ -123,20 +192,20 @@ export async function GET() {
       priority: "0.6",
       lastmod: toSitemapDate(job.postedAt),
     })),
-    { path: "/about", changefreq: "monthly", priority: "0.7", lastmod: CONTENT_LAST_UPDATED },
+    { path: "/about", changefreq: "monthly", priority: "0.7", lastmod: lastmodFor("/about", editDates) },
     ...team.map((member) => ({
       path: `/team/${member.slug}`,
       changefreq: "monthly" as const,
       priority: "0.6",
-      lastmod: CONTENT_LAST_UPDATED,
+      lastmod: lastmodFor(`/team/${member.slug}`, editDates),
     })),
-    { path: "/faq", changefreq: "weekly", priority: "0.8", lastmod: CONTENT_LAST_UPDATED },
-    { path: "/contact", changefreq: "monthly", priority: "0.7", lastmod: CONTENT_LAST_UPDATED },
-    { path: "/privacy-policy", changefreq: "yearly", priority: "0.3", lastmod: CONTENT_LAST_UPDATED },
+    { path: "/faq", changefreq: "weekly", priority: "0.8", lastmod: lastmodFor("/faq", editDates) },
+    { path: "/contact", changefreq: "monthly", priority: "0.7", lastmod: lastmodFor("/contact", editDates) },
+    { path: "/privacy-policy", changefreq: "yearly", priority: "0.3", lastmod: lastmodFor("/privacy-policy", editDates) },
     // Listed so the API documentation is indexable in its own right: it is the
     // `service-doc` target in /.well-known/api-catalog, and the page people are
     // sent to when they ask whether this site can be queried programmatically.
-    { path: "/docs/api", changefreq: "monthly", priority: "0.4", lastmod: CONTENT_LAST_UPDATED },
+    { path: "/docs/api", changefreq: "monthly", priority: "0.4", lastmod: lastmodFor("/docs/api", editDates) },
   ];
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries
