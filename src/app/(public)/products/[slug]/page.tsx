@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { Check } from "lucide-react";
 import Breadcrumbs, { breadcrumbSchema } from "@/components/public/breadcrumbs";
 import GetStartedButton from "@/components/public/get-started-button";
 import InternalLinkHub from "@/components/public/internal-links";
 import ProductLogo from "@/components/public/product-logo";
-import { productSeoDefaults } from "@/lib/content";
+import { productAgentProfiles, productFaqs, productSeoDefaults } from "@/lib/content";
 import { getProductBySlug, getProducts } from "@/lib/data";
 import { getCanonicalSiteUrl } from "@/lib/utils";
 
@@ -72,6 +73,19 @@ export default async function ProductDetailPage({ params }: Props) {
   const siteUrl = getCanonicalSiteUrl();
   const productUrl = `${siteUrl}/products/${product.slug}`;
   const productPath = `/products/${product.slug}`;
+  /**
+   * Both of these already existed as data and were rendered nowhere.
+   *
+   * `productAgentProfiles` was written for llms.txt and /api/v1/products, so an
+   * agent calling the API got a structured capability list while a person
+   * reading the page got the same information buried in seven paragraphs of
+   * prose — and so did the crawler, which has no way to lift a feature list out
+   * of a paragraph. `productFaqs` is new and exists for the same reason: a
+   * branded search ("nidanyo lab software nepal") lands here already knowing the
+   * name, and this page had no answer to "what is it" that anything could quote.
+   */
+  const profile = productAgentProfiles[product.slug];
+  const faqs = productFaqs[product.slug] ?? [];
   const crumbs = [
     { name: "Home", href: "/" },
     { name: "Products", href: "/products" },
@@ -87,16 +101,61 @@ export default async function ProductDetailPage({ params }: Props) {
       description: product.shortDescription,
       url: productUrl,
       image: product.logoUrl ? `${siteUrl}${product.logoUrl}` : undefined,
+      /**
+       * Quote-only, and the markup has to say so.
+       *
+       * This block previously published `price: "0"` in USD for every product,
+       * which is a machine-readable claim that Nidanyo, Serviol, Purseol,
+       * LeadRack, and Pravyo are free. None of them are: all five are quoted by
+       * team or lab size and modules. A rich result is not worth a price we
+       * would have to correct in public, and an answer engine lifting "free"
+       * from here costs a sales conversation before anyone reaches the page.
+       *
+       * `PriceSpecification` without a `price` is the honest form: it states a
+       * currency and points at where a real figure comes from, without
+       * asserting an amount. Google will not render an offer chip from this,
+       * which is the intended trade.
+       */
       offers: {
         "@type": "Offer",
-        price: "0",
-        priceCurrency: "USD",
         availability: "https://schema.org/InStock",
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          priceCurrency: "NPR",
+          valueAddedTaxIncluded: false,
+        },
         url: `${siteUrl}/contact`,
       },
       publisher: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Infobytes Nepal", url: siteUrl },
+      ...(profile
+        ? {
+            /**
+             * The category names this product answers to. Somebody looking for
+             * Nidanyo rarely types "Nidanyo" first — they type "lab software in
+             * Nepal" or "LIS", and `alternateName` is where a search engine
+             * reads the aliases of an entity.
+             */
+            alternateName: profile.alsoKnownAs,
+            featureList: profile.capabilities,
+            audience: { "@type": "Audience", audienceType: profile.audience },
+          }
+        : {}),
     },
     breadcrumbSchema(crumbs),
+    ...(faqs.length > 0
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "@id": `${productUrl}#faq`,
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          },
+        ]
+      : []),
   ];
 
   return (
@@ -113,13 +172,58 @@ export default async function ProductDetailPage({ params }: Props) {
               <GetStartedButton interest={product.name} />
             </div>
           </section>
-          <section className="mx-auto mt-12 max-w-3xl pb-16 text-lg leading-9 text-dark-text/78">
+          <section className="mx-auto mt-12 max-w-3xl text-lg leading-9 text-dark-text/78">
             {product.fullDescription.split("\n").map((paragraph) => (
               <p key={paragraph} className="mb-6">
                 {paragraph}
               </p>
             ))}
           </section>
+
+          {profile && profile.capabilities.length > 0 && (
+            <section className="mt-6 pb-4">
+              <p className="text-sm font-semibold uppercase text-primary-blue">What it covers</p>
+              <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-4xl">
+                {product.name} module by module
+              </h2>
+              <p className="mt-4 max-w-3xl leading-7 text-dark-text/72">{profile.audience}</p>
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {profile.capabilities.map((capability) => (
+                  <div
+                    key={capability}
+                    className="flex items-start gap-3 rounded-2xl border border-primary-blue/10 bg-white px-4 py-3 text-sm font-semibold text-deep-navy shadow-[0_12px_28px_rgba(4,18,63,0.04)]"
+                  >
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-soft-green text-primary-green">
+                      <Check size={15} strokeWidth={2.4} />
+                    </span>
+                    {capability}
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {faqs.length > 0 && (
+            <section className="mt-14 pb-16">
+              <p className="text-sm font-semibold uppercase text-primary-blue">FAQ</p>
+              <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-4xl">
+                Common questions about {product.name}
+              </h2>
+              <div className="mt-8 grid gap-4">
+                {faqs.map((faq) => (
+                  <article
+                    key={faq.question}
+                    className="rounded-[24px] border border-primary-blue/10 bg-soft-blue/35 p-5 shadow-[0_18px_55px_rgba(4,18,63,0.05)]"
+                  >
+                    <h3 className="text-lg font-semibold text-deep-navy">{faq.question}</h3>
+                    <p className="mt-3 leading-7 text-dark-text/72">{faq.answer}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {!profile && faqs.length === 0 && <div className="pb-16" />}
         </div>
       </article>
       <InternalLinkHub

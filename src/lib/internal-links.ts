@@ -267,6 +267,17 @@ export const clusters: Cluster[] = [
         "Registration, OPD and IPD, pharmacy, lab, and billing together.",
         "software",
       ),
+      /*
+        The Nidanyo cluster, here in `software` for the same reason the Serviol
+        pages are: a lab owner searches "lab software in Nepal" long before they
+        search "Nidanyo". Each of the four links down to /products/nidanyo.
+
+        The anchors carry LIS and LIOMS alongside LIMS deliberately. LIS is what
+        clinical labs here actually say, LIOMS is how we describe Nidanyo's
+        scope, and until now both terms existed in exactly one blog post — so
+        every internal anchor on the site pointed at these pages using the one
+        acronym (LIMS) that skews research rather than diagnostics.
+      */
       node(
         "/lab-software-in-nepal",
         "Lab Software",
@@ -274,6 +285,7 @@ export const clusters: Cluster[] = [
           "lab software in Nepal",
           "lab management software in Nepal",
           "laboratory software for medical labs in Nepal",
+          "LIS for medical laboratories in Nepal",
         ],
         "Nidanyo: registration to verified report, billing, and reagent stock.",
         "software",
@@ -287,6 +299,28 @@ export const clusters: Cluster[] = [
           "LIMS for medical laboratories in Nepal",
         ],
         "Sample lifecycle, verification, audit trails, and turnaround reporting.",
+        "software",
+      ),
+      node(
+        "/best-lab-software-in-nepal",
+        "Choosing Lab Software",
+        [
+          "best lab software in Nepal",
+          "how to choose lab software in Nepal",
+          "LIS, LIMS, and LIOMS compared",
+        ],
+        "The criteria, the category choice, and where Nidanyo is the wrong fit.",
+        "software",
+      ),
+      node(
+        "/lab-software-cost-in-nepal",
+        "Lab Software Cost",
+        [
+          "lab software cost in Nepal",
+          "how much lab software costs in Nepal",
+          "laboratory software pricing in Nepal",
+        ],
+        "What moves the quotation, and the charges that appear after go live.",
         "software",
       ),
       node(
@@ -450,7 +484,12 @@ export const clusters: Cluster[] = [
       node(
         "/products/nidanyo",
         "Nidanyo",
-        ["Nidanyo lab management system", "Nidanyo, our lab software", "Nidanyo for medical laboratories"],
+        [
+          "Nidanyo lab management system",
+          "Nidanyo, our lab software",
+          "Nidanyo for medical laboratories",
+          "Nidanyo, our LIOMS for medical labs",
+        ],
         "Laboratory operations and information management for medical labs.",
         "products",
       ),
@@ -488,6 +527,7 @@ export const clusters: Cluster[] = [
       "/business-automation-software-nepal",
       "/crm-software-in-nepal",
       "/lab-software-in-nepal",
+      "/best-lab-software-in-nepal",
     ],
   },
 ];

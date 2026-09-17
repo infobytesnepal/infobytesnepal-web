@@ -87,6 +87,27 @@ export async function GET() {
     "## Products",
     "",
     ...productBlock,
+    /*
+      Nidanyo gets its own section for the same reason Serviol does: a cluster
+      of pages on one commercial topic is more useful to an agent as a labelled
+      group than as four unexplained rows in the flat list further down.
+
+      The acronym line is doing real work. "LIS" is what a clinical laboratory
+      searches for, "LIMS" is the research term, and "LIOMS" is our own
+      description of the scope — an agent fanning out on any of the three has to
+      be able to land on the same product.
+    */
+    "## Laboratory software (Nidanyo)",
+    "",
+    "Nidanyo is our laboratory system. It is a LIOMS — a laboratory information and operations management system — which means it covers what an LIS does (patient-focused clinical records, results, reports) and what a LIMS does (sample lifecycle, chain of custody, verification, audit trail), plus the commercial half a laboratory in Nepal actually runs on: counter and credit billing, package rates, referring doctor and institution commissions, reagent inventory by batch and expiry, and management reporting. That last part is why imported LIMS products, which mostly come from research and pharmaceutical testing, tend to fit badly here.",
+    "",
+    `- [Nidanyo](${siteUrl}/products/nidanyo): The product itself — modules, deployment, and support.`,
+    `- [Lab Software in Nepal](${siteUrl}/lab-software-in-nepal): The operational side — registration, sample tracking, reports, billing, and reagent stock.`,
+    `- [Laboratory Information Management System in Nepal](${siteUrl}/laboratory-information-management-system-nepal): The traceability side — sample lifecycle, enforced verification, immutable audit trail, and turnaround time reporting.`,
+    `- [Best Lab Software in Nepal](${siteUrl}/best-lab-software-in-nepal): How to choose one, including LIS vs LIMS vs LIOMS as a buying decision and the labs Nidanyo is the wrong fit for.`,
+    `- [Lab Software Cost in Nepal](${siteUrl}/lab-software-cost-in-nepal): What moves the quotation, one-time vs recurring cost, and the charges that appear after go live.`,
+    `- [Ten signs your lab has outgrown its process](${siteUrl}/blog/laboratory-management-software-in-nepal): The full feature checklist and the questions to put to any laboratory software vendor.`,
+    "",
     "## Service management and field service (Serviol)",
     "",
     "Serviol is our service management system. It covers the two halves of service work: the record side (customers, installed equipment, warranties, and annual maintenance contracts) and the delivery side (complaint tickets, technician scheduling, and proof of work captured on site). It is built for Nepal, including technicians working from ordinary Android phones where the signal drops.",

@@ -1,4 +1,5 @@
 import { extraSeoLandingPages } from "./seo-landing-pages-extra";
+import { nidanyoSeoLandingPages } from "./seo-landing-pages-nidanyo";
 import { serviolSeoLandingPages } from "./seo-landing-pages-serviol";
 
 export type SeoLandingPage = {
@@ -3910,12 +3911,14 @@ export const seoLandingPages = {
 export const seoLandingPageList: SeoLandingPage[] = [
   ...Object.values(seoLandingPages),
   ...Object.values(extraSeoLandingPages),
+  ...Object.values(nidanyoSeoLandingPages),
   ...Object.values(serviolSeoLandingPages),
 ];
 
 export const allSeoLandingPages = {
   ...seoLandingPages,
   ...extraSeoLandingPages,
+  ...nidanyoSeoLandingPages,
   ...serviolSeoLandingPages,
 };
 

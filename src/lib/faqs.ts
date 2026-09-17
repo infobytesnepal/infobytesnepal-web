@@ -604,7 +604,22 @@ export const faqGroups: FaqGroup[] = [
           "The practical test when comparing options: ask the vendor to show you a doctor commission statement and a daily counter reconciliation. If they cannot, the system will cost you staff hours every month.",
         ],
         links: [
+          { href: "/best-lab-software-in-nepal", label: "How to choose lab software in Nepal" },
           { href: "/lab-software-in-nepal", label: "Lab software in Nepal" },
+          { href: "/products/nidanyo", label: "Nidanyo lab management system" },
+        ],
+      },
+      {
+        id: "lis-lims-lioms",
+        question: "What is the difference between an LIS, a LIMS, and a LIOMS?",
+        answer:
+          "An LIS, a laboratory information system, manages patient-focused clinical laboratory information. A LIMS, a laboratory information management system, manages samples, testing data, and laboratory workflows. A LIOMS, a laboratory information and operations management system, combines both with the operational side: billing, inventory, permissions, audit trails, and management reporting. Nidanyo is a LIOMS.",
+        more: [
+          "The distinction matters when you are comparing products rather than when you are describing one. LIMS products mostly come from research, pharmaceutical, and industrial testing, which is why so many of them model a study protocol beautifully and cannot represent a credit account with a referring clinic at all.",
+          "A medical laboratory in Nepal almost always needs the LIOMS scope, because the commercial half of the day, referral commissions and counter reconciliation, is where the time and the revenue leakage actually are.",
+        ],
+        links: [
+          { href: "/best-lab-software-in-nepal", label: "Choosing lab software in Nepal" },
           { href: "/products/nidanyo", label: "Nidanyo lab management system" },
         ],
       },
@@ -631,7 +646,10 @@ export const faqGroups: FaqGroup[] = [
         more: [
           "We quote against your actual monthly test volume, branch count, and test menu rather than publishing a package price, because lab requirements vary more than most software categories. Setup, catalogue loading, report formatting, and staff training are quoted as part of the project rather than appearing as surprises later.",
         ],
-        links: [{ href: "/lab-software-in-nepal", label: "Lab software in Nepal" }],
+        links: [
+          { href: "/lab-software-cost-in-nepal", label: "What lab software costs in Nepal" },
+          { href: "/lab-software-in-nepal", label: "Lab software in Nepal" },
+        ],
       },
       {
         id: "analyser-interfacing",

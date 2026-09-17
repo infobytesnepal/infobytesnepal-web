@@ -100,7 +100,7 @@ export const productSeoDefaults: Record<string, { title: string; description: st
   nidanyo: {
     title: "Nidanyo Lab Software Nepal | Laboratory Management System",
     description:
-      "Nidanyo is lab management software for medical laboratories in Nepal, covering patient registration, sample tracking, result verification, report printing, billing, and reagent stock.",
+      "Nidanyo by Infobytes Nepal is a LIOMS for medical laboratories in Nepal: an LIS and LIMS together with billing, covering patient registration, sample tracking, result verification, report printing, referral commissions, and reagent stock.",
   },
 };
 
@@ -166,19 +166,48 @@ export const productAgentProfiles: Record<
     ],
   },
   nidanyo: {
+    /*
+      LIS and LIOMS matter more here than the length of this list suggests.
+
+      A clinical laboratory in Nepal says "LIS", not "LIMS" — LIMS is the
+      research and pharmaceutical term, and an assistant asked for "the best
+      laboratory software LIS in Nepal" was previously matching this product on
+      neither. LIOMS is our own description of Nidanyo's scope (information
+      management plus the commercial operations a lab actually runs on), and
+      until now it appeared in exactly one database-backed blog post, which
+      meant llms.txt, /api/v1/products, /api/v1/search and the MCP tools had
+      never seen the term that distinguishes this product from a research LIMS.
+    */
     alsoKnownAs: [
       "lab software",
-      "laboratory information management system",
+      "laboratory software",
+      "LIS",
+      "laboratory information system",
       "LIMS",
-      "pathology lab software",
+      "laboratory information management system",
+      "LIOMS",
+      "laboratory information and operations management system",
       "medical laboratory management system",
+      "pathology lab software",
+      "diagnostic centre software",
+      "lab billing and reporting software",
     ],
-    audience: "Medical and pathology laboratories in Nepal.",
+    audience:
+      "Medical laboratories, diagnostic centres, pathology labs, and polyclinics in Nepal, including multi branch labs running collection centres and labs that work through referring doctors and credit accounts with hospitals.",
     capabilities: [
-      "Patient registration and sample tracking",
-      "Test result entry and verification",
-      "Report generation and printing",
-      "Billing and reagent stock control",
+      "Patient registration with duplicate detection",
+      "Barcoded sample collection and status tracking through the workflow",
+      "Test master with age and sex specific reference ranges",
+      "Analyser interfacing for machines that support standard interfacing",
+      "Result entry separated by permission from authorised verification",
+      "Letterhead report printing, PDF delivery, and amended report versioning",
+      "Counter billing, credit accounts, package rates, and discount approval trails",
+      "Referring doctor and referring institution commission statements",
+      "Reagent, kit, and consumable inventory by batch and expiry",
+      "Role based access with an immutable audit trail",
+      "Turnaround time, pending work, and department revenue reporting",
+      "Multi branch and collection centre workflow",
+      "On premise deployment for labs that cannot risk internet downtime",
     ],
   },
   pravyo: {
@@ -190,6 +219,70 @@ export const productAgentProfiles: Record<
       "Presenting candidates to hiring organisations",
     ],
   },
+};
+
+/**
+ * Per-product questions, rendered on the product page and published as
+ * `FAQPage` markup there.
+ *
+ * These are deliberately about the product as a named thing, not about its
+ * category. The category questions ("what is the best lab software in Nepal",
+ * "how much does lab software cost") already belong to the landing pages and
+ * the FAQ page, and repeating them here would put the same answer under three
+ * `FAQPage` blocks on one site.
+ *
+ * What a product page has to answer instead is the question someone asks once
+ * they already have the name: what is this, who makes it, what does it include,
+ * how is it deployed, and how do I get it. That is the shape of a branded
+ * search, and until now this page answered none of them in a form a machine
+ * could lift — it rendered a heading, a logo, and seven paragraphs of prose.
+ *
+ * A product with no entry here simply renders without the section, which is why
+ * this is a partial record rather than one keyed by every product slug.
+ */
+export const productFaqs: Record<string, Array<{ question: string; answer: string }>> = {
+  nidanyo: [
+    {
+      question: "What is Nidanyo?",
+      answer:
+        "Nidanyo is laboratory software built by Infobytes Nepal for medical laboratories, diagnostic centres, pathology labs, and polyclinics in Nepal. It carries a sample from the registration counter through collection, result entry, authorised verification, and report release, and handles the billing, referral commissions, and reagent stock that go with it.",
+    },
+    {
+      question: "Who makes Nidanyo?",
+      answer:
+        "Nidanyo is built and supported by Infobytes Nepal Pvt. Ltd., an IT company based in Kaushaltar, Bhaktapur, Nepal. It is one of five products we build and support ourselves, alongside Serviol, Purseol, LeadRack, and Pravyo. Implementation, training, and support are handled by the same team that builds it.",
+    },
+    {
+      question: "Is Nidanyo an LIS, a LIMS, or a LIOMS?",
+      answer:
+        "Nidanyo is a LIOMS, a laboratory information and operations management system. It covers what an LIS covers (patient-focused clinical records, results, and reports) and what a LIMS covers (sample lifecycle, chain of custody, and enforced verification), and adds the operational half a laboratory in Nepal runs on: billing, credit accounts, referring doctor commissions, reagent inventory, permissions, and management reporting.",
+    },
+    {
+      question: "What does Nidanyo include?",
+      answer:
+        "Patient registration with duplicate detection, barcoded sample collection and tracking, a test master with age and sex specific reference ranges, analyser interfacing where machines support it, result entry separated by permission from authorised verification, letterhead report printing and PDF delivery, amended report versioning, counter and credit billing with package rates and discount approvals, referring doctor and institution commission statements, reagent inventory by batch and expiry, role based access with an audit trail, and turnaround time and revenue reporting.",
+    },
+    {
+      question: "Can Nidanyo run on our own server inside the lab?",
+      answer:
+        "Yes. Labs that cannot risk downtime run Nidanyo on a machine inside the lab, so the counter and the bench keep working through an internet outage, with backups and remote reporting syncing when the connection returns. Labs with reliable connectivity usually prefer the hosted option, where we handle updates, backups, and monitoring.",
+    },
+    {
+      question: "Does Nidanyo handle multiple branches and collection centres?",
+      answer:
+        "Yes. Collection centres register patients and collect samples that are processed at the main lab, and the report becomes visible at the centre once it is verified. Billing, revenue, and pending work are reported per branch as well as consolidated.",
+    },
+    {
+      question: "How much does Nidanyo cost?",
+      answer:
+        "Nidanyo is quoted by lab size and modules rather than sold at a list price, and it is licensed by users and branches rather than per test, so growing your volume does not increase your bill. Tell us your monthly test volume, counter count, branch count, and whether you need analyser interfacing, and you get a written quotation at no charge.",
+    },
+    {
+      question: "How long does it take to get Nidanyo running?",
+      answer:
+        "For a single branch lab with a standard test menu, expect two to four weeks from catalogue setup to go live, including training and a parallel run alongside your current process. Multi branch labs and labs with analyser interfacing take longer, mostly because cleaning up the test catalogue and rate list takes longer than the software work does.",
+    },
+  ],
 };
 
 export const stackingCards = [
