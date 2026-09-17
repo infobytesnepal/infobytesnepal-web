@@ -87,11 +87,13 @@ export default function Navbar({ logoUrl }: { logoUrl: string }) {
         Kept mounted rather than conditionally rendered so it can animate closed
         as well as open. `inert` takes it out of the tab order and the
         accessibility tree while hidden, which a CSS-only fade would otherwise
-        leave reachable by keyboard.
+        leave reachable by keyboard. Absolutely positioned so the hidden menu
+        takes no layout space — in flow it stretched the header's white,
+        blurred background over half the viewport even while invisible.
       */}
       <div
         inert={!open}
-        className={`mt-2 origin-top border-t border-primary-blue/10 bg-white/96 p-4 shadow-[0_18px_55px_rgba(4,18,63,0.12)] backdrop-blur-xl transition-all duration-200 ease-out md:hidden ${
+        className={`page-x absolute inset-x-0 top-full max-h-[calc(100dvh-5rem)] origin-top overflow-y-auto border-t border-primary-blue/10 bg-white/96 p-4 shadow-[0_18px_55px_rgba(4,18,63,0.12)] backdrop-blur-xl transition-all duration-200 ease-out md:hidden ${
           open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"
         }`}
       >
