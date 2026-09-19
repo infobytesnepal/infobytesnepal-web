@@ -74,6 +74,74 @@ function InstagramIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+/**
+ * The boxless "in", not the boxed LinkedIn tile.
+ *
+ * Every other mark in this row is a glyph on a transparent ground, sitting
+ * inside its own bordered circle. The official boxed tile fills that circle
+ * with a solid block and reads two shades heavier than the Facebook "f" beside
+ * it, which makes the row look misaligned even though it is not.
+ */
+function LinkedInIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-3.96 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91V8.48z" />
+    </svg>
+  );
+}
+
+/** The current X mark. Not the retired bird, which every icon set still ships. */
+function XIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+    </svg>
+  );
+}
+
+function YouTubeIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z" />
+    </svg>
+  );
+}
+
+function TikTokIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z" />
+    </svg>
+  );
+}
+
+/**
+ * Every entry here must also appear in `sameAs` on the Organization schema in
+ * `lib/seo.ts`. That list is what a search engine and an answer engine use to
+ * resolve "Infobytes Nepal" to one entity across platforms, and a profile that
+ * is linked in the footer but missing from `sameAs` does nothing for it.
+ *
+ * Checked against the live platforms on 2026-09-19 rather than trusted, which
+ * caught two things worth writing down:
+ *
+ * 1. There are two YouTube channels with nearly the same name. @infobytesnepal
+ *    (UCc8C8eCmNSkR7Vu_K_bfhDA, created 2025-09-22) is real but has zero
+ *    videos; @infobytesnepal-pvt-ltd (UC-Y9kyI6BnRDRHu1kGwIoLg) is the active
+ *    one, and its RSS feed carries the Nidanyo videos. The empty one must stay
+ *    out of `sameAs` — pointing the entity graph at a dormant duplicate of your
+ *    own brand splits the signal instead of strengthening it.
+ *
+ * 2. TikTok profile URLs require the "@". Both bare-path forms that were tried
+ *    (/infobytesnepal-pvt-ltd and /infobytesnepal) redirect to tiktok.com/404.
+ *    The handle below is the supplied one in the form TikTok actually serves.
+ *    It could not be confirmed by request: TikTok returns an identical 200
+ *    shell for every "@handle", including invented controls, so this one is
+ *    taken on trust and is the only entry here that is.
+ *
+ * Facebook answers bot requests with 400 and LinkedIn with 999; both block
+ * unauthenticated crawlers and neither is a 404, so both are unverifiable this
+ * way rather than broken.
+ */
 const socialLinks = [
   {
     href: "https://www.facebook.com/infobytesnepal",
@@ -85,6 +153,30 @@ const socialLinks = [
     href: "https://www.instagram.com/infobytesnepal/",
     label: "Visit Infobytes Nepal on Instagram",
     icon: InstagramIcon,
+    external: true,
+  },
+  {
+    href: "https://www.linkedin.com/company/infobytes-nepal-pvt-ltd",
+    label: "Visit Infobytes Nepal on LinkedIn",
+    icon: LinkedInIcon,
+    external: true,
+  },
+  {
+    href: "https://x.com/infobytesnepal",
+    label: "Visit Infobytes Nepal on X",
+    icon: XIcon,
+    external: true,
+  },
+  {
+    href: "https://www.youtube.com/@infobytesnepal-pvt-ltd",
+    label: "Visit Infobytes Nepal on YouTube",
+    icon: YouTubeIcon,
+    external: true,
+  },
+  {
+    href: "https://www.tiktok.com/@infobytesnepal",
+    label: "Visit Infobytes Nepal on TikTok",
+    icon: TikTokIcon,
     external: true,
   },
   {

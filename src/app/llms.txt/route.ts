@@ -68,7 +68,11 @@ export async function GET() {
     "Infobytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, graphic design, IT training, website maintenance, and business automation. We also build and support our own software products: Nidanyo (laboratory operations and information management for medical laboratories), Serviol (service management, field service management, and AMC), Purseol (field sales management), LeadRack (lead tracking and sales CRM), and Pravyo (student talent bench).",
     "",
     "Location: Kaushaltar, Bhaktapur, Nepal",
-    "Email: inquiryo@infobytesnepal.com",
+    // "inquiryo@" was a typo. Every other one of the fifteen places this
+    // address appears says "inquiry@" — and this is the one file written to be
+    // read by assistants, so the typo handed out a dead address to exactly the
+    // audience least able to notice it was wrong.
+    "Email: inquiry@infobytesnepal.com",
     "Phone: +977-9843468715",
     "Service area: All of Nepal, including Kathmandu, Lalitpur, Bhaktapur, Pokhara, Butwal, Chitwan, and Biratnagar. We also deliver for clients in Europe.",
     "",

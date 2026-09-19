@@ -104,9 +104,36 @@ export async function organizationSchema() {
       { "@type": "Place", name: "Europe" },
       { "@type": "Place", name: "Worldwide" },
     ],
+    /**
+     * Every official profile, and only official profiles.
+     *
+     * `sameAs` is how a search engine and an answer engine decide that the
+     * Facebook page, the LinkedIn company, the YouTube channel and this site
+     * are one organisation rather than four things with similar names. Listing
+     * four more profiles than before is the cheapest entity-resolution win
+     * available, and it is exactly what a branded query has to resolve against.
+     *
+     * Keep this in step with `socialLinks` in `components/public/footer.tsx`;
+     * the two lists are the same fact stated twice. Never add a profile that
+     * has not been confirmed to exist — an incorrect entry asks the engine to
+     * merge this brand with an account that is not ours, which is harder to
+     * undo than it is to avoid.
+     *
+     * Two entries have a history worth knowing before editing them. The
+     * YouTube handle is the `-pvt-ltd` one because the shorter
+     * youtube.com/@infobytesnepal is a separate, empty channel; listing the
+     * dormant duplicate would point the entity graph at the wrong one. The
+     * TikTok URL needs its "@" — the bare path redirects to tiktok.com/404 —
+     * and it is the one profile here that could not be confirmed by request.
+     * See the fuller note beside `socialLinks` in the footer.
+     */
     sameAs: [
       "https://www.facebook.com/infobytesnepal",
       "https://www.instagram.com/infobytesnepal/",
+      "https://www.linkedin.com/company/infobytes-nepal-pvt-ltd",
+      "https://x.com/infobytesnepal",
+      "https://www.youtube.com/@infobytesnepal-pvt-ltd",
+      "https://www.tiktok.com/@infobytesnepal",
     ],
     contactPoint: {
       "@type": "ContactPoint",
