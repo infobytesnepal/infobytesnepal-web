@@ -90,27 +90,13 @@ export async function upsertPost(formData: FormData) {
   const requestedSlug = slugify(formString(formData, "slug") || title);
 
   /*
-    The cover is stored like a body image — as a media asset served from
-    /api/media/<id> — rather than as the data URI the other CMS forms keep.
-    A cover appears on the blog index, on the home page strip, and on the post
-    itself; as a data URI those are three copies of the same 300KB inside the
-    HTML, uncacheable and unoptimizable. As a path it is one cached, resized
-    request.
+    The cover arrives as an /api/media path, already uploaded. The editor sends
+    the file through `uploadBlogImage` the moment it is chosen and puts the
+    returned address in this field, so a save carries no image bytes at all —
+    see the comment on the cover state in `post-editor.tsx` for why the upload
+    was moved out of the save.
   */
-  let coverImage = formString(formData, "coverImage");
-  const coverFile = formFile(formData, "coverImageFile");
-  if (coverFile && coverFile.size > 0) {
-    try {
-      const stored = await storeBlogImage(
-        coverFile,
-        `${title || "Post"} cover image`,
-        formString(formData, "coverAlt"),
-      );
-      coverImage = stored.url;
-    } catch (error) {
-      fail(error instanceof Error ? error.message : "The cover image could not be saved.", id ?? undefined);
-    }
-  }
+  const coverImage = formString(formData, "coverImage");
 
   const parsed = postSchema.safeParse({
     id: id ?? undefined,

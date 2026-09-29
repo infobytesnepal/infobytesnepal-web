@@ -42,7 +42,13 @@ export default async function PostEditorPage({ params, searchParams }: Props) {
       </p>
 
       <div className="mt-6">
+        {/*
+          Keyed by post so the editor's local state (title, body, cover) is
+          rebuilt from the database whenever the post changes — including the
+          jump from /blog/new to /blog/<id> after the first save.
+        */}
         <PostEditor
+          key={post?.id ?? "new"}
           post={post}
           categories={categories}
           authors={authors}

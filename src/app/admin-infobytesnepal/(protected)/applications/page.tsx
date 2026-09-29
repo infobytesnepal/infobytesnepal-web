@@ -78,12 +78,11 @@ export default async function JobApplicationsPage({ searchParams }: Props) {
                 </div>
 
                 <div className="flex flex-wrap gap-2 lg:shrink-0">
-                  {item.cvData && (
-                    // The CV is stored as a data URI, so the download attribute
-                    // is what turns it back into a named file on disk.
+                  {item.hasCv && (
+                    // Fetched on demand from an admin-only route rather than
+                    // embedded here: see `searchJobApplications`.
                     <a
-                      href={item.cvData}
-                      download={item.cvName || "cv"}
+                      href={`/admin-infobytesnepal/applications/${item.id}/cv`}
                       className="rounded-full border border-primary-blue/20 px-4 py-2 text-sm font-semibold text-primary-blue"
                     >
                       Download CV {formatSize(item.cvSize)}

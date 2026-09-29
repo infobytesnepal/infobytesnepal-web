@@ -64,17 +64,32 @@ export const loginSchema = z.object({
   password: z.string().min(1, "Password is required.").max(256),
 });
 
+/**
+ * A product as the CMS form submits it.
+ *
+ * `fullDescription` was capped at 5,000 characters, which a real product
+ * write-up passes easily: ClinicNP's is 7,600 and Nidanyo's is 3,100 and
+ * growing. The page renders it paragraph by paragraph and nothing downstream
+ * truncates it, so the cap only ever served to reject the save — silently, as it
+ * turned out. The slug arrives already normalised by the action, so its rule
+ * here is a backstop rather than something an author is expected to meet.
+ */
 export const productSchema = z.object({
   id: z.string().optional(),
-  name: z.string().trim().min(1).max(120),
-  slug: z.string().trim().min(1).max(120).regex(/^[a-z0-9-]+$/),
-  logoUrl: z.string().trim().min(1),
-  shortDescription: z.string().trim().min(1).max(700),
-  fullDescription: z.string().trim().min(1).max(5000),
-  displayOrder: z.coerce.number().int().default(0),
+  name: z.string().trim().min(1, "required.").max(120, "keep it under 120 characters."),
+  slug: z
+    .string()
+    .trim()
+    .min(1, "required — or leave it blank and it is made from the name.")
+    .max(120, "keep it under 120 characters.")
+    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "use lowercase letters, numbers and hyphens only."),
+  logoUrl: z.string().trim().min(1, "choose an image."),
+  shortDescription: z.string().trim().min(1, "required.").max(700, "keep it under 700 characters — it is the card text on /products."),
+  fullDescription: z.string().trim().min(1, "required.").max(20_000, "keep it under 20,000 characters."),
+  displayOrder: z.coerce.number({ message: "must be a whole number." }).int("must be a whole number.").default(0),
   isPublished: z.boolean().default(false),
-  seoTitle: z.string().trim().max(180).optional().default(""),
-  seoDescription: z.string().trim().max(320).optional().default(""),
+  seoTitle: z.string().trim().max(180, "keep it under 180 characters.").optional().default(""),
+  seoDescription: z.string().trim().max(320, "keep it under 320 characters.").optional().default(""),
   ogImage: z.string().trim().optional().default(""),
 });
 

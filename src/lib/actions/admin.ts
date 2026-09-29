@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { eq } from "drizzle-orm";
+import { and, eq, inArray, ne } from "drizzle-orm";
 import { db } from "@/lib/db/client";
 import {
   contactInquiries,
@@ -15,7 +15,8 @@ import {
   siteSettings,
 } from "@/lib/db/schema";
 import { requireAdmin } from "@/lib/auth";
-import { formFile, storeUploadedImage, toDataUri } from "@/lib/media";
+import { failed, firstIssue, ok, type ActionResult } from "@/lib/action-result";
+import { formFile, getMediaUsage, imageProblem, replaceAsset, storeUploadedImage } from "@/lib/media";
 import { formString, newId } from "@/lib/utils";
 import { productSchema } from "@/lib/validation";
 
@@ -132,48 +133,100 @@ export async function deleteServiceInquiry(formData: FormData) {
   revalidatePath("/admin-infobytesnepal/service-inquiries");
 }
 
-export async function upsertProduct(formData: FormData) {
+/** "ClinicNP" or "Clinic NP" -> "clinicnp" / "clinic-np". */
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 120);
+}
+
+const productLabels: Record<string, string> = {
+  name: "Product name",
+  slug: "Slug",
+  logoUrl: "Product logo",
+  shortDescription: "Short description",
+  fullDescription: "Full description",
+  displayOrder: "Display order",
+  seoTitle: "SEO title",
+  seoDescription: "SEO description",
+};
+
+/**
+ * Creates or updates a product.
+ *
+ * Rebuilt after a ClinicNP create failed in production with no visible reason.
+ * What happened, in order: the logo was stored, then validation rejected the
+ * form, then the action redirected to `?error=1`, which the page never read. The
+ * author saw the page reload with their typing gone, and the database kept the
+ * logo as an orphan (it is still there, dated 2026-09-28 10:18). The two inputs
+ * that reject most easily were the slug — anything with a capital letter, so
+ * "ClinicNP" — and a full description over what was then a 5,000 character cap.
+ *
+ * Now: the slug is derived and normalised rather than rejected, the cap fits a
+ * real product write-up, every field is checked before any image is stored, a
+ * duplicate slug is a message instead of a constraint violation, and the outcome
+ * is returned to the form so it can say what happened.
+ */
+export async function upsertProduct(formData: FormData): Promise<ActionResult> {
   await requireAdmin();
+  const id = formString(formData, "id");
   const name = formString(formData, "name");
-  const logoUrl = await storeUploadedImage(
-    formFile(formData, "logoFile"),
-    formString(formData, "logoUrl"),
-    `${name || "Product"} logo`,
-    `${name || "Product"} logo`,
-  );
-  const ogImage = await storeUploadedImage(
-    formFile(formData, "ogImageFile"),
-    formString(formData, "ogImage"),
-    `${name || "Product"} OG image`,
-    name,
-  );
+  const slug = slugify(formString(formData, "slug") || name);
+  const logoFile = formFile(formData, "logoFile");
+  const ogFile = formFile(formData, "ogImageFile");
+  const currentLogo = formString(formData, "logoUrl");
+
+  const fileProblem = imageProblem(logoFile) ?? imageProblem(ogFile);
+  if (fileProblem) return failed(fileProblem);
+
   const parsed = productSchema.safeParse({
-    id: formString(formData, "id"),
+    id,
     name,
-    slug: formString(formData, "slug"),
-    logoUrl,
+    slug,
+    // A chosen file is as good as a stored URL for validation. Nothing is
+    // written until every field has passed.
+    logoUrl: logoFile ? "pending-upload" : currentLogo,
     shortDescription: formString(formData, "shortDescription"),
     fullDescription: formString(formData, "fullDescription"),
-    displayOrder: formString(formData, "displayOrder"),
+    displayOrder: formString(formData, "displayOrder") || 0,
     isPublished: formData.get("isPublished") === "on",
     seoTitle: formString(formData, "seoTitle"),
     seoDescription: formString(formData, "seoDescription"),
-    ogImage,
+    ogImage: formString(formData, "ogImage"),
   });
-  if (!parsed.success) redirect("/admin-infobytesnepal/products?error=1");
-
+  if (!parsed.success) return failed(firstIssue(parsed.error.issues, productLabels));
   const data = parsed.data;
+
+  const [clash] = await db
+    .select({ id: products.id, name: products.name })
+    .from(products)
+    .where(data.id ? and(eq(products.slug, data.slug), ne(products.id, data.id)) : eq(products.slug, data.slug))
+    .limit(1);
+  if (clash) return failed(`Slug: "${data.slug}" is already used by ${clash.name}. Choose a different one.`);
+
+  let logoUrl = currentLogo;
+  let ogImage = data.ogImage;
+  try {
+    logoUrl = await storeUploadedImage(logoFile, currentLogo, `${data.name} logo`, `${data.name} logo`);
+    ogImage = await storeUploadedImage(ogFile, data.ogImage, `${data.name} share image`, data.name);
+  } catch (error) {
+    return failed(error instanceof Error ? error.message : "The image could not be stored.");
+  }
+
   const payload = {
     name: data.name,
     slug: data.slug,
-    logoUrl: data.logoUrl,
+    logoUrl,
     shortDescription: data.shortDescription,
     fullDescription: data.fullDescription,
     displayOrder: data.displayOrder,
     isPublished: data.isPublished,
     seoTitle: data.seoTitle,
     seoDescription: data.seoDescription,
-    ogImage: data.ogImage,
+    ogImage,
     updatedAt: new Date().toISOString(),
   };
 
@@ -183,7 +236,11 @@ export async function upsertProduct(formData: FormData) {
     await db.insert(products).values({ id: newId(), ...payload });
   }
   revalidatePublicSite();
-  redirect("/admin-infobytesnepal/products");
+  return ok(
+    data.id
+      ? `Saved. /products/${data.slug} is updated.`
+      : `${data.name} created at /products/${data.slug}${data.isPublished ? "" : " (unpublished)"}.`,
+  );
 }
 
 export async function deleteProduct(formData: FormData) {
@@ -193,25 +250,39 @@ export async function deleteProduct(formData: FormData) {
   redirect("/admin-infobytesnepal/products");
 }
 
-export async function updatePageSection(formData: FormData) {
+export async function updatePageSection(formData: FormData): Promise<ActionResult> {
   await requireAdmin();
   const pageKey = formString(formData, "pageKey");
   const sectionKey = formString(formData, "sectionKey");
   const id = formString(formData, "id") || newId();
+
+  const files: Array<{ key: string; file: File }> = [];
   const data: Record<string, string> = {};
   for (const [key, value] of formData.entries()) {
-    if (!["pageKey", "sectionKey", "id"].includes(key) && typeof value === "string" && !key.endsWith("File")) data[key] = value.trim();
+    if (["pageKey", "sectionKey", "id"].includes(key)) continue;
+    if (key.endsWith("File")) {
+      const file = formFile(formData, key);
+      if (file) files.push({ key, file });
+    } else if (typeof value === "string") {
+      data[key] = value.trim();
+    }
   }
-  for (const [key] of formData.entries()) {
-    if (!key.endsWith("File")) continue;
-    const targetKey = key.slice(0, -"File".length);
-    data[targetKey] = await storeUploadedImage(
-      formFile(formData, key),
-      data[targetKey] || "",
-      `${pageKey} ${sectionKey} ${targetKey}`,
-      data.title || targetKey,
-    );
+
+  // Check every file before storing any of them, so a bad fifth logo does not
+  // leave the first four stored and unreferenced.
+  for (const { file } of files) {
+    const problem = imageProblem(file);
+    if (problem) return failed(problem);
   }
+  try {
+    for (const { key, file } of files) {
+      const targetKey = key.slice(0, -"File".length);
+      data[targetKey] = await storeUploadedImage(file, data[targetKey] || "", `${pageKey} ${sectionKey} ${targetKey}`, data.title || targetKey);
+    }
+  } catch (error) {
+    return failed(error instanceof Error ? error.message : "The image could not be stored.");
+  }
+
   const contentJson = JSON.stringify(data);
   await db
     .insert(pageContent)
@@ -221,59 +292,117 @@ export async function updatePageSection(formData: FormData) {
       set: { contentJson, updatedAt: new Date().toISOString() },
     });
   revalidatePageSection(pageKey);
-  redirect("/admin-infobytesnepal/pages");
+  return ok("Section saved.");
 }
 
-export async function upsertMediaAsset(formData: FormData) {
+/**
+ * Adds an image to the library, or replaces one.
+ *
+ * Replacing stores the new image under a new id and repoints everything that
+ * used the old one (see `replaceAsset`), because overwriting the bytes behind
+ * an unchanged URL left every cache serving the old image for up to a month.
+ * The old action also skipped the type and size checks on replace entirely.
+ */
+export async function upsertMediaAsset(formData: FormData): Promise<ActionResult> {
   await requireAdmin();
   const id = formString(formData, "id");
   const name = formString(formData, "name");
   const altText = formString(formData, "altText");
   const file = formFile(formData, "file");
-  if (!name || (!id && (!file || file.size === 0))) redirect("/admin-infobytesnepal/media?error=1");
 
-  if (id) {
-    const [existing] = await db.select().from(mediaAssets).where(eq(mediaAssets.id, id)).limit(1);
-    if (!existing) redirect("/admin-infobytesnepal/media?error=1");
-    /*
-      This row IS the byte store, so replacing an asset writes the data URI in
-      place. It must not go through `storeUploadedImage`, which now returns a
-      /api/media/<id> path: writing a path into this column would leave the
-      media route reading a row that points at a route that reads the same row.
-    */
-    const url = file && file.size > 0 ? await toDataUri(file) : existing.url;
-    await db.update(mediaAssets).set({
-      name,
-      url,
-      type: file && file.size > 0 ? file.type : existing.type,
-      altText,
-      updatedAt: new Date().toISOString(),
-    }).where(eq(mediaAssets.id, id));
-  } else {
-    // Creating an asset only needs the row; the returned path is unused here
-    // because the Media tab is a library, not a reference to one image.
+  if (!name) return failed("Asset name: required.");
+  if (!id && !file) return failed("Choose an image to upload.");
+  const problem = imageProblem(file);
+  if (problem) return failed(problem);
+
+  if (!id) {
     await storeUploadedImage(file, "", name, altText);
+    revalidatePath("/admin-infobytesnepal/media");
+    return ok(`"${name}" added to the library.`);
+  }
+
+  const [existing] = await db.select({ id: mediaAssets.id }).from(mediaAssets).where(eq(mediaAssets.id, id)).limit(1);
+  if (!existing) return failed("That asset no longer exists. Refresh the page.");
+
+  if (!file) {
+    await db.update(mediaAssets).set({ name, altText, updatedAt: new Date().toISOString() }).where(eq(mediaAssets.id, id));
+    revalidatePath("/admin-infobytesnepal/media");
+    return ok("Name and alt text saved.");
+  }
+
+  const replaced = await replaceAsset(id, file, name, altText);
+  if (replaced.touched.length) {
+    revalidatePublicSite();
+    revalidatePath("/blog/[slug]", "page");
+    revalidatePath("/api/v1/blog/[slug]", "page");
   }
   revalidatePath("/admin-infobytesnepal/media");
-  redirect("/admin-infobytesnepal/media");
+  return ok(
+    replaced.touched.length
+      ? `Image replaced, and every page using it now points at the new one (${replaced.touched.join(", ")}).`
+      : "Image replaced. It is not used on any page yet.",
+  );
 }
 
-export async function deleteMediaAsset(formData: FormData) {
+/**
+ * Deletes an asset — but only one nothing uses.
+ *
+ * The old version deleted whatever it was given, so removing an image a live
+ * page pointed at left a broken image on the website with nothing to say why.
+ */
+export async function deleteMediaAsset(formData: FormData): Promise<ActionResult> {
   await requireAdmin();
-  await db.delete(mediaAssets).where(eq(mediaAssets.id, formString(formData, "id")));
+  const id = formString(formData, "id").toLowerCase();
+  const usedBy = (await getMediaUsage()).get(id);
+  if (usedBy?.length) {
+    return failed(`Still in use by ${usedBy.join("; ")}. Replace or remove it there first.`);
+  }
+  await db.delete(mediaAssets).where(eq(mediaAssets.id, id));
   revalidatePath("/admin-infobytesnepal/media");
+  return ok("Deleted.");
 }
 
-export async function updateSiteSettings(formData: FormData) {
+/**
+ * Deletes every asset nothing references.
+ *
+ * These are almost all the leftovers of saves that stored an image and then
+ * failed — 41 of the 80 rows when this was written, most of them 1.5–2.5 MB
+ * blog covers uploaded two or three times over.
+ */
+export async function deleteUnusedMedia(): Promise<ActionResult> {
   await requireAdmin();
-  const values: Record<string, string> = {
-    companyName: formString(formData, "companyName"),
-    tagline: formString(formData, "tagline"),
-    whatsappNumber: formString(formData, "whatsappNumber"),
-    contactEmail: formString(formData, "contactEmail"),
-    logoUrl: await storeUploadedImage(formFile(formData, "logoUrlFile"), formString(formData, "logoUrl"), "Site logo", "Infobytes Nepal logo"),
-    defaultOgImage: await storeUploadedImage(formFile(formData, "defaultOgImageFile"), formString(formData, "defaultOgImage"), "Default OG image", "Infobytes Nepal"),
-  };
+  const usage = await getMediaUsage();
+  const rows = await db.select({ id: mediaAssets.id }).from(mediaAssets);
+  const unused = rows.filter((row) => !usage.has(row.id.toLowerCase())).map((row) => row.id);
+  if (!unused.length) return ok("Nothing to clean up — every image is in use.");
+  await db.delete(mediaAssets).where(inArray(mediaAssets.id, unused));
+  revalidatePath("/admin-infobytesnepal/media");
+  return ok(`Deleted ${unused.length} unused image${unused.length === 1 ? "" : "s"}.`);
+}
+
+export async function updateSiteSettings(formData: FormData): Promise<ActionResult> {
+  await requireAdmin();
+  const logoFile = formFile(formData, "logoUrlFile");
+  const ogFile = formFile(formData, "defaultOgImageFile");
+  const problem = imageProblem(logoFile) ?? imageProblem(ogFile);
+  if (problem) return failed(problem);
+
+  const contactEmail = formString(formData, "contactEmail");
+  if (contactEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail)) return failed("Contact email: enter a valid address.");
+
+  let values: Record<string, string>;
+  try {
+    values = {
+      companyName: formString(formData, "companyName"),
+      tagline: formString(formData, "tagline"),
+      whatsappNumber: formString(formData, "whatsappNumber"),
+      contactEmail,
+      logoUrl: await storeUploadedImage(logoFile, formString(formData, "logoUrl"), "Site logo", "Infobytes Nepal logo"),
+      defaultOgImage: await storeUploadedImage(ogFile, formString(formData, "defaultOgImage"), "Default OG image", "Infobytes Nepal"),
+    };
+  } catch (error) {
+    return failed(error instanceof Error ? error.message : "The image could not be stored.");
+  }
   for (const [key, value] of Object.entries(values)) {
     await db
       .insert(siteSettings)
@@ -281,7 +410,7 @@ export async function updateSiteSettings(formData: FormData) {
       .onConflictDoUpdate({ target: siteSettings.key, set: { value, updatedAt: new Date().toISOString() } });
   }
   revalidatePublicSite();
-  redirect("/admin-infobytesnepal/settings");
+  return ok("Settings saved. Every page picks up the change on its next request.");
 }
 
 export async function markJobApplicationRead(formData: FormData) {

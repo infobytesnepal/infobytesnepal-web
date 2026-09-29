@@ -1,19 +1,16 @@
 import { cache } from "react";
-import { and, asc, desc, eq, like, or } from "drizzle-orm";
+import { and, asc, desc, eq, getTableColumns, like, or, sql } from "drizzle-orm";
 import { db } from "./db/client";
 import {
   contactInquiries,
   getStartedRequests,
   jobApplications,
-  mediaAssets,
   pageContent,
   products,
   serviceInquiries,
   siteSettings,
   type ContactInquiry,
   type GetStartedRequest,
-  type JobApplication,
-  type MediaAsset,
   type Product,
   type ServiceInquiry,
 } from "./db/schema";
@@ -134,14 +131,6 @@ export async function getPageSection<T>(pageKey: string, sectionKey: string, fal
   return parsed;
 }
 
-export async function getMediaAssets(): Promise<MediaAsset[]> {
-  try {
-    return await db.select().from(mediaAssets).orderBy(desc(mediaAssets.createdAt));
-  } catch {
-    return [];
-  }
-}
-
 export async function getInquiryStats() {
   try {
     const inquiries = await db.select().from(contactInquiries).orderBy(desc(contactInquiries.createdAt));
@@ -249,19 +238,30 @@ export async function searchGetStartedRequests(
   }
 }
 
-/** Job applications, newest first, with an optional read/unread filter. */
-export async function searchJobApplications(filter?: string, jobSlug?: string): Promise<JobApplication[]> {
+/**
+ * Job applications, newest first, with an optional read/unread filter.
+ *
+ * Every column except the CV itself. `cv_data` is the uploaded file as a data
+ * URI — up to 5 MB each, 13 MB across 17 rows when this was measured — and the
+ * list used to select it and write each one into an `href` on the page. That
+ * made the Applications screen a document of tens of megabytes, past the 4.5 MB
+ * a Vercel function can return, so it stopped opening as applications came in.
+ * `hasCv` answers the only question the list asks of it; the file itself is
+ * served on demand by `/admin-infobytesnepal/applications/<id>/cv`.
+ */
+export async function searchJobApplications(filter?: string, jobSlug?: string) {
   try {
     const conditions = [];
     if (filter === "unread") conditions.push(eq(jobApplications.isRead, false));
     if (filter === "read") conditions.push(eq(jobApplications.isRead, true));
     if (jobSlug) conditions.push(eq(jobApplications.jobSlug, jobSlug));
 
-    const query = db.select().from(jobApplications);
-    const rows = conditions.length
-      ? await query.where(and(...conditions)).orderBy(desc(jobApplications.createdAt))
-      : await query.orderBy(desc(jobApplications.createdAt));
-    return rows;
+    const { cvData, ...listColumns } = getTableColumns(jobApplications);
+    return await db
+      .select({ ...listColumns, hasCv: sql<boolean>`${cvData} is not null and ${cvData} != ''` })
+      .from(jobApplications)
+      .where(conditions.length ? and(...conditions) : undefined)
+      .orderBy(desc(jobApplications.createdAt));
   } catch {
     return [];
   }

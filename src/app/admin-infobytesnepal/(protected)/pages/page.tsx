@@ -1,4 +1,6 @@
-import { AdminCard, AdminFileInput, AdminInput, AdminTextarea, SaveButton } from "@/components/admin/ui";
+import CmsForm from "@/components/admin/cms-form";
+import ImageField from "@/components/admin/image-field";
+import { AdminCard, AdminInput, AdminTextarea } from "@/components/admin/ui";
 import { updatePageSection } from "@/lib/actions/admin";
 import { defaultPageContent } from "@/lib/content";
 import { getPageSection } from "@/lib/data";
@@ -30,8 +32,7 @@ export default async function PagesAdminPage() {
             <AdminInput label="Tagline" name="tagline" defaultValue={homeHero.tagline} />
             <AdminTextarea label="Supporting text" name="supportingText" rows={3} defaultValue={homeHero.supportingText} />
             <AdminInput label="Hero video path" name="heroVideoUrl" defaultValue={homeHero.heroVideoUrl} />
-            <input type="hidden" name="fallbackImageUrl" value={homeHero.fallbackImageUrl} />
-            <AdminFileInput label="Fallback image" name="fallbackImageUrlFile" accept="image/*" help="Used as the video poster." />
+            <ImageField label="Fallback image" fileName="fallbackImageUrlFile" urlName="fallbackImageUrl" currentUrl={homeHero.fallbackImageUrl} help="Used as the video poster, and shown instead of the video on slow connections." />
           </SectionForm>
         </AdminCard>
 
@@ -42,14 +43,11 @@ export default async function PagesAdminPage() {
             office and team photos. Keep the alt text descriptive: it is read by Google and by screen readers.
           </p>
           <SectionForm pageKey="home" sectionKey="media">
-            <input type="hidden" name="answerImageUrl" value={homeMedia.answerImageUrl} />
-            <AdminFileInput label="Answer section image" name="answerImageUrlFile" accept="image/*" help="Sits beside the 'Who is the best IT company in Nepal' block." />
+            <ImageField label="Answer section image" fileName="answerImageUrlFile" urlName="answerImageUrl" currentUrl={homeMedia.answerImageUrl} help="Sits beside the 'Who is the best IT company in Nepal' block." />
             <AdminInput label="Answer image alt text" name="answerImageAlt" defaultValue={homeMedia.answerImageAlt} />
-            <input type="hidden" name="pricingImageUrl" value={homeMedia.pricingImageUrl} />
-            <AdminFileInput label="Pricing section image" name="pricingImageUrlFile" accept="image/*" help="Sits beside the pricing table." />
+            <ImageField label="Pricing section image" fileName="pricingImageUrlFile" urlName="pricingImageUrl" currentUrl={homeMedia.pricingImageUrl} help="Sits beside the pricing table." />
             <AdminInput label="Pricing image alt text" name="pricingImageAlt" defaultValue={homeMedia.pricingImageAlt} />
-            <input type="hidden" name="whyImageUrl" value={homeMedia.whyImageUrl} />
-            <AdminFileInput label="Why Infobytes image" name="whyImageUrlFile" accept="image/*" help="Sits beside the 'technology partner' block." />
+            <ImageField label="Why Infobytes image" fileName="whyImageUrlFile" urlName="whyImageUrl" currentUrl={homeMedia.whyImageUrl} help="Sits beside the 'technology partner' block." />
             <AdminInput label="Why image alt text" name="whyImageAlt" defaultValue={homeMedia.whyImageAlt} />
           </SectionForm>
         </AdminCard>
@@ -61,16 +59,14 @@ export default async function PagesAdminPage() {
             <AdminTextarea label="Text" name="text" rows={4} defaultValue={about1.text} />
             <AdminInput label="Button label" name="buttonLabel" defaultValue={about1.buttonLabel} />
             <AdminInput label="Button URL" name="buttonUrl" defaultValue={about1.buttonUrl} />
-            <input type="hidden" name="imageUrl" value={about1.imageUrl} />
-            <AdminFileInput label="Image" name="imageUrlFile" accept="image/*" />
+            <ImageField label="Image" fileName="imageUrlFile" urlName="imageUrl" currentUrl={about1.imageUrl} />
           </SectionForm>
         </AdminCard>
 
         <AdminCard>
           <h2 className="text-xl font-semibold text-deep-navy">About: how we work image</h2>
           <SectionForm pageKey="about" sectionKey="working">
-            <input type="hidden" name="imageUrl" value={aboutWorking.imageUrl} />
-            <AdminFileInput label="Image" name="imageUrlFile" accept="image/*" help="Sits beside the 'How we actually work' block." />
+            <ImageField label="Image" fileName="imageUrlFile" urlName="imageUrl" currentUrl={aboutWorking.imageUrl} help="Sits beside the 'How we actually work' block." />
             <AdminInput label="Alt text" name="imageAlt" defaultValue={aboutWorking.imageAlt} />
           </SectionForm>
         </AdminCard>
@@ -87,10 +83,7 @@ export default async function PagesAdminPage() {
                 const key = `techLogo${index + 1}` as keyof typeof about2;
                 const value = String(about2[key] || "");
                 return (
-                  <div key={key}>
-                    <input type="hidden" name={key} value={value} />
-                    <AdminFileInput label={`Tech logo ${index + 1}`} name={`${key}File`} accept="image/*" />
-                  </div>
+                  <ImageField key={key} label={`Tech logo ${index + 1}`} fileName={`${key}File`} urlName={key} currentUrl={value} aspect="square" />
                 );
               })}
             </div>
@@ -145,11 +138,10 @@ export default async function PagesAdminPage() {
 
 function SectionForm({ pageKey, sectionKey, children }: { pageKey: string; sectionKey: string; children: React.ReactNode }) {
   return (
-    <form action={updatePageSection} className="mt-5 grid gap-4">
+    <CmsForm action={updatePageSection} className="mt-5 grid gap-4" submitLabel="Save section">
       <input type="hidden" name="pageKey" value={pageKey} />
       <input type="hidden" name="sectionKey" value={sectionKey} />
       {children}
-      <SaveButton>Save section</SaveButton>
-    </form>
+    </CmsForm>
   );
 }

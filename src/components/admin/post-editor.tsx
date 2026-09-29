@@ -17,6 +17,7 @@ import {
 import PostBody from "@/components/public/post-body";
 import { upsertPost, uploadBlogImage } from "@/lib/actions/blog";
 import { countWords, estimateReadTime, parsePostMarkdown } from "@/lib/blog-markdown";
+import { formatFileSize, prepareImage } from "@/lib/image-prep";
 import type { Author, Category } from "@/lib/blog";
 import type { PostRow } from "@/lib/db/schema";
 
@@ -87,8 +88,63 @@ export default function PostEditor({ post, categories, authors, error, saved }: 
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState("");
 
+  /*
+    The cover is uploaded the moment it is chosen, not when the post is saved.
+
+    It used to travel with the save as one more field of the form. That made
+    every save carry a 2 MB image from Nepal to a Vercel function capped at a
+    4.5 MB request, showed the old cover until the save came back — so a
+    replacement looked like it had not taken — and stored the image before the
+    rest of the form was validated. The database shows what that produced: the
+    same cover uploaded two, three, four times within minutes, 41 orphaned
+    uploads in all. Uploading on pick uses the same route the body images
+    already use, shows the new cover at once, and leaves the save carrying
+    nothing but its address.
+  */
+  const [coverUrl, setCoverUrl] = useState(post?.coverImage ?? "");
+  const [coverState, setCoverState] = useState<{ busy: boolean; note: string; error: string }>({
+    busy: false,
+    note: "",
+    error: "",
+  });
+  const coverFileRef = useRef<HTMLInputElement>(null);
+
   const bodyRef = useRef<HTMLTextAreaElement>(null);
   const imageFileRef = useRef<HTMLInputElement>(null);
+
+  async function handleCoverPick(file: File | undefined, altText: string) {
+    if (!file) return;
+    setCoverState({ busy: true, note: "Preparing image…", error: "" });
+    const prepared = await prepareImage(file, { maxDimension: 2000 });
+    setCoverState({
+      busy: true,
+      note: prepared.changed
+        ? `Uploading (compressed ${formatFileSize(prepared.originalBytes)} → ${formatFileSize(prepared.file.size)})…`
+        : `Uploading ${formatFileSize(prepared.file.size)}…`,
+      error: "",
+    });
+    const formData = new FormData();
+    formData.set("file", prepared.file);
+    formData.set("name", `${title || "Post"} cover image`);
+    formData.set("altText", altText);
+    let result: Awaited<ReturnType<typeof uploadBlogImage>>;
+    try {
+      result = await uploadBlogImage(formData);
+    } catch {
+      result = { ok: false, error: "The upload did not reach the server. Check the connection and choose the file again." };
+    }
+    if (coverFileRef.current) coverFileRef.current.value = "";
+    if (!result.ok) {
+      setCoverState({ busy: false, note: "", error: result.error });
+      return;
+    }
+    setCoverUrl(result.url);
+    setCoverState({
+      busy: false,
+      note: post ? "New cover ready. Save the post to put it live." : "Cover ready. It is attached when you create the post.",
+      error: "",
+    });
+  }
 
   const blocks = useMemo(() => parsePostMarkdown(body), [body]);
   const words = useMemo(() => countWords(body), [body]);
@@ -194,12 +250,19 @@ export default function PostEditor({ post, categories, authors, error, saved }: 
     }
     setUploading(true);
     setUploadError("");
+    // Same reasoning as the cover: shrink in the browser before it travels.
+    const prepared = await prepareImage(file, { maxDimension: 1800 });
     const formData = new FormData();
-    formData.set("file", file);
+    formData.set("file", prepared.file);
     formData.set("name", `${title || "Blog"} — ${file.name}`);
     formData.set("altText", imageAlt);
 
-    const result = await uploadBlogImage(formData);
+    let result: Awaited<ReturnType<typeof uploadBlogImage>>;
+    try {
+      result = await uploadBlogImage(formData);
+    } catch {
+      result = { ok: false, error: "The upload did not reach the server. Check the connection and try again." };
+    }
     setUploading(false);
 
     if (!result.ok) {
@@ -572,21 +635,49 @@ export default function PostEditor({ post, categories, authors, error, saved }: 
             <p className="mt-1 text-sm text-dark-text/60">
               Shown at the top of the post, on the blog index, and when the post is shared on Facebook or LinkedIn.
             </p>
-            <input type="hidden" name="coverImage" value={post?.coverImage ?? ""} />
-            {post?.coverImage && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={post.coverImage}
-                alt={post.coverAlt || "Current cover image"}
-                className="mt-4 aspect-[16/9] w-full rounded-2xl border border-primary-blue/12 object-cover"
-              />
+            <input type="hidden" name="coverImage" value={coverUrl} />
+            <div className="mt-4 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-primary-blue/12 bg-soft-blue/30">
+              {coverUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={coverUrl} alt={post?.coverAlt || "Cover image"} className="h-full w-full object-cover" />
+              ) : (
+                <span className="flex h-full items-center justify-center text-sm text-dark-text/50">
+                  No cover — the site&rsquo;s default image is used
+                </span>
+              )}
+            </div>
+            {coverState.note && !coverState.error && (
+              <p role="status" className="mt-2 text-xs font-medium text-emerald-800">{coverState.note}</p>
             )}
+            {coverState.error && (
+              <p role="alert" className="mt-2 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-xs font-medium text-red-700">
+                {coverState.error}
+              </p>
+            )}
+            {/* No `name`: the file itself is never part of the save. */}
             <input
+              ref={coverFileRef}
               type="file"
-              name="coverImageFile"
               accept="image/*"
-              className="mt-4 w-full rounded-2xl border border-primary-blue/15 px-4 py-3 text-sm text-dark-text file:mr-4 file:rounded-full file:border-0 file:bg-soft-blue file:px-4 file:py-2 file:text-sm file:font-semibold file:text-primary-blue"
+              disabled={coverState.busy}
+              onChange={(event) => {
+                const alt = (event.currentTarget.form?.elements.namedItem("coverAlt") as HTMLInputElement | null)?.value ?? "";
+                void handleCoverPick(event.target.files?.[0], alt);
+              }}
+              className="mt-4 w-full rounded-2xl border border-primary-blue/15 px-4 py-3 text-sm text-dark-text file:mr-4 file:rounded-full file:border-0 file:bg-soft-blue file:px-4 file:py-2 file:text-sm file:font-semibold file:text-primary-blue disabled:opacity-60"
             />
+            {coverUrl && (
+              <button
+                type="button"
+                onClick={() => {
+                  setCoverUrl("");
+                  setCoverState({ busy: false, note: "Cover removed. Save the post to apply it.", error: "" });
+                }}
+                className="mt-2 text-xs font-semibold text-red-700 hover:underline"
+              >
+                Remove cover
+              </button>
+            )}
             <label className="mt-4 grid gap-2 text-sm font-medium text-deep-navy">
               Cover alt text
               <input
@@ -598,7 +689,8 @@ export default function PostEditor({ post, categories, authors, error, saved }: 
               />
             </label>
             <p className="mt-3 text-xs leading-5 text-dark-text/55">
-              Leave the file empty to keep the current image. Maximum 3MB.
+              Choosing a file uploads it straight away and shows it here. Large photos are compressed in your browser
+              first. The post keeps its current cover until you save.
             </p>
           </section>
 
@@ -641,23 +733,23 @@ export default function PostEditor({ post, categories, authors, error, saved }: 
         field an author is editing, which is how work gets lost.
       */}
       <div className="sticky bottom-0 z-10 -mx-4 mt-6 flex flex-wrap items-center gap-3 border-t border-primary-blue/12 bg-white/95 px-4 py-4 backdrop-blur lg:-mx-8 lg:px-8">
-        <SaveBar published={post?.isPublished ?? false} isNew={!post} />
+        <SaveBar published={post?.isPublished ?? false} isNew={!post} coverBusy={coverState.busy} />
       </div>
     </form>
   );
 }
 
 /** Split out so `useFormStatus` reads the state of the form it sits inside. */
-function SaveBar({ published, isNew }: { published: boolean; isNew: boolean }) {
+function SaveBar({ published, isNew, coverBusy }: { published: boolean; isNew: boolean; coverBusy: boolean }) {
   const { pending } = useFormStatus();
   return (
     <>
       <button
         type="submit"
-        disabled={pending}
+        disabled={pending || coverBusy}
         className="rounded-full bg-deep-navy px-6 py-3 text-sm font-semibold text-white hover:bg-primary-blue disabled:opacity-60"
       >
-        {pending ? "Saving…" : isNew ? "Create post" : "Save changes"}
+        {pending ? "Saving…" : coverBusy ? "Waiting for the cover upload…" : isNew ? "Create post" : "Save changes"}
       </button>
       <p className="text-sm text-dark-text/60">
         {published
