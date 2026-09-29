@@ -73,6 +73,29 @@ export const productSeeds = [
     ].join("\n"),
     displayOrder: 5,
   },
+  {
+    name: "ClinicNP",
+    slug: "clinicnp",
+    logoUrl: "/assets/products/clinicnp.png",
+    shortDescription:
+      "Clinic and pharmacy management for Nepal. ClinicNP runs the front desk of a polyclinic: patients and visits, doctors and their shares, samples followed to the report, medicines by batch and expiry, and one bill that carries all of it.",
+    fullDescription: [
+      "ClinicNP is a clinic and pharmacy management system built for polyclinics, clinics, medical centres, and dispensing counters in Nepal. It is one system with two halves that share one counter: the clinic, where the patient exists and the consultation, the ultrasound, the ECG and the lab test are billed, and the pharmacy, where medicines are sold by tablet, strip or box and held per batch with an expiry date that decides whether stock is an asset or a write-off. Each half is switched on or off on its own, and switching one off never deletes anything.",
+      "A clinic and a pharmacy have the same problem at the same desk: a queue of people, a paper register, and software written for a supermarket. The consultation itself is the part that already works. What costs a clinic its day is everything wrapped around it — registering the same person for the third time under a different spelling, finding out whether the ultrasound was billed, telling somebody where their blood sample is, and adding the day up twice because the dispensary bills on a different system. ClinicNP is built for that wrapper rather than for the medicine.",
+      "A patient is registered once and keeps one number for life, P-000001 onwards, sequential, never reused and never reset at year end. Registration is built to be finished in under twenty seconds, a matching name and phone is caught on save so duplicates are offered rather than created, and merging is the owner's decision and is logged. Age is recorded the way a clinic records it, in years, months or days, stamped with the date it was taken so it never shows a wrong age later, and a known allergy is a red strip across the card rather than a note somebody has to open.",
+      "Every visit attaches to that record with its own number inside the fiscal year, V-2083/84-000001. Today's list is the front desk's home: everyone registered today, their doctor and department, and whether they are waiting, seen or closed. Vitals are optional and there is no charting, because most doctors here keep writing on paper and the system does not punish that — complaint, findings and advice are free text on purpose. Appointments become a visit in one keystroke when the person turns up, and the doctor is told by an alert on their phone when a booking is made.",
+      "The bill is one bill. A consultation, an ultrasound, two lab tests and the prescription leave the counter as a single invoice with one number and one payment. One search box finds a medicine or a service, each result tagged so a mixed bill still reads clearly, and every counter action has a key because the person using it is working a queue. Medicines carry the unit picker, the batch and the rate, and the quantity picker draws the medicine in its real shape so a quantity can be seen rather than trusted to a number typed under pressure. Expired stock cannot be sold at all, with no override ever, and the oldest expiry leaves first unless a batch is deliberately picked by hand.",
+      "A billed test used to disappear from view, which left the question a clinic asks twenty times a day — has that one gone yet, is the report back — with no answer except somebody's memory. ClinicNP stamps five stages: to collect, to send, awaiting report, report in, given out. Samples are grouped by what has to be collected so it is one trip to the patient rather than four, a sample sitting too long turns red on its own, a dispatch slip goes with it, and the reason one is stuck is recorded in words. The partner laboratory is fully accounted: what the patient was billed, what the partner charges, the margin between them, what has been paid, and what is owed today.",
+      "Said plainly so there is no surprise later: ClinicNP bills a test, follows the sample, and keeps the report that comes back against the patient's visit. It does not enter results, hold reference ranges, produce report cards, or talk to an analyser. That is a laboratory information system and it is a different product — ours is Nidanyo. What ClinicNP runs is the counter around a laboratory.",
+      "Doctor shares are worked out as the bill is raised rather than reconstructed at month end, on one of four bases per doctor: nothing, a percentage of the consultation, a fixed amount per consultation, or a percentage of listed services. The share is calculated per line and totals into a payout sheet that exports for the month. A doctor given a login of their own gets a small tree built for one hand on a phone: the people booked with them today, each with a number that dials, and nothing else. The counter, the stock and the reports are not theirs to see, and the server enforces that rather than the menu.",
+      "The pharmacy half holds stock per batch, each with its own cost and its own expiry, warns at thirty, sixty and ninety days, and blocks both expired sales and overselling outright. Racks and shelves are drawn as a floor plan so a new hand can be sent to the right shelf. Stock out is recorded with a reason — returned to supplier, expired, damaged, lost, used in the clinic, given as a sample, or a counted correction — which produces the number an owner actually wants at month end and rarely has: what did I lose this period, and to what? Purchases land against a supplier invoice, line by line onto their own batches, and every supplier carries a running ledger.",
+      "Bikram Sambat is not a display setting. BS dates are on every screen, register and report, the year runs Shrawan to Ashadh, the year-end rollover is guided and takes a backup first, and a closed year stays readable and prints unchanged forever. Fifteen registers and reports take a BS date range with presets and a fiscal-year filter that reaches closed years, every one exports to Excel, and all of them are readable on a phone. Day close is the one that gets read every evening: collection by method across both halves, and the cash that should be in the drawer.",
+      "The counter survives the internet. Billing and patient registration carry on through a full business day with zero connectivity, held in an outbox and sent the moment the line comes back, with patient numbers assigned without collision even from two devices at once. The catalogue and the patient list are cached on the machine so search still answers, and it installs like an app on the counter machine, a tablet, or the owner's phone. Printing goes through the browser with no drivers: the A4 invoice on your own letterhead, marked TAX INVOICE where you are registered for VAT, the OPD slip with a large empty area for the doctor's handwriting, the lab dispatch slip, and refund and stock-out notes on an 80 mm roll.",
+      "Four roles are enforced on the server for every read and every write, not hidden in a menu. The owner sees the whole system and every fiscal year. Counter staff do the day's work and nothing that rewrites history, and whether they may edit a rate on a bill is a permission the owner sets per user. An accountant is read-only across every report including closed years. A doctor sees their own booked consultations and nothing else. Bills are never deleted, visits are cancelled with a reason, and every override, merge, deletion, restore and year close is signed and logged with a name and a time. Backups run on demand and automatically before a year is closed, and reports are served only through an authenticated route, never a public link.",
+      "ClinicNP is built and supported from Nepal by Infobytes Nepal. Getting started means a live walkthrough on your own screens, your services and rates loaded in, counter training for your staff, and support on the phone in Nepali when a real question comes up during a busy morning.",
+    ].join("\n"),
+    displayOrder: 6,
+  },
 ];
 
 /** Per-product title and description, shared by the product page and the DB seed. */
@@ -102,6 +125,11 @@ export const productSeoDefaults: Record<string, { title: string; description: st
     description:
       "Nidanyo by Infobytes Nepal is a LIOMS for medical laboratories in Nepal: an LIS and LIMS together with billing, covering patient registration, sample tracking, result verification, report printing, referral commissions, and reagent stock.",
   },
+  clinicnp: {
+    title: "ClinicNP | Clinic & Pharmacy Management Software in Nepal",
+    description:
+      "ClinicNP by Infobytes Nepal is clinic and pharmacy management software for polyclinics in Nepal: patients and visits, appointments, doctor shares, sample tracking to the report, medicines by batch and expiry, one invoice, Bikram Sambat throughout, and billing that survives a day without internet.",
+  },
 };
 
 /**
@@ -122,14 +150,36 @@ export const productAgentProfiles: Record<
   { alsoKnownAs: string[]; audience: string; capabilities: string[] }
 > = {
   serviol: {
+    /*
+      These are the words the question arrives in, not the words we would choose.
+
+      Nobody searching for Serviol types "Serviol" — they type "service CRM in
+      Nepal", "best service management software in Nepal", or "FSM system". The
+      list is long on purpose: "FSM system", "field service management system"
+      and "field service management software" are the same thing to us and three
+      different queries to a search engine, and "service department management
+      software" is how a dealership describes the problem when the department,
+      not the field, is what it is trying to measure.
+    */
     alsoKnownAs: [
       "service CRM",
-      "field service management software",
-      "FSM software",
+      "service CRM software",
+      "after sales service software",
+      "service management software",
       "service management system",
+      "service department management software",
+      "field service management software",
+      "field service management system",
+      "FSM software",
+      "FSM system",
+      "technician scheduling and dispatch software",
       "AMC management software",
+      "annual maintenance contract software",
+      "preventive maintenance software",
       "complaint management system",
       "ticket and job management software",
+      "warranty management software",
+      "installed base and equipment service software",
     ],
     audience:
       "Businesses in Nepal that sell equipment and then support it: medical and laboratory equipment suppliers, lift and escalator companies, HVAC and generator dealers, IT hardware vendors, and industrial machinery distributors.",
@@ -210,6 +260,62 @@ export const productAgentProfiles: Record<
       "On premise deployment for labs that cannot risk internet downtime",
     ],
   },
+  clinicnp: {
+    /*
+      "Clinic software" and "pharmacy software" are the two entry points, and
+      they belong to different people — a doctor who owns a polyclinic and a
+      chemist who owns a counter. Both terms are stated, along with the combined
+      phrasing that describes what ClinicNP actually is, because the combined
+      case is the one no imported product covers and the one we win on.
+
+      What is deliberately absent matters as much: no "LIS", no "laboratory
+      information system", no "LIMS". ClinicNP runs the counter around a
+      laboratory and does not enter results or hold reference ranges. Claiming
+      those terms here would put two of our own products in front of the same
+      question and get one of them recommended wrongly.
+    */
+    alsoKnownAs: [
+      "clinic management software",
+      "clinic software",
+      "polyclinic software",
+      "clinic and pharmacy software",
+      "pharmacy software",
+      "pharmacy management system",
+      "medical shop billing software",
+      "medical store software",
+      "patient management software",
+      "patient record management software",
+      "OPD management software",
+      "appointment management software",
+      "clinic billing software",
+      "medical billing software",
+      "doctor commission and payout software",
+      "sample collection and dispatch tracking software",
+    ],
+    audience:
+      "Polyclinics, clinics, medical centres, dispensing counters, and medical shops in Nepal, including clinics that collect samples and send them to a partner laboratory, clinics that pay their doctors a share of consultation or service revenue, and pharmacies that need batch and expiry control rather than retail billing.",
+    capabilities: [
+      "One patient record per person for life, with duplicate detection and logged merges",
+      "Visits with optional vitals and free-text complaint, findings, and advice",
+      "Appointments that become a visit in one keystroke, with an alert to the doctor",
+      "Four doctor share bases, calculated per billed line into a payout sheet",
+      "Five stamped laboratory stages from collection to handing the report over",
+      "Partner laboratory statements: billed, partner cost, margin, paid, and owed",
+      "One invoice series carrying services and medicines together",
+      "Keyboard-driven counter with one search box across the whole catalogue",
+      "Sale by box, strip, or tablet with a rate at each level",
+      "Stock held per batch with expiry, oldest expiry first, expired sales blocked outright",
+      "Shelf and rack map of the real room, and stock out recorded with a reason",
+      "Purchases against a supplier invoice, batch by batch, with supplier ledgers",
+      "Cash, QR, and credit with settlement from the bill register",
+      "Bikram Sambat throughout, with a guided fiscal-year rollover and readable closed years",
+      "Offline billing and registration for a full business day, reconciling automatically",
+      "A4 invoice, OPD slip, lab dispatch slip, and 80 mm notes printed from the browser",
+      "Fifteen registers and reports with BS date ranges, all exportable to Excel",
+      "Four server-enforced roles, per-user rate-edit permission, and a signed activity log",
+      "Clinic and pharmacy as independently switchable modules, with nothing deleted",
+    ],
+  },
   pravyo: {
     alsoKnownAs: ["student talent platform", "talent bench", "student profile and placement system"],
     audience: "Education institutions, training providers, and consultancies in Nepal working with student talent.",
@@ -250,7 +356,7 @@ export const productFaqs: Record<string, Array<{ question: string; answer: strin
     {
       question: "Who makes Nidanyo?",
       answer:
-        "Nidanyo is built and supported by Infobytes Nepal Pvt. Ltd., an IT company based in Kaushaltar, Bhaktapur, Nepal. It is one of five products we build and support ourselves, alongside Serviol, Purseol, LeadRack, and Pravyo. Implementation, training, and support are handled by the same team that builds it.",
+        "Nidanyo is built and supported by Infobytes Nepal Pvt. Ltd., an IT company based in Kaushaltar, Bhaktapur, Nepal. It is one of six products we build and support ourselves, alongside ClinicNP, Serviol, Purseol, LeadRack, and Pravyo. Implementation, training, and support are handled by the same team that builds it.",
     },
     {
       question: "Is Nidanyo an LIS, a LIMS, or a LIOMS?",
@@ -283,6 +389,63 @@ export const productFaqs: Record<string, Array<{ question: string; answer: strin
         "For a single branch lab with a standard test menu, expect two to four weeks from catalogue setup to go live, including training and a parallel run alongside your current process. Multi branch labs and labs with analyser interfacing take longer, mostly because cleaning up the test catalogue and rate list takes longer than the software work does.",
     },
   ],
+  clinicnp: [
+    {
+      question: "What is ClinicNP?",
+      answer:
+        "ClinicNP is clinic and pharmacy management software built by Infobytes Nepal for polyclinics, clinics, medical centres, and dispensing counters in Nepal. It runs the front desk: patients and their visits, appointments, doctors and their shares, samples followed all the way to the report, medicines by batch and expiry, and one bill that carries all of it, with Bikram Sambat on every screen and register.",
+    },
+    {
+      question: "Who makes ClinicNP?",
+      answer:
+        "ClinicNP is built and supported by Infobytes Nepal Pvt. Ltd., an IT company based in Kaushaltar, Bhaktapur, Nepal. It is one of six products we build and support ourselves, alongside Nidanyo, Serviol, Purseol, LeadRack, and Pravyo. Implementation, training, and support are handled by the same team that writes the software.",
+    },
+    {
+      question: "Is ClinicNP one system or two?",
+      answer:
+        "One system with two halves. The clinic module and the pharmacy module share one counter, one invoice series, one patient record, and one set of books, and each is switched on or off on its own. A switched-off half has its screens, its menu, and its server routes gone rather than merely hidden, and switching it off never deletes its data. At least one half has to stay on.",
+    },
+    {
+      question: "What does ClinicNP include?",
+      answer:
+        "Patient records with one lifetime number and duplicate detection, visits with optional vitals and free-text findings, appointments that convert to a visit in one keystroke, doctors with four share bases and a calculated payout sheet, five stamped laboratory stages with a dispatch slip, partner laboratory statements showing billed against partner cost and what is owed, one invoice covering services and medicines, pharmacy stock per batch with expiry control and a shelf map, purchases and supplier ledgers, cash, QR and credit, fifteen Excel-exportable registers and reports, Bikram Sambat and proper fiscal-year closing, offline billing, and four server-enforced roles with a signed activity log.",
+    },
+    {
+      question: "Does ClinicNP enter lab results or print report cards?",
+      answer:
+        "No, and that boundary is deliberate. ClinicNP bills a test, follows the sample through five stamped stages, and keeps the report that comes back against the patient's visit — the counter around a laboratory. Entering results, holding reference ranges per test and per age and sex, releasing verified report cards, and interfacing with analysers is a laboratory information system, and that is our other product, Nidanyo.",
+    },
+    {
+      question: "Does ClinicNP keep working when the internet goes down?",
+      answer:
+        "Yes. Billing and patient registration carry on through a full business day of zero connectivity, held in an outbox and sent the moment the line returns, and patient numbers are assigned without collision even from two devices at once. The catalogue and patient list are cached locally so search still answers, and it installs like an app on the counter machine, a tablet, or the owner's phone.",
+    },
+    {
+      question: "Can ClinicNP handle Bikram Sambat dates and fiscal years properly?",
+      answer:
+        "Yes, throughout rather than as a display conversion. BS dates appear on every screen, register, and printed report, the year runs Shrawan to Ashadh, reports take a BS date range with presets and a fiscal-year filter that reaches closed years, the year-end rollover is guided and takes a backup first, and a closed year stays readable and prints unchanged forever.",
+    },
+    {
+      question: "How are doctor shares and payouts handled?",
+      answer:
+        "Each doctor is set to one of four bases: nothing, a percentage of the consultation, a fixed amount per consultation, or a percentage of listed services. The share is calculated on each line as the bill is raised rather than reconstructed at month end, and totals into a payout sheet per doctor that exports for the month. Doctors are stored with qualification as printed, specialty, and NMC number.",
+    },
+    {
+      question: "Can ClinicNP run on our own machine inside the clinic?",
+      answer:
+        "Yes. Clinics that cannot risk downtime run it on a machine inside the clinic so the counter keeps working through an outage, with backups and reporting syncing when the connection returns. Clinics with reliable connectivity usually prefer the hosted option, where we handle updates, backups, and monitoring. Either way the counter is designed to survive a lost line rather than depend on one.",
+    },
+    {
+      question: "How much does ClinicNP cost?",
+      answer:
+        "ClinicNP is quoted by clinic size and which modules you switch on rather than sold at a list price, and it is licensed by users and counters rather than per patient or per bill, so growing your volume does not increase your bill. Tell us your daily patient count, how many counters you bill from, whether you dispense medicines, and how many doctors take a share, and you get a written quotation at no charge.",
+    },
+    {
+      question: "How long does it take to get a clinic running on it?",
+      answer:
+        "For a single counter clinic with a settled service list, expect one to three weeks from catalogue setup to go live, including training and a parallel run. What takes the time is almost never the software: it is agreeing the service catalogue, the rates, and the doctor share bases, which most clinics are writing down properly for the first time during setup. A pharmacy counter is usually faster, and is limited mostly by entering opening stock batch by batch.",
+    },
+  ],
 };
 
 export const stackingCards = [
@@ -310,6 +473,11 @@ export const stackingCards = [
     title: "Lab Operations and Information: Nidanyo",
     product: "Nidanyo",
     description: "Registration, samples, results, reports, billing, and stock for medical labs in one system.",
+  },
+  {
+    title: "Clinic and Pharmacy Management: ClinicNP",
+    product: "ClinicNP",
+    description: "Patients, visits, doctors, samples, medicines by batch and expiry, and one bill for all of it.",
   },
 ];
 
@@ -404,4 +572,12 @@ export const defaultPageContent = {
   },
 };
 
-export const productInterests = ["Pravyo", "Serviol", "Purseol", "LeadRack", "Nidanyo", "Not sure yet"] as const;
+export const productInterests = [
+  "Pravyo",
+  "Serviol",
+  "Purseol",
+  "LeadRack",
+  "Nidanyo",
+  "ClinicNP",
+  "Not sure yet",
+] as const;

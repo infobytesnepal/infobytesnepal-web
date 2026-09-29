@@ -233,6 +233,39 @@ export const clusters: Cluster[] = [
         "software",
       ),
       node(
+        "/service-management-software-in-nepal",
+        "Service Management Software",
+        [
+          "service management software in Nepal",
+          "best service management software in Nepal",
+          "after sales service software in Nepal",
+        ],
+        "The category pillar: record side, delivery side, and who here buys it.",
+        "software",
+      ),
+      node(
+        "/best-service-crm-in-nepal",
+        "Choosing a Service CRM",
+        [
+          "best service CRM in Nepal",
+          "how to choose a service CRM in Nepal",
+          "service CRM against sales CRM and helpdesk",
+        ],
+        "The five demo requests that settle a shortlist in one session.",
+        "software",
+      ),
+      node(
+        "/service-department-management-software-in-nepal",
+        "Service Department Management",
+        [
+          "service department management software in Nepal",
+          "running a service department as a measurable unit",
+          "technician utilisation and contract profitability",
+        ],
+        "Utilisation, parts per job, warranty claims, and whether the department pays.",
+        "software",
+      ),
+      node(
         "/erp-software-in-nepal",
         "ERP Software",
         ["ERP software in Nepal", "ERP systems for Nepali businesses"],
@@ -321,6 +354,88 @@ export const clusters: Cluster[] = [
           "laboratory software pricing in Nepal",
         ],
         "What moves the quotation, and the charges that appear after go live.",
+        "software",
+      ),
+      /*
+        The ClinicNP cluster, in `software` alongside the Nidanyo pages for the
+        same reason: a clinic owner searches "clinic management software in
+        Nepal" long before they search "ClinicNP". Each of the six links down to
+        /products/clinicnp.
+
+        These six and the Nidanyo four sit next to each other and must not be
+        allowed to blur, because they are two of our own products competing for
+        adjacent queries. The boundary is the bench: ClinicNP runs the counter
+        around a laboratory (billed, collected, sent, back, owed) and Nidanyo
+        runs the laboratory itself (results, reference ranges, verification,
+        analysers). The anchors are written to keep that line visible, and both
+        clusters bridge to each other rather than pretending the other is not
+        there.
+      */
+      node(
+        "/clinic-management-software-in-nepal",
+        "Clinic Management Software",
+        [
+          "clinic management software in Nepal",
+          "clinic software in Nepal",
+          "polyclinic management software in Nepal",
+          "patient and visit management for clinics in Nepal",
+        ],
+        "ClinicNP: patients, visits, doctors, samples, medicines, and one bill.",
+        "software",
+      ),
+      node(
+        "/pharmacy-software-in-nepal",
+        "Pharmacy Software",
+        [
+          "pharmacy software in Nepal",
+          "pharmacy management system in Nepal",
+          "medical shop billing software in Nepal",
+        ],
+        "Stock by batch and expiry, a shelf map, and what the month actually cost.",
+        "software",
+      ),
+      node(
+        "/clinic-and-pharmacy-software-in-nepal",
+        "Clinic & Pharmacy Software",
+        [
+          "clinic and pharmacy software in Nepal",
+          "one counter for a clinic and its pharmacy",
+          "clinic pharmacy billing on one invoice",
+        ],
+        "Both halves on one counter, one invoice, and one set of books.",
+        "software",
+      ),
+      node(
+        "/best-clinic-management-software-in-nepal",
+        "Choosing Clinic Software",
+        [
+          "best clinic management software in Nepal",
+          "how to choose clinic software in Nepal",
+          "clinic, hospital, and retail systems compared",
+        ],
+        "Which category you are shopping in, and where ClinicNP is the wrong fit.",
+        "software",
+      ),
+      node(
+        "/clinic-software-price-in-nepal",
+        "Clinic Software Price",
+        [
+          "clinic software price in Nepal",
+          "medical software price in Nepal",
+          "what clinic software costs in Nepal",
+        ],
+        "The four price bands, one-time against recurring, and what appears later.",
+        "software",
+      ),
+      node(
+        "/pharmacy-software-price-in-nepal",
+        "Pharmacy Software Price",
+        [
+          "pharmacy software price in Nepal",
+          "how much pharmacy software costs in Nepal",
+          "why the cheapest billing package costs more",
+        ],
+        "What moves a pharmacy quotation, and what the free version costs on the shelf.",
         "software",
       ),
       node(
@@ -477,7 +592,7 @@ export const clusters: Cluster[] = [
       "/products",
       "Products",
       ["Infobytes Nepal products", "our software products", "ready made systems from Infobytes Nepal"],
-      "Five systems covering labs, field service, field sales, leads, and student talent.",
+      "Six systems covering clinics, pharmacies, labs, field service, field sales, leads, and student talent.",
       "products",
     ),
     members: [
@@ -494,9 +609,25 @@ export const clusters: Cluster[] = [
         "products",
       ),
       node(
+        "/products/clinicnp",
+        "ClinicNP",
+        [
+          "ClinicNP clinic and pharmacy management",
+          "ClinicNP, our clinic software",
+          "ClinicNP for polyclinics and dispensing counters",
+          "ClinicNP, one counter for a clinic and its pharmacy",
+        ],
+        "Clinic and pharmacy management on one counter and one invoice.",
+        "products",
+      ),
+      node(
         "/products/serviol",
         "Serviol",
-        ["Serviol field service management", "Serviol, our service management platform"],
+        [
+          "Serviol field service management",
+          "Serviol, our service management platform",
+          "Serviol, our service CRM and FSM system",
+        ],
         "Tickets, planners, attendance, and field service operations.",
         "products",
       ),
@@ -525,9 +656,10 @@ export const clusters: Cluster[] = [
     bridges: [
       "/software-development-company-in-nepal",
       "/business-automation-software-nepal",
-      "/crm-software-in-nepal",
+      "/clinic-management-software-in-nepal",
+      "/pharmacy-software-in-nepal",
       "/lab-software-in-nepal",
-      "/best-lab-software-in-nepal",
+      "/service-management-software-in-nepal",
     ],
   },
 ];

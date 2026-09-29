@@ -78,12 +78,12 @@ const featuredServices = [
 
 // Every figure here has to be something a visitor could check. "Best-in-Class"
 // used to sit in the third slot, which is a claim about ourselves that nobody
-// can verify; the product count is a fact, and the five products are listed and
+// can verify; the product count is a fact, and the six products are listed and
 // linked further down the same page.
 const stats = [
   { value: "Nepal & to the World", label: "We Serve across the Globe" },
   { value: "Quality", label: "IT Services that we offer" },
-  { value: "Five", label: "Software products we build and support" },
+  { value: "Six", label: "Software products we build and support" },
   { value: "Free", label: "First consultation and quotation" },
 ];
 
@@ -99,7 +99,7 @@ const proofPoints = [
   {
     title: "We build our own software",
     description:
-      "Our own product suite runs on our own code: Nidanyo for medical labs, Serviol for field service, Purseol for field sales, LeadRack for lead tracking, and Pravyo for student talent.",
+      "Our own product suite runs on our own code: ClinicNP for clinics and pharmacies, Nidanyo for medical labs, Serviol for field service, Purseol for field sales, LeadRack for lead tracking, and Pravyo for student talent.",
     icon: Layers,
   },
   {

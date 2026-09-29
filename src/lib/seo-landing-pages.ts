@@ -1,3 +1,4 @@
+import { clinicnpSeoLandingPages } from "./seo-landing-pages-clinicnp";
 import { extraSeoLandingPages } from "./seo-landing-pages-extra";
 import { nidanyoSeoLandingPages } from "./seo-landing-pages-nidanyo";
 import { serviolSeoLandingPages } from "./seo-landing-pages-serviol";
@@ -3913,6 +3914,7 @@ export const seoLandingPageList: SeoLandingPage[] = [
   ...Object.values(extraSeoLandingPages),
   ...Object.values(nidanyoSeoLandingPages),
   ...Object.values(serviolSeoLandingPages),
+  ...Object.values(clinicnpSeoLandingPages),
 ];
 
 export const allSeoLandingPages = {
@@ -3920,6 +3922,7 @@ export const allSeoLandingPages = {
   ...extraSeoLandingPages,
   ...nidanyoSeoLandingPages,
   ...serviolSeoLandingPages,
+  ...clinicnpSeoLandingPages,
 };
 
 export function getSeoLandingPageByPath(path: string) {

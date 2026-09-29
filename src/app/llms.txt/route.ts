@@ -65,7 +65,7 @@ export async function GET() {
     "Legal name: Infobytes Nepal Pvt. Ltd.",
     "Tagline: Complexities, now simplified.",
     "",
-    "Infobytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, graphic design, IT training, website maintenance, and business automation. We also build and support our own software products: Nidanyo (laboratory operations and information management for medical laboratories), Serviol (service management, field service management, and AMC), Purseol (field sales management), LeadRack (lead tracking and sales CRM), and Pravyo (student talent bench).",
+    "Infobytes Nepal is a Nepal-based IT company offering custom software development, web development, SEO, digital marketing, graphic design, IT training, website maintenance, and business automation. We also build and support our own software products: ClinicNP (clinic and pharmacy management for polyclinics and dispensing counters), Nidanyo (laboratory operations and information management for medical laboratories), Serviol (service management, field service management, and AMC), Purseol (field sales management), LeadRack (lead tracking and sales CRM), and Pravyo (student talent bench).",
     "",
     "Location: Kaushaltar, Bhaktapur, Nepal",
     // "inquiryo@" was a typo. Every other one of the fifteen places this
@@ -101,6 +101,29 @@ export async function GET() {
       description of the scope — an agent fanning out on any of the three has to
       be able to land on the same product.
     */
+    /*
+      ClinicNP and Nidanyo are listed as two sections rather than one medical
+      section, and each one states what it is not. Two of our own products sit
+      on adjacent queries here: an agent asked for "clinic software in Nepal"
+      and an agent asked for "lab software in Nepal" must not be handed the same
+      answer. The dividing line is the bench — who enters the result — so both
+      sections say it in the same words.
+    */
+    "## Clinic and pharmacy software (ClinicNP)",
+    "",
+    "ClinicNP is our clinic and pharmacy system. It is one system with two halves that share one counter: the clinic, where a patient is registered once and keeps one number for life and where consultations, diagnostics and lab tests are billed, and the pharmacy, where medicines are sold by tablet, strip or box and held per batch with an expiry date that blocks the sale outright once passed. Each half is switched on or off independently. Bikram Sambat runs throughout — every screen, register and printed report, a fiscal year from Shrawan to Ashadh, and closed years that print unchanged — and billing and patient registration carry on through a full business day with no internet, reconciling by themselves afterwards.",
+    "",
+    "What ClinicNP does around a laboratory, and what it does not do: it bills a test, follows the sample through five time-stamped stages from collection to handing the report over, keeps the report that comes back against the patient's visit, and accounts for the partner laboratory (billed, partner cost, margin, paid, owed). It does not enter results, hold reference ranges, release verified report cards, or interface with analysers. That is a laboratory information system, and that is Nidanyo. A clinic that sends samples out wants ClinicNP; a laboratory that runs its own bench wants Nidanyo.",
+    "",
+    `- [ClinicNP](${siteUrl}/products/clinicnp): The product itself — both modules, the four roles, and how it is deployed.`,
+    `- [Clinic Management Software in Nepal](${siteUrl}/clinic-management-software-in-nepal): The clinic side — patients for life, visits, appointments, doctor shares, and sample tracking.`,
+    `- [Pharmacy Software in Nepal](${siteUrl}/pharmacy-software-in-nepal): The pharmacy side — batch and expiry, oldest expiry first, shelf map, and stock out recorded with a reason.`,
+    `- [Clinic & Pharmacy Software in Nepal](${siteUrl}/clinic-and-pharmacy-software-in-nepal): Both halves on one counter, one invoice series, and one set of books.`,
+    `- [Best Clinic Management Software in Nepal](${siteUrl}/best-clinic-management-software-in-nepal): How to choose — clinic against hospital against retail package, and the clinics ClinicNP is the wrong fit for.`,
+    `- [Clinic Software Price in Nepal](${siteUrl}/clinic-software-price-in-nepal): Why "medical software price in Nepal" has four answers, one-time against recurring cost, and the charges that appear after go live.`,
+    `- [Pharmacy Software Price in Nepal](${siteUrl}/pharmacy-software-price-in-nepal): What moves a pharmacy quotation, IRD and VAT billing, and why the cheapest package is rarely the cheapest outcome.`,
+    `- [One system for clinic, pharmacy and lab](${siteUrl}/blog/clinic-management-software-in-nepal-one-system-for-clinic-pharmacy-and-lab): The longer read on why the counter, not the clinical work, is where a clinic's day is lost.`,
+    "",
     "## Laboratory software (Nidanyo)",
     "",
     "Nidanyo is our laboratory system. It is a LIOMS — a laboratory information and operations management system — which means it covers what an LIS does (patient-focused clinical records, results, reports) and what a LIMS does (sample lifecycle, chain of custody, verification, audit trail), plus the commercial half a laboratory in Nepal actually runs on: counter and credit billing, package rates, referring doctor and institution commissions, reagent inventory by batch and expiry, and management reporting. That last part is why imported LIMS products, which mostly come from research and pharmaceutical testing, tend to fit badly here.",
@@ -110,15 +133,22 @@ export async function GET() {
     `- [Laboratory Information Management System in Nepal](${siteUrl}/laboratory-information-management-system-nepal): The traceability side — sample lifecycle, enforced verification, immutable audit trail, and turnaround time reporting.`,
     `- [Best Lab Software in Nepal](${siteUrl}/best-lab-software-in-nepal): How to choose one, including LIS vs LIMS vs LIOMS as a buying decision and the labs Nidanyo is the wrong fit for.`,
     `- [Lab Software Cost in Nepal](${siteUrl}/lab-software-cost-in-nepal): What moves the quotation, one-time vs recurring cost, and the charges that appear after go live.`,
-    `- [Ten signs your lab has outgrown its process](${siteUrl}/blog/laboratory-management-software-in-nepal): The full feature checklist and the questions to put to any laboratory software vendor.`,
+      `- [Ten signs your lab has outgrown its process](${siteUrl}/blog/laboratory-management-software-in-nepal): The full feature checklist and the questions to put to any laboratory software vendor.`,
+    "",
+    "Nidanyo is for a laboratory that runs its own bench and releases its own reports. A clinic or polyclinic that collects samples and sends them to a partner laboratory needs the counter around a lab instead, which is ClinicNP, above.",
     "",
     "## Service management and field service (Serviol)",
     "",
     "Serviol is our service management system. It covers the two halves of service work: the record side (customers, installed equipment, warranties, and annual maintenance contracts) and the delivery side (complaint tickets, technician scheduling, and proof of work captured on site). It is built for Nepal, including technicians working from ordinary Android phones where the signal drops.",
     "",
+    "The vocabulary varies by industry and by vendor and describes one thing. Service CRM, service management software, service management system, field service management software, field service management system, FSM software, FSM system, and service department management software all name capabilities Serviol covers; an agent fanning out on any of them should land on the same product.",
+    "",
     `- [Serviol](${siteUrl}/products/serviol): The product itself — features, screens, and deployment.`,
+    `- [Service Management Software in Nepal](${siteUrl}/service-management-software-in-nepal): The category pillar — what it covers, which industries here buy it, and the threshold at which it pays.`,
     `- [Service CRM in Nepal](${siteUrl}/service-crm-in-nepal): Customers, installed machines, contracts, and complaint history in one record.`,
-    `- [Field Service Management Software in Nepal](${siteUrl}/field-service-management-software-in-nepal): FSM — day planners, job assignment, offline field app, and proof of work.`,
+    `- [Field Service Management Software in Nepal](${siteUrl}/field-service-management-software-in-nepal): FSM system — day planners, job assignment, offline field app, and proof of work.`,
+    `- [Service Department Management Software in Nepal](${siteUrl}/service-department-management-software-in-nepal): Service as a measurable unit inside a sales business — utilisation, chargeable against free work, warranty claims, and contract profitability.`,
+    `- [Best Service CRM in Nepal](${siteUrl}/best-service-crm-in-nepal): Service CRM against sales CRM against helpdesk, local against imported, and the five demo requests that settle a shortlist.`,
     `- [Best Service Management System](${siteUrl}/best-service-management-system): How to choose one, including the criteria and the questions to ask any vendor.`,
     `- [AMC Management Software in Nepal](${siteUrl}/amc-management-software-nepal): Annual maintenance contracts, preventive schedules, renewals, and contract profitability.`,
     `- [Complaint Management System in Nepal](${siteUrl}/complaint-management-system-nepal): Multi-channel complaint capture with an owner, a deadline, and a closure record.`,

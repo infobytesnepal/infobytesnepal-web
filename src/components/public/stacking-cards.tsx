@@ -63,7 +63,8 @@ export default function StackingCards({ products }: { products: StackProduct[] }
           Focused products for the workflows teams need to keep clear.
         </h2>
       </div>
-      <div className="hidden h-[360vh] flex-col gap-8 md:flex lg:h-[340vh]">
+      {/* Track height is per card: six cards need the room five had, plus one card's worth. */}
+      <div className="hidden h-[432vh] flex-col gap-8 md:flex lg:h-[408vh]">
         {stackingCards.map((card, index) => {
           const product = productForCard(products, card.product);
           return <StackCard key={card.title} card={card} index={index} product={product} />;

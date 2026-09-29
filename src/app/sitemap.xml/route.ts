@@ -56,8 +56,6 @@ const PAGE_CONTENT_UPDATED: Record<string, string> = {
   "/lab-software-cost-in-nepal": "2026-09-18",
   "/lab-software-in-nepal": "2026-09-18",
   "/laboratory-information-management-system-nepal": "2026-09-18",
-  // Gained the LIS / LIMS / LIOMS answer in the same change.
-  "/faq": "2026-09-18",
   /*
     Product pages normally take their date from `products.updated_at`, but this
     page's content changed in the repo (a capability list and eight FAQs that
@@ -67,6 +65,37 @@ const PAGE_CONTENT_UPDATED: Record<string, string> = {
     it should mean, and `lastmodFor` takes whichever of the two is later.
   */
   "/products/nidanyo": "2026-09-18",
+  /*
+    The ClinicNP launch, 2026-09-29: a sixth product and a six-page cluster, all
+    created on that date. New URLs need a line here rather than inheriting
+    `CONTENT_LAST_UPDATED`, which would tell a crawler a page published today was
+    last changed in August.
+  */
+  "/products/clinicnp": "2026-09-29",
+  "/clinic-management-software-in-nepal": "2026-09-29",
+  "/pharmacy-software-in-nepal": "2026-09-29",
+  "/clinic-and-pharmacy-software-in-nepal": "2026-09-29",
+  "/best-clinic-management-software-in-nepal": "2026-09-29",
+  "/clinic-software-price-in-nepal": "2026-09-29",
+  "/pharmacy-software-price-in-nepal": "2026-09-29",
+  // Three pages added to the Serviol cluster in the same change.
+  "/service-management-software-in-nepal": "2026-09-29",
+  "/best-service-crm-in-nepal": "2026-09-29",
+  "/service-department-management-software-in-nepal": "2026-09-29",
+  /*
+    Pages whose copy actually changed on 2026-09-29, and only those. The
+    temptation is to bump `CONTENT_LAST_UPDATED` instead, which re-dates every
+    static URL at once and destroys the signal — see the comment above.
+  */
+  // Gained the FSM-system vocabulary, three FAQs, and links to the new siblings.
+  "/field-service-management-software-in-nepal": "2026-09-29",
+  // Gained the "best service CRM" answer and two cluster links.
+  "/service-crm-in-nepal": "2026-09-29",
+  // Gained an eight-question clinic and pharmacy group.
+  "/faq": "2026-09-29",
+  // Now introduces six products rather than five.
+  "/products": "2026-09-29",
+  "/": "2026-09-29",
 };
 
 /**

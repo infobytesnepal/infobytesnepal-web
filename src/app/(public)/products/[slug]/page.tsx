@@ -105,9 +105,9 @@ export default async function ProductDetailPage({ params }: Props) {
        * Quote-only, and the markup has to say so.
        *
        * This block previously published `price: "0"` in USD for every product,
-       * which is a machine-readable claim that Nidanyo, Serviol, Purseol,
-       * LeadRack, and Pravyo are free. None of them are: all five are quoted by
-       * team or lab size and modules. A rich result is not worth a price we
+       * which is a machine-readable claim that ClinicNP, Nidanyo, Serviol,
+       * Purseol, LeadRack, and Pravyo are free. None of them are: all six are
+       * quoted by team, clinic, or lab size and modules. A rich result is not worth a price we
        * would have to correct in public, and an answer engine lifting "free"
        * from here costs a sales conversation before anyone reaches the page.
        *

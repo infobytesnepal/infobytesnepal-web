@@ -680,6 +680,117 @@ export const faqGroups: FaqGroup[] = [
     ],
   },
   {
+    /*
+      Separate from the `labs` group on purpose. A clinic owner and a laboratory
+      owner arrive with different first questions, and the two are the pointy end
+      of a distinction two of our own products depend on: ClinicNP runs the
+      counter around a laboratory, Nidanyo runs the laboratory. Every answer here
+      that touches the boundary states it the same way, and links across.
+    */
+    id: "clinic-pharmacy",
+    title: "Clinic & pharmacy software",
+    intro:
+      "Questions we get from clinics, polyclinics, medical centres, and pharmacies in Nepal about ClinicNP, and about how clinic and pharmacy systems differ from hospital, lab, and retail software.",
+    faqs: [
+      {
+        id: "clinic-management-software-nepal",
+        question: "What is the best clinic management software in Nepal?",
+        answer:
+          "The best clinic management software in Nepal is the one that matches your shape: how many patients a day, whether you dispense medicines, whether samples go out to a partner laboratory or stay on your own bench, and whether anybody is admitted overnight. For an outpatient clinic or polyclinic with a dispensing counter that sends samples out, ClinicNP by Infobytes Nepal is built for exactly that, with Bikram Sambat on every screen and register and billing that survives a full day without internet.",
+        more: [
+          "The category decision costs more than the vendor decision. A retail billing package is cheap and has no patient, no visit, and no doctor in it, so the clinical half of the day ends up in a notes field. A hospital management system adds admissions, wards, and IPD billing that a clinic with no beds pays for and never opens. Ask any vendor for four things on live data in one session: a single bill carrying a consultation, a diagnostic, an outside lab test and two medicines from different batches with the doctor's share shown on it; a bill reprinted unchanged from a closed fiscal year; four tablets sold out of a strip of ten followed by an attempt to sell an expired batch; and the internet disconnected while billing continues.",
+        ],
+        links: [
+          { href: "/best-clinic-management-software-in-nepal", label: "How to choose clinic software in Nepal" },
+          { href: "/clinic-management-software-in-nepal", label: "Clinic management software in Nepal" },
+          { href: "/products/clinicnp", label: "ClinicNP clinic and pharmacy system" },
+        ],
+      },
+      {
+        id: "clinic-vs-hospital-vs-lab-software",
+        question: "What is the difference between clinic, hospital, pharmacy, and lab software?",
+        answer:
+          "Clinic software is organised around the outpatient visit: one patient record for life, visits with a complaint and findings, diagnostics and tests billed, doctor shares, and a dispensing counter. Hospital software adds admissions, wards, IPD billing, and multiple departments, and is a much larger purchase. Pharmacy software sells medicines while holding stock by batch and expiry. Lab software — a laboratory information system — is where results are entered, reference ranges are held, and reports are verified and released.",
+        more: [
+          "The four are not cheaper or dearer versions of each other, and buying across the boundary is the expensive mistake in this category. ClinicNP covers clinic and pharmacy, including the counter around a laboratory: it bills a test, tracks the sample through five stamped stages, keeps the report that comes back, and accounts for what the partner laboratory is owed. It does not enter results, hold reference ranges, produce report cards, or interface with analysers — that is Nidanyo.",
+        ],
+        links: [
+          { href: "/clinic-and-pharmacy-software-in-nepal", label: "Clinic and pharmacy software in Nepal" },
+          { href: "/hospital-management-software-in-nepal", label: "Hospital management software in Nepal" },
+          { href: "/lab-software-in-nepal", label: "Lab software in Nepal" },
+        ],
+      },
+      {
+        id: "clinic-software-price-nepal",
+        question: "How much does clinic or medical software cost in Nepal?",
+        answer:
+          "It depends on the category and the size. Medical software in Nepal spans four different price bands — a retail billing package, a pharmacy system, a clinic or polyclinic system, and a hospital management system — with laboratory systems priced on a different axis again, which is why no single figure is meaningful. ClinicNP is quoted by clinic size and which modules you switch on, and it is licensed by users and counters rather than per patient or per bill.",
+        more: [
+          "For a build-versus-buy comparison, the honest reference is our published custom software range: a focused first version typically runs from around NPR 200,000 to NPR 600,000, and multi department systems generally start around NPR 600,000. A clinic system with billing, batch-level stock, doctor payouts, sample tracking, fiscal-year rollover, and offline operation is not a focused first version, so adopting a product is substantially cheaper than commissioning the equivalent.",
+          "Ask for any quotation split into one-time implementation and recurring annual cost as two separate totals. The charges most often missing from the first number are service catalogue and rate cleanup, extra print layouts, training for roles nobody counted, and data migration beyond the active patient list.",
+        ],
+        links: [
+          { href: "/clinic-software-price-in-nepal", label: "What clinic software costs in Nepal" },
+          { href: "/pharmacy-software-price-in-nepal", label: "What pharmacy software costs in Nepal" },
+        ],
+      },
+      {
+        id: "pharmacy-software-expiry",
+        question: "Can pharmacy software stop expired medicine from being sold?",
+        answer:
+          "Yes, and it should do so outright rather than with a warning. ClinicNP holds stock per batch with its own cost and expiry, blocks expired stock from sale entirely with no override, blocks overselling the same way, and sells the oldest expiry first unless a batch is deliberately picked by hand. Near expiry is warned at thirty, sixty, and ninety days so stock can be dealt with commercially before it becomes a write-off.",
+        more: [
+          "The reason this matters more than it sounds is that in a shop running a general retail package, expiry is invisible until a strip is picked up at the counter, and by then the loss has already happened and nobody recorded it. Losses in ClinicNP are recorded with a reason — returned to supplier, expired, damaged, lost, used in the clinic, given as a sample, or a counted correction — so the stock-out register answers the question an owner actually has at month end: what did I lose, and to what?",
+        ],
+        links: [{ href: "/pharmacy-software-in-nepal", label: "Pharmacy software in Nepal" }],
+      },
+      {
+        id: "clinic-pharmacy-one-system",
+        question: "Can one system run both our clinic and our pharmacy?",
+        answer:
+          "Yes. ClinicNP is one system with a clinic module and a pharmacy module that share one counter, one invoice series, one patient record, and one set of books, so a consultation and the prescription that follows it leave as a single bill with one number and one payment. Each half can also run on its own, and switching one off removes its screens and server routes rather than deleting its data.",
+        more: [
+          "Most clinics with a dispensary did not choose to run two systems; they bought a billing package for the pharmacy because that was urgent and handled the consultation side on a register. The cost of that split is that the day reconciles twice and rarely agrees, the pharmacy has no patient record, and nobody can read the day split into medicines, consultation, diagnostics, and laboratory without adding it up by hand.",
+        ],
+        links: [{ href: "/clinic-and-pharmacy-software-in-nepal", label: "Clinic and pharmacy software on one counter" }],
+      },
+      {
+        id: "clinic-offline-bikram-sambat",
+        question: "Does clinic software work offline and handle Bikram Sambat properly?",
+        answer:
+          "ClinicNP does both, and both are load-bearing rather than cosmetic. Billing and patient registration carry on through a full business day of zero connectivity, held in an outbox and sent when the line returns, with patient numbers assigned without collision even from two devices at once. Bikram Sambat runs through every screen, register, and printed report, the year runs Shrawan to Ashadh, and a closed year stays readable and prints unchanged.",
+        more: [
+          "Worth testing in any demo, because both are commonly claimed and rarely complete. Ask for the internet to be disconnected while billing continues, and ask for a report filtered by a BS date range plus a bill reprinted from a closed fiscal year. Software that converts dates for display only cannot do the second one, which means it sits beside your register rather than replacing it.",
+        ],
+        links: [{ href: "/clinic-management-software-in-nepal", label: "How ClinicNP runs a clinic front desk" }],
+      },
+      {
+        id: "doctor-commission-software",
+        question: "Can the software calculate doctor commissions and payouts?",
+        answer:
+          "Yes. ClinicNP supports four share bases per doctor — nothing, a percentage of the consultation, a fixed amount per consultation, or a percentage of listed services — and calculates the share on each line as the bill is raised rather than reconstructing it at month end. It totals into a payout sheet per doctor that exports for the month.",
+        more: [
+          "Calculating at the point of billing rather than at month end is the part that matters. A share worked out afterwards from a register that was not designed to be added up is a share that gets disputed, and the dispute is expensive because the doctor is also the person generating the revenue.",
+        ],
+        links: [{ href: "/clinic-management-software-in-nepal", label: "Doctors, shares, and payouts in ClinicNP" }],
+      },
+      {
+        id: "clinic-sample-tracking-partner-lab",
+        question: "We send samples to an outside lab. Can the software track them?",
+        answer:
+          "Yes. ClinicNP stamps five stages — to collect, to send, awaiting report, report in, given out — so the position of every sample and the time it reached that stage is a screen rather than a question. Samples are grouped by what has to be collected so it is one trip to the patient, anything sitting too long turns red on its own, a dispatch slip goes with the sample, and the reason one is stuck is recorded in words.",
+        more: [
+          "The commercial half is tracked alongside it: what the patient was billed, what the partner laboratory charges for the same test, the margin between them per test and per period, each settlement recorded, and what is still owed today, per partner or consolidated and exportable.",
+          "If your own bench runs the tests and you release your own reports with reference ranges and verification, that is a laboratory information system rather than the counter around one, and Nidanyo is the product for it.",
+        ],
+        links: [
+          { href: "/clinic-management-software-in-nepal", label: "Sample tracking in ClinicNP" },
+          { href: "/best-lab-software-in-nepal", label: "Choosing lab software instead" },
+        ],
+      },
+    ],
+  },
+  {
     id: "process",
     title: "Working with Infobytes Nepal",
     intro: "How projects run, how we communicate, and what happens after launch.",
@@ -807,7 +918,7 @@ export const faqGroups: FaqGroup[] = [
         id: "services-vs-products",
         question: "What is the difference between your services and your products?",
         answer:
-          "Services are custom work built around your specific requirements. Products (Nidanyo, LeadRack, Serviol, Purseol, and Pravyo) are ready made systems for medical laboratories, lead tracking, field service, field sales, and student talent workflows that you can adopt directly and start using much faster.",
+          "Services are custom work built around your specific requirements. Products (ClinicNP, Nidanyo, Serviol, Purseol, LeadRack, and Pravyo) are ready made systems for clinics and pharmacies, medical laboratories, field service, field sales, lead tracking, and student talent workflows that you can adopt directly and start using much faster.",
         more: [
           "If a product covers most of what you need, adopting and configuring it is usually quicker and cheaper than building from zero. We will tell you which route fits.",
         ],

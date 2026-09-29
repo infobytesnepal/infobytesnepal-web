@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
     route: "/products",
     title: "Our Software Products in Nepal | Infobytes Nepal",
     description:
-      "Five software products built and supported in Nepal: Nidanyo for medical labs, Serviol for field service, Purseol for field sales, LeadRack for leads, and Pravyo.",
+      "Six software products built and supported in Nepal: ClinicNP for clinics and pharmacies, Nidanyo for medical labs, Serviol for field service, Purseol for field sales, LeadRack for leads, and Pravyo.",
   });
 }
 
@@ -34,9 +34,10 @@ export default async function ProductsPage() {
           <p className="text-sm font-semibold uppercase text-primary-blue">Our Products</p>
           <h1 className="mt-4 text-4xl font-semibold text-deep-navy md:text-6xl">Focused digital products from Infobytes Nepal.</h1>
           <p className="mt-6 text-lg leading-8 text-dark-text/74">
-            Five systems we built, run, and support ourselves. Nidanyo runs medical laboratories, Serviol runs field
-            service teams, Purseol runs field sales, LeadRack keeps leads from going cold, and Pravyo makes student
-            talent easier to present. If your requirement sits outside these, we also do{" "}
+            Six systems we built, run, and support ourselves. ClinicNP runs clinics and their pharmacies, Nidanyo runs
+            medical laboratories, Serviol runs field service teams, Purseol runs field sales, LeadRack keeps leads from
+            going cold, and Pravyo makes student talent easier to present. If your requirement sits outside these, we
+            also do{" "}
             <Link href="/software-development-company-in-nepal" className="focus-ring rounded font-semibold text-primary-blue underline decoration-primary-blue/30 underline-offset-4">
               custom software development in Nepal
             </Link>

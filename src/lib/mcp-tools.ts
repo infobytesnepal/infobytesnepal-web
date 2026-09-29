@@ -90,7 +90,7 @@ export const mcpTools: McpTool[] = [
     name: "list_products",
     title: "List products",
     description:
-      "List the software products Infobytes Nepal builds and supports, such as Nidanyo, Serviol, Purseol, LeadRack, and Pravyo.",
+      "List the software products Infobytes Nepal builds and supports: ClinicNP (clinic and pharmacy management), Nidanyo (medical laboratory LIOMS), Serviol (service management and FSM), Purseol (field sales), LeadRack (lead tracking), and Pravyo (student talent).",
     inputSchema: noArgs,
     execute: async () => listProducts(),
   },
@@ -100,7 +100,7 @@ export const mcpTools: McpTool[] = [
     description: "Get the full description of one product by its slug, as returned by list_products.",
     inputSchema: {
       type: "object",
-      properties: { slug: { type: "string", description: "Product slug, e.g. \"nidanyo\"." } },
+      properties: { slug: { type: "string", description: "Product slug, e.g. \"clinicnp\" or \"nidanyo\"." } },
       required: ["slug"],
       additionalProperties: false,
     },
