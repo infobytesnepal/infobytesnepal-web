@@ -3,7 +3,9 @@ import { ArrowRight, Check } from "lucide-react";
 import Breadcrumbs, { breadcrumbSchema } from "@/components/public/breadcrumbs";
 import InternalLinkHub from "@/components/public/internal-links";
 import { anchorFor, getBreadcrumbs, getCluster, getLinkNode, priorityPaths } from "@/lib/internal-links";
-import type { SeoLandingPage as SeoLandingPageData } from "@/lib/seo-landing-pages";
+import GetStartedButton from "@/components/public/get-started-button";
+import { company } from "@/lib/company";
+import { getLandingProduct, type SeoLandingPage as SeoLandingPageData } from "@/lib/seo-landing-pages";
 import { getCanonicalSiteUrl } from "@/lib/utils";
 
 function buildSchemas(page: SeoLandingPageData, crumbs: ReturnType<typeof getBreadcrumbs>) {
@@ -81,6 +83,14 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
   const crumbs = getBreadcrumbs(page.path, page.heroTitle);
   const schemas = buildSchemas(page, crumbs);
   const contextual = contextualLinksFor(page.path);
+  const product = getLandingProduct(page.path);
+  const phoneHref = `tel:${company.phone.replace(/[^+\d]/g, "")}`;
+  const demoMaterial =
+    product?.slug === "clinicnp"
+      ? "services and rates"
+      : product?.slug === "nidanyo"
+        ? "test menu and rates"
+        : "job types and contracts";
 
   return (
     <>
@@ -90,17 +100,37 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
           <div className="mx-auto max-w-7xl">
             <Breadcrumbs crumbs={crumbs} />
             <div className="max-w-4xl">
-              <p className="text-sm font-semibold uppercase text-primary-blue">Infobytes Nepal Services</p>
+              <p className="text-sm font-semibold uppercase text-primary-blue">
+                {product ? `${product.name} by Infobytes Nepal` : "Infobytes Nepal Services"}
+              </p>
               <h1 className="mt-4 text-4xl font-semibold leading-tight text-deep-navy md:text-6xl">{page.heroTitle}</h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-dark-text/76">{page.heroIntro}</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <Link href="/contact" className="focus-ring site-button rounded-full px-6 py-3 text-center font-semibold">
-                  Discuss Your Requirement
-                </Link>
-                <Link href="/services" className="focus-ring site-button-light inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold">
-                  View Services
-                  <ArrowRight size={16} />
-                </Link>
+                {product ? (
+                  <>
+                    <GetStartedButton
+                      interest={product.name}
+                      label={`Book a ${product.name} demo`}
+                      className="px-6 py-3 text-base"
+                    />
+                    <Link
+                      href={`/products/${product.slug}`}
+                      className="focus-ring site-button-light inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold"
+                    >
+                      See {product.name}
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/contact" className="focus-ring site-button rounded-full px-6 py-3 text-center font-semibold">
+                      Discuss Your Requirement
+                    </Link>
+                    <Link href="/services" className="focus-ring site-button-light inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold">
+                      View Services
+                      <ArrowRight size={16} />
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -131,7 +161,9 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
               )}
             </article>
             <aside className="rounded-[28px] border border-primary-blue/12 bg-soft-blue/45 p-6 shadow-[0_24px_70px_rgba(4,18,63,0.06)]">
-              <h2 className="text-2xl font-semibold text-deep-navy">Common problems for Nepali businesses</h2>
+              <h2 className="text-2xl font-semibold text-deep-navy">
+                {product ? `Where ${product.audience} lose time` : "Common problems for Nepali businesses"}
+              </h2>
               <div className="mt-6 grid gap-4">
                 {page.problems.map((problem) => (
                   <div key={problem} className="flex gap-3 text-sm leading-6 text-dark-text/74">
@@ -148,9 +180,9 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
 
         <section className="page-x bg-soft-blue/35 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
-            <p className="text-sm font-semibold uppercase text-primary-blue">How We Help</p>
+            <p className="text-sm font-semibold uppercase text-primary-blue">{product ? "How it works" : "How We Help"}</p>
             <h2 className="mt-3 max-w-3xl text-3xl font-semibold text-deep-navy md:text-5xl">
-              How Infobytes Nepal solves these challenges
+              {product ? `What ${product.name} does about it` : "How Infobytes Nepal solves these challenges"}
             </h2>
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               {page.solutions.map((solution) => (
@@ -167,9 +199,13 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
             <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
               <div>
                 <p className="text-sm font-semibold uppercase text-primary-blue">Included</p>
-                <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">Services and features</h2>
+                <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">
+                  {product ? `What ${product.name} includes` : "Services and features"}
+                </h2>
                 <p className="mt-5 leading-7 text-dark-text/72">
-                  These areas can be shaped into a focused scope depending on your team, budget, timeline, and current workflow.
+                  {product
+                    ? `All of this is part of ${product.name} as standard. We set it up with your own data during onboarding, so the first day is a working day.`
+                    : "These areas can be shaped into a focused scope depending on your team, budget, timeline, and current workflow."}
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
@@ -186,11 +222,42 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
           </div>
         </section>
 
+        {/*
+          Product pages only: a demo offer at the point a reader has just seen
+          what the product includes, rather than only at the very bottom of a
+          page several screens long.
+        */}
+        {product && (
+          <section className="page-x bg-deep-navy py-12 text-white md:py-14">
+            <div className="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <div className="max-w-2xl">
+                <h2 className="text-2xl font-semibold md:text-3xl">See {product.name} working on your own data</h2>
+                <p className="mt-3 leading-7 text-white/75">
+                  A live walkthrough on your own screens, set up with your own {demoMaterial} where you can share them. No
+                  charge and no obligation.
+                </p>
+              </div>
+              <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
+                <GetStartedButton interest={product.name} label="Book a demo" variant="light" className="px-6 py-3 text-base" />
+                <a
+                  href={phoneHref}
+                  className="focus-ring inline-flex items-center justify-center rounded-full border border-white/35 px-6 py-3 font-semibold text-white hover:border-white"
+                >
+                  Call {company.phone}
+                </a>
+              </div>
+            </div>
+          </section>
+        )}
+
         <section className="page-x bg-soft-green/35 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
             <p className="text-sm font-semibold uppercase text-primary-blue">Process</p>
-            <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">A practical process from idea to improvement</h2>
-            <div className="mt-8 grid gap-4 md:grid-cols-5">
+            <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">
+              {product ? `Getting started with ${product.name}` : "A practical process from idea to improvement"}
+            </h2>
+            {/* Five steps squeezed into five columns left each one a narrow strip of text. */}
+            <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {page.process.map((step, index) => (
                 <article key={step.title} className="rounded-[24px] border border-primary-blue/10 bg-white/86 p-5 shadow-[0_18px_55px_rgba(4,18,63,0.05)]">
                   <p className="text-sm font-semibold text-primary-blue">{String(index + 1).padStart(2, "0")}</p>
@@ -206,7 +273,9 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2">
             <article>
               <p className="text-sm font-semibold uppercase text-primary-blue">Why Infobytes Nepal</p>
-              <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">Built for practical teams in Nepal</h2>
+              <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-5xl">
+                {product ? `Why ${product.name}` : "Built for practical teams in Nepal"}
+              </h2>
               <div className="mt-7 grid gap-4">
                 {page.reasons.map((reason) => (
                   <div key={reason} className="flex gap-3 leading-7 text-dark-text/74">
@@ -253,16 +322,38 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
         <InternalLinkHub sourcePath={page.path} className="page-x bg-white py-16 md:py-20" />
 
         <section className="page-x bg-white pb-20 pt-16">
-          <div className="mx-auto max-w-4xl rounded-[28px] border border-primary-blue/10 bg-gradient-to-br from-soft-blue/70 via-white to-soft-green/60 p-7 text-center shadow-[0_22px_70px_rgba(4,18,63,0.07)] md:p-9">
-            <p className="text-sm font-semibold uppercase text-primary-blue">Ready to discuss?</p>
-            <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-4xl">Build the next practical step with Infobytes Nepal.</h2>
-            <p className="mx-auto mt-4 max-w-2xl leading-7 text-dark-text/70">
-              Share your requirement, current workflow, or growth goal. We will help you identify a focused and realistic digital direction.
-            </p>
-            <Link href="/contact" className="focus-ring site-button-gradient mt-7 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold shadow-[0_18px_42px_rgba(3,66,197,0.18)]">
-              Contact Infobytes Nepal
-              <ArrowRight size={16} />
-            </Link>
+          <div className="mx-auto max-w-4xl rounded-[20px] border border-primary-blue/10 bg-soft-blue/60 p-7 text-center md:p-9">
+            {product ? (
+              <>
+                <p className="text-sm font-semibold uppercase text-primary-blue">Next step</p>
+                <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-4xl">Book a {product.name} demo</h2>
+                <p className="mx-auto mt-4 max-w-2xl leading-7 text-dark-text/70">
+                  Tell us a little about how you work today. We will show you {product.name} on your own screens, answer the
+                  questions this page could not, and send a written quotation at no charge.
+                </p>
+                <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+                  <GetStartedButton interest={product.name} label={`Book a ${product.name} demo`} className="px-6 py-3 text-base" />
+                  <a
+                    href={phoneHref}
+                    className="focus-ring site-button-light inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold"
+                  >
+                    Call {company.phone}
+                  </a>
+                </div>
+              </>
+            ) : (
+              <>
+                <p className="text-sm font-semibold uppercase text-primary-blue">Ready to discuss?</p>
+                <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-4xl">Build the next practical step with Infobytes Nepal.</h2>
+                <p className="mx-auto mt-4 max-w-2xl leading-7 text-dark-text/70">
+                  Share your requirement, current workflow, or growth goal. We will help you identify a focused and realistic digital direction.
+                </p>
+                <Link href="/contact" className="focus-ring site-button-gradient mt-7 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold">
+                  Contact Infobytes Nepal
+                  <ArrowRight size={16} />
+                </Link>
+              </>
+            )}
           </div>
         </section>
       </main>

@@ -24,7 +24,7 @@ import { and, asc, desc, eq } from "drizzle-orm";
 import { db } from "./db/client";
 import { posts as postsTable, type PostRow } from "./db/schema";
 import { postSeeds } from "./blog-seed";
-import { estimateReadTime, parsePostMarkdown, type PostBlock } from "./blog-markdown";
+import { estimateReadTime, parsePostMarkdown, repairLinkAddresses, type PostBlock } from "./blog-markdown";
 
 export type { PostBlock };
 
@@ -116,7 +116,7 @@ function isCategory(value: string): value is Category {
  * revalidation instead of only posts saved after the fix.
  */
 function fromRow(row: PostRow): Post {
-  const body = parsePostMarkdown(row.bodyMarkdown);
+  const body = parsePostMarkdown(repairLinkAddresses(row.bodyMarkdown));
   return {
     slug: row.slug,
     title: row.title,

@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
+// Prefetches on hover, focus, or touch rather than on sight. See intent-link.tsx.
+import Link from "./intent-link";
 import { Mail, MapPin } from "lucide-react";
 import type { SVGProps } from "react";
 import { getPageSection, getProducts, getSettings } from "@/lib/data";
@@ -16,6 +17,7 @@ const footerColumns = [
     links: [
       { href: "/software-development-company-in-nepal", label: "Software Development" },
       { href: "/business-automation-software-nepal", label: "Business Automation" },
+      { href: "/clinic-software-in-nepal", label: "Clinic Software" },
       { href: "/lab-software-in-nepal", label: "Lab Software" },
       { href: "/hospital-management-software-in-nepal", label: "Hospital Software" },
       { href: "/school-management-software-in-nepal", label: "School Software" },
@@ -239,6 +241,7 @@ export default async function Footer() {
             <Link href="/contact" className="transition hover:text-white">Contact</Link>
             <Link href="/about#team" className="transition hover:text-white">Our People</Link>
             <Link href="/privacy-policy" className="transition hover:text-white">Privacy Policy</Link>
+            <Link href="/terms" className="transition hover:text-white">Terms of Use</Link>
           </div>
         </div>
         <div>

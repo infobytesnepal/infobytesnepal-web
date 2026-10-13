@@ -1,4 +1,5 @@
 import { clinicnpSeoLandingPages } from "./seo-landing-pages-clinicnp";
+import { clinicnpSpecialtySeoLandingPages } from "./seo-landing-pages-clinicnp-specialties";
 import { extraSeoLandingPages } from "./seo-landing-pages-extra";
 import { nidanyoSeoLandingPages } from "./seo-landing-pages-nidanyo";
 import { serviolSeoLandingPages } from "./seo-landing-pages-serviol";
@@ -567,7 +568,7 @@ export const seoLandingPages = {
     heroIntro:
       "Choosing the best IT company in Nepal is not about a label. It is about finding a reliable partner that understands your business, communicates clearly, builds maintainable systems, and supports practical digital growth.",
     overview: {
-      title: "The right IT partner should fit your business, not just your project",
+      title: "Choose an IT partner that fits how your business works",
       paragraphs: [
         "Businesses often search for the best IT company in Nepal when they need a website, software system, automation tool, SEO support, or a more dependable digital partner. The challenge is that every business has different goals. A school, consultancy, field service team, sales company, startup, and corporate office may all need technology, but their workflows and priorities are not the same.",
         "A good decision starts with criteria. The company should ask useful questions, understand the real problem, explain the scope clearly, and avoid pushing unnecessary complexity. Strong IT work should help a business become easier to manage, easier to present, easier to track, or easier to grow.",
@@ -2244,7 +2245,7 @@ export const seoLandingPages = {
     heroIntro:
       "Infobytes Nepal builds CRM software that keeps every lead, contact, and follow up in one clear place. Instead of losing opportunities in spreadsheets and chat groups, your team gets a simple pipeline, timely reminders, and reporting managers can trust.",
     overview: {
-      title: "A CRM that fits your sales process, not the other way around",
+      title: "A CRM built around your sales process",
       paragraphs: [
         "Most teams in Nepal lose sales not because of weak products, but because follow ups slip through the cracks. Leads arrive from calls, Facebook, referrals, and the website, then get scattered across notebooks, phones, and viber groups. Nobody is sure who followed up, which deal is warm, or why a customer went quiet.",
         "A CRM (customer relationship management) system fixes this by giving every lead a place, a stage, and an owner. Infobytes Nepal builds CRM software around your actual sales process (your stages, your fields, your reports) so it feels natural to use. We can build a custom CRM or shape one from our LeadRack product direction, depending on your needs and budget.",
@@ -2373,7 +2374,7 @@ export const seoLandingPages = {
     heroIntro:
       "Infobytes Nepal designs digital products that are clear, usable, and pleasant to use. From user research and wireframes to prototypes and polished interfaces, we help websites, apps, and software feel effortless, so people understand them and act with confidence.",
     overview: {
-      title: "Interfaces that feel obvious, not clever",
+      title: "Interfaces that feel obvious to the people using them",
       paragraphs: [
         "Good UI/UX is invisible. When a website, app, or dashboard is well designed, people find what they need, understand what to do, and complete their task without frustration. When it is not, even a powerful product feels confusing, support requests rise, and users quietly give up.",
         "Infobytes Nepal approaches UI/UX design as problem solving, not decoration. We study who the users are, what they are trying to do, and where the current experience breaks down. Then we structure the flow, design clear screens, and prototype the experience before development, so usability problems are caught early, when they are cheap to fix.",
@@ -3792,7 +3793,7 @@ export const seoLandingPages = {
     heroIntro:
       "Infobytes Nepal helps Kathmandu businesses turn attention into real inquiries. We connect SEO, social media, and campaigns with a strong website and proper lead follow up, so your marketing budget produces calls and customers, not just likes.",
     overview: {
-      title: "Marketing that produces inquiries, not just impressions",
+      title: "Marketing measured in inquiries",
       paragraphs: [
         "Kathmandu businesses spend heavily on Facebook, Instagram, and boosted posts, yet many struggle to connect that spend to actual customers. The reason is usually a weak foundation: an unclear website, no SEO, and no system to capture and follow up on leads. Attention arrives, then leaks away before it becomes a sale.",
         "Infobytes Nepal approaches digital marketing as a connected system for Kathmandu businesses. We strengthen your website and service pages, build SEO so people find you on Google, run focused social and campaign activity with clear messages, and connect inquiries to lead tracking so nothing is lost. Because we also build websites and software, the whole funnel works together.",
@@ -3915,6 +3916,7 @@ export const seoLandingPageList: SeoLandingPage[] = [
   ...Object.values(nidanyoSeoLandingPages),
   ...Object.values(serviolSeoLandingPages),
   ...Object.values(clinicnpSeoLandingPages),
+  ...Object.values(clinicnpSpecialtySeoLandingPages),
 ];
 
 export const allSeoLandingPages = {
@@ -3923,8 +3925,40 @@ export const allSeoLandingPages = {
   ...nidanyoSeoLandingPages,
   ...serviolSeoLandingPages,
   ...clinicnpSeoLandingPages,
+  ...clinicnpSpecialtySeoLandingPages,
 };
 
-export function getSeoLandingPageByPath(path: string) {
-  return seoLandingPageList.find((page) => page.path === path);
+/**
+ * Which of our products a landing page sells, if any.
+ *
+ * The landing template was written for service pages, so a ClinicNP page closed
+ * on "Build the next practical step with Infobytes Nepal", listed its features
+ * under "These areas can be shaped into a focused scope depending on your
+ * budget", and offered "Discuss Your Requirement" and "View Services" as its
+ * two calls to action. Someone reading about clinic software is one click from
+ * asking for a demo of a specific product; the page should offer exactly that.
+ *
+ * Derived from cluster membership rather than stored per page, so a page added
+ * to a product's file is wired up without anything else to remember.
+ */
+export type LandingProduct = {
+  name: string;
+  slug: string;
+  /** Plural noun for who it is for, used in headings: "clinics and pharmacies". */
+  audience: string;
+};
+
+function productPages(pages: Record<string, SeoLandingPage>, product: LandingProduct): Array<[string, LandingProduct]> {
+  return Object.values(pages).map((page) => [page.path, product]);
+}
+
+const landingPageProducts = new Map<string, LandingProduct>([
+  ...productPages(clinicnpSeoLandingPages, { name: "ClinicNP", slug: "clinicnp", audience: "clinics and pharmacies" }),
+  ...productPages(clinicnpSpecialtySeoLandingPages, { name: "ClinicNP", slug: "clinicnp", audience: "clinics" }),
+  ...productPages(nidanyoSeoLandingPages, { name: "Nidanyo", slug: "nidanyo", audience: "laboratories" }),
+  ...productPages(serviolSeoLandingPages, { name: "Serviol", slug: "serviol", audience: "service teams" }),
+]);
+
+export function getLandingProduct(path: string): LandingProduct | null {
+  return landingPageProducts.get(path) ?? null;
 }

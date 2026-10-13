@@ -69,7 +69,7 @@ export const serviceCatalog = [
       { href: "/digital-marketing-agency-in-kathmandu", label: "digital marketing in Kathmandu" },
     ],
     title: "Digital Marketing",
-    subtitle: "Campaigns that bring in inquiries, not just likes and reach.",
+    subtitle: "Campaigns judged by the inquiries they bring in.",
     description:
       "We plan and run social media and paid campaigns aimed at people who might actually buy from you. Content, targeting, budget, and reporting handled together, so you can see what every rupee brought back. If a campaign is not working, we tell you and change it rather than quietly spending the budget.",
     image: "/assets/services/3digital-marketing-ibn.webp",
@@ -84,7 +84,7 @@ export const serviceCatalog = [
       { href: "/it-training-institute-in-nepal", label: "IT training in Nepal" },
     ],
     title: "IT Training",
-    subtitle: "Practical training where you build real things, not just watch slides.",
+    subtitle: "Practical training where you build real things from the first day.",
     description:
       "Training for students, working professionals, and whole teams, run by the same people who build client projects. You work on guided projects from the first session, because nobody learns web development or SEO by taking notes. Useful whether you want a job, a promotion, or a team that can manage its own website.",
     image: "/assets/services/4training-ibn.webp",

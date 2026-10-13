@@ -2,12 +2,9 @@ import { getPost, getPosts, getAuthor } from "./blog";
 import { careersEmail, getJob, getJobs } from "./careers";
 import { company, companyAddressLine } from "./company";
 import { faqGroups } from "./faqs";
+import { legalLastUpdated, legalSectionsToMarkdown, privacySections, termsSections } from "./legal";
 import { defaultPageContent } from "./content";
 import { getPageSection, getProductBySlug, getProducts } from "./data";
-// `seoLandingPageList` is still the sync source for `hasMarkdownRoute`, which
-// only compares paths — and a path is the one part of a landing page the CMS
-// cannot change. The rendered content goes through the read adapter.
-import { seoLandingPageList } from "./seo-landing-pages";
 import { getLandingPageByPath } from "./landing-pages";
 import { serviceCatalog } from "./services";
 import { team, getTeamMember } from "./team";
@@ -350,7 +347,30 @@ async function renderPrivacy(): Promise<Rendered> {
   const content = await getPageSection("privacy-policy", "content", defaultPageContent.privacy);
   return {
     title: `${content.title} — ${company.name}`,
-    body: [heading(content.title, "/privacy-policy"), "", content.body, "", contactBlock()].join("\n"),
+    body: [
+      heading(content.title, "/privacy-policy"),
+      "",
+      `Last updated ${legalLastUpdated}.`,
+      "",
+      content.body,
+      "",
+      legalSectionsToMarkdown(privacySections),
+      contactBlock(),
+    ].join("\n"),
+  };
+}
+
+async function renderTerms(): Promise<Rendered> {
+  return {
+    title: `Website Terms of Use — ${company.name}`,
+    body: [
+      heading("Website Terms of Use", "/terms"),
+      "",
+      `Last updated ${legalLastUpdated}.`,
+      "",
+      legalSectionsToMarkdown(termsSections),
+      contactBlock(),
+    ].join("\n"),
   };
 }
 
@@ -432,17 +452,8 @@ const asyncRenderers: Record<string, () => Promise<Rendered>> = {
   "/blog": renderBlogIndex,
   "/careers": renderCareers,
   "/privacy-policy": renderPrivacy,
+  "/terms": renderTerms,
 };
-
-/** Paths that have a markdown rendering. `proxy.ts` uses this to decide whether
- * a request is worth rewriting, without loading the renderers themselves. */
-export const markdownRoutePrefixes = ["/products/", "/blog/", "/careers/", "/team/"];
-
-export function hasMarkdownRoute(pathname: string) {
-  if (pathname in staticRenderers || pathname in asyncRenderers) return true;
-  if (markdownRoutePrefixes.some((prefix) => pathname.startsWith(prefix))) return true;
-  return seoLandingPageList.some((page) => page.path === pathname);
-}
 
 export async function renderMarkdown(pathname: string): Promise<Rendered | null> {
   const path = pathname !== "/" && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;

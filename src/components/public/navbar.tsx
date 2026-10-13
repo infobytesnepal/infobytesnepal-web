@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+// Prefetches on hover, focus, or touch rather than on sight. See intent-link.tsx.
+import Link from "./intent-link";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import CmsImage from "./cms-image";
@@ -57,7 +58,7 @@ export default function Navbar({ logoUrl }: { logoUrl: string }) {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between">
         <Link href="/" className="focus-ring flex items-center gap-3 rounded-full" aria-label="Infobytes Nepal home">
-          <CmsImage src={logoUrl} alt="Infobytes Nepal logo" width={178} height={54} className="h-12 w-auto object-contain" priority />
+          <CmsImage src={logoUrl} alt="Infobytes Nepal logo" width={178} height={54} className="h-12 w-auto object-contain" eager />
         </Link>
         {/* gap tightens at md so eight items still fit on a small laptop. */}
         <div className="hidden items-center gap-4 md:flex lg:gap-6 xl:gap-7">
@@ -68,7 +69,7 @@ export default function Navbar({ logoUrl }: { logoUrl: string }) {
               className="group relative text-sm font-medium text-deep-navy/82 transition hover:text-primary-blue"
             >
               {link.label}
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 rounded-full brand-gradient transition-all duration-300 group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 h-0.5 w-0 rounded-full bg-primary-green transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
           <GetStartedButton />

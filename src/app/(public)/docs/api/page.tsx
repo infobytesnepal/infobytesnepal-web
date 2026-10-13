@@ -115,12 +115,12 @@ export default function ApiDocsPage() {
         <Section id="mcp" title="MCP server">
           <p>
             Streamable HTTP at <Code>{siteUrl}/api/mcp</Code>. Stateless, unauthenticated, {toolDescriptors().length}{" "}
-            read-only tools. Point any MCP client at that URL — there is no session to establish and no token to obtain.
+            read-only tools. Point any MCP client at that URL. There is no session to establish and no token to obtain.
           </p>
           <ul className="ml-5 list-disc space-y-2">
             {toolDescriptors().map((tool) => (
               <li key={tool.name}>
-                <Code>{tool.name}</Code> — {tool.description}
+                <Code>{tool.name}</Code>: {tool.description}
               </li>
             ))}
           </ul>
@@ -151,7 +151,7 @@ export default function ApiDocsPage() {
           <ul className="ml-5 list-disc space-y-2">
             {agentSkills.map((skill) => (
               <li key={skill.name}>
-                <Code>{skill.name}</Code> — {skill.description}
+                <Code>{skill.name}</Code>: {skill.description}
               </li>
             ))}
           </ul>
@@ -163,8 +163,8 @@ export default function ApiDocsPage() {
               <li key={item.path}>
                 <a className="font-mono text-sm font-semibold text-primary-blue underline" href={item.path}>
                   {item.path}
-                </a>{" "}
-                — {item.what}
+                </a>
+                : {item.what}
               </li>
             ))}
           </ul>
@@ -172,7 +172,7 @@ export default function ApiDocsPage() {
 
         <Section id="rules" title="Terms of use">
           <p>
-            The content is published for search indexing and for use as input to a live AI answer — quote it and link
+            The content is published for search indexing and for use as input to a live AI answer. Quote it and link
             back to the source URL that every record carries. It is not offered for model training; this is declared in{" "}
             <Code>robots.txt</Code> as a Content Signal.
           </p>

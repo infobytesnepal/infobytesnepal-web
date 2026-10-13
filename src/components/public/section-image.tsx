@@ -59,7 +59,9 @@ export default function SectionImage({
           alt={alt}
           fill
           sizes={sizes}
-          priority={priority}
+          // See cms-image.tsx: Next 16's recommended form of an LCP image.
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
           quality={75}
           className={objectFit}
         />
@@ -69,6 +71,7 @@ export default function SectionImage({
           src={src}
           alt={alt}
           loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
           decoding="async"
           className={`absolute inset-0 h-full w-full ${objectFit}`}
         />

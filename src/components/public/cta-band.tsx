@@ -27,8 +27,7 @@ export default function CtaBand({
 }) {
   return (
     <section className={className}>
-      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[32px] brand-gradient px-7 py-14 text-center text-white shadow-[0_30px_90px_rgba(3,66,197,0.28)] md:px-12 md:py-16">
-        <div className="grid-texture pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
+      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[20px] bg-deep-navy px-7 py-14 text-center text-white md:px-12 md:py-16">
         <div className="relative">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider">
             <ShieldCheck size={14} /> {eyebrow}

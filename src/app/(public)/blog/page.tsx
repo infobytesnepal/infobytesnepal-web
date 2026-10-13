@@ -124,7 +124,7 @@ export default async function BlogPage({ searchParams }: { searchParams: SearchP
                 }
               >
                 All posts
-                <span className="text-xs font-normal opacity-70">{allPosts.length}</span>
+                <span className="text-xs font-normal">{allPosts.length}</span>
               </Link>
             </li>
             {counts.map((entry) => {
@@ -141,7 +141,7 @@ export default async function BlogPage({ searchParams }: { searchParams: SearchP
                     }
                   >
                     {entry.name}
-                    <span className="text-xs font-normal opacity-70">{entry.count}</span>
+                    <span className="text-xs font-normal">{entry.count}</span>
                   </Link>
                 </li>
               );

@@ -65,11 +65,11 @@ export const clinicnpSeoLandingPages = {
     heroIntro:
       "Infobytes Nepal builds ClinicNP, a clinic and pharmacy management system for polyclinics, clinics, and medical centres across Nepal. It runs the front desk the way the day actually runs: patients and their visits, doctors and their shares, samples followed all the way to the report, medicines by batch and expiry, and one bill that carries all of it. Bikram Sambat on every screen and register, and the counter keeps working when the internet stops.",
     overview: {
-      title: "The problem is the counter, not the medicine",
+      title: "Where a clinic's day is actually lost",
       paragraphs: [
-        "A clinic's hardest half hour is not clinical. It is a queue of eight people at one desk, a paper register, a billing package written for a supermarket, and a phone ringing to ask whether a report has come back. The consultation itself is the part that works. Everything wrapped around it — registering the same patient for the third time under a slightly different spelling, finding out whether the ultrasound was billed, telling somebody where their blood sample is — is where the day is lost.",
+        "A clinic's hardest half hour is not clinical. It is a queue of eight people at one desk, a paper register, a billing package written for a supermarket, and a phone ringing to ask whether a report has come back. The consultation itself is the part that works. The day is lost in everything wrapped around it: registering the same patient for the third time under a slightly different spelling, finding out whether the ultrasound was billed, telling somebody where their blood sample is.",
         "ClinicNP is built for that wrapper. A patient is registered once and keeps one number for life, P-000001 onwards, never reused and never reset at year end. Every visit attaches to that record with its own number inside the fiscal year, V-2083/84-000001, so the register reads the way a Nepali clinic's register has always read. A patient from eighteen months ago is found by name, phone, or patient number, and their whole history and every attached report come back on one card.",
-        "The bill is one bill. A consultation, an ultrasound, an ECG, two lab tests, and the prescription leave the counter as a single invoice with one number and one payment, because that is what the person at the desk is actually being asked for. Services sit in their own block with the doctor on the line, medicines carry the unit, the batch, and the expiry, and the whole thing is driven from the keyboard rather than from a mouse — one search box finds a medicine or a service, and every counter action has a key.",
+        "The bill is one bill. A consultation, an ultrasound, an ECG, two lab tests, and the prescription leave the counter as a single invoice with one number and one payment, because that is what the person at the desk is actually being asked for. Services sit in their own block with the doctor on the line, medicines carry the unit, the batch, and the expiry, and the whole thing is driven from the keyboard rather than from a mouse: one search box finds a medicine or a service, and every counter action has a key.",
         "Bikram Sambat is not a display setting here. BS dates are on every screen, every register, and every printed report, the year runs Shrawan to Ashadh, and a closed year stays readable and prints unchanged forever. That last part matters more than it sounds: an owner who cannot reprint last year's register in the form it was filed has not replaced the paper, only added to it.",
       ],
     },
@@ -171,6 +171,11 @@ export const clinicnpSeoLandingPages = {
         label: "lab software in Nepal",
         text: "If you run your own bench and enter results, that is Nidanyo rather than ClinicNP.",
       },
+      {
+        href: "/clinic-software-in-nepal",
+        label: "clinic software by specialty",
+        text: "Dental, derma, aesthetic, physiotherapy, pediatric, and neuromodulation clinics.",
+      },
     ],
     faqs: [
       {
@@ -243,9 +248,9 @@ export const clinicnpSeoLandingPages = {
       title: "Stock is only an asset until the expiry date says otherwise",
       paragraphs: [
         "A pharmacy's stock figure is two different numbers wearing one label. There is what is on the shelf, and there is what can still be sold. The gap between them is expiry, and in a shop running on a supermarket billing package that gap is invisible until a strip is picked up at the counter and somebody reads the date out loud. By then it is not stock, it is a write-off, and nobody recorded when it became one.",
-        "ClinicNP holds stock per batch, and every batch carries its own cost and its own expiry. Near expiry is a screen rather than a memory, with warnings at thirty, sixty, and ninety days. Expired stock is held back from sale outright, with no override, ever — not a confirmation dialog, not a manager password. Overselling is blocked the same way. The oldest expiry is chosen automatically on every line, and can be overridden per line when a batch genuinely has to be picked by hand.",
-        "The counter is built for the way medicines are actually sold here. A single item has a rate as a box, as a strip, and as a tablet, and the person serving switches unit with one key. The quantity picker draws the medicine in its real shape — a strip of ten, a bottle, a tube — so the quantity can be seen rather than trusted to a number typed under pressure. One search box finds the item, and the whole counter has a key for every action.",
-        "Where stock goes when it does not get sold is a register in its own right. Stock out is recorded with a reason: returned to supplier, expired, damaged, lost, used in the clinic, given as a sample, or a counted correction. That produces the number an owner actually wants at month end and almost never has — what did I lose this period, and to what? Alongside it sit profit by item, stock valuation, the purchase register, a VAT summary when the company is registered for it, and the expiry and slow-moving report that says what is dying on the shelf and what never moves at all.",
+        "ClinicNP holds stock per batch, and every batch carries its own cost and its own expiry. Near expiry is a screen rather than a memory, with warnings at thirty, sixty, and ninety days. Expired stock is held back from sale outright, with no override, ever: no confirmation dialog, no manager password. Overselling is blocked the same way. The oldest expiry is chosen automatically on every line, and can be overridden per line when a batch genuinely has to be picked by hand.",
+        "The counter is built for the way medicines are actually sold here. A single item has a rate as a box, as a strip, and as a tablet, and the person serving switches unit with one key. The quantity picker draws the medicine in its real shape, such as a strip of ten, a bottle, or a tube, so the quantity can be seen rather than trusted to a number typed under pressure. One search box finds the item, and the whole counter has a key for every action.",
+        "Where stock goes when it does not get sold is a register in its own right. Stock out is recorded with a reason: returned to supplier, expired, damaged, lost, used in the clinic, given as a sample, or a counted correction. That produces the number an owner actually wants at month end and almost never has: what did I lose this period, and to what? Alongside it sit profit by item, stock valuation, the purchase register, a VAT summary when the company is registered for it, and the expiry and slow-moving report that says what is dying on the shelf and what never moves at all.",
       ],
     },
     problems: [
@@ -347,6 +352,11 @@ export const clinicnpSeoLandingPages = {
         label: "POS software in Nepal",
         text: "If you are a retailer without batches, expiry, or prescriptions to handle.",
       },
+      {
+        href: "/blog/pharmacy-stock-and-billing-system-in-nepal-a-practical-guide",
+        label: "a practical guide to pharmacy stock and billing",
+        text: "The longer read on running a pharmacy's stock and counter in Nepal.",
+      },
     ],
     faqs: [
       {
@@ -377,7 +387,7 @@ export const clinicnpSeoLandingPages = {
       {
         question: "Can it tell me what I lost to expiry this month?",
         answer:
-          "Yes, and that is a report in its own right. Stock out is recorded with a reason — returned to supplier, expired, damaged, lost, used in the clinic, given as a sample, or a counted correction — and the stock-out register groups the period's lost value by reason. Alongside it are profit by item, stock valuation, and a report on what is dying on the shelf and what never moves.",
+          "Yes, and that is a report in its own right. Stock out is recorded with a reason (returned to supplier, expired, damaged, lost, used in the clinic, given as a sample, or a counted correction), and the stock-out register groups the period's lost value by reason. Alongside it are profit by item, stock valuation, and a report on what is dying on the shelf and what never moves.",
       },
       {
         question: "Do I need the clinic side if I only run a pharmacy?",
@@ -420,8 +430,8 @@ export const clinicnpSeoLandingPages = {
       paragraphs: [
         "Most clinics with a dispensary did not choose to run two systems. They bought a billing package for the pharmacy because that was the urgent problem, then handled the consultation side on a register because no package covered it, and ended up with a desk where one person serves one patient twice. The patient pays for the consultation, walks four feet, and pays for the prescription against a different bill number that shares nothing with the first.",
         "That split costs more than the extra minute. The day's money reconciles twice and rarely agrees. A patient exists in one system and not the other, so the pharmacy has no idea who it just dispensed to. Nobody can read the day as a whole, because medicines, consultation, diagnostics, and laboratory sit in separate boxes. And when the owner asks what the clinic collected today, the answer is an addition somebody does by hand.",
-        "ClinicNP is one system with two modules. The clinic half is where the patient exists: registered once, one number for life, every visit kept, the consultation and the ultrasound and the ECG and the lab test billed, and the report that comes back kept against the visit. The pharmacy half is where medicines live: sold by tablet, strip, or box, held per batch with expiry deciding whether stock is an asset or a write-off, oldest expiry first, expired stock unsellable. Both switched on is the interesting case — one counter, one invoice that carries medicines and services together, one dashboard, one set of books.",
-        "On the counter that looks like a single search box returning both halves of the catalogue, each result tagged so a mixed bill still reads clearly, with the sample a test needs shown on the result. Services sit in their own block with the doctor on the line; medicines carry the unit picker, the batch, and the rate. It saves as one invoice, and the evening's day close shows the collection split into medicines, consultation, diagnostics, and laboratory — the four numbers an owner is actually trying to compare.",
+        "ClinicNP is one system with two modules. The clinic half is where the patient exists: registered once, one number for life, every visit kept, the consultation and the ultrasound and the ECG and the lab test billed, and the report that comes back kept against the visit. The pharmacy half is where medicines live: sold by tablet, strip, or box, held per batch with expiry deciding whether stock is an asset or a write-off, oldest expiry first, expired stock unsellable. Both switched on is the interesting case: one counter, one invoice that carries medicines and services together, one dashboard, one set of books.",
+        "On the counter that looks like a single search box returning both halves of the catalogue, each result tagged so a mixed bill still reads clearly, with the sample a test needs shown on the result. Services sit in their own block with the doctor on the line; medicines carry the unit picker, the batch, and the rate. It saves as one invoice, and the evening's day close shows the collection split into medicines, consultation, diagnostics, and laboratory, the four numbers an owner is actually trying to compare.",
       ],
     },
     problems: [
@@ -472,7 +482,7 @@ export const clinicnpSeoLandingPages = {
         text: "The invoice is laid out on your own letterhead with the service block and the medicine block, and marked TAX INVOICE where you are registered for VAT. This is agreed before go live, because it is the document the clinic hands to every patient.",
       },
       {
-        title: "Train one counter, not two",
+        title: "Train the counter once",
         text: "The person on the desk learns one system and one keyboard, which is the whole point. Doctors are trained separately on their own screen, which shows their booked consultations and nothing else.",
       },
       {
@@ -587,8 +597,8 @@ export const clinicnpSeoLandingPages = {
       title: "Pick the category before you pick the vendor",
       paragraphs: [
         "Almost every expensive mistake in this category is a category mistake, not a vendor mistake. Four different kinds of software get sold to clinics in Nepal, they overlap enough to be confused in a demo, and choosing the wrong one costs more than choosing the second-best product inside the right one.",
-        "A retail billing or POS package sells items and reconciles a till. It is cheap, it is everywhere, and it has no patient, no visit, and no doctor, so the clinical half of the day ends up in a notes field. A pharmacy package adds batch and expiry, which is real progress for a dispensary and still leaves the consultation unrecorded. A clinic management system is organised around the patient and the visit: one record per person for life, visits with a complaint and findings, doctors with a share basis, diagnostics and lab tests billed and followed, and a dispensing counter if there is one. A hospital management system adds admissions, wards, IPD billing, and departments — a much larger purchase that a clinic with no beds pays for and does not use.",
-        "There is a fifth category that gets confused with all of them, and it is worth separating cleanly because we build in both. A laboratory information system is where results are entered, reference ranges are held per test and per age and sex, reports are verified by an authorised signatory and printed as report cards, and analysers are interfaced. If your bench runs your own tests and releases your own reports, that is what you are shopping for, and ClinicNP is not it — our other product, Nidanyo, is. If you collect samples and send them to a partner laboratory, you need the counter around a lab, which is exactly what ClinicNP does.",
+        "A retail billing or POS package sells items and reconciles a till. It is cheap, it is everywhere, and it has no patient, no visit, and no doctor, so the clinical half of the day ends up in a notes field. A pharmacy package adds batch and expiry, which is real progress for a dispensary and still leaves the consultation unrecorded. A clinic management system is organised around the patient and the visit: one record per person for life, visits with a complaint and findings, doctors with a share basis, diagnostics and lab tests billed and followed, and a dispensing counter if there is one. A hospital management system adds admissions, wards, IPD billing, and departments, a much larger purchase that a clinic with no beds pays for and does not use.",
+        "There is a fifth category that gets confused with all of them, and it is worth separating cleanly because we build in both. A laboratory information system is where results are entered, reference ranges are held per test and per age and sex, reports are verified by an authorised signatory and printed as report cards, and analysers are interfaced. If your bench runs your own tests and releases your own reports, that is what you are shopping for, and that is our other product, Nidanyo, rather than ClinicNP. If you collect samples and send them to a partner laboratory, you need the counter around a lab, which is exactly what ClinicNP does.",
         "Once the category is settled, the shortlist is decided by a small number of requests that no feature list answers. Ask any vendor to raise a single bill carrying a consultation, a diagnostic, an outside lab test, and two medicines from different batches, and to show the doctor's share on that bill. Ask them to reprint a bill from a closed fiscal year, unchanged. Ask them to sell four tablets out of a strip of ten, then to sell an expired batch. Ask them to pull the plug on the internet and keep billing. Those four requests separate a shortlist faster than any comparison table, because each of them is either built in or cannot be demonstrated at all.",
       ],
     },
@@ -632,7 +642,7 @@ export const clinicnpSeoLandingPages = {
         text: "Patients a day, counters billing, whether you dispense, whether samples go out or stay in, how many doctors take a share, and whether anyone stays overnight. Six lines, and they decide the category before any vendor is contacted.",
       },
       {
-        title: "Shortlist by category, not by feature list",
+        title: "Shortlist inside one category",
         text: "Two or three candidates inside one category is a comparison. One candidate from each of three categories is a confusion, and it is how clinics end up buying a hospital system.",
       },
       {
@@ -650,7 +660,7 @@ export const clinicnpSeoLandingPages = {
     ],
     reasons: [
       "We will tell you which category you are shopping in before we tell you about our product.",
-      "We state plainly what ClinicNP does not do — results, reference ranges, report cards, analysers, admissions, wards — rather than letting a demo imply otherwise.",
+      "We state plainly what ClinicNP does not do (results, reference ranges, report cards, analysers, admissions, wards) rather than letting a demo imply otherwise.",
       "When a laboratory information system is the right answer we say so, and Nidanyo is ours, so the recommendation costs us nothing to make honestly.",
       "The four demo requests above are ones we invite, because they are the ones our product was built to pass.",
       "Built, implemented, and supported by one team in Nepal, on the phone, in Nepali.",
@@ -687,6 +697,11 @@ export const clinicnpSeoLandingPages = {
         label: "hospital management software in Nepal",
         text: "If you admit patients and run wards, the scope is larger than this.",
       },
+      {
+        href: "/best-dental-clinic-software-in-nepal",
+        label: "choosing dental clinic software",
+        text: "The same decision for a dental clinic, where charting changes the answer.",
+      },
     ],
     faqs: [
       {
@@ -707,7 +722,7 @@ export const clinicnpSeoLandingPages = {
       {
         question: "Do I need clinic software or lab software?",
         answer:
-          "If your own bench runs the tests and you release your own reports, you need a laboratory information system — results entry, reference ranges per test and per age and sex, verification by an authorised signatory, report cards, and analyser interfacing. If you collect samples and send them to a partner laboratory, you need the counter around a lab: billing, five tracked stages, a dispatch slip, and the partner's ledger. ClinicNP is the second; Nidanyo, also ours, is the first.",
+          "If your own bench runs the tests and you release your own reports, you need a laboratory information system: results entry, reference ranges per test and per age and sex, verification by an authorised signatory, report cards, and analyser interfacing. If you collect samples and send them to a partner laboratory, you need the counter around a lab: billing, five tracked stages, a dispatch slip, and the partner's ledger. ClinicNP is the second; Nidanyo, also ours, is the first.",
       },
       {
         question: "What should I ask for in a demo?",
@@ -769,7 +784,7 @@ export const clinicnpSeoLandingPages = {
       "Ask for the quotation split into one-time implementation and recurring annual cost, as two separate totals.",
       "Get the licence model in writing and model it at twice your current counters and users before signing.",
       "Establish who cleans and loads the service catalogue, the rates, and the doctor share basis, and whether that is included.",
-      "Have the print layouts — invoice on your letterhead, OPD slip, dispatch slip — named as deliverables rather than assumed.",
+      "Have the print layouts (invoice on your letterhead, OPD slip, dispatch slip) named as deliverables rather than assumed.",
       "Confirm how many training sessions are included and which roles each one covers.",
       "Get support hours and response expectations written down, including Saturdays and clinic opening hours.",
       "Ask what year two costs before you sign year one, and what the figure becomes when you add a counter or switch on the second module.",
@@ -845,6 +860,11 @@ export const clinicnpSeoLandingPages = {
         text: "Our published ranges for the other thing most clinics ask about.",
       },
       {
+        href: "/blog/clinic-software-cost-in-nepal-what-affects-the-price",
+        label: "what affects clinic software cost",
+        text: "The longer read on the factors behind a clinic software quotation.",
+      },
+      {
         href: "/contact",
         label: "contact Infobytes Nepal",
         text: "Send the six numbers and get a written quotation at no charge.",
@@ -911,7 +931,7 @@ export const clinicnpSeoLandingPages = {
       title: "The cheapest package is rarely the cheapest outcome",
       paragraphs: [
         "There is a floor to this market, and it is roughly free. Plenty of shops in Nepal bill on a general retail package, or on a spreadsheet, and the licence cost of that is nearly nothing. What it does not do is hold stock per batch with its own cost and its own expiry, and that single missing capability is what the price difference in this category is actually about. A shop that cannot see expiry until a strip is picked up at the counter is financing the gap out of margin, every month, without a line item for it.",
-        "So the honest way to read a pharmacy software quotation is against what the shop currently loses rather than against the next quotation. Count one month of expired returns, damaged stock, and unexplained shortfall. In most shops that has never been counted, because losses were never recorded with a reason — which is exactly why the stock-out register is the first report we look at with a new customer. If the recorded loss over a month is meaningful, the software argument is arithmetic rather than persuasion. If it genuinely is not, a cheaper package may be the right answer and we will say so.",
+        "So the honest way to read a pharmacy software quotation is against what the shop currently loses rather than against the next quotation. Count one month of expired returns, damaged stock, and unexplained shortfall. In most shops that has never been counted, because losses were never recorded with a reason, which is exactly why the stock-out register is the first report we look at with a new customer. If the recorded loss over a month is meaningful, the software argument is arithmetic rather than persuasion. If it genuinely is not, a cheaper package may be the right answer and we will say so.",
         "What moves the number, roughly in order: how many billing counters run at once, how many users need their own login, how many items you stock and whether that list already exists in a usable form, how much opening stock has to be entered by batch and expiry, whether you want the clinic half switched on as well, whether you host it yourself or we host it, and how many suppliers need ledgers set up. Opening stock entry is the one that surprises shops most: entering several hundred items across multiple batches with correct costs and expiry dates is the work that makes every later valuation, expiry warning, and profit-by-item figure true, and it is not instant.",
         "One cost sits outside all of that and has to be raised early. Billing software used by a VAT registered business in Nepal must meet Inland Revenue Department requirements and be approved before use. Depending on how your shop is registered, the right route is either building to those specifications and going through the approval process, or running the operational system alongside an already approved billing package so invoices stay compliant. We tell you which applies to you at the scoping stage rather than after the build, and unregistered shops are not affected by it at all.",
       ],
@@ -965,7 +985,7 @@ export const clinicnpSeoLandingPages = {
       },
       {
         title: "Settle the VAT and IRD route",
-        text: "If you are VAT registered we establish which route applies — building to Inland Revenue Department specifications and going through approval, or running ClinicNP for operations alongside an approved billing package — before anything is committed.",
+        text: "If you are VAT registered we establish which route applies before anything is committed: building to Inland Revenue Department specifications and going through approval, or running ClinicNP for operations alongside an approved billing package.",
       },
       {
         title: "Go live on one counter, then read the register",

@@ -710,9 +710,9 @@ export const faqGroups: FaqGroup[] = [
         id: "clinic-vs-hospital-vs-lab-software",
         question: "What is the difference between clinic, hospital, pharmacy, and lab software?",
         answer:
-          "Clinic software is organised around the outpatient visit: one patient record for life, visits with a complaint and findings, diagnostics and tests billed, doctor shares, and a dispensing counter. Hospital software adds admissions, wards, IPD billing, and multiple departments, and is a much larger purchase. Pharmacy software sells medicines while holding stock by batch and expiry. Lab software — a laboratory information system — is where results are entered, reference ranges are held, and reports are verified and released.",
+          "Clinic software is organised around the outpatient visit: one patient record for life, visits with a complaint and findings, diagnostics and tests billed, doctor shares, and a dispensing counter. Hospital software adds admissions, wards, IPD billing, and multiple departments, and is a much larger purchase. Pharmacy software sells medicines while holding stock by batch and expiry. Lab software, a laboratory information system, is where results are entered, reference ranges are held, and reports are verified and released.",
         more: [
-          "The four are not cheaper or dearer versions of each other, and buying across the boundary is the expensive mistake in this category. ClinicNP covers clinic and pharmacy, including the counter around a laboratory: it bills a test, tracks the sample through five stamped stages, keeps the report that comes back, and accounts for what the partner laboratory is owed. It does not enter results, hold reference ranges, produce report cards, or interface with analysers — that is Nidanyo.",
+          "The four are not cheaper or dearer versions of each other, and buying across the boundary is the expensive mistake in this category. ClinicNP covers clinic and pharmacy, including the counter around a laboratory: it bills a test, tracks the sample through five stamped stages, keeps the report that comes back, and accounts for what the partner laboratory is owed. It does not enter results, hold reference ranges, produce report cards, or interface with analysers. That is Nidanyo.",
         ],
         links: [
           { href: "/clinic-and-pharmacy-software-in-nepal", label: "Clinic and pharmacy software in Nepal" },
@@ -724,7 +724,7 @@ export const faqGroups: FaqGroup[] = [
         id: "clinic-software-price-nepal",
         question: "How much does clinic or medical software cost in Nepal?",
         answer:
-          "It depends on the category and the size. Medical software in Nepal spans four different price bands — a retail billing package, a pharmacy system, a clinic or polyclinic system, and a hospital management system — with laboratory systems priced on a different axis again, which is why no single figure is meaningful. ClinicNP is quoted by clinic size and which modules you switch on, and it is licensed by users and counters rather than per patient or per bill.",
+          "It depends on the category and the size. Medical software in Nepal spans four different price bands (a retail billing package, a pharmacy system, a clinic or polyclinic system, and a hospital management system), with laboratory systems priced on a different axis again, which is why no single figure is meaningful. ClinicNP is quoted by clinic size and which modules you switch on, and it is licensed by users and counters rather than per patient or per bill.",
         more: [
           "For a build-versus-buy comparison, the honest reference is our published custom software range: a focused first version typically runs from around NPR 200,000 to NPR 600,000, and multi department systems generally start around NPR 600,000. A clinic system with billing, batch-level stock, doctor payouts, sample tracking, fiscal-year rollover, and offline operation is not a focused first version, so adopting a product is substantially cheaper than commissioning the equivalent.",
           "Ask for any quotation split into one-time implementation and recurring annual cost as two separate totals. The charges most often missing from the first number are service catalogue and rate cleanup, extra print layouts, training for roles nobody counted, and data migration beyond the active patient list.",
@@ -740,7 +740,7 @@ export const faqGroups: FaqGroup[] = [
         answer:
           "Yes, and it should do so outright rather than with a warning. ClinicNP holds stock per batch with its own cost and expiry, blocks expired stock from sale entirely with no override, blocks overselling the same way, and sells the oldest expiry first unless a batch is deliberately picked by hand. Near expiry is warned at thirty, sixty, and ninety days so stock can be dealt with commercially before it becomes a write-off.",
         more: [
-          "The reason this matters more than it sounds is that in a shop running a general retail package, expiry is invisible until a strip is picked up at the counter, and by then the loss has already happened and nobody recorded it. Losses in ClinicNP are recorded with a reason — returned to supplier, expired, damaged, lost, used in the clinic, given as a sample, or a counted correction — so the stock-out register answers the question an owner actually has at month end: what did I lose, and to what?",
+          "The reason this matters more than it sounds is that in a shop running a general retail package, expiry is invisible until a strip is picked up at the counter, and by then the loss has already happened and nobody recorded it. Losses in ClinicNP are recorded with a reason (returned to supplier, expired, damaged, lost, used in the clinic, given as a sample, or a counted correction), so the stock-out register answers the question an owner actually has at month end: what did I lose, and to what?",
         ],
         links: [{ href: "/pharmacy-software-in-nepal", label: "Pharmacy software in Nepal" }],
       },
@@ -768,17 +768,31 @@ export const faqGroups: FaqGroup[] = [
         id: "doctor-commission-software",
         question: "Can the software calculate doctor commissions and payouts?",
         answer:
-          "Yes. ClinicNP supports four share bases per doctor — nothing, a percentage of the consultation, a fixed amount per consultation, or a percentage of listed services — and calculates the share on each line as the bill is raised rather than reconstructing it at month end. It totals into a payout sheet per doctor that exports for the month.",
+          "Yes. ClinicNP supports four share bases per doctor (nothing, a percentage of the consultation, a fixed amount per consultation, or a percentage of listed services) and calculates the share on each line as the bill is raised rather than reconstructing it at month end. It totals into a payout sheet per doctor that exports for the month.",
         more: [
           "Calculating at the point of billing rather than at month end is the part that matters. A share worked out afterwards from a register that was not designed to be added up is a share that gets disputed, and the dispute is expensive because the doctor is also the person generating the revenue.",
         ],
         links: [{ href: "/clinic-management-software-in-nepal", label: "Doctors, shares, and payouts in ClinicNP" }],
       },
       {
+        id: "specialty-clinic-software",
+        question: "Is there clinic software for dental, derma, and other specialty clinics in Nepal?",
+        answer:
+          "Yes. ClinicNP by Infobytes Nepal runs the shared core every specialty clinic needs, patients, visits, appointments, doctor shares, outside-lab work, pharmacy stock, and one bill, and is used by dental, dermatology, aesthetic, physiotherapy, pediatric, and neuromodulation clinics. Each specialty page says what fits and what does not, such as the absence of a dental tooth chart.",
+        more: [
+          "The differences between specialties sit in specific places. A dental clinic needs dental-lab jobs reconciled against what each lab charges; a derma clinic needs its dispensary on the same bill as the consultation; an aesthetic clinic needs injectables traced by batch to the patient; a physio or neuromodulation clinic needs to see patients who stop coming mid-course; a pediatric clinic needs infant ages that stay correct and vaccines controlled by batch and expiry.",
+        ],
+        links: [
+          { href: "/clinic-software-in-nepal", label: "Clinic software by specialty" },
+          { href: "/dental-clinic-software-in-nepal", label: "Dental clinic software" },
+          { href: "/derma-clinic-software-in-nepal", label: "Derma clinic software" },
+        ],
+      },
+      {
         id: "clinic-sample-tracking-partner-lab",
         question: "We send samples to an outside lab. Can the software track them?",
         answer:
-          "Yes. ClinicNP stamps five stages — to collect, to send, awaiting report, report in, given out — so the position of every sample and the time it reached that stage is a screen rather than a question. Samples are grouped by what has to be collected so it is one trip to the patient, anything sitting too long turns red on its own, a dispatch slip goes with the sample, and the reason one is stuck is recorded in words.",
+          "Yes. ClinicNP stamps five stages (to collect, to send, awaiting report, report in, given out), so the position of every sample and the time it reached that stage is a screen rather than a question. Samples are grouped by what has to be collected so it is one trip to the patient, anything sitting too long turns red on its own, a dispatch slip goes with the sample, and the reason one is stuck is recorded in words.",
         more: [
           "The commercial half is tracked alongside it: what the patient was billed, what the partner laboratory charges for the same test, the margin between them per test and per period, each settlement recorded, and what is still owed today, per partner or consolidated and exportable.",
           "If your own bench runs the tests and you release your own reports with reference ranges and verification, that is a laboratory information system rather than the counter around one, and Nidanyo is the product for it.",

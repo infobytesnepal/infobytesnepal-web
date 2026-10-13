@@ -1,14 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Marcellus } from "next/font/google";
+import { Marcellus, Source_Sans_3 } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { getCanonicalSiteUrl } from "@/lib/utils";
 import "./globals.css";
 
-// Body, UI, and everything that is not a heading. Only the sans family is
-// loaded. Geist Mono was being downloaded on every page without a single class
-// using it.
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+/**
+ * Body, UI, and everything that is not a heading.
+ *
+ * Source Sans 3 replaced Geist. Geist is the default face of a generation of
+ * template and AI-generated sites, and set next to Marcellus it read as two
+ * unrelated decisions. Source Sans is a humanist sans, so its proportions sit
+ * with a classical display face, it holds up at the 14px most of this site's
+ * body copy is set in, and it is one variable file, so the swap costs no extra
+ * request.
+ */
+const sourceSans = Source_Sans_3({
+  variable: "--font-sans-body",
   subsets: ["latin"],
   display: "swap",
 });
@@ -101,7 +108,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${marcellus.variable} h-full antialiased`}
+      className={`${sourceSans.variable} ${marcellus.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-white text-dark-text">
         {children}

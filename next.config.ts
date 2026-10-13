@@ -46,6 +46,14 @@ const nextConfig: NextConfig = {
   // Only the icons actually used are pulled into the client bundle instead of
   // the whole lucide-react barrel file.
   experimental: {
+    /*
+      `inlineCss` was tried on 2026-10-13 and removed. It is recommended for
+      Tailwind sites, but this site's stylesheet is ~91 KB uncompressed, and
+      inlined it went into both the HTML and the RSC payload: a landing page's
+      HTML grew from ~22 KB to 76 KB gzipped (468 KB raw), and first contentful
+      paint got ~0.3 s slower on every page measured on a slow-4G profile. A
+      separate cached stylesheet is the better trade here.
+    */
     optimizePackageImports: ["lucide-react", "framer-motion"],
     serverActions: {
       // The job application form accepts a CV up to 5MB. Server Actions cap the
@@ -133,6 +141,18 @@ const nextConfig: NextConfig = {
           },
           { key: "Access-Control-Max-Age", value: "86400" },
         ],
+      },
+      /*
+        Files in /public are served by Vercel with `max-age=0, must-revalidate`
+        unless told otherwise, so every page view re-checked every logo, photo,
+        and icon with the server. These are not content-hashed — a logo can be
+        replaced under the same name — so they get a day of fresh cache and a
+        week of serving the cached copy while it revalidates, not a year of
+        `immutable`. A replacement is visible within a day at worst.
+      */
+      {
+        source: "/:path(assets/.*|favicon\\.ico|favicon\\.png|icon\\.png|apple-icon\\.png)",
+        headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
       },
       {
         source: "/admin-infobytesnepal/:path*",

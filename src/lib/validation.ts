@@ -80,11 +80,11 @@ export const productSchema = z.object({
   slug: z
     .string()
     .trim()
-    .min(1, "required — or leave it blank and it is made from the name.")
+    .min(1, "required, or leave it blank and it is made from the name.")
     .max(120, "keep it under 120 characters.")
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "use lowercase letters, numbers and hyphens only."),
   logoUrl: z.string().trim().min(1, "choose an image."),
-  shortDescription: z.string().trim().min(1, "required.").max(700, "keep it under 700 characters — it is the card text on /products."),
+  shortDescription: z.string().trim().min(1, "required.").max(700, "keep it under 700 characters, since it is the card text on /products."),
   fullDescription: z.string().trim().min(1, "required.").max(20_000, "keep it under 20,000 characters."),
   displayOrder: z.coerce.number({ message: "must be a whole number." }).int("must be a whole number.").default(0),
   isPublished: z.boolean().default(false),
@@ -196,11 +196,4 @@ export const landingPageSchema = z.object({
     .min(1, "Add at least one FAQ."),
 });
 
-export const mediaSchema = z.object({
-  id: z.string().optional(),
-  name: z.string().trim().min(1).max(160),
-  url: z.string().trim().min(1),
-  type: z.string().trim().min(1),
-  altText: z.string().trim().max(180).optional().default(""),
-});
 

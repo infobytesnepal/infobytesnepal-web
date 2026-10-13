@@ -438,6 +438,68 @@ export const clusters: Cluster[] = [
         "What moves a pharmacy quotation, and what the free version costs on the shelf.",
         "software",
       ),
+      /*
+        ClinicNP by specialty. The hub owns "clinic software in Nepal", which the
+        general pages above never targeted, and each specialty page owns its own
+        term. Anchors name the specialty first because that is what a clinic
+        owner searches for, and the product second.
+      */
+      node(
+        "/clinic-software-in-nepal",
+        "Clinic Software by Specialty",
+        ["clinic software in Nepal", "clinic software for every specialty", "specialty clinic software in Nepal"],
+        "Dental, derma, aesthetic, physio, pediatric, and neuromodulation clinics.",
+        "software",
+      ),
+      node(
+        "/dental-clinic-software-in-nepal",
+        "Dental Clinic Software",
+        ["dental clinic software in Nepal", "software for dental clinics in Nepal", "dental practice software in Nepal"],
+        "Procedures, dental-lab jobs, specialist shares, and X-rays on the visit.",
+        "software",
+      ),
+      node(
+        "/best-dental-clinic-software-in-nepal",
+        "Choosing Dental Software",
+        ["best dental clinic software in Nepal", "how to choose dental software in Nepal"],
+        "Chart-first or counter-first, and the four demo requests that decide it.",
+        "software",
+      ),
+      node(
+        "/derma-clinic-software-in-nepal",
+        "Derma Clinic Software",
+        ["derma clinic software in Nepal", "dermatology clinic software in Nepal", "skin clinic software in Nepal"],
+        "Procedures, biopsies, and a dispensary on the same bill.",
+        "software",
+      ),
+      node(
+        "/aesthetic-clinic-software-in-nepal",
+        "Aesthetic Clinic Software",
+        ["aesthetic clinic software in Nepal", "cosmetic clinic software in Nepal"],
+        "Treatments, injectables traced by batch, and retail skincare.",
+        "software",
+      ),
+      node(
+        "/physiotherapy-clinic-software-in-nepal",
+        "Physiotherapy Clinic Software",
+        ["physiotherapy clinic software in Nepal", "physio clinic software in Nepal"],
+        "Sessions, therapist pay, and the patients who stop coming.",
+        "software",
+      ),
+      node(
+        "/pediatric-clinic-software-in-nepal",
+        "Pediatric Clinic Software",
+        ["pediatric clinic software in Nepal", "child health clinic software in Nepal"],
+        "Infant ages, guardians, and vaccines by batch and expiry.",
+        "software",
+      ),
+      node(
+        "/neuromodulation-clinic-software-in-nepal",
+        "Neuromodulation Clinic Software",
+        ["neuromodulation clinic software in Nepal", "rTMS clinic software in Nepal"],
+        "Session courses for rTMS, tDCS, and related therapies.",
+        "software",
+      ),
       node(
         "/ai-development-company-in-nepal",
         "AI Development",
@@ -774,11 +836,6 @@ export function getLinkBlocks(sourcePath: string, options?: { siblingLimit?: num
   }
 
   return blocks;
-}
-
-/** Flat list of every cluster page, used by the footer and the HTML sitemap. */
-export function getAllLinkNodes() {
-  return allNodes;
 }
 
 export type Crumb = { name: string; href: string };

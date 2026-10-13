@@ -374,7 +374,7 @@ export async function deleteUnusedMedia(): Promise<ActionResult> {
   const usage = await getMediaUsage();
   const rows = await db.select({ id: mediaAssets.id }).from(mediaAssets);
   const unused = rows.filter((row) => !usage.has(row.id.toLowerCase())).map((row) => row.id);
-  if (!unused.length) return ok("Nothing to clean up — every image is in use.");
+  if (!unused.length) return ok("Nothing to clean up. Every image is in use.");
   await db.delete(mediaAssets).where(inArray(mediaAssets.id, unused));
   revalidatePath("/admin-infobytesnepal/media");
   return ok(`Deleted ${unused.length} unused image${unused.length === 1 ? "" : "s"}.`);

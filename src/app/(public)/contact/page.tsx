@@ -1,3 +1,4 @@
+import DeferredVideo from "@/components/public/deferred-video";
 import type { Metadata } from "next";
 import { Phone } from "lucide-react";
 import ContactForm from "@/components/public/contact-form";
@@ -34,18 +35,12 @@ export default async function ContactPage() {
   return (
     <>
       <section className="page-x relative hidden min-h-screen items-center overflow-hidden bg-deep-navy pt-28 md:flex">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="none"
-          aria-hidden="true"
+        {/* The whole section is hidden below md, so the video only ever loads on wider screens. */}
+        <DeferredVideo
+          src={heroMedia}
           poster="/assets/hero/infobytes-hero-fallback.webp"
           className="absolute inset-0 h-full w-full object-cover"
-        >
-          <source src={heroMedia} type="video/mp4" />
-        </video>
+        />
 
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-7rem)] w-full max-w-7xl items-center justify-start pb-16 pl-5 md:pl-14 lg:pl-24">
           {whatsapp ? (

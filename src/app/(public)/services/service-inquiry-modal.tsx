@@ -46,7 +46,7 @@ export default function ServiceInquiryModal() {
   return (
     <>
       <section className="page-x relative bg-white pb-20">
-        <div className="mx-auto max-w-4xl rounded-[28px] border border-primary-blue/10 bg-gradient-to-br from-soft-blue/70 via-white to-soft-green/60 p-7 text-center shadow-[0_22px_70px_rgba(4,18,63,0.07)] md:p-9">
+        <div className="mx-auto max-w-4xl rounded-[20px] border border-primary-blue/10 bg-soft-blue/60 p-7 text-center shadow-[0_22px_70px_rgba(4,18,63,0.07)] md:p-9">
           <p className="text-sm font-semibold uppercase text-primary-blue">Ready to build?</p>
           <h2 className="mt-3 text-3xl font-semibold text-deep-navy md:text-4xl">Let us shape the right service plan.</h2>
           <p className="mx-auto mt-4 max-w-2xl leading-7 text-dark-text/70">

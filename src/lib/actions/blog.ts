@@ -6,7 +6,7 @@ import { eq, ne, and } from "drizzle-orm";
 import { db } from "@/lib/db/client";
 import { posts } from "@/lib/db/schema";
 import { requireContentAccess } from "@/lib/auth";
-import { estimateReadTime } from "@/lib/blog-markdown";
+import { estimateReadTime, repairLinkAddresses } from "@/lib/blog-markdown";
 import { formFile, storeBlogImage } from "@/lib/media";
 import { formString, newId } from "@/lib/utils";
 import { postSchema } from "@/lib/validation";
@@ -83,7 +83,9 @@ export async function upsertPost(formData: FormData) {
 
   const id = formString(formData, "id") || null;
   const title = formString(formData, "title");
-  const bodyMarkdown = (formData.get("bodyMarkdown") as string | null) ?? "";
+  // A doubled scheme ("https://https://…") is never what an author meant, and
+  // it is exactly what pasting a URL after the old Link button produced.
+  const bodyMarkdown = repairLinkAddresses((formData.get("bodyMarkdown") as string | null) ?? "");
 
   // A blank slug means "name it after the title", which is what an author who
   // has never thought about URLs should get by default.

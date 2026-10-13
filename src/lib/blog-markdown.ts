@@ -41,6 +41,21 @@ export type PostBlock =
   | { type: "figure"; src: string; alt: string; caption: string }
   | { type: "table"; caption: string; head: string[]; rows: string[][] };
 
+/**
+ * Repairs link addresses an author could not have meant.
+ *
+ * Collapses a doubled scheme — "https://https://example.com" — to one. It is
+ * what pasting a copied URL after the editor's old "(https://)" placeholder
+ * produced, and it rendered as a link to a host literally named "https".
+ * Applied when a stored row becomes a post, so the page, the JSON API and the
+ * markdown agents read all get the working address. Own-domain links are left
+ * absolute here on purpose: agents want full URLs, and the page renderer turns
+ * them into internal paths itself.
+ */
+export function repairLinkAddresses(markdown: string) {
+  return (markdown || "").replace(/\]\(\s*(?:https?:\/\/)+(https?:\/\/)/gi, "]($1");
+}
+
 /** Heading anchor, e.g. "What it costs" -> "what-it-costs". */
 export function slugifyHeading(text: string) {
   return (

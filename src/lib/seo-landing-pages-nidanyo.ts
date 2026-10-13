@@ -168,7 +168,7 @@ export const nidanyoSeoLandingPages = {
       {
         question: "Is Nidanyo an LIS or a LIMS?",
         answer:
-          "Both, which is why we call it a LIOMS — a laboratory information and operations management system. It does what an LIS does (patient-focused clinical records, results, and reports) and what a LIMS does (sample lifecycle, chain of custody, and verification), and adds the operational half a laboratory in Nepal runs on: billing, credit accounts, referral commissions, reagent inventory, permissions, and management reporting.",
+          "Both, which is why we call it a LIOMS: a laboratory information and operations management system. It does what an LIS does (patient-focused clinical records, results, and reports) and what a LIMS does (sample lifecycle, chain of custody, and verification), and adds the operational half a laboratory in Nepal runs on: billing, credit accounts, referral commissions, reagent inventory, permissions, and management reporting.",
       },
       {
         question: "Can Nidanyo connect to our analysers?",
@@ -427,7 +427,7 @@ export const nidanyoSeoLandingPages = {
         text: "Hand the vendor a real morning from your lab and have them enter it live. Two patients with similar names, a discounted panel, a credit bill, an out of range result, and a report amended after release. Refuse a prepared dataset.",
       },
       {
-        title: "Ask the vendor questions, not the product questions",
+        title: "Ask about the vendor as well as the product",
         text: "Who configures the test catalogue, who migrates the data, who trains each role, who answers the phone during collection hours, what does year two cost, and can we speak to a lab you delivered for more than a year ago. The blog post linked below carries the full list to work through.",
       },
       {

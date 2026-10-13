@@ -1,4 +1,5 @@
-import Link from "next/link";
+// Prefetches on hover, focus, or touch rather than on sight. See intent-link.tsx.
+import Link from "./intent-link";
 import { ChevronRight } from "lucide-react";
 import type { Crumb } from "@/lib/internal-links";
 import { getCanonicalSiteUrl } from "@/lib/utils";

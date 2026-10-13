@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
@@ -25,6 +24,7 @@ import {
 import BadgeStrip from "@/components/public/badge-strip";
 import CmsImage from "@/components/public/cms-image";
 import PostCard from "@/components/public/post-card";
+import DeferredVideo from "@/components/public/deferred-video";
 import Reveal from "@/components/public/reveal";
 import SectionImage from "@/components/public/section-image";
 import StackingCards from "@/components/public/stacking-cards";
@@ -80,11 +80,15 @@ const featuredServices = [
 // used to sit in the third slot, which is a claim about ourselves that nobody
 // can verify; the product count is a fact, and the six products are listed and
 // linked further down the same page.
+//
+// "Quality / IT Services that we offer" was the same mistake in a quieter form:
+// a word in a stat slot, not a fact. It is replaced by the year the company was
+// registered, which anyone can check against the company registry.
 const stats = [
-  { value: "Nepal & to the World", label: "We Serve across the Globe" },
-  { value: "Quality", label: "IT Services that we offer" },
+  { value: "Since 2023", label: "Registered as Infobytes Nepal Pvt. Ltd." },
   { value: "Six", label: "Software products we build and support" },
-  { value: "Free", label: "First consultation and quotation" },
+  { value: "Nepal & Europe", label: "Where our clients are" },
+  { value: "Free", label: "First consultation and written quotation" },
 ];
 
 // The direct answer block. Written so the first sentence stands on its own when
@@ -391,32 +395,19 @@ export default async function HomePage() {
       {/* ---------- Hero ---------- */}
       <section className="page-x relative flex min-h-screen items-center overflow-hidden bg-soft-blue pt-28">
         {/*
-          The hero background is a still image on phones and the video only from
-          md up. The clip is close to a megabyte, which is real money on mobile
-          data in Nepal and pushes back the largest contentful paint on exactly
-          the devices most of our visitors use. The poster carries the same look.
+          Phones get the plain soft-blue background and nothing else. They used
+          to get the video poster as a still image, but a landscape image cropped
+          to a portrait screen put fragments of the logo behind the headline, and
+          it cost a high-priority image download on the slowest connections.
+          From md up, the poster shows at once and the video attaches after the
+          page has loaded (see deferred-video.tsx); the clip is close to a
+          megabyte, which is real money on mobile data in Nepal.
         */}
-        <Image
-          src={hero.fallbackImageUrl}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="absolute inset-0 h-full w-full object-cover md:hidden"
-          aria-hidden="true"
-        />
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="none"
+        <DeferredVideo
+          src={hero.heroVideoUrl}
           poster={hero.fallbackImageUrl}
-          aria-hidden="true"
           className="absolute inset-0 hidden h-full w-full object-cover md:block"
-        >
-          <source src={hero.heroVideoUrl} type="video/mp4" />
-        </video>
+        />
         {/* Legibility scrim keeps the look light while text stays readable over the video */}
         <div
           className="absolute inset-0 bg-gradient-to-b from-white/85 via-white/55 to-white/80 md:bg-gradient-to-r md:from-white/92 md:via-white/60 md:to-transparent"
@@ -438,18 +429,32 @@ export default async function HomePage() {
             
             {/*
               Two lines, one H1: "Custom Software, Websites & Automation" over
-              "Infobytes Nepal". `tracking-tight` was tuned for Geist; Marcellus
+              "Infobytes Nepal". `tracking-tight` was tuned for the old sans; Marcellus
               is already narrow, and -0.025em closed the serifs into each other
               at 3.6rem.
             */}
             <h1 className="mt-5 text-4xl leading-[1.08] tracking-[-0.01em] text-deep-navy md:text-[3.6rem]">
-              {hero.headline}
-              {/* The tagline is CMS-editable, so any full stop it already
-                  carries is stripped rather than rendered as "..". */}
-              <span className="mt-2 block text-gradient">
-                {hero.tagline.replace(/\.\s*$/, "")}
-                <span className="accent-dot">.</span>
-              </span>
+              {/*
+                The tagline is CMS-editable and is currently blank in
+                production, which rendered an empty line holding nothing but the
+                green full stop under the headline. With no tagline the full
+                stop goes on the headline instead. Any full stop the CMS text
+                already carries is stripped rather than rendered as "..".
+              */}
+              {hero.tagline.trim() ? (
+                <>
+                  {hero.headline}
+                  <span className="mt-2 block text-primary-blue">
+                    {hero.tagline.trim().replace(/\.\s*$/, "")}
+                    <span className="accent-dot">.</span>
+                  </span>
+                </>
+              ) : (
+                <>
+                  {hero.headline.trim().replace(/\.\s*$/, "")}
+                  <span className="accent-dot">.</span>
+                </>
+              )}
             </h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-dark-text/78 md:text-lg md:leading-8">{hero.supportingText}</p>
             {/*
@@ -485,7 +490,7 @@ export default async function HomePage() {
           {stats.map((stat) => (
             <div key={stat.label} className="text-center md:text-left">
               <p className="text-3xl font-semibold md:text-4xl">
-                <span className="bg-gradient-to-r from-[#7eb0ff] to-[#5ff0a8] bg-clip-text text-transparent">{stat.value}</span>
+                {stat.value}
               </p>
               <p className="mt-1 text-sm text-white/70">{stat.label}</p>
             </div>
@@ -572,7 +577,7 @@ export default async function HomePage() {
             {featuredServices.map((service) => (
               <Reveal key={service.title}>
                 <Link href={service.href} className="card-premium group flex h-full flex-col p-6">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl brand-gradient text-white shadow-[0_12px_28px_rgba(3,66,197,0.25)]">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-soft-blue text-primary-blue">
                     <service.icon size={22} />
                   </span>
                   <h3 className="mt-5 text-xl font-semibold text-deep-navy">{service.title}</h3>
@@ -593,14 +598,13 @@ export default async function HomePage() {
       <StackingCards products={products} />
 
       {/* ---------- Why Infobytes ---------- */}
-      <section className="page-x aurora bg-white py-20 md:py-24">
+      <section className="page-x bg-white py-20 md:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-12 lg:grid-cols-[1fr_0.85fr] lg:items-center">
             <div>
               <span className="eyebrow">Why Infobytes Nepal</span>
               <h2 className="mt-3 text-3xl text-deep-navy md:text-5xl">
-                A technology partner, not just another <span className="word-gradient">vendor</span>
-                <span className="accent-dot">.</span>
+                One team from the first call to the support line<span className="accent-dot">.</span>
               </h2>
               <p className="mt-5 text-base leading-8 text-dark-text/72 md:text-lg">
                 Most businesses we meet are running on a mix of spreadsheets, chat groups, and a website nobody has touched in
@@ -864,8 +868,7 @@ export default async function HomePage() {
 
       {/* ---------- Final CTA ---------- */}
       <section className="page-x bg-white pb-16 pt-4">
-        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[32px] brand-gradient px-7 py-14 text-center text-white shadow-[0_30px_90px_rgba(3,66,197,0.28)] md:px-12 md:py-16">
-          <div className="grid-texture pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
+        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[20px] bg-deep-navy px-7 py-14 text-center text-white md:px-12 md:py-16">
           <div className="relative">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider">
               <ShieldCheck size={14} /> Free consultation, no obligation

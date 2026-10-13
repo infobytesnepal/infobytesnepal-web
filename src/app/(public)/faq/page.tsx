@@ -73,7 +73,7 @@ export default function FaqPage() {
           <div className="mx-auto max-w-4xl text-center">
             <span className="eyebrow justify-center">Frequently asked questions</span>
             <h1 className="mt-4 text-4xl font-semibold leading-tight text-deep-navy md:text-6xl">
-              Questions, <span className="text-gradient">answered.</span>
+              Questions, answered<span className="accent-dot">.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-dark-text/74">
               Straight answers on what things cost in Nepal, how to choose an IT company, and what working with
@@ -153,7 +153,7 @@ export default function FaqPage() {
         />
 
         <section className="page-x bg-white py-24">
-          <div className="mx-auto max-w-4xl rounded-[28px] border border-primary-blue/10 bg-gradient-to-br from-soft-blue/70 via-white to-soft-green/60 p-8 text-center shadow-[0_22px_70px_rgba(4,18,63,0.07)] md:p-10">
+          <div className="mx-auto max-w-4xl rounded-[20px] border border-primary-blue/10 bg-soft-blue/60 p-8 text-center shadow-[0_22px_70px_rgba(4,18,63,0.07)] md:p-10">
             <h2 className="text-2xl font-semibold text-deep-navy md:text-3xl">Still have a question?</h2>
             <p className="mx-auto mt-3 max-w-xl leading-7 text-dark-text/70">
               Tell us about your requirement or current workflow, and we&apos;ll come back with a clear scope, an

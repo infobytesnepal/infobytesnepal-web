@@ -40,7 +40,23 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
 
     const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     if (link) {
-      const [, label, href] = link;
+      const [, label, rawHref] = link;
+      /*
+        Authors paste links to our own pages as full URLs — every post written
+        through the CMS since September does — and anything starting with
+        http(s) used to render as an external link: a new tab, no client-side
+        navigation, and `rel="noreferrer"` pointed at ourselves. A one-off
+        database fix in September converted the posts that existed then; the
+        next eight came in the same way. Reducing our own domain to a path here
+        fixes every post, past and future, without touching what was saved.
+      */
+      // `(?:https?:\/\/)+` also absorbs the doubled "https://https://" that the
+      // editor's old Link button produced when a full URL was pasted after it.
+      const href =
+        rawHref
+          .trim()
+          .replace(/^(?:https?:\/\/)+(?=https?:\/\/)/i, "")
+          .replace(/^https?:\/\/(?:www\.)?infobytesnepal\.com(?=\/|$)/i, "") || "/";
       const isExternal = /^https?:\/\//.test(href);
       if (isExternal) {
         return (

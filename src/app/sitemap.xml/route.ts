@@ -2,24 +2,30 @@ import { getPosts } from "@/lib/blog";
 import { getJobs } from "@/lib/careers";
 import { getProducts } from "@/lib/data";
 import { getLandingPageEditDates } from "@/lib/landing-pages";
-import { seoLandingPageList } from "@/lib/seo-landing-pages";
+import { getLandingProduct, seoLandingPageList } from "@/lib/seo-landing-pages";
 import { team } from "@/lib/team";
 import { getCanonicalSiteUrl } from "@/lib/utils";
 
 /**
- * Products are published and unpublished from the admin at runtime, so a
- * sitemap prerendered at build time goes stale the moment the catalogue
- * changes. Nidanyo was added after a deploy and was missing from the sitemap
- * until the next build.
+ * Built per request and cached at the CDN, not prerendered.
  *
- * The hourly rebuild that fixed this was aimed at a problem the product actions
- * now solve directly: they call `revalidatePath("/sitemap.xml")`, so a
- * catalogue change reaches crawlers on the next fetch instead of up to an hour
- * later. Everything else in here is static route lists and a hand-bumped
- * `CONTENT_LAST_UPDATED`, and crawlers refetch on their own schedule rather
- * than ours, so a day is the right backstop.
+ * This route used `export const revalidate = 86400`, and in production it
+ * never revalidated once: on 2026-10-13 the live file still listed exactly the
+ * posts that existed at the 2026-09-29 deploy, and was missing the eight posts
+ * published through the CMS since. `llms.txt` uses the same `revalidate` value
+ * and did refresh. The difference is the file path. Next classifies
+ * `app/sitemap.xml/route.ts` as a metadata route (`isMetadataRoute()` returns
+ * true for it, and false for `app/llms.txt/route.ts`), and metadata routes
+ * "remain static by default" — on Vercel that meant frozen at build time, with
+ * neither the timer nor `revalidatePath("/sitemap.xml")` reaching it.
+ *
+ * `force-dynamic` takes the route out of the static path entirely, and the
+ * `s-maxage` below hands caching to Vercel's CDN, which honours it on function
+ * responses. A crawler gets a cached copy at most fifteen minutes old, and a
+ * post published through the CMS is listed within that window instead of
+ * waiting for the next deploy. Generating it is a handful of small queries.
  */
-export const revalidate = 86400;
+export const dynamic = "force-dynamic";
 
 /**
  * The date the site's written content was last reviewed end to end.
@@ -78,6 +84,25 @@ const PAGE_CONTENT_UPDATED: Record<string, string> = {
   "/best-clinic-management-software-in-nepal": "2026-09-29",
   "/clinic-software-price-in-nepal": "2026-09-29",
   "/pharmacy-software-price-in-nepal": "2026-09-29",
+  // Section headings rewritten on 2026-10-13 (the "X, not Y" formula).
+  "/best-it-company-in-nepal": "2026-10-13",
+  "/crm-software-in-nepal": "2026-10-13",
+  "/ui-ux-design-company-in-nepal": "2026-10-13",
+  "/digital-marketing-agency-in-kathmandu": "2026-10-13",
+  "/services": "2026-10-13",
+  // The privacy policy was rewritten and the terms page created on 2026-10-13.
+  "/privacy-policy": "2026-10-13",
+  "/terms": "2026-10-13",
+  // ClinicNP by specialty, created 2026-10-13.
+  "/clinic-software-in-nepal": "2026-10-13",
+  "/dental-clinic-software-in-nepal": "2026-10-13",
+  "/best-dental-clinic-software-in-nepal": "2026-10-13",
+  "/derma-clinic-software-in-nepal": "2026-10-13",
+  "/aesthetic-clinic-software-in-nepal": "2026-10-13",
+  "/neuromodulation-clinic-software-in-nepal": "2026-10-13",
+  "/physiotherapy-clinic-software-in-nepal": "2026-10-13",
+  "/pediatric-clinic-software-in-nepal": "2026-10-13",
+
   // Three pages added to the Serviol cluster in the same change.
   "/service-management-software-in-nepal": "2026-09-29",
   "/best-service-crm-in-nepal": "2026-09-29",
@@ -91,12 +116,27 @@ const PAGE_CONTENT_UPDATED: Record<string, string> = {
   "/field-service-management-software-in-nepal": "2026-09-29",
   // Gained the "best service CRM" answer and two cluster links.
   "/service-crm-in-nepal": "2026-09-29",
-  // Gained an eight-question clinic and pharmacy group.
-  "/faq": "2026-09-29",
+  // Gained the clinic and pharmacy group on 2026-09-29, and the specialty
+  // clinic answer on 2026-10-13.
+  "/faq": "2026-10-13",
   // Now introduces six products rather than five.
   "/products": "2026-09-29",
-  "/": "2026-09-29",
+  // Stats and the "why us" heading rewritten on 2026-10-13.
+  "/": "2026-10-13",
 };
+
+/*
+  Every ClinicNP, Nidanyo, and Serviol landing page changed on 2026-10-13: the
+  shared template began rendering product-specific headings and calls to action
+  ("What ClinicNP does about it", "Book a ClinicNP demo") where it had shown
+  service-page wording. That is a visible content change on each of those
+  pages, so each is dated by it; pages outside those clusters did not change.
+*/
+for (const page of seoLandingPageList) {
+  if (getLandingProduct(page.path) && (PAGE_CONTENT_UPDATED[page.path] ?? "") < "2026-10-13") {
+    PAGE_CONTENT_UPDATED[page.path] = "2026-10-13";
+  }
+}
 
 /**
  * The later of what the repo knows and what the database knows.
@@ -231,6 +271,7 @@ export async function GET() {
     { path: "/faq", changefreq: "weekly", priority: "0.8", lastmod: lastmodFor("/faq", editDates) },
     { path: "/contact", changefreq: "monthly", priority: "0.7", lastmod: lastmodFor("/contact", editDates) },
     { path: "/privacy-policy", changefreq: "yearly", priority: "0.3", lastmod: lastmodFor("/privacy-policy", editDates) },
+    { path: "/terms", changefreq: "yearly", priority: "0.3", lastmod: lastmodFor("/terms", editDates) },
     // Listed so the API documentation is indexable in its own right: it is the
     // `service-doc` target in /.well-known/api-catalog, and the page people are
     // sent to when they ask whether this site can be queried programmatically.
@@ -247,7 +288,9 @@ export async function GET() {
   return new Response(body, {
     headers: {
       "content-type": "application/xml; charset=utf-8",
-      "cache-control": "public, max-age=3600, s-maxage=3600",
+      // The browser may keep it an hour; the CDN serves a copy for 15 minutes and
+      // then refreshes it in the background for up to a day.
+      "cache-control": "public, max-age=3600, s-maxage=900, stale-while-revalidate=86400",
     },
   });
 }

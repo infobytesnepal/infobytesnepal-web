@@ -1,4 +1,5 @@
-import Link from "next/link";
+// Prefetches on hover, focus, or touch rather than on sight. See intent-link.tsx.
+import Link from "./intent-link";
 import { ArrowRight } from "lucide-react";
 import { clusters, getLinkBlocks, type LinkBlock } from "@/lib/internal-links";
 

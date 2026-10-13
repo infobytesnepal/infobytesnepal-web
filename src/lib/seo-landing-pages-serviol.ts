@@ -205,12 +205,12 @@ export const serviolSeoLandingPages = {
     keyword: "Field Service Management Software in Nepal",
     heroTitle: "Field Service Management Software in Nepal",
     heroIntro:
-      "A field service management system — FSM for short — is the software that decides which technician goes where, what they do when they arrive, and what proof comes back. Serviol is an FSM system built by Infobytes Nepal for teams whose work happens on customer sites rather than at a desk, on the ordinary Android phones field staff in Nepal actually carry.",
+      "A field service management system, FSM for short, is the software that decides which technician goes where, what they do when they arrive, and what proof comes back. Serviol is an FSM system built by Infobytes Nepal for teams whose work happens on customer sites rather than at a desk, on the ordinary Android phones field staff in Nepal actually carry.",
     overview: {
       title: "Running a field team without a system, and what it costs",
       paragraphs: [
         "A field team without FSM software runs on phone calls. A supervisor allocates the day verbally each morning, technicians report back when they remember, and the record of what happened is a mix of Viber messages, a paper job card, and somebody's recollection at the end of the week. It works while the team is small enough that one person can hold it all.",
-        "It stops working at around eight to ten technicians. Jobs get double assigned or missed entirely, nobody can tell a customer when an engineer will actually arrive, and billing lags because the paperwork proving the work was done has not come back yet. The cost is not dramatic — it is a steady leak of unbilled visits, repeat trips, and customers who were not told anything.",
+        "It stops working at around eight to ten technicians. Jobs get double assigned or missed entirely, nobody can tell a customer when an engineer will actually arrive, and billing lags because the paperwork proving the work was done has not come back yet. The cost is not dramatic. It is a steady leak of unbilled visits, repeat trips, and customers who were not told anything.",
         "Field service management software replaces the phone calls with a shared plan. Each technician has a day, each job has a status the office can see, and each completed visit carries evidence: what was done, what parts were used, how long it took, and a customer signature or photo. Serviol does this on ordinary Android phones, which is what field staff in Nepal are actually carrying.",
       ],
     },
@@ -254,7 +254,7 @@ export const serviolSeoLandingPages = {
       },
       {
         title: "Define jobs, priorities, and proof",
-        text: "We agree what a job is, what its stages are, which priorities exist, and — most importantly — what a technician must capture before a job can be marked complete. That last decision is what makes the data worth having.",
+        text: "We agree what a job is, what its stages are, which priorities exist, and, most importantly, what a technician must capture before a job can be marked complete. That last decision is what makes the data worth having.",
       },
       {
         title: "Set up teams, sites, and skills",
@@ -262,7 +262,7 @@ export const serviolSeoLandingPages = {
       },
       {
         title: "Pilot with one team",
-        text: "One team runs on Serviol for a few weeks while the rest continue as before. This surfaces the practical problems — a screen that takes too long in the field, a required field nobody can fill on site — while they are still cheap to change.",
+        text: "One team runs on Serviol for a few weeks while the rest continue as before. This surfaces the practical problems, such as a screen that takes too long in the field or a required field nobody can fill on site, while they are still cheap to change.",
       },
       {
         title: "Roll out and tune the reports",
@@ -322,7 +322,7 @@ export const serviolSeoLandingPages = {
       {
         question: "What is the difference between FSM and a service CRM?",
         answer:
-          "FSM is the delivery side — who goes where, what they do, and what proof comes back. A service CRM is the record side — the customer, their installed equipment, contracts, and complete history. Serviol covers both, because a field job is worth little without the customer history behind it.",
+          "FSM is the delivery side: who goes where, what they do, and what proof comes back. A service CRM is the record side: the customer, their installed equipment, contracts, and complete history. Serviol covers both, because a field job is worth little without the customer history behind it.",
       },
       {
         question: "Is there field service management software made in Nepal?",
@@ -379,7 +379,7 @@ export const serviolSeoLandingPages = {
       title: "What actually separates a good service management system from a bad one",
       paragraphs: [
         "Almost every service management system demos well. The feature lists are close to identical, and a scripted walkthrough on office wifi makes any of them look capable. The differences that decide whether a system is still in use a year later are mostly invisible in a demo.",
-        "The first is field usability. A system is used by two very different populations — office staff on a desktop and technicians on a phone, often outdoors, often in a hurry, sometimes with no signal. Systems that were designed desktop first and given a mobile view afterwards tend to fail in the field, and once technicians stop entering data the whole system degrades into an expensive way of storing nothing.",
+        "The first is field usability. A system is used by two very different populations: office staff on a desktop and technicians on a phone, often outdoors, often in a hurry, sometimes with no signal. Systems that were designed desktop first and given a mobile view afterwards tend to fail in the field, and once technicians stop entering data the whole system degrades into an expensive way of storing nothing.",
         "The second is whether the system models your service obligation correctly. A break-fix business, a business running annual maintenance contracts, and a business with SLA penalties need different things from the same software. A system that cannot represent your contracts will quietly push you back into spreadsheets for the part that actually earns money.",
         "The third is what happens after the sale. Implementation, data migration, training, and someone reachable when a question comes up in the first month decide more outcomes than the feature comparison does. This is where a local vendor has a structural advantage over a global one, and where an unsupported cheap system becomes the most expensive option available.",
       ],
@@ -418,7 +418,7 @@ export const serviolSeoLandingPages = {
         text: "Before looking at any product, write down what you actually sell after the sale: break-fix visits, annual contracts, warranty work, or SLA backed support. Most bad purchases come from evaluating software before deciding what it has to represent.",
       },
       {
-        title: "Shortlist on fit, not on feature count",
+        title: "Shortlist on fit",
         text: "Three products that can model your contracts beat ten that have longer feature lists. Anything that cannot represent your core commercial obligation is out, regardless of how good the rest of it looks.",
       },
       {
@@ -437,7 +437,7 @@ export const serviolSeoLandingPages = {
     reasons: [
       "We would rather you chose correctly than chose us: a system abandoned in month three costs both sides more than a lost sale.",
       "Serviol is a strong fit for equipment and service businesses in Nepal with field teams, contracts, and complaint volume.",
-      "It is a weaker fit if you need heavy manufacturing ERP, or if your service work is entirely remote with no site visits — and we will say so.",
+      "It is a weaker fit if you need heavy manufacturing ERP, or if your service work is entirely remote with no site visits, and we will say so.",
       "Local implementation, training, and support in your timezone, from the people who built it.",
       "A pilot on one team is how we prefer to start, because it is how buyers find out the truth.",
     ],
@@ -487,7 +487,7 @@ export const serviolSeoLandingPages = {
       {
         question: "What is the difference between service management, FSM, and a service CRM?",
         answer:
-          "Service management is the umbrella term. FSM (field service management) is the delivery half — scheduling, dispatch, and proof of work. A service CRM is the record half — customers, installed equipment, contracts, and history. A complete system covers both halves.",
+          "Service management is the umbrella term. FSM (field service management) is the delivery half: scheduling, dispatch, and proof of work. A service CRM is the record half: customers, installed equipment, contracts, and history. A complete system covers both halves.",
       },
       {
         question: "How much does a service management system cost?",
@@ -525,7 +525,7 @@ export const serviolSeoLandingPages = {
       paragraphs: [
         "An AMC is a promise made in advance: a customer pays once for a year of cover, and your business owes them a defined number of preventive visits plus response when something breaks. Because the money arrives at the start and the obligation runs for twelve months, an AMC book is very easy to mismanage without anybody noticing for most of the year.",
         "Revenue leaks in three specific places. Renewals lapse because no system was watching the expiry date, and by the time somebody notices, the customer has been unattended for two months and is unwilling to renew. Scheduled preventive visits are skipped when the team is busy, which is invisible until a machine fails and the customer asks what exactly they paid for. And nobody knows which contracts are profitable, because the visits consumed against each contract were never counted.",
-        "AMC management software fixes all three by treating the contract as an object that owns things: entitled visits, a schedule, a consumption count, an expiry date, and a margin. Serviol does this alongside the ticket and field service side, so a contract's real cost — the visits actually performed against it — is counted automatically rather than reconstructed at renewal time.",
+        "AMC management software fixes all three by treating the contract as an object that owns things: entitled visits, a schedule, a consumption count, an expiry date, and a margin. Serviol does this alongside the ticket and field service side, so a contract's real cost, the visits actually performed against it, is counted automatically rather than reconstructed at renewal time.",
       ],
     },
     problems: [
@@ -571,7 +571,7 @@ export const serviolSeoLandingPages = {
       },
       {
         title: "Connect contracts to tickets",
-        text: "When a complaint arrives, the system resolves whether that machine is covered, by which contract, and whether the visit is chargeable — before the engineer is dispatched.",
+        text: "When a complaint arrives, the system resolves whether that machine is covered, by which contract, and whether the visit is chargeable, before the engineer is dispatched.",
       },
       {
         title: "Review profitability after one cycle",
@@ -636,7 +636,7 @@ export const serviolSeoLandingPages = {
       {
         question: "Does it handle both comprehensive and non comprehensive AMC?",
         answer:
-          "Yes. Contract types are configured separately, so the system knows whether parts are included, what the visit entitlement is, and whether a particular job should be billed — which is the distinction that matters commercially.",
+          "Yes. Contract types are configured separately, so the system knows whether parts are included, what the visit entitlement is, and whether a particular job should be billed, which is the distinction that matters commercially.",
       },
       {
         question: "Is AMC software separate from field service software?",
@@ -663,9 +663,9 @@ export const serviolSeoLandingPages = {
     keyword: "Complaint Management System in Nepal",
     heroTitle: "Complaint management system in Nepal",
     heroIntro:
-      "Most complaints are not mishandled on purpose. They are lost — taken on a phone call, written in a notebook, forwarded on Viber, and never given an owner. A complaint management system makes losing one structurally difficult.",
+      "Most complaints are not mishandled on purpose. They are lost: taken on a phone call, written in a notebook, forwarded on Viber, and never given an owner. A complaint management system makes losing one structurally difficult.",
     overview: {
-      title: "The problem is capture, not effort",
+      title: "Most complaints are lost at capture",
       paragraphs: [
         "Ask any service business whether they take complaints seriously and the answer is yes, and it is usually true. Ask how many complaints are open right now and the answer is a pause. The gap between those two answers is not a lack of care. It is that complaints arrive through five channels and land in five different places, none of which is a system.",
         "A complaint that arrives by phone lives in whatever the person who answered wrote down. One that arrives on Viber lives in a chat that scrolls away. One that arrives through a manager lives in a forwarded message. Each of these is fine on its own; together they mean nobody can see the whole picture, and the complaints that get resolved are the ones whose customers chase hardest rather than the ones that are most urgent.",
@@ -834,9 +834,9 @@ export const serviolSeoLandingPages = {
     overview: {
       title: "What the category covers, and who in Nepal is actually buying it",
       paragraphs: [
-        "Service management software sits between two things most businesses already have: a sales system that ends at the invoice, and an accounts system that starts at it. Neither one knows what you installed, whether it is still covered, who came out last time, or what the contract has cost you to honour so far. That gap is the category. It covers the record side — customers, sites, installed units with serial numbers, warranties, and annual maintenance contracts — and the delivery side — complaint tickets, scheduling, dispatch, proof of work, spare parts, and attendance — under one set of reports.",
+        "Service management software sits between two things most businesses already have: a sales system that ends at the invoice, and an accounts system that starts at it. Neither one knows what you installed, whether it is still covered, who came out last time, or what the contract has cost you to honour so far. That gap is the category. It covers the record side (customers, sites, installed units with serial numbers, warranties, and annual maintenance contracts) and the delivery side (complaint tickets, scheduling, dispatch, proof of work, spare parts, and attendance) under one set of reports.",
         "In Nepal the buyers are consistent enough to name. Medical and laboratory equipment suppliers, who have machines under warranty in hospitals across several districts. Lift and escalator companies, whose entire business model is the maintenance contract rather than the installation. HVAC, generator, and solar dealers with seasonal complaint peaks. IT hardware vendors carrying hundreds of small units under support. Industrial machinery distributors whose downtime costs a factory money by the hour. What they share is that the machine is somewhere else, the technician is mobile, and the obligation outlives the sale by years.",
-        "The practical threshold is not revenue, it is people. Below roughly eight field staff a capable supervisor can hold the day in their head and a spreadsheet holds the contract list. Above it, jobs get double assigned, contracts lapse quietly, and the answer to 'is this visit chargeable' becomes an argument rather than a lookup. The cost of not having the system is rarely dramatic — it is a steady leak of unbilled visits, repeat trips, expired contracts nobody renewed, and customers who were told nothing.",
+        "The practical threshold is not revenue, it is people. Below roughly eight field staff a capable supervisor can hold the day in their head and a spreadsheet holds the contract list. Above it, jobs get double assigned, contracts lapse quietly, and the answer to 'is this visit chargeable' becomes an argument rather than a lookup. The cost of not having the system is rarely dramatic. It is a steady leak of unbilled visits, repeat trips, expired contracts nobody renewed, and customers who were told nothing.",
         "What separates a system that survives here from one that gets abandoned is almost never the feature list. It is whether the field app keeps working in a basement plant room or outside the valley on patchy mobile data, whether it runs on the mid-range Android phone a technician is actually carrying rather than on office wifi during a demo, and whether support answers in your working hours and in your language. Serviol was built against those three constraints first, because a field team that cannot use the app on a bad day stops using it on the good ones too.",
       ],
     },
@@ -857,7 +857,7 @@ export const serviolSeoLandingPages = {
       "A visible day planner per technician that the office and the field read the same way.",
       "Contract expiry driving renewal reminders instead of relying on somebody remembering.",
       "Parts consumption captured against the job on site, so the store and the job agree.",
-      "Proof of work — photos, signature, parts, time on job — captured on an ordinary Android phone, offline if need be.",
+      "Proof of work (photos, signature, parts, time on job) captured on an ordinary Android phone, offline if need be.",
       "Open, overdue, and closed counts plus contract profitability available without asking three people.",
     ],
     features: [
@@ -878,12 +878,12 @@ export const serviolSeoLandingPages = {
     ],
     process: [
       {
-        title: "Map the obligation, not the org chart",
+        title: "Map what you owe customers first",
         text: "We start from what you actually owe customers after the sale: which equipment, under what cover, for how long, and at what response expectation. That differs completely between a lift company and an IT hardware vendor, and it is what the system has to model.",
       },
       {
         title: "Bring in customers, machines, and live contracts",
-        text: "Existing customers, installed units, serial numbers, and contracts still running are imported from wherever they live now — usually spreadsheets and invoice files — so the system is useful on day one rather than after months of data entry.",
+        text: "Existing customers, installed units, serial numbers, and contracts still running are imported from wherever they live now, usually spreadsheets and invoice files, so the system is useful on day one rather than after months of data entry.",
       },
       {
         title: "Configure tickets, priorities, and what proof means",
@@ -947,7 +947,7 @@ export const serviolSeoLandingPages = {
       {
         question: "What is the best service management software in Nepal?",
         answer:
-          "The best service management software in Nepal is the one that survives your worst day rather than the one with the longest feature list: a field app that keeps working in a basement or outside the valley, on the mid-range Android phone your technician already carries, with support answering in your working hours and your language. Serviol by Infobytes Nepal is built against those constraints first, and the criteria worth testing any vendor against — including us — are set out on our guide to choosing a service management system.",
+          "The best service management software in Nepal is the one that survives your worst day rather than the one with the longest feature list: a field app that keeps working in a basement or outside the valley, on the mid-range Android phone your technician already carries, with support answering in your working hours and your language. Serviol by Infobytes Nepal is built against those constraints first, and the criteria worth testing any vendor against, including us, are set out on our guide to choosing a service management system.",
       },
       {
         question: "Is there service management software made in Nepal?",
@@ -1005,7 +1005,7 @@ export const serviolSeoLandingPages = {
         "A sales CRM, a helpdesk, and a service CRM all show you a list of open items with owners and due dates, which is why they are so easily confused in a demo. They are built around different objects, and picking the wrong object costs more than picking the second-best product inside the right category.",
         "A sales CRM is built around the opportunity: a lead arrives, moves through stages, and closes or dies. It models winning work and has no concept of a machine you installed three years ago. A helpdesk is built around the conversation: a request arrives, gets replied to, and is resolved. It models a thread, not an asset, so it cannot tell you that this is the fourth complaint against the same serial number. A service CRM is built around the customer and the thing you sold them: installed units with serial numbers, warranty and contract cover with expiry dates, complaint history per machine, and the visits that answered them. If your obligation outlives the invoice, that is the category you are shopping in.",
         "Within the category, the local-against-imported question is more practical than patriotic. Imported service CRMs are generally stronger on integrations and reporting polish and weaker on the things that actually decide adoption here: behaviour on mid-range Android phones over patchy mobile data, support inside your working hours, invoicing in NPR, and a willingness to configure a workflow that does not match the vendor's template. A well-known international product that assumes constant connectivity will be abandoned by a technician standing in a basement plant room, and no amount of feature depth recovers from that.",
-        "Five requests settle a shortlist faster than any comparison table, because each is either built in or cannot be demonstrated at all. Ask to see a complaint raised against a specific serial number, with the warranty or contract status appearing before anyone decides whether the visit is chargeable. Ask for the full history of one machine, including which technician attended and what parts were used. Ask them to put the field app in flight mode, complete a job with a photo and a signature, and then sync it. Ask for a list of contracts expiring in the next sixty days. Ask for profitability on one maintenance contract — what you charged against what honouring it cost. Any vendor who can do all five on live data during one session is a serious candidate.",
+        "Five requests settle a shortlist faster than any comparison table, because each is either built in or cannot be demonstrated at all. Ask to see a complaint raised against a specific serial number, with the warranty or contract status appearing before anyone decides whether the visit is chargeable. Ask for the full history of one machine, including which technician attended and what parts were used. Ask them to put the field app in flight mode, complete a job with a photo and a signature, and then sync it. Ask for a list of contracts expiring in the next sixty days. Ask for profitability on one maintenance contract: what you charged against what honouring it cost. Any vendor who can do all five on live data during one session is a serious candidate.",
       ],
     },
     problems: [
@@ -1159,9 +1159,9 @@ export const serviolSeoLandingPages = {
     overview: {
       title: "A department nobody measures is a department everybody assumes is losing money",
       paragraphs: [
-        "A service department inside a sales business is a strange thing. It exists because the products need supporting, it is staffed by the most experienced technical people in the company, and it is usually the only part of the business whose contribution nobody can state. Sales has a target and a number. Accounts has a ledger. Service has a queue of complaints, a store of spare parts, a team of technicians, and no report, so it gets described as a cost centre by default — often while quietly earning more margin than the product sales it supports.",
+        "A service department inside a sales business is a strange thing. It exists because the products need supporting, it is staffed by the most experienced technical people in the company, and it is usually the only part of the business whose contribution nobody can state. Sales has a target and a number. Accounts has a ledger. Service has a queue of complaints, a store of spare parts, a team of technicians, and no report, so it gets described as a cost centre by default, often while quietly earning more margin than the product sales it supports.",
         "The reason is that the department's numbers are spread across places that do not talk. Chargeable visits are invoiced in the accounts system, which does not know which job they belong to. Free warranty visits are invoiced nowhere and therefore counted nowhere, although they consume the same technician hours. Spare parts leave the store on a slip and are reconciled against stock but not against the job that consumed them. Claims to the principal for warranty work are assembled by hand from whatever evidence survives. Technician time is not recorded at all, so utilisation is an impression. Every one of those is measurable; none of them is being measured.",
-        "Serviol closes the department around the job. A complaint arrives and is logged against a customer, a site, and a specific installed unit with its serial number. Coverage is visible before anyone decides whether the visit is chargeable, so free and billable work are separated at the point the decision is made rather than argued about later. The technician's time on the job is recorded, the parts consumed are captured on site against that job, and the proof — photos, signature, work done — comes back attached to it. What was warranty becomes a claimable record with its evidence already assembled.",
+        "Serviol closes the department around the job. A complaint arrives and is logged against a customer, a site, and a specific installed unit with its serial number. Coverage is visible before anyone decides whether the visit is chargeable, so free and billable work are separated at the point the decision is made rather than argued about later. The technician's time on the job is recorded, the parts consumed are captured on site against that job, and the proof (photos, signature, work done) comes back attached to it. What was warranty becomes a claimable record with its evidence already assembled.",
         "Out of that come the four numbers a department head is usually asked for and cannot produce: technician utilisation, the split between chargeable and free work, parts consumption per job type, and profitability per maintenance contract. The last one changes behaviour fastest. A dealer who discovers that one product line's AMCs are consistently loss-making, and that another line's are carrying the department, prices the next renewal differently. That is not a reporting improvement, it is a commercial one.",
       ],
     },
@@ -1280,7 +1280,7 @@ export const serviolSeoLandingPages = {
       {
         question: "Does it handle warranty claims to the manufacturer or principal?",
         answer:
-          "Yes. Work identified as warranty accumulates as claimable records with the job evidence already attached — the unit and serial number, the fault, the parts consumed, the technician, the time, and the proof of completion — so a claim is assembled from the system rather than reconstructed from memory and paper weeks later.",
+          "Yes. Work identified as warranty accumulates as claimable records with the job evidence already attached (the unit and serial number, the fault, the parts consumed, the technician, the time, and the proof of completion), so a claim is assembled from the system rather than reconstructed from memory and paper weeks later.",
       },
       {
         question: "Can we separate chargeable visits from free warranty visits?",

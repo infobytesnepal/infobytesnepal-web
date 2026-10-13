@@ -228,10 +228,17 @@ export default function PostEditor({ post, categories, authors, error, saved }: 
   function insertLink() {
     applyToSelection((selected) => {
       const label = selected || "link text";
-      const text = `[${label}](https://)`;
-      // Leave the caret sitting after "https://" so the next keystroke types
-      // the URL, which is the only part that always has to be filled in.
-      return { text, selectFrom: text.length - 1, selectTo: text.length - 1 };
+      const text = `[${label}](/page-address)`;
+      /*
+        Select the placeholder address so whatever is pasted or typed replaces
+        it. The button used to insert "(https://)" and park the caret after it,
+        so pasting a copied URL — which already starts with https:// — produced
+        "https://https://…", a broken link. Five live posts carried one.
+        The placeholder is a path because links to our own pages should be
+        paths; an external URL pasted over it works just as well.
+      */
+      const from = label.length + 3;
+      return { text, selectFrom: from, selectTo: text.length - 1 };
     });
   }
 
