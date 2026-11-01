@@ -24,6 +24,7 @@ export const serviceCatalog = [
     links: [
       { href: "/web-development-company-in-nepal", label: "web development company in Nepal" },
       { href: "/web-design-company-in-nepal", label: "web design in Nepal" },
+      { href: "/website-design-and-development-services-in-nepal", label: "website services anywhere in Nepal" },
       { href: "/ecommerce-website-development-nepal", label: "e-commerce website development" },
       { href: "/website-cost-in-nepal", label: "what a website costs in Nepal" },
       { href: "/website-maintenance-services-in-nepal", label: "website maintenance in Nepal" },

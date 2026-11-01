@@ -44,16 +44,32 @@ export default async function ProductsPage() {
             .
           </p>
         </Reveal>
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
+        {/*
+          `grid-cols-1` rather than no template: an implicit column sizes to its
+          widest item's min-content, so one card that cannot shrink widened the
+          whole column past the screen and the right edge of every card was cut
+          off on phones.
+        */}
+        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
           {products.map((product) => (
             <Reveal key={product.slug}>
               <Link
                 href={`/products/${product.slug}`}
-                className="group block h-full overflow-hidden rounded-[28px] border border-primary-blue/12 bg-white p-7 shadow-[0_24px_70px_rgba(4,18,63,0.08)] transition hover:-translate-y-1 hover:border-primary-green/40 hover:shadow-[0_28px_84px_rgba(4,18,63,0.13)]"
+                className="@container group block h-full overflow-hidden rounded-[28px] border border-primary-blue/12 bg-white p-6 shadow-[0_24px_70px_rgba(4,18,63,0.08)] transition hover:-translate-y-1 hover:border-primary-green/40 hover:shadow-[0_28px_84px_rgba(4,18,63,0.13)] sm:p-7"
               >
+                {/*
+                  The logo frame (12rem) and the pill (about 7rem) need roughly
+                  20rem side by side. That is wider than a card on most phones
+                  and on two-column tablets, so the pill only appears once the
+                  card itself has the room. Measuring the card rather than the
+                  viewport covers both. The link at the bottom of the card says
+                  the same thing, so nothing is lost when it is hidden.
+                */}
                 <div className="flex items-start justify-between gap-6">
                   <ProductLogo src={product.logoUrl} name={product.name} />
-                  <span className="site-button-light shrink-0 rounded-full px-4 py-2 text-sm font-semibold">Learn More</span>
+                  <span className="site-button-light hidden shrink-0 rounded-full px-4 py-2 text-sm font-semibold @[22rem]:inline-block">
+                    Learn More
+                  </span>
                 </div>
                 <h2 className="mt-8 text-3xl font-semibold text-deep-navy">{product.name}</h2>
                 <p className="mt-4 max-w-xl leading-7 text-dark-text/72">{product.shortDescription}</p>

@@ -252,6 +252,51 @@ export default async function BlogPage({ searchParams }: { searchParams: SearchP
         </div>
       </section>
 
+      {/*
+        Every post, by title, on the canonical /blog URL only.
+
+        The paginated views (/blog?page=2 and on) declare /blog as their
+        canonical, which is right for the page but means a search engine folds
+        them into /blog and puts little weight on what they link to. With six
+        posts per page, everything after the seventh was linked from nowhere
+        that counted, and Search Console reported two dozen URLs as
+        "Discovered, currently not indexed". This list puts each post one click
+        from the blog index. It is also simply a useful index once the blog
+        runs past a few pages.
+      */}
+      {!activeCategory && currentPage === 1 && allPosts.length > PER_PAGE + 1 && (
+        <section className="page-x border-t border-primary-blue/10 bg-white py-14 md:py-16">
+          <div className="mx-auto max-w-7xl">
+            <h2 className="text-2xl font-semibold text-deep-navy md:text-3xl">Every article</h2>
+            <div className="mt-8 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+              {counts.map((entry) => (
+                <div key={entry.name}>
+                  <h3 className="text-sm font-semibold uppercase text-primary-blue">
+                    <Link href={buildHref(entry.name, 1)} className="focus-ring rounded hover:text-primary-green">
+                      {entry.name}
+                    </Link>
+                  </h3>
+                  <ul className="mt-3 grid gap-2.5">
+                    {allPosts
+                      .filter((post) => post.category === entry.name)
+                      .map((post) => (
+                        <li key={post.slug}>
+                          <Link
+                            href={`/blog/${post.slug}`}
+                            className="focus-ring rounded text-sm leading-6 text-dark-text/76 transition hover:text-primary-blue"
+                          >
+                            {post.title}
+                          </Link>
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <CtaBand
         eyebrow="Free consultation, no obligation"
         title="Ready to simplify how your business runs?"

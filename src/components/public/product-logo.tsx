@@ -30,7 +30,7 @@ export default function ProductLogo({
   const frame = size === "detail" ? "h-16 w-48 md:h-20 md:w-60" : "h-16 w-48";
 
   return (
-    <div className={`flex shrink-0 items-center ${frame}`}>
+    <div className={`flex max-w-full shrink-0 items-center ${frame}`}>
       <CmsImage
         src={src}
         alt={`${name} logo`}

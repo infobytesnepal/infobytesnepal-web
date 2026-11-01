@@ -3,6 +3,7 @@ import { clinicnpSpecialtySeoLandingPages } from "./seo-landing-pages-clinicnp-s
 import { extraSeoLandingPages } from "./seo-landing-pages-extra";
 import { nidanyoSeoLandingPages } from "./seo-landing-pages-nidanyo";
 import { serviolSeoLandingPages } from "./seo-landing-pages-serviol";
+import { webSeoLandingPages } from "./seo-landing-pages-web";
 
 export type SeoLandingPage = {
   slug: string;
@@ -1409,6 +1410,11 @@ export const seoLandingPages = {
         text: "Turn the design into a fast, responsive, production ready website.",
       },
       {
+        href: "/website-design-and-development-services-in-nepal",
+        label: "website design and development services in Nepal",
+        text: "How a website project runs for businesses outside Kathmandu, and what it includes.",
+      },
+      {
         href: "/graphic-design-company-in-nepal",
         label: "graphic design company in Nepal",
         text: "Extend your brand visuals beyond the website with graphic design support.",
@@ -1454,6 +1460,11 @@ export const seoLandingPages = {
         question: "How do we start a web design project?",
         answer:
           "Share your business goals, current website if any, and examples you like. We will then plan a design direction and a realistic scope.",
+      },
+      {
+        question: "Do you design websites for businesses outside Kathmandu?",
+        answer:
+          "Yes. We design and build websites for businesses anywhere in Nepal. Clients in the Kathmandu valley can meet us in person; elsewhere, design reviews happen over calls and a private link you open on your own phone, and someone travels to you on larger projects.",
       },
     ],
   },
@@ -1667,8 +1678,8 @@ export const seoLandingPages = {
         text: "Build custom systems and automation around your workflow.",
       },
       {
-        href: "/web-development-company-in-nepal",
-        label: "web development company in Nepal",
+        href: "/web-design-company-in-kathmandu",
+        label: "web design company in Kathmandu",
         text: "Get a fast, credible website for your Kathmandu business.",
       },
       {
@@ -1791,8 +1802,8 @@ export const seoLandingPages = {
     ],
     related: [
       {
-        href: "/web-design-company-in-nepal",
-        label: "web design company in Nepal",
+        href: "/web-design-company-in-lalitpur",
+        label: "web design company in Lalitpur",
         text: "Get a clean, portfolio grade website design for your brand.",
       },
       {
@@ -1920,8 +1931,8 @@ export const seoLandingPages = {
     ],
     related: [
       {
-        href: "/web-development-company-in-nepal",
-        label: "web development company in Nepal",
+        href: "/web-design-company-in-bhaktapur",
+        label: "web design company in Bhaktapur",
         text: "Get a professional website for your Bhaktapur business.",
       },
       {
@@ -2049,8 +2060,8 @@ export const seoLandingPages = {
     ],
     related: [
       {
-        href: "/web-development-company-in-nepal",
-        label: "web development company in Nepal",
+        href: "/web-design-company-in-pokhara",
+        label: "web design company in Pokhara",
         text: "Get a fast, booking ready website for your Pokhara business.",
       },
       {
@@ -3917,6 +3928,7 @@ export const seoLandingPageList: SeoLandingPage[] = [
   ...Object.values(serviolSeoLandingPages),
   ...Object.values(clinicnpSeoLandingPages),
   ...Object.values(clinicnpSpecialtySeoLandingPages),
+  ...Object.values(webSeoLandingPages),
 ];
 
 export const allSeoLandingPages = {
@@ -3926,6 +3938,7 @@ export const allSeoLandingPages = {
   ...serviolSeoLandingPages,
   ...clinicnpSeoLandingPages,
   ...clinicnpSpecialtySeoLandingPages,
+  ...webSeoLandingPages,
 };
 
 /**
@@ -3961,4 +3974,34 @@ const landingPageProducts = new Map<string, LandingProduct>([
 
 export function getLandingProduct(path: string): LandingProduct | null {
   return landingPageProducts.get(path) ?? null;
+}
+
+/**
+ * The city a landing page is about, for the `areaServed` of its Service schema.
+ *
+ * Every page used to declare the whole country, which is true of the company
+ * and wrong for a page titled "Web Design Company in Pokhara": it tells a search
+ * engine the page is about Nepal in general at exactly the point it is trying
+ * to read the page as local. Pages not listed here keep the country.
+ */
+const landingPageCities = new Map<string, string>([
+  ["/it-company-in-kathmandu", "Kathmandu"],
+  ["/it-company-in-lalitpur", "Lalitpur"],
+  ["/it-company-in-bhaktapur", "Bhaktapur"],
+  ["/it-company-in-pokhara", "Pokhara"],
+  ["/it-company-in-butwal", "Butwal"],
+  ["/it-company-in-chitwan", "Bharatpur"],
+  ["/it-company-in-biratnagar", "Biratnagar"],
+  ["/digital-marketing-agency-in-kathmandu", "Kathmandu"],
+  ["/web-design-company-in-kathmandu", "Kathmandu"],
+  ["/web-design-company-in-lalitpur", "Lalitpur"],
+  ["/web-design-company-in-bhaktapur", "Bhaktapur"],
+  ["/web-design-company-in-pokhara", "Pokhara"],
+  ["/web-design-company-in-chitwan", "Bharatpur"],
+  ["/web-design-company-in-butwal", "Butwal"],
+  ["/web-design-company-in-biratnagar", "Biratnagar"],
+]);
+
+export function getLandingCity(path: string): string | null {
+  return landingPageCities.get(path) ?? null;
 }

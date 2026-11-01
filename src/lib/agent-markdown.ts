@@ -6,6 +6,9 @@ import { legalLastUpdated, legalSectionsToMarkdown, privacySections, termsSectio
 import { defaultPageContent } from "./content";
 import { getPageSection, getProductBySlug, getProducts } from "./data";
 import { getLandingPageByPath } from "./landing-pages";
+import { getLandingGuides } from "./landing-guides";
+import { getCluster } from "./internal-links";
+import { webDesignLocations } from "./seo-landing-pages-web";
 import { serviceCatalog } from "./services";
 import { team, getTeamMember } from "./team";
 import { postBodyToMarkdown } from "./agent-content";
@@ -394,6 +397,10 @@ function renderContact(): Rendered {
 async function renderLandingPage(path: string): Promise<Rendered | null> {
   const page = await getLandingPageByPath(path);
   if (!page) return null;
+  // The two code-driven sections of the HTML page, so the markdown carries the
+  // same links a visitor sees. See components/public/landing-extras.tsx.
+  const guides = await getLandingGuides(page.path, page.related.map((link) => link.href));
+  const areas = getCluster(page.path)?.id === "web" ? webDesignLocations.filter((item) => item.href !== page.path) : [];
   return {
     title: `${page.keyword} — ${company.name}`,
     body: [
@@ -433,6 +440,19 @@ async function renderLandingPage(path: string): Promise<Rendered | null> {
       "",
       bullets(page.related.map((link) => `[${link.label}](${siteUrl(link.href)}) — ${link.text}`)),
       "",
+      ...(guides.length
+        ? ["## Further reading", "", bullets(guides.map((post) => `[${post.title}](${siteUrl(`/blog/${post.slug}`)}) — ${post.excerpt}`)), ""]
+        : []),
+      ...(areas.length
+        ? [
+            "## Website design across Nepal",
+            "",
+            "Office in Kaushaltar, Bhaktapur, with in person meetings across the Kathmandu valley. Projects elsewhere in Nepal run over calls and a review link, with travel for larger projects.",
+            "",
+            bullets(areas.map((item) => `[Web design in ${item.city}](${siteUrl(item.href)}) — ${item.note}`)),
+            "",
+          ]
+        : []),
       contactBlock(),
     ].join("\n"),
   };

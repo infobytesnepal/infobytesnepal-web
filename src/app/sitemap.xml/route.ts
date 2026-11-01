@@ -2,7 +2,9 @@ import { getPosts } from "@/lib/blog";
 import { getJobs } from "@/lib/careers";
 import { getProducts } from "@/lib/data";
 import { getLandingPageEditDates } from "@/lib/landing-pages";
+import { guidedLandingPaths } from "@/lib/landing-guides";
 import { getLandingProduct, seoLandingPageList } from "@/lib/seo-landing-pages";
+import { webSeoLandingPages } from "@/lib/seo-landing-pages-web";
 import { team } from "@/lib/team";
 import { getCanonicalSiteUrl } from "@/lib/utils";
 
@@ -89,7 +91,6 @@ const PAGE_CONTENT_UPDATED: Record<string, string> = {
   "/crm-software-in-nepal": "2026-10-13",
   "/ui-ux-design-company-in-nepal": "2026-10-13",
   "/digital-marketing-agency-in-kathmandu": "2026-10-13",
-  "/services": "2026-10-13",
   // The privacy policy was rewritten and the terms page created on 2026-10-13.
   "/privacy-policy": "2026-10-13",
   "/terms": "2026-10-13",
@@ -116,9 +117,22 @@ const PAGE_CONTENT_UPDATED: Record<string, string> = {
   "/field-service-management-software-in-nepal": "2026-09-29",
   // Gained the "best service CRM" answer and two cluster links.
   "/service-crm-in-nepal": "2026-09-29",
-  // Gained the clinic and pharmacy group on 2026-09-29, and the specialty
-  // clinic answer on 2026-10-13.
-  "/faq": "2026-10-13",
+  // Gained the clinic and pharmacy group on 2026-09-29, the specialty clinic
+  // answer on 2026-10-13, and "websites outside Kathmandu" on 2026-11-01.
+  "/faq": "2026-11-01",
+  // The web service now links the nationwide page, and the directory lists the
+  // seven new web pages (2026-11-01).
+  "/services": "2026-11-01",
+  // "Every article" index added below the paginated grid (2026-11-01).
+  "/blog": "2026-11-01",
+  // Each now links to its own city's web design page (2026-11-01).
+  "/it-company-in-kathmandu": "2026-11-01",
+  "/it-company-in-lalitpur": "2026-11-01",
+  "/it-company-in-bhaktapur": "2026-11-01",
+  "/it-company-in-pokhara": "2026-11-01",
+  "/it-company-in-butwal": "2026-11-01",
+  "/it-company-in-chitwan": "2026-11-01",
+  "/it-company-in-biratnagar": "2026-11-01",
   // Now introduces six products rather than five.
   "/products": "2026-09-29",
   // Stats and the "why us" heading rewritten on 2026-10-13.
@@ -135,6 +149,19 @@ const PAGE_CONTENT_UPDATED: Record<string, string> = {
 for (const page of seoLandingPageList) {
   if (getLandingProduct(page.path) && (PAGE_CONTENT_UPDATED[page.path] ?? "") < "2026-10-13") {
     PAGE_CONTENT_UPDATED[page.path] = "2026-10-13";
+  }
+}
+
+/*
+  2026-11-01: the nationwide web services page and six city web design pages
+  were created, and every page listed in `landing-guides.ts` began rendering a
+  "Further reading" block of blog posts (web cluster pages also gained the
+  "Website design across Nepal" block). Both are visible changes on exactly
+  those pages, so each is dated by them and nothing else is.
+*/
+for (const path of [...Object.values(webSeoLandingPages).map((page) => page.path), ...guidedLandingPaths]) {
+  if ((PAGE_CONTENT_UPDATED[path] ?? "") < "2026-11-01") {
+    PAGE_CONTENT_UPDATED[path] = "2026-11-01";
   }
 }
 
@@ -245,7 +272,7 @@ export async function GET() {
       priority: "0.8",
       lastmod: lastmodFor(`/products/${product.slug}`, editDates, product.updatedAt),
     })),
-    { path: "/blog", changefreq: "weekly", priority: "0.8", lastmod: posts[0]?.updatedAt ?? CONTENT_LAST_UPDATED },
+    { path: "/blog", changefreq: "weekly", priority: "0.8", lastmod: lastmodFor("/blog", editDates, posts[0]?.updatedAt) },
     ...posts.map((post) => ({
       path: `/blog/${post.slug}`,
       changefreq: "monthly" as const,

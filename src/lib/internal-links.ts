@@ -542,17 +542,76 @@ export const clusters: Cluster[] = [
     ),
     members: [
       node(
+        "/website-design-and-development-services-in-nepal",
+        "Website Design & Development Services",
+        [
+          "website design and development services in Nepal",
+          "website development services across Nepal",
+          "website design services for businesses anywhere in Nepal",
+        ],
+        "What a website project includes, how it runs, and what it costs, wherever you are.",
+        "web",
+      ),
+      node(
         "/web-design-company-in-nepal",
         "Web Design Company",
         ["web design company in Nepal", "website design in Nepal"],
         "Design that carries credibility and still loads quickly.",
         "web",
       ),
+      /*
+        The city pages. They rotate through the sibling block like any member,
+        but they are also all listed together in the "Website design across
+        Nepal" block on every page of this cluster (see `webDesignLocations`),
+        so none of them depends on the rotation to be linked.
+      */
       node(
         "/web-design-company-in-kathmandu",
         "Web Design in Kathmandu",
         ["web design company in Kathmandu", "website design in Kathmandu"],
         "Working with Kathmandu businesses on design and build.",
+        "web",
+      ),
+      node(
+        "/web-design-company-in-lalitpur",
+        "Web Design in Lalitpur",
+        ["web design company in Lalitpur", "website design in Lalitpur and Patan"],
+        "Organisations, exporters, and restaurants across Lalitpur.",
+        "web",
+      ),
+      node(
+        "/web-design-company-in-bhaktapur",
+        "Web Design in Bhaktapur",
+        ["web design company in Bhaktapur", "website design from our Bhaktapur office"],
+        "Guesthouses, shops, schools, and industry, from our Kaushaltar office.",
+        "web",
+      ),
+      node(
+        "/web-design-company-in-pokhara",
+        "Web Design in Pokhara",
+        ["web design company in Pokhara", "website design for Pokhara hotels and agencies"],
+        "Hotels, trekking operators, and local businesses around Pokhara.",
+        "web",
+      ),
+      node(
+        "/web-design-company-in-chitwan",
+        "Web Design in Chitwan",
+        ["web design company in Chitwan", "website design in Bharatpur and Chitwan"],
+        "Hospitals, colleges, safari lodges, and agribusiness in Chitwan.",
+        "web",
+      ),
+      node(
+        "/web-design-company-in-butwal",
+        "Web Design in Butwal",
+        ["web design company in Butwal", "website design in Butwal and Bhairahawa"],
+        "Traders, manufacturers, and Lumbini area hotels.",
+        "web",
+      ),
+      node(
+        "/web-design-company-in-biratnagar",
+        "Web Design in Biratnagar",
+        ["web design company in Biratnagar", "website design in Biratnagar and Itahari"],
+        "Manufacturers, exporters, hospitals, and colleges in the east.",
         "web",
       ),
       node(

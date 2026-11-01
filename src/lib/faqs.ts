@@ -300,6 +300,20 @@ export const faqGroups: FaqGroup[] = [
         ],
       },
       {
+        id: "websites-outside-kathmandu",
+        question: "Do you build websites for businesses outside Kathmandu?",
+        answer:
+          "Yes. We build websites for businesses anywhere in Nepal. Our office is in Kaushaltar, Bhaktapur, so clients in the Kathmandu valley can meet us in person; projects elsewhere run over phone and video calls with a private review link, and on larger projects someone from the team travels to you for the kickoff or staff training.",
+        more: [
+          "Prices and timelines are the same wherever the business is. The only thing distance changes is how the meetings happen.",
+        ],
+        links: [
+          { href: "/website-design-and-development-services-in-nepal", label: "Website design and development across Nepal" },
+          { href: "/web-design-company-in-pokhara", label: "Web design in Pokhara" },
+          { href: "/web-design-company-in-butwal", label: "Web design in Butwal" },
+        ],
+      },
+      {
         id: "what-to-provide",
         question: "What do I need to provide to start a website project?",
         answer:

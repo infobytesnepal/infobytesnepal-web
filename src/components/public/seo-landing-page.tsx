@@ -4,13 +4,15 @@ import Breadcrumbs, { breadcrumbSchema } from "@/components/public/breadcrumbs";
 import InternalLinkHub from "@/components/public/internal-links";
 import { anchorFor, getBreadcrumbs, getCluster, getLinkNode, priorityPaths } from "@/lib/internal-links";
 import GetStartedButton from "@/components/public/get-started-button";
+import { LandingGuides, WebDesignAcrossNepal } from "@/components/public/landing-extras";
 import { company } from "@/lib/company";
-import { getLandingProduct, type SeoLandingPage as SeoLandingPageData } from "@/lib/seo-landing-pages";
+import { getLandingCity, getLandingProduct, type SeoLandingPage as SeoLandingPageData } from "@/lib/seo-landing-pages";
 import { getCanonicalSiteUrl } from "@/lib/utils";
 
 function buildSchemas(page: SeoLandingPageData, crumbs: ReturnType<typeof getBreadcrumbs>) {
   const siteUrl = getCanonicalSiteUrl();
   const pageUrl = `${siteUrl}${page.path}`;
+  const city = getLandingCity(page.path);
   return [
     breadcrumbSchema(crumbs),
     {
@@ -20,10 +22,9 @@ function buildSchemas(page: SeoLandingPageData, crumbs: ReturnType<typeof getBre
       name: page.heroTitle,
       serviceType: page.keyword,
       description: page.metaDescription,
-      areaServed: {
-        "@type": "Country",
-        name: "Nepal",
-      },
+      areaServed: city
+        ? { "@type": "City", name: city, containedInPlace: { "@type": "Country", name: "Nepal" } }
+        : { "@type": "Country", name: "Nepal" },
       provider: {
         "@type": "Organization",
         "@id": `${siteUrl}/#organization`,
@@ -318,6 +319,10 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
             </div>
           </div>
         </section>
+
+        <LandingGuides path={page.path} exclude={page.related.map((item) => item.href)} />
+
+        {getCluster(page.path)?.id === "web" && <WebDesignAcrossNepal path={page.path} />}
 
         <InternalLinkHub sourcePath={page.path} className="page-x bg-white py-16 md:py-20" />
 

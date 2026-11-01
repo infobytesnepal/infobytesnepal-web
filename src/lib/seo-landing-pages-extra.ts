@@ -504,8 +504,8 @@ export const extraSeoLandingPages = {
         text: "Custom systems for billing, inventory, distribution, and service work.",
       },
       {
-        href: "/web-development-company-in-nepal",
-        label: "web development company in Nepal",
+        href: "/web-design-company-in-butwal",
+        label: "web design company in Butwal",
         text: "Websites built to load fast on mobile and be found in local search.",
       },
       {
@@ -636,8 +636,8 @@ export const extraSeoLandingPages = {
         text: "For hospitals running OPD, IPD, pharmacy, and lab together.",
       },
       {
-        href: "/web-design-company-in-nepal",
-        label: "web design company in Nepal",
+        href: "/web-design-company-in-chitwan",
+        label: "web design company in Chitwan",
         text: "Websites built for mobile, speed, and direct bookings.",
       },
     ],
@@ -766,6 +766,11 @@ export const extraSeoLandingPages = {
         href: "/business-automation-software-nepal",
         label: "business automation in Nepal",
         text: "Removing the manual steps between purchase, dispatch, and reporting.",
+      },
+      {
+        href: "/web-design-company-in-biratnagar",
+        label: "web design company in Biratnagar",
+        text: "Websites and product catalogues for Biratnagar manufacturers and traders.",
       },
     ],
     faqs: [

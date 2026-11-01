@@ -6,6 +6,7 @@ import { eq, ne, and } from "drizzle-orm";
 import { db } from "@/lib/db/client";
 import { posts } from "@/lib/db/schema";
 import { requireContentAccess } from "@/lib/auth";
+import { guidedLandingPaths } from "@/lib/landing-guides";
 import { estimateReadTime, repairLinkAddresses } from "@/lib/blog-markdown";
 import { formFile, storeBlogImage } from "@/lib/media";
 import { formString, newId } from "@/lib/utils";
@@ -38,6 +39,10 @@ function revalidateBlog() {
   revalidatePath("/llms.txt");
   revalidatePath("/api/v1/blog/[slug]", "page");
   revalidatePath("/api/markdown/[[...path]]", "page");
+  // Service pages list related posts under "Further reading", and drop any that
+  // are no longer published. Without this an unpublished post would stay linked
+  // from them until the layout's weekly revalidation.
+  for (const path of guidedLandingPaths) revalidatePath(path);
 }
 
 /** "What a Website Costs" -> "what-a-website-costs" */
